@@ -19,7 +19,6 @@ public final class MainWindow extends BasicWindow implements FontInterface {
     private JLabel subwelcomeLbl;
     private DefaultButton solveButton;
 
-    private final Dimension mainWinDimension = new Dimension(500, 350);
     private static final String title = "Chem solver";
 
     // Hash map to identify the various possible problems
@@ -36,6 +35,7 @@ public final class MainWindow extends BasicWindow implements FontInterface {
         welcomeLbl.setFont(titleFont);
         subwelcomeLbl.setFont(subtitleFont);
 
+        Dimension mainWinDimension = new Dimension(500, 350);
         setSize(mainWinDimension);
         setResizable(false);
         setPreferredSize(mainWinDimension);
@@ -61,14 +61,11 @@ public final class MainWindow extends BasicWindow implements FontInterface {
                     MolecularShapeProblemWindow win = new MolecularShapeProblemWindow();
                     win.showWindow();
                 break;
+                case ProblemChooserDialog.NO_PROBLEM_CHOOSED:
+                    return;
             }
 
             dispose();
         });
     }
-/*
-    public void showWindow() {
-        pack();
-        setVisible(true);
-    }*/
 }
