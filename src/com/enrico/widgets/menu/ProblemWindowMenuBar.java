@@ -11,9 +11,13 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
         super();
 
         JMenu problemMenu = new JMenu("Problem");
+        problemMenu.setFont(menuBarFont);
 
         JMenuItem problemMenuItemSolve = problemMenu.add("Solve");
         JMenuItem problemMenuItemStartAnother = problemMenu.add("Solve another problem");
+
+        problemMenuItemSolve.setFont(menuBarFont);
+        problemMenuItemStartAnother.setFont(menuBarFont);
 
         problemMenuItemSolve.addActionListener(actionEvent -> {
 
