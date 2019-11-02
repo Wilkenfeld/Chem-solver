@@ -10,16 +10,15 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements St
     private JPanel mainPanel;
 
     public static final String MOLECULAR_RETURN_STATUS = "Molecular shape";
+    public static final String MOLECULAR_SHAPE_WINDOW_IDENTIFIER = "MOLECULAR_SHAPE_WINDOW_IDENTIFIER";
 
     public MolecularShapeProblemWindow() {
-        super(MOLECULAR_RETURN_STATUS, EXIT_ON_CLOSE_WINDOW);
+        super(MOLECULAR_RETURN_STATUS);
 
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(mainPanel);
 
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
-
-        retStatus = MOLECULAR_RETURN_STATUS;
     }
 }

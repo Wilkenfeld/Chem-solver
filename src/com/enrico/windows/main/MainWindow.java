@@ -1,14 +1,17 @@
 package com.enrico.windows.main;
 
-import com.enrico.Main;
 import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.buttons.DefaultButton;
 import com.enrico.widgets.menu.MainMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.ProblemChooserDialog;
+import com.enrico.windows.dialogs.ProblemListModel;
+import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class MainWindow extends BasicWindow implements FontInterface {
     public JPanel mainPanel;
@@ -19,12 +22,13 @@ public final class MainWindow extends BasicWindow implements FontInterface {
     private final Dimension mainWinDimension = new Dimension(500, 350);
     private static final String title = "Chem solver";
 
-    public MainWindow() {
-        super(title, EXIT_ON_CLOSE_WINDOW);
+    // Hash map to identify the various possible problems
+    private HashMap<String, String> problemToWindowCodeHashMap = new HashMap<>();
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public MainWindow() {
+        super(title);
+
         setContentPane(mainPanel);
-        setTitle(title);
 
         MainMenuBar menuBar = new MainMenuBar();
         setJMenuBar(menuBar);
@@ -32,11 +36,11 @@ public final class MainWindow extends BasicWindow implements FontInterface {
         welcomeLbl.setFont(titleFont);
         subwelcomeLbl.setFont(subtitleFont);
 
-        pack();
         setSize(mainWinDimension);
         setResizable(false);
         setPreferredSize(mainWinDimension);
-        setModal(true);
+
+        problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[0], MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER);
     }
 
     private void createUIComponents() {
@@ -46,8 +50,25 @@ public final class MainWindow extends BasicWindow implements FontInterface {
             String res = problemChooserDialog.showDialog();
             System.out.println(res);
 
-            retStatus = res;
+            for (Map.Entry<String, String> val : problemToWindowCodeHashMap.entrySet()) {
+                if (res.equals(val.getKey())) {
+                    res = val.getValue();
+                }
+            }
+
+            switch (res) {
+                case MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER:
+                    MolecularShapeProblemWindow win = new MolecularShapeProblemWindow();
+                    win.showWindow();
+                break;
+            }
+
             dispose();
         });
     }
+/*
+    public void showWindow() {
+        pack();
+        setVisible(true);
+    }*/
 }

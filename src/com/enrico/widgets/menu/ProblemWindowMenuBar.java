@@ -1,6 +1,7 @@
 package com.enrico.widgets.menu;
 
 import com.enrico.windows.BasicWindow;
+import com.enrico.windows.main.MainWindow;
 
 import javax.swing.*;
 
@@ -20,6 +21,8 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
 
         problemMenuItemStartAnother.addActionListener(actionEvent -> {
             win.dispose();
+            MainWindow window = new MainWindow();
+            window.showWindow();
         });
 
         add(problemMenu);

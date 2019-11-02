@@ -4,7 +4,7 @@ import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
 
 import javax.swing.*;
 
-final class ProblemListModel extends DefaultListModel {
+public final class ProblemListModel extends DefaultListModel {
 
     static final int CHEM_PROBLEM_TYPE = 0;
     static final int PHYS_PROBLEM_TYPE = 1;
