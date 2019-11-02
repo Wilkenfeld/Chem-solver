@@ -35,6 +35,9 @@ public class ProblemChooserDialog extends JDialog {
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        setTitle("Choose a problem");
+        setResizable(false);
+
         ProblemListModel chemProblemListModel = new ProblemListModel(ProblemListModel.CHEM_PROBLEM_TYPE);
         ProblemListModel physProblemListModel = new ProblemListModel(ProblemListModel.PHYS_PROBLEM_TYPE);
 
