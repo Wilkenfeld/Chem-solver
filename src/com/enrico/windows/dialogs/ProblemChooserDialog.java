@@ -1,14 +1,18 @@
 package com.enrico.windows.dialogs;
 
+import com.enrico.interfaces.FontInterface;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ProblemChooserDialog extends JDialog {
+public class ProblemChooserDialog extends JDialog implements FontInterface {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JList chemProblemList;
     private JList physProblemList;
+    private JLabel chemTitleLbl;
+    private JLabel physTitleLbl;
 
     public static final String NO_PROBLEM_CHOOSED = "NO_PROBLEM_CHOOSED";
 
@@ -43,6 +47,12 @@ public class ProblemChooserDialog extends JDialog {
 
         chemProblemList.setModel(chemProblemListModel);
         physProblemList.setModel(physProblemListModel);
+
+        chemProblemList.setFont(normalTextFont);
+        physProblemList.setFont(normalTextFont);
+
+        chemTitleLbl.setFont(normalTextFont);
+        physTitleLbl.setFont(normalTextFont);
     }
 
     private void onOK() {
