@@ -26,6 +26,12 @@ public abstract class Atom {
         NotClassified
     }
 
+    public enum BindingEnum {
+        PureCovalent,
+        PolarCovalent,
+        Ionic
+    }
+
     public Atom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                 int bindingElectronsNumber, int doublets, AtomClassType classType) {
         this.symbol = symbol;
@@ -70,13 +76,14 @@ public abstract class Atom {
         return bindingElectronsNumber;
     }
 
-    private double getElectronegativityDifference(Atom atom) {
-        double atomElectroNegativity = atom.getElectronegativity();
+    public static double getElectronegativityDifference(Atom atom1, Atom atom2) {
+        double atomElectroNegativity1 = atom1.getElectronegativity();
+        double atomElectroNegativity2 = atom2.getElectronegativity();
 
-        if (electronegativity >= atomElectroNegativity)
-            return electronegativity - atomElectroNegativity;
+        if (atomElectroNegativity1 >= atomElectroNegativity2)
+            return atomElectroNegativity1 - atomElectroNegativity2;
         else
-            return atomElectroNegativity - electronegativity;
+            return atomElectroNegativity2 - atomElectroNegativity1;
     }
 
     /**
@@ -94,6 +101,17 @@ public abstract class Atom {
             return atom1;
         else
             return atom2;
+    }
+
+    public static BindingEnum getBindingFromAtoms(Atom atom1, Atom atom2) {
+        double electroNegativityDifference = getElectronegativityDifference(atom1, atom2);
+
+        if (electroNegativityDifference >= 0 && electroNegativityDifference <= 0.4)
+            return BindingEnum.PureCovalent;
+        else if (electroNegativityDifference >= 0.4 && electroNegativityDifference <= 1.9)
+            return BindingEnum.PolarCovalent;
+        else
+            return BindingEnum.Ionic;
     }
 
     private static void checkIfStable(Atom atom) throws IllegalArgumentException {

@@ -12,7 +12,7 @@ public class Molecule {
     // AXE Parameters.
     private Atom centralAtom;
     private ArrayList<Atom> bindedAtoms; // Atoms binded to the central atom.
-    private int doubletsNumber;
+    private int doubletsNumber; // Doublets of central atom.
 
     public enum ShapeEnum {
         SquareShape,
