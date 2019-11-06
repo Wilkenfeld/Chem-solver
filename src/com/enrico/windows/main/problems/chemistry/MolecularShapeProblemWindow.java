@@ -33,6 +33,10 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         dataPane.setFont(normalTextFont);
         formulaLbl.setFont(normalTextFont);
         resultLbl.setFont(normalTextFont);
+
+        problemWindowMenuBar.problemMenuItemSolve.addActionListener(ActionEvent -> {
+            System.out.println("DONE");
+        });
     }
 
     public void createUIComponents() {
