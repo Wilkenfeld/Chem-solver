@@ -35,8 +35,9 @@ public class Molecule {
         return moleculeShape;
     }
 
-    private void findCentralAtom() throws IllegalMoleculeException {
+    private void findCentralAtom() throws IllegalArgumentException {
         for (Atom atom : atomList) {
+            Atom.checkIfStable(atom);
             if (atom.getClassType() == Atom.AtomClassType.NotMetals) {
                 centralAtom = atom;
                 return;
