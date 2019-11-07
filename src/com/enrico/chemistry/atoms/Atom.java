@@ -114,7 +114,7 @@ public abstract class Atom {
             return BindingEnum.Ionic;
     }
 
-    private static void checkIfStable(Atom atom) throws IllegalArgumentException {
+    public static void checkIfStable(Atom atom) throws IllegalArgumentException {
         if (atom.getClass().isAnnotationPresent(UnusableAtom.class))
             throw new IllegalArgumentException("Atom " + atom.getCompleteName()
                                                + "(" + atom.getSymbol()+") is not usable and no operations can be" +
