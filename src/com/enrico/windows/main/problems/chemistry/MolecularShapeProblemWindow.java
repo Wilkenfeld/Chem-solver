@@ -58,6 +58,8 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                 atomList = parser.getAtoms();
                 molecule = new Molecule(atomList);
                 centralAtom = molecule.getCentralAtom();
+
+                molecule.calculateShape();
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(this,
                         e.getMessage(),
@@ -65,8 +67,6 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            molecule.calculateShape();
 
             mainCanvas.setAtomList(atomList);
             mainCanvas.setCentralAtom(centralAtom);

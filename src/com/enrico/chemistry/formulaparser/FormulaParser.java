@@ -35,16 +35,22 @@ public class FormulaParser {
 
             // Get number of atoms and its symbol.
             String[] splittedAtomName = atomName.split("");
-            String atomSymbol = splittedAtomName[0];
+            String atomSymbol;
             String atomNumber;
 
-            try {
-                atomNumber = splittedAtomName[1];
-                if (atomNumber.equals(","))
-                    atomNumber = null;
-            } catch (IndexOutOfBoundsException e) {
-                atomNumber = null;
+            StringBuilder atomSymbolBuilder = new StringBuilder();
+            StringBuilder atomNumberBuilder = new StringBuilder();
+            for (String stringChar : splittedAtomName) {
+                if (Character.isLetter(stringChar.charAt(0)))
+                    atomSymbolBuilder.append(stringChar);
+                else
+                    atomNumberBuilder.append(stringChar);
             }
+            atomNumber = atomNumberBuilder.toString();
+            atomSymbol = atomSymbolBuilder.toString();
+
+            if (atomNumber.isEmpty())
+                atomNumber = null;
 
             if (atomName.equals(","))
                 continue;

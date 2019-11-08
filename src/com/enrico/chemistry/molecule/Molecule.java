@@ -61,6 +61,9 @@ public class Molecule {
 
     private void setBindedAtoms() {
         for (Atom atom : atomList) {
+
+            Atom.checkIfStable(atom);
+
             if (atom != centralAtom)
                 bindedAtoms.add(atom);
         }
