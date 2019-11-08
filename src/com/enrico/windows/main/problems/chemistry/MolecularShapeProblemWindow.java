@@ -47,11 +47,24 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                 return;
             }
 
-            FormulaParser parser = new FormulaParser(formula);
+            FormulaParser parser;
+            Atom[] atomList = null;
+            Molecule molecule = null;
+            Atom centralAtom = null;
 
-            Atom[] atomList = parser.getAtoms();
-            Molecule molecule = new Molecule(atomList);
-            Atom centralAtom = molecule.getCentralAtom();
+            try {
+                parser = new FormulaParser(formula);
+
+                atomList = parser.getAtoms();
+                molecule = new Molecule(atomList);
+                centralAtom = molecule.getCentralAtom();
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this,
+                        e.getMessage(),
+                        "Formula error.",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             molecule.calculateShape();
 
@@ -60,8 +73,6 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
             mainCanvas.setMolecule(molecule);
 
             mainCanvas.repaint();
-            //MoleculeDrawThread thread = new MoleculeDrawThread(mainCanvas);
-            //thread.start();
         });
     }
 
