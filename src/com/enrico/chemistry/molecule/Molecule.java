@@ -35,6 +35,14 @@ public class Molecule {
         return moleculeShape;
     }
 
+    public Atom getCentralAtom() {
+        return centralAtom;
+    }
+
+    public ArrayList<Atom> getBindedAtoms() {
+        return bindedAtoms;
+    }
+
     private void findCentralAtom() throws IllegalArgumentException {
         for (Atom atom : atomList) {
             Atom.checkIfStable(atom);

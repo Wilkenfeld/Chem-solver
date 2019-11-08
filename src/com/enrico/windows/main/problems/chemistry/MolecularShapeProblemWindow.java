@@ -1,5 +1,8 @@
 package com.enrico.windows.main.problems.chemistry;
 
+import com.enrico.chemistry.atoms.Atom;
+import com.enrico.chemistry.formulaparser.FormulaParser;
+import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.canvas.Canvas;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -35,7 +38,30 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         resultLbl.setFont(normalTextFont);
 
         problemWindowMenuBar.problemMenuItemSolve.addActionListener(ActionEvent -> {
-            System.out.println("DONE");
+            String formula = textFieldFormula.getText();
+            if (formula.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                                     "Please insert a formula to evaluate.",
+                                        "No formula found.",
+                                             JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            FormulaParser parser = new FormulaParser(formula);
+
+            Atom[] atomList = parser.getAtoms();
+            Molecule molecule = new Molecule(atomList);
+            Atom centralAtom = molecule.getCentralAtom();
+
+            molecule.calculateShape();
+
+            mainCanvas.setAtomList(atomList);
+            mainCanvas.setCentralAtom(centralAtom);
+            mainCanvas.setMolecule(molecule);
+
+            mainCanvas.repaint();
+            //MoleculeDrawThread thread = new MoleculeDrawThread(mainCanvas);
+            //thread.start();
         });
     }
 
