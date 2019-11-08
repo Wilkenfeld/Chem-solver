@@ -48,9 +48,9 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
             }
 
             FormulaParser parser;
-            Atom[] atomList = null;
-            Molecule molecule = null;
-            Atom centralAtom = null;
+            Atom[] atomList;
+            Molecule molecule;
+            Atom centralAtom;
 
             try {
                 parser = new FormulaParser(formula);
