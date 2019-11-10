@@ -67,5 +67,9 @@ public class Canvas extends JPanel {
         this.molecule = molecule;
     }
 
+    public void clear() {
+        initialized = true;
+        repaint();
+    }
 
 }
