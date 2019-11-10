@@ -45,7 +45,7 @@ public class Molecule {
 
     private void findCentralAtom() throws IllegalArgumentException {
 
-        // The central atom will be the most electronegative.
+        // The central atom will be the biggest.
         Atom biggestAtom = null;
 
         int currentAtomicNumber;
