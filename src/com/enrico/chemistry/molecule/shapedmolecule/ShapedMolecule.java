@@ -40,6 +40,17 @@ public class ShapedMolecule {
             break;
 
             case PyramidShape:
+                ArrayList<Atom> bindedAtomsPyramid = molecule.getBindedAtoms();
+
+                if (bindedAtomsPyramid.size() == 2) {
+                    ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+
+                    atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(0), xCenter - 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(1), xCenter + 20, yCenter - 20));
+
+                    atomGroups.add(new AtomGroup(atoms));
+                }
             break;
         }
     }

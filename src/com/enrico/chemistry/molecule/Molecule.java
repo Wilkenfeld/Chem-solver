@@ -44,15 +44,32 @@ public class Molecule {
     }
 
     private void findCentralAtom() throws IllegalArgumentException {
+
+        // The central atom will be the most electronegative.
+        Atom biggestAtom = null;
+
+        int currentAtomicNumber;
+        int maxAtomicNumber = 0;
+
         for (Atom atom : atomList) {
             Atom.checkIfStable(atom);
-            if (atom.getClassType() == Atom.AtomClassType.NotMetals) {
-                centralAtom = atom;
-                return;
+
+            currentAtomicNumber = atom.getAtomicNumber();
+
+            if (atom.getClassType() == Atom.AtomClassType.NotMetals ||
+                atom.getClassType() == Atom.AtomClassType.AlkalineMetals) {
+
+                if (maxAtomicNumber < currentAtomicNumber) {
+                    biggestAtom = atom;
+                    maxAtomicNumber = currentAtomicNumber;
+                }
             }
         }
 
-        throw new IllegalMoleculeException(this);
+        if (biggestAtom == null)
+            throw new IllegalMoleculeException(this);
+
+        centralAtom = biggestAtom;
     }
 
     private void findDoublets() {
@@ -73,7 +90,8 @@ public class Molecule {
         if ((bindedAtoms.size() == 4 && doubletsNumber == 0) ||
             (bindedAtoms.size() == 3 && doubletsNumber == 0))
             moleculeShape = ShapeEnum.SquareShape;
-        else if (bindedAtoms.size() == 3 && doubletsNumber == 1)
+        else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
+                (bindedAtoms.size() == 2 && doubletsNumber == 5))
             moleculeShape = ShapeEnum.PyramidShape;
         else if (bindedAtoms.size() == 2 && doubletsNumber == 0)
             moleculeShape = ShapeEnum.LineShape;
