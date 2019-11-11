@@ -87,6 +87,8 @@ public class Molecule {
     }
 
     private void setBindedAtoms() {
+
+        // Check if molecule is Hydrogen molecule.
         if (atomList.length == 2 && centralAtom.getClass() == HydrogenAtom.class &&
             atomList[1].getClass() == HydrogenAtom.class) {
             bindedAtoms.add(atomList[1]);
