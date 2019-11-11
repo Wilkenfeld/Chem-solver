@@ -51,6 +51,8 @@ public class Molecule {
         double minElectronegativity = 0.0;
 
         for (Atom atom : atomList ) {
+            Atom.checkIfUsable(atom);
+
             if (minElectronegativity == 0.0 && atom.getClass() != HydrogenAtom.class) {
                 minElectronegativity = atom.getElectronegativity();
                 central = atom;
@@ -81,7 +83,7 @@ public class Molecule {
     private void setBindedAtoms() {
         for (Atom atom : atomList) {
 
-            Atom.checkIfStable(atom);
+            Atom.checkIfUsable(atom);
 
             if (atom != centralAtom)
                 bindedAtoms.add(atom);

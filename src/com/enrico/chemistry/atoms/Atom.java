@@ -100,8 +100,8 @@ public abstract class Atom {
      * @throws IllegalArgumentException
      */
     public static Atom getMostElectronegativeAtom(Atom atom1, Atom atom2) throws IllegalArgumentException {
-        checkIfStable(atom1);
-        checkIfStable(atom2);
+        checkIfUsable(atom1);
+        checkIfUsable(atom2);
 
         if (atom1.getElectronegativity() >= atom2.getElectronegativity())
             return atom1;
@@ -120,7 +120,7 @@ public abstract class Atom {
             return BindingEnum.Ionic;
     }
 
-    public static void checkIfStable(Atom atom) throws IllegalArgumentException {
+    public static void checkIfUsable(Atom atom) throws IllegalArgumentException {
         if (atom.getClass().isAnnotationPresent(UnusableAtom.class))
             throw new IllegalArgumentException("Atom " + atom.getCompleteName()
                                                + "(" + atom.getSymbol()+") is not usable and no operations can be" +
