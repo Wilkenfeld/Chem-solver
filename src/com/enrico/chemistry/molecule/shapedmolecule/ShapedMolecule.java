@@ -37,6 +37,7 @@ public class ShapedMolecule {
             break;
 
             case LineShape:
+                ArrayList<Atom> bindedAtomsLine = molecule.getBindedAtoms();
             break;
 
             case PyramidShape:

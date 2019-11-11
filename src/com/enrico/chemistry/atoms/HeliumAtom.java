@@ -13,6 +13,6 @@ public class HeliumAtom extends Atom {
 
     public HeliumAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              0, 0, AtomClassType.NobleGasses);
+              0, 0, 0, AtomClassType.NobleGasses);
     }
 }

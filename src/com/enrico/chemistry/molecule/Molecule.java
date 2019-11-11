@@ -1,6 +1,7 @@
 package com.enrico.chemistry.molecule;
 
 import com.enrico.chemistry.atoms.Atom;
+import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
@@ -44,32 +45,33 @@ public class Molecule {
     }
 
     private void findCentralAtom() throws IllegalArgumentException {
+        Atom central = null;
 
-        // The central atom will be the biggest.
-        Atom biggestAtom = null;
+        double currentElectronegativity;
+        double minElectronegativity = 0.0;
 
-        int currentAtomicNumber;
-        int maxAtomicNumber = 0;
+        for (Atom atom : atomList ) {
+            if (minElectronegativity == 0.0 && atom.getClass() != HydrogenAtom.class) {
+                minElectronegativity = atom.getElectronegativity();
+                central = atom;
+                continue;
+            }
 
-        for (Atom atom : atomList) {
-            Atom.checkIfStable(atom);
+            currentElectronegativity = atom.getElectronegativity();
 
-            currentAtomicNumber = atom.getAtomicNumber();
+            if (currentElectronegativity < minElectronegativity) {
+                if (atom.getClass() == HydrogenAtom.class)
+                    continue;
 
-            if (atom.getClassType() == Atom.AtomClassType.NotMetals ||
-                atom.getClassType() == Atom.AtomClassType.AlkalineMetals) {
-
-                if (maxAtomicNumber < currentAtomicNumber) {
-                    biggestAtom = atom;
-                    maxAtomicNumber = currentAtomicNumber;
-                }
+                central = atom;
+                minElectronegativity = currentElectronegativity;
             }
         }
 
-        if (biggestAtom == null)
+        if (central == null)
             throw new IllegalMoleculeException(this);
 
-        centralAtom = biggestAtom;
+        centralAtom = central;
     }
 
     private void findDoublets() {

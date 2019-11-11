@@ -11,6 +11,7 @@ public abstract class Atom {
     private final double electronegativity;
     private final int doublets;
     private final int bindingElectronsNumber;
+    private final int ionizationEnergy;
 
     private final AtomClassType classType;
 
@@ -33,7 +34,7 @@ public abstract class Atom {
     }
 
     public Atom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
-                int bindingElectronsNumber, int doublets, AtomClassType classType) {
+                int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType) {
         this.symbol = symbol;
         this.completeName = completeName;
         this.atomicNumber = atomicNumber;
@@ -42,6 +43,7 @@ public abstract class Atom {
         this.doublets = doublets;
         this.classType = classType;
         this.bindingElectronsNumber = bindingElectronsNumber;
+        this.ionizationEnergy = ionizationEnergy;
     }
 
     public int getAtomicNumber() {
@@ -74,6 +76,10 @@ public abstract class Atom {
 
     public int getBindingElectronsNumber() {
         return bindingElectronsNumber;
+    }
+
+    public int getIonizationEnergy() {
+        return ionizationEnergy;
     }
 
     public static double getElectronegativityDifference(Atom atom1, Atom atom2) {
