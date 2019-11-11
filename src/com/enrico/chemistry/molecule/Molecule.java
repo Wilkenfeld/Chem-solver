@@ -50,7 +50,7 @@ public class Molecule {
         double currentElectronegativity;
         double minElectronegativity = 0.0;
 
-        for (Atom atom : atomList ) {
+        for (Atom atom : atomList) {
             Atom.checkIfUsable(atom);
 
             if (minElectronegativity == 0.0 && atom.getClass() != HydrogenAtom.class) {
@@ -70,8 +70,14 @@ public class Molecule {
             }
         }
 
-        if (central == null)
-            throw new IllegalMoleculeException(this);
+        // It is possible for Hydrogen to be the central atom only for the molecule H2.
+        if (central == null) {
+            if (atomList[0].getClass() == HydrogenAtom.class && atomList[1].getClass() == HydrogenAtom.class) {
+                central = atomList[0];
+            } else { // No valid molecule.
+                throw new IllegalMoleculeException(this);
+            }
+        }
 
         centralAtom = central;
     }
@@ -81,11 +87,17 @@ public class Molecule {
     }
 
     private void setBindedAtoms() {
+        if (atomList.length == 2 && centralAtom.getClass() == HydrogenAtom.class &&
+            atomList[1].getClass() == HydrogenAtom.class) {
+            bindedAtoms.add(atomList[1]);
+            return;
+        }
+
         for (Atom atom : atomList) {
 
             Atom.checkIfUsable(atom);
 
-            if (atom != centralAtom)
+            if (!atom.equals(centralAtom))
                 bindedAtoms.add(atom);
         }
     }
@@ -97,7 +109,8 @@ public class Molecule {
         else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
                 (bindedAtoms.size() == 2 && doubletsNumber == 5))
             moleculeShape = ShapeEnum.PyramidShape;
-        else if (bindedAtoms.size() == 2 && doubletsNumber == 0)
+        else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
+                 (bindedAtoms.size() == 1 && doubletsNumber == 0))
             moleculeShape = ShapeEnum.LineShape;
         else
             throw new IllegalMoleculeException(this);
