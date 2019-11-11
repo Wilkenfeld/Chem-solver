@@ -38,6 +38,15 @@ public class ShapedMolecule {
 
             case LineShape:
                 ArrayList<Atom> bindedAtomsLine = molecule.getBindedAtoms();
+                if (bindedAtomsLine.size() >= 2) {
+                    ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
+
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+                    atoms.add(new AtomPlaceCard(bindedAtomsLine.get(0), xCenter - 20, yCenter));
+                    atoms.add(new AtomPlaceCard(bindedAtomsLine.get(1), xCenter + 20, yCenter));
+
+                    atomGroups.add(new AtomGroup(atoms));
+                }
             break;
 
             case PyramidShape:
