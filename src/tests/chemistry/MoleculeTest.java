@@ -24,7 +24,7 @@ public class MoleculeTest {
         Molecule molecule = null;
 
         try {
-            molecule = new Molecule(list);
+            molecule = new Molecule(list, null);
             molecule.calculateShape();
         } catch (IllegalMoleculeException e) {
             System.out.println(e.getMessage());
@@ -42,7 +42,7 @@ public class MoleculeTest {
         list2[4] = new HydrogenAtom();
 
         try {
-            molecule = new Molecule(list2);
+            molecule = new Molecule(list2, null);
             molecule.calculateShape();
         } catch (IllegalMoleculeException e) {
             System.out.println(e.getMessage());

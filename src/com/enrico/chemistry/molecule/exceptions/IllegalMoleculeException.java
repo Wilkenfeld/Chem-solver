@@ -4,6 +4,6 @@ import com.enrico.chemistry.molecule.Molecule;
 
 public class IllegalMoleculeException extends IllegalArgumentException {
     public IllegalMoleculeException(Molecule m) {
-        super("Molecule: " + m.getMoleculeShape() + " is not a valid molecule.");
+        super("Molecule: " + m.getFormula() + " is not a valid molecule.");
     }
 }

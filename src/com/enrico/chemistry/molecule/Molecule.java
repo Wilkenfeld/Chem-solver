@@ -10,6 +10,8 @@ public class Molecule {
     private Atom[] atomList;
     private ShapeEnum moleculeShape;
 
+    private final String formula;
+
     // AXE Parameters.
     private Atom centralAtom;
     private ArrayList<Atom> bindedAtoms; // Atoms binded to the central atom.
@@ -21,8 +23,10 @@ public class Molecule {
         LineShape // Eg: O = C = O
     }
 
-    public Molecule(Atom[] atomList) throws IllegalMoleculeException {
+    public Molecule(Atom[] atomList, String formula) throws IllegalMoleculeException {
         this.atomList = atomList;
+        this.formula = formula;
+
         doubletsNumber = 0;
 
         bindedAtoms = new ArrayList<>();
@@ -42,6 +46,10 @@ public class Molecule {
 
     public ArrayList<Atom> getBindedAtoms() {
         return bindedAtoms;
+    }
+
+    public String getFormula() {
+        return formula;
     }
 
     private void findCentralAtom() throws IllegalArgumentException {
