@@ -10,9 +10,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel {
-
-    private boolean initialized = true;
-
     private Atom[] atomList = null;
     private Atom centralAtom = null;
     private Molecule molecule = null;
@@ -32,13 +29,7 @@ public class Canvas extends JPanel {
         int centerWidth = getWidth() / 2;
         int centerHeight = getHeight() / 2;
 
-        if (initialized) {
-            g.setColor(Color.BLACK);
-            for (int i = 0; i <= 5; i++) {
-                g.drawRect(i, i, getWidth()-i, getHeight()-i);
-            }
-            initialized = false;
-        } else if (atomList != null && centralAtom != null && molecule != null) {
+        if (atomList != null && centralAtom != null && molecule != null) {
             ShapedMolecule shapedMolecule = new ShapedMolecule(molecule, centerWidth, centerHeight);
             ArrayList<AtomGroup> atoms = shapedMolecule.getAtomGroups();
 
@@ -65,11 +56,6 @@ public class Canvas extends JPanel {
 
     public void setMolecule(Molecule molecule) {
         this.molecule = molecule;
-    }
-
-    public void clear() {
-        initialized = true;
-        repaint();
     }
 
 }

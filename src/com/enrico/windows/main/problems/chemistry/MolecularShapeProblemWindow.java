@@ -71,8 +71,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
             mainCanvas.setAtomList(atomList);
             mainCanvas.setCentralAtom(centralAtom);
             mainCanvas.setMolecule(molecule);
-
-            mainCanvas.clear();
+            
             mainCanvas.repaint();
         });
     }
