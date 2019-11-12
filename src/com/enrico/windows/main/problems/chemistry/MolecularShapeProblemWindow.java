@@ -56,7 +56,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                 parser = new FormulaParser(formula);
 
                 atomList = parser.getAtoms();
-                molecule = new Molecule(atomList);
+                molecule = new Molecule(atomList, formula);
                 centralAtom = molecule.getCentralAtom();
 
                 molecule.calculateShape();
