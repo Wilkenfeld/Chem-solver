@@ -1,6 +1,7 @@
 package com.enrico.chemistry.molecule.shapedmolecule;
 
 import com.enrico.chemistry.atoms.Atom;
+import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.chemistry.molecule.atomgroup.AtomGroup;
 
@@ -18,6 +19,9 @@ public class ShapedMolecule {
 
     public ShapedMolecule(Molecule molecule, int xCenter, int yCenter) {
 
+        ArrayList<HydrogenAtom> hydrogenAtoms = molecule.getHydrogenAtoms();
+        int hydrogenAtomsSize = hydrogenAtoms.size();
+        
         switch (molecule.getMoleculeShape()) {
             case SquareShape:
 
@@ -33,6 +37,36 @@ public class ShapedMolecule {
                     atoms.add(new AtomPlaceCard(bindedAtoms.get(3), xCenter, yCenter + 20));
 
                     atomGroups.add(new AtomGroup(atoms));
+
+                    ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
+
+                    int hydrogenAtomIndex = 0;
+                    if (hydrogenAtomsSize > 0 && !bindedAtoms.containsAll(hydrogenAtoms)) {
+                        for (AtomPlaceCard placeCard : placeCardCopy) {
+                            if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
+                                break;
+
+                            // Coordinates of the central atom.
+                            if (placeCard.x == xCenter && placeCard.y == yCenter)
+                                continue;
+
+                            if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                      xCenter - 40, yCenter));
+                            } else if (placeCard.x < 0 && placeCard.y - yCenter == 0) {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        xCenter + 40, yCenter));
+                            } else if (placeCard.x - xCenter == 0 && placeCard.y > yCenter) {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        xCenter, yCenter + 40));
+                            } else {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        xCenter, yCenter - 40));
+                            }
+
+                            hydrogenAtomIndex++;
+                        }
+                    }
                 }
             break;
 

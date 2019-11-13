@@ -5,6 +5,7 @@ import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Molecule {
     private Atom[] atomList;
@@ -16,6 +17,8 @@ public class Molecule {
     private Atom centralAtom;
     private ArrayList<Atom> bindedAtoms; // Atoms binded to the central atom.
     private int doubletsNumber; // Doublets of central atom.
+
+    private ArrayList<HydrogenAtom> hydrogenAtoms;
 
     public enum ShapeEnum {
         SquareShape,
@@ -30,6 +33,7 @@ public class Molecule {
         doubletsNumber = 0;
 
         bindedAtoms = new ArrayList<>();
+        hydrogenAtoms = new ArrayList<>();
 
         findCentralAtom();
         findDoublets();
@@ -50,6 +54,10 @@ public class Molecule {
 
     public String getFormula() {
         return formula;
+    }
+
+    public ArrayList<HydrogenAtom> getHydrogenAtoms() {
+        return hydrogenAtoms;
     }
 
     private void findCentralAtom() throws IllegalArgumentException {
@@ -104,17 +112,27 @@ public class Molecule {
         }
 
         for (Atom atom : atomList) {
-
             Atom.checkIfUsable(atom);
+
+            if (atom.getClass().equals(HydrogenAtom.class)) {
+                hydrogenAtoms.add((HydrogenAtom) atom);
+                continue;
+            }
 
             if (!atom.equals(centralAtom))
                 bindedAtoms.add(atom);
+        }
+
+        // All the binded atoms are Hydrogen atoms.
+        if (bindedAtoms.size() == 0) {
+            bindedAtoms.addAll(hydrogenAtoms);
         }
     }
 
     public void calculateShape() throws IllegalMoleculeException {
         if ((bindedAtoms.size() == 4 && doubletsNumber == 0) ||
-            (bindedAtoms.size() == 3 && doubletsNumber == 0))
+            (bindedAtoms.size() == 3 && doubletsNumber == 0) ||
+            (bindedAtoms.size() == 4 && doubletsNumber == 2))
             moleculeShape = ShapeEnum.SquareShape;
         else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
                  (bindedAtoms.size() == 2 && doubletsNumber == 5) ||
