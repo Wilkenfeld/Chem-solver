@@ -11,6 +11,6 @@ public class FluorineAtom extends Atom {
 
     public FluorineAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, 2, IONIZATION_ENERGY, AtomClassType.NotMetals);
+                BINDING_ELECTRONS, 2, IONIZATION_ENERGY, AtomClassType.Halogens);
     }
 }
