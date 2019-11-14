@@ -131,7 +131,6 @@ public class Molecule {
 
     public void calculateShape() throws IllegalMoleculeException {
         if ((bindedAtoms.size() == 4 && doubletsNumber == 0) ||
-            (bindedAtoms.size() == 3 && doubletsNumber == 0) ||
             (bindedAtoms.size() == 4 && doubletsNumber == 2))
             moleculeShape = ShapeEnum.SquareShape;
         else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
@@ -141,7 +140,8 @@ public class Molecule {
         else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
                  (bindedAtoms.size() == 1 && doubletsNumber == 0))
             moleculeShape = ShapeEnum.LineShape;
-        else if ((bindedAtoms.size() == 3 && doubletsNumber == 2))
+        else if ((bindedAtoms.size() == 3 && doubletsNumber == 2) ||
+                 (bindedAtoms.size() == 3 && doubletsNumber == 0))
             moleculeShape = ShapeEnum.TriangularShape;
         else
             throw new IllegalMoleculeException(this);
