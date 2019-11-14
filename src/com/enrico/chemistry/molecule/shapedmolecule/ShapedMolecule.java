@@ -50,16 +50,16 @@ public final class ShapedMolecule {
                             if (placeCard.x == xCenter && placeCard.y == yCenter)
                                 continue;
 
-                            if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {
+                            if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {           // Left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                       xCenter - 40, yCenter));
-                            } else if (placeCard.x < 0 && placeCard.y - yCenter == 0) {
+                            } else if (placeCard.x < 0 && placeCard.y - yCenter == 0) {              // Right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter + 40, yCenter));
-                            } else if (placeCard.x - xCenter == 0 && placeCard.y > yCenter) {
+                            } else if (placeCard.x - xCenter == 0 && placeCard.y > yCenter) {        // Bottom.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter, yCenter + 40));
-                            } else {
+                            } else {                                                                 // Top.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter, yCenter - 40));
                             }
@@ -94,10 +94,10 @@ public final class ShapedMolecule {
                             if (placeCard.x == xCenter && placeCard.y == yCenter)
                                 continue;
 
-                            if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {
+                            if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {          // Left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter - 40, yCenter));
-                            } else {
+                            } else {                                                                // Right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter + 40, yCenter));
                             }
@@ -135,6 +135,7 @@ public final class ShapedMolecule {
                             if (placeCard.x == xCenter && placeCard.y == yCenter)
                                 continue;
 
+                            // No distinction is made here for position.
                             atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                     placeCard.x, yCenter - 40));
 
@@ -168,14 +169,14 @@ public final class ShapedMolecule {
                             if (placeCard.x == xCenter && placeCard.y == yCenter)
                                 continue;
 
-                            if (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) {
+                            if (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) {        // Top - right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                           placeCard.x - 20, placeCard.y));
-                            } else if (placeCard.x - (xCenter + 20) == 0 && placeCard.y - (yCenter - 20) == 0) {
+                            } else if (placeCard.x - (xCenter + 20) == 0 && placeCard.y - (yCenter - 20) == 0) { // Top - right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         placeCard.x + 20, placeCard.y));
                             } else {
-                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),               // Center - bottom.
                                         placeCard.x, placeCard.y + 20));
                             }
 
