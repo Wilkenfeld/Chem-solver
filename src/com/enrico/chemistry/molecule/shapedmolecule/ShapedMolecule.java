@@ -123,6 +123,24 @@ public class ShapedMolecule {
                     }
 
                     atomGroups.add(new AtomGroup(atoms));
+
+                    ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
+
+                    if (hydrogenAtomsSize > 0 && !bindedAtomsPyramid.containsAll(hydrogenAtoms)) {
+                        for (AtomPlaceCard placeCard : placeCardCopy) {
+                            if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
+                                break;
+
+                            // Coordinates of the central atom.
+                            if (placeCard.x == xCenter && placeCard.y == yCenter)
+                                continue;
+
+                            atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                    placeCard.x, yCenter - 40));
+
+                            hydrogenAtomIndex++;
+                        }
+                    }
                 }
             break;
 
