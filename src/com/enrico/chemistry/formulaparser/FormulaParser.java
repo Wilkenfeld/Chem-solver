@@ -86,6 +86,14 @@ public class FormulaParser {
                     currentAtom = new PhosphorAtom();
                 break;
 
+                case ChlorineAtom.ATOM_SYMBOL:
+                    currentAtom = new ChlorineAtom();
+                break;
+
+                case FluorineAtom.ATOM_SYMBOL:
+                    currentAtom = new FluorineAtom();
+                break;
+
                 default:
                     throw new IllegalArgumentException("No atom " + atomSymbol + " exists.");
             }
