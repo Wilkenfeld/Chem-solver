@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * This task is handled internally by the AtomGroup class that uses the ShapeMolecule internal class
  * "AtomPlaceCard".
  */
-public class ShapedMolecule {
+public final class ShapedMolecule {
     private ArrayList<AtomGroup> atomGroups = new ArrayList<>();
 
     public ShapedMolecule(Molecule molecule, int xCenter, int yCenter) {
@@ -41,7 +41,7 @@ public class ShapedMolecule {
 
                     ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
 
-                    if (hydrogenAtomsSize > 0 && !bindedAtoms.containsAll(hydrogenAtoms)) {
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtoms, hydrogenAtoms)) {
                         for (AtomPlaceCard placeCard : placeCardCopy) {
                             if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
                                 break;
@@ -85,7 +85,7 @@ public class ShapedMolecule {
 
                     ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
 
-                    if (hydrogenAtomsSize > 0 && !bindedAtomsLine.containsAll(hydrogenAtoms)) {
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtomsLine, hydrogenAtoms)) {
                         for (AtomPlaceCard placeCard : placeCardCopy) {
                             if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
                                 break;
@@ -126,7 +126,7 @@ public class ShapedMolecule {
 
                     ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
 
-                    if (hydrogenAtomsSize > 0 && !bindedAtomsPyramid.containsAll(hydrogenAtoms)) {
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtomsPyramid, hydrogenAtoms)) {
                         for (AtomPlaceCard placeCard : placeCardCopy) {
                             if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
                                 break;
@@ -159,7 +159,7 @@ public class ShapedMolecule {
 
                     ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
 
-                    if (hydrogenAtomsSize > 0 && !bindedAtomsTriangular.containsAll(hydrogenAtoms)) {
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtomsTriangular, hydrogenAtoms)) {
                         for (AtomPlaceCard placeCard : placeCardCopy) {
                             if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
                                 break;
@@ -185,6 +185,11 @@ public class ShapedMolecule {
                 }
             break;
         }
+    }
+
+    private boolean hydrogenLoopCondition(int hydrogenAtomsSize, ArrayList<Atom> bindedList,
+                                          ArrayList<HydrogenAtom> hydrogenAtoms) {
+        return hydrogenAtomsSize > 0 && !bindedList.containsAll(hydrogenAtoms);
     }
 
     public ArrayList<AtomGroup> getAtomGroups() {
