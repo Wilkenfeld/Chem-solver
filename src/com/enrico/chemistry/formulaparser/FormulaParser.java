@@ -94,6 +94,10 @@ public class FormulaParser {
                     currentAtom = new FluorineAtom();
                 break;
 
+                case SiliconAtom.ATOM_SYMBOL:
+                    currentAtom = new SiliconAtom();
+                break;
+
                 default:
                     throw new IllegalArgumentException("No atom " + atomSymbol + " exists.");
             }
