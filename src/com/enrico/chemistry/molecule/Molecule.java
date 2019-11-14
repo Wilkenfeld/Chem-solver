@@ -138,7 +138,8 @@ public class Molecule {
                  (bindedAtoms.size() == 3 && doubletsNumber == 1))
             moleculeShape = ShapeEnum.PyramidShape;
         else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
-                 (bindedAtoms.size() == 1 && doubletsNumber == 0))
+                 (bindedAtoms.size() == 1 && doubletsNumber == 0) ||
+                 (bindedAtoms.size() == 2 && doubletsNumber == 1))
             moleculeShape = ShapeEnum.LineShape;
         else if ((bindedAtoms.size() == 3 && doubletsNumber == 2) ||
                  (bindedAtoms.size() == 3 && doubletsNumber == 0))
