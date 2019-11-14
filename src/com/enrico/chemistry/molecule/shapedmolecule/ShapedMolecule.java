@@ -21,6 +21,7 @@ public class ShapedMolecule {
 
         ArrayList<HydrogenAtom> hydrogenAtoms = molecule.getHydrogenAtoms();
         int hydrogenAtomsSize = hydrogenAtoms.size();
+        int hydrogenAtomIndex = 0;
         
         switch (molecule.getMoleculeShape()) {
             case SquareShape:
@@ -40,7 +41,6 @@ public class ShapedMolecule {
 
                     ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
 
-                    int hydrogenAtomIndex = 0;
                     if (hydrogenAtomsSize > 0 && !bindedAtoms.containsAll(hydrogenAtoms)) {
                         for (AtomPlaceCard placeCard : placeCardCopy) {
                             if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
@@ -100,6 +100,47 @@ public class ShapedMolecule {
                     }
 
                     atomGroups.add(new AtomGroup(atoms));
+                }
+            break;
+
+            case TriangularShape:
+                ArrayList<Atom> bindedAtomsTriangular = molecule.getBindedAtoms();
+
+                if (bindedAtomsTriangular.size() == 3) {
+                    ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(0), xCenter - 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(1), xCenter + 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(2), xCenter, yCenter + 30));
+
+                    atomGroups.add(new AtomGroup(atoms));
+
+                    ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
+
+                    if (hydrogenAtomsSize > 0 && !bindedAtomsTriangular.containsAll(hydrogenAtoms)) {
+                        for (AtomPlaceCard placeCard : placeCardCopy) {
+                            if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
+                                break;
+
+                            // Coordinates of the central atom.
+                            if (placeCard.x == xCenter && placeCard.y == yCenter)
+                                continue;
+
+                            if (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                          placeCard.x - 20, placeCard.y));
+                            } else if (placeCard.x - (xCenter + 20) == 0 && placeCard.y - (yCenter - 20) == 0) {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x + 20, placeCard.y));
+                            } else {
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x, placeCard.y + 20));
+                            }
+
+                            hydrogenAtomIndex++;
+                        }
+                    }
                 }
             break;
         }

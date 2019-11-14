@@ -5,7 +5,6 @@ import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Molecule {
     private Atom[] atomList;
@@ -23,7 +22,8 @@ public class Molecule {
     public enum ShapeEnum {
         SquareShape,
         PyramidShape,
-        LineShape // Eg: O = C = O
+        LineShape, // Eg: O = C = O
+        TriangularShape
     }
 
     public Molecule(Atom[] atomList, String formula) throws IllegalMoleculeException {
@@ -141,6 +141,8 @@ public class Molecule {
         else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
                  (bindedAtoms.size() == 1 && doubletsNumber == 0))
             moleculeShape = ShapeEnum.LineShape;
+        else if ((bindedAtoms.size() == 3 && doubletsNumber == 2))
+            moleculeShape = ShapeEnum.TriangularShape;
         else
             throw new IllegalMoleculeException(this);
     }
