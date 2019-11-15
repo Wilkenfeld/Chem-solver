@@ -185,6 +185,51 @@ public final class ShapedMolecule {
                     }
                 }
             break;
+
+            case FivePointedStar:
+                ArrayList<Atom> bindedAtomsFiveStar = molecule.getBindedAtoms();
+
+                if (bindedAtomsFiveStar.size() == 5) {
+                    ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(0), xCenter, yCenter - 40));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(1), xCenter - 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(2), xCenter - 20, yCenter + 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(3), xCenter + 20, yCenter + 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(4), xCenter + 20, yCenter - 20));
+
+                    atomGroups.add(new AtomGroup(atoms));
+
+                    ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
+
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtomsFiveStar, hydrogenAtoms)) {
+                        for (AtomPlaceCard placeCard : placeCardCopy) {
+                            if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
+                                break;
+
+                            // Coordinates of the central atom.
+                            if (placeCard.x == xCenter && placeCard.y == yCenter)
+                                continue;
+
+                            if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter - 20) == 0) { // Top.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                          placeCard.x, placeCard.y - 20));
+                            } else if ((placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) || // Top - right.
+                                       (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter + 20) == 0)) { // Bottom - right.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                          placeCard.x - 20, placeCard.y));
+                            } else { // Top - left & Bottom - left.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x - 20, placeCard.y));
+                            }
+
+                            hydrogenAtomIndex++;
+                        }
+                    }
+
+                }
+            break;
         }
     }
 
