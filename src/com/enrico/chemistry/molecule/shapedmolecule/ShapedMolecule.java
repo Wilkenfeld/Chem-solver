@@ -214,11 +214,60 @@ public final class ShapedMolecule {
 
                             if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter - 20) == 0) { // Top.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                          placeCard.x, placeCard.y - 20));
+                                          placeCard.x, placeCard.y - 40));
                             } else if ((placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) || // Top - right.
                                        (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter + 20) == 0)) { // Bottom - right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                           placeCard.x - 20, placeCard.y));
+                            } else { // Top - left & Bottom - left.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x - 20, placeCard.y));
+                            }
+
+                            hydrogenAtomIndex++;
+                        }
+                    }
+
+                }
+            break;
+
+            case SixPointedStar:
+                ArrayList<Atom> bindedAtomsSixStar = molecule.getBindedAtoms();
+
+                if (bindedAtomsSixStar.size() == 6) {
+                    ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(0), xCenter, yCenter - 40));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(1), xCenter, yCenter + 40));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(2), xCenter - 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(3), xCenter - 20, yCenter + 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(4), xCenter + 20, yCenter + 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(5), xCenter + 20, yCenter - 20));
+
+                    atomGroups.add(new AtomGroup(atoms));
+
+                    ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
+
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtomsSixStar, hydrogenAtoms)) {
+                        for (AtomPlaceCard placeCard : placeCardCopy) {
+                            if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
+                                break;
+
+                            // Coordinates of the central atom.
+                            if (placeCard.x == xCenter && placeCard.y == yCenter)
+                                continue;
+
+                            if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter - 40) == 0) { // Top.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x, placeCard.y - 40));
+                            } else if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter + 40) == 0) { // Bottom.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x, placeCard.y + 40));
+                            } else if ((placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) || // Top - right.
+                                    (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter + 20) == 0)) { // Bottom - right.
+                                atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
+                                        placeCard.x - 20, placeCard.y));
                             } else { // Top - left & Bottom - left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         placeCard.x - 20, placeCard.y));

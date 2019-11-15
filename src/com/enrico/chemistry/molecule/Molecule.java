@@ -24,7 +24,8 @@ public class Molecule {
         PyramidShape,
         LineShape, // Eg: O = C = O
         TriangularShape,
-        FivePointedStar
+        FivePointedStar,
+        SixPointedStar
     }
 
     public Molecule(Atom[] atomList, String formula) throws IllegalMoleculeException {
@@ -148,6 +149,8 @@ public class Molecule {
             moleculeShape = ShapeEnum.TriangularShape;
         else if ((bindedAtoms.size() == 5 && doubletsNumber == 2))
             moleculeShape = ShapeEnum.FivePointedStar;
+        else if ((bindedAtoms.size() == 6 && doubletsNumber == 2))
+            moleculeShape = ShapeEnum.SixPointedStar;
         else
             throw new IllegalMoleculeException(this);
     }
