@@ -99,7 +99,7 @@ public class FormulaParser {
                 break;
 
                 default:
-                    throw new IllegalArgumentException("No atom " + atomSymbol + " exists.");
+                    throw new IllegalArgumentException("Invalid atom: " + atomSymbol);
             }
 
             // There always will be at least a single atom.
