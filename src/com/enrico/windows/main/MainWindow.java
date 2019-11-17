@@ -6,6 +6,7 @@ import com.enrico.widgets.menu.MainMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.ProblemChooserDialog;
 import com.enrico.windows.dialogs.ProblemListModel;
+import com.enrico.windows.main.problems.biology.BiologyMonosaccharidesTypesProblemWindow;
 import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
 
 import javax.swing.*;
@@ -41,6 +42,7 @@ public final class MainWindow extends BasicWindow implements FontInterface {
         setPreferredSize(mainWinDimension);
 
         problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[0], MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER);
+        problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[1], BiologyMonosaccharidesTypesProblemWindow.BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER);
     }
 
     private void createUIComponents() {
@@ -56,14 +58,23 @@ public final class MainWindow extends BasicWindow implements FontInterface {
                 }
             }
 
+            BasicWindow win = null;
+
             switch (res) {
                 case MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER:
-                    MolecularShapeProblemWindow win = new MolecularShapeProblemWindow();
-                    win.showWindow();
+                    win = new MolecularShapeProblemWindow();
                 break;
+
+                case BiologyMonosaccharidesTypesProblemWindow.BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER:
+                    win = new BiologyMonosaccharidesTypesProblemWindow();
+                break;
+
                 case ProblemChooserDialog.NO_PROBLEM_CHOOSED:
                     return;
             }
+
+            if (win != null)
+                win.showWindow();
 
             dispose();
         });

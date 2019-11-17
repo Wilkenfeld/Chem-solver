@@ -1,5 +1,6 @@
 package com.enrico.windows.dialogs;
 
+import com.enrico.windows.main.problems.biology.BiologyMonosaccharidesTypesProblemWindow;
 import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
 
 import javax.swing.*;
@@ -10,7 +11,8 @@ public final class ProblemListModel extends DefaultListModel {
     static final int PHYS_PROBLEM_TYPE = 1;
 
     public static final String[] chemProblems = new String[] {
-            MolecularShapeProblemWindow.MOLECULAR_RETURN_STATUS
+            MolecularShapeProblemWindow.MOLECULAR_RETURN_STATUS,
+            BiologyMonosaccharidesTypesProblemWindow.TITLE
     };
 
     public static final String[] physProblems = new String[] {
