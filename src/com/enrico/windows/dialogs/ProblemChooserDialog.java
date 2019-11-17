@@ -1,14 +1,15 @@
 package com.enrico.windows.dialogs;
 
 import com.enrico.interfaces.FontInterface;
+import com.enrico.widgets.buttons.DefaultButton;
 
 import javax.swing.*;
 import java.awt.event.*;
 
 public class ProblemChooserDialog extends JDialog implements FontInterface {
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+    private DefaultButton buttonOK;
+    private DefaultButton buttonCancel;
     private JList chemProblemList;
     private JList physProblemList;
     private JLabel chemTitleLbl;
@@ -76,6 +77,11 @@ public class ProblemChooserDialog extends JDialog implements FontInterface {
         setVisible(true);
 
         return choosedProblem;
+    }
+
+    public void createUIComponents() {
+        buttonOK = new DefaultButton("OK");
+        buttonCancel = new DefaultButton("Cancel");
     }
 
     public static void main(String[] args) {
