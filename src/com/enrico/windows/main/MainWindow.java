@@ -6,7 +6,7 @@ import com.enrico.widgets.menu.MainMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.ProblemChooserDialog;
 import com.enrico.windows.dialogs.ProblemListModel;
-import com.enrico.windows.main.problems.biology.BiologyMonosaccharidesTypesProblemWindow;
+import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMonosaccharidesTypesProblemWindow;
 import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
 
 import javax.swing.*;

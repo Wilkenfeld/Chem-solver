@@ -1,6 +1,6 @@
 package com.enrico.windows.dialogs;
 
-import com.enrico.windows.main.problems.biology.BiologyMonosaccharidesTypesProblemWindow;
+import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMonosaccharidesTypesProblemWindow;
 import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
 
 import javax.swing.*;
