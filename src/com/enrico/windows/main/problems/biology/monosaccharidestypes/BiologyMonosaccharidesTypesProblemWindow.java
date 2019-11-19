@@ -1,5 +1,6 @@
 package com.enrico.windows.main.problems.biology.monosaccharidestypes;
 
+import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.buttons.DefaultButton;
 import com.enrico.widgets.combobox.DefaultComboBox;
 import com.enrico.widgets.combobox.DefaultComboBoxItem;
@@ -7,10 +8,8 @@ import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.BasicWindow;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow {
+public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow implements FontInterface {
     private JPanel mainPanel;
     private JTextField nVariableTxtField;
     private JLabel monosaccharideTypeLbl;
@@ -36,14 +35,14 @@ public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow {
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
 
-        problemWindowMenuBar.problemMenuItemSolve.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
+        problemWindowMenuBar.problemMenuItemSolve.addActionListener(actionEvent -> {
+            String strVariableN = nVariableTxtField.getText();
+            calculateMonosaccharideType(strVariableN);
         });
 
         setContentPane(mainPanel);
+
+        monosaccharideTypeLbl.setFont(normalTextFont);
     }
 
     private void createUIComponents() {
@@ -60,5 +59,15 @@ public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow {
         int carbonNumber, hydrogenNumber, oxygenNumber;
         carbonNumber = oxygenNumber = intN;
         hydrogenNumber = intN * 2;
+
+        if (carbonNumber == 6 &&
+            hydrogenNumber == 12 &&
+            oxygenNumber == 6) {
+            if (moleculeTypeComboBox.getSelectedObjects()[0].toString().equals(ALDOSE_TXT)) {
+                monosaccharideTypeLbl.setText("Glucose");
+            } else {
+                monosaccharideTypeLbl.setText("Fructose");
+            }
+        }
     }
 }
