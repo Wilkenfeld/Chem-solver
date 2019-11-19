@@ -15,6 +15,9 @@ public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow implem
     private JLabel monosaccharideTypeLbl;
     private DefaultButton moreInfoButton;
     private DefaultComboBox moleculeTypeComboBox;
+    private JLabel monosaccharideLbl;
+    private JLabel nVarLbl;
+    private JLabel molecularTypeLbl;
 
     public static final String TITLE = "Monosaccharides types";
     public static final String BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER =
@@ -43,6 +46,9 @@ public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow implem
         setContentPane(mainPanel);
 
         monosaccharideTypeLbl.setFont(normalTextFont);
+        monosaccharideLbl.setFont(normalTextFont);
+        nVarLbl.setFont(normalTextFont);
+        molecularTypeLbl.setFont(normalTextFont);
     }
 
     private void createUIComponents() {
