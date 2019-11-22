@@ -365,6 +365,7 @@ public final class ShapedMolecule {
                         placeCard.y, currentCentralAtomPlaceCard.y - 11));
         }
 /*
+        This is for displaying hydrogen atoms outside of simple molecules
         for (AtomPlaceCard placeCard : placeCardsForHydrogen) {
             for (AtomPlaceCard formulaPlaceCard : atoms) {
                 if (formulaPlaceCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
