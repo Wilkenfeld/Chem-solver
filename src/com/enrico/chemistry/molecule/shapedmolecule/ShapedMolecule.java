@@ -4,6 +4,7 @@ import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.chemistry.molecule.atomgroup.AtomGroup;
+import com.enrico.drawing.Line;
 
 import java.util.ArrayList;
 
@@ -16,12 +17,15 @@ import java.util.ArrayList;
  */
 public final class ShapedMolecule {
     private ArrayList<AtomGroup> atomGroups = new ArrayList<>();
+    private ArrayList<Line> lineGroups = new ArrayList<>();
+    private final Molecule molecule;
 
     public ShapedMolecule(Molecule molecule, int xCenter, int yCenter) {
 
         ArrayList<HydrogenAtom> hydrogenAtoms = molecule.getHydrogenAtoms();
         int hydrogenAtomsSize = hydrogenAtoms.size();
         int hydrogenAtomIndex = 0;
+        this.molecule = molecule;
         
         switch (molecule.getMoleculeShape()) {
             case SquareShape:
@@ -30,12 +34,12 @@ public final class ShapedMolecule {
 
                 if (bindedAtoms.size() == 4) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(0), xCenter - 20, yCenter));
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(1), xCenter + 20, yCenter));
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(2), xCenter, yCenter - 20));
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(3), xCenter, yCenter + 20));
+                    atoms.add(new AtomPlaceCard(bindedAtoms.get(0), xCenter - 20, yCenter, AtomPlaceCard.Positions.Left));
+                    atoms.add(new AtomPlaceCard(bindedAtoms.get(1), xCenter + 20, yCenter, AtomPlaceCard.Positions.Right));
+                    atoms.add(new AtomPlaceCard(bindedAtoms.get(2), xCenter, yCenter - 20, AtomPlaceCard.Positions.Top));
+                    atoms.add(new AtomPlaceCard(bindedAtoms.get(3), xCenter, yCenter + 20, AtomPlaceCard.Positions.Bottom));
 
                     atomGroups.add(new AtomGroup(atoms));
 
@@ -52,21 +56,23 @@ public final class ShapedMolecule {
 
                             if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {           // Left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                      xCenter - 40, yCenter));
+                                      xCenter - 40, yCenter, AtomPlaceCard.Positions.Left));
                             } else if (placeCard.x < 0 && placeCard.y - yCenter == 0) {              // Right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        xCenter + 40, yCenter));
+                                        xCenter + 40, yCenter, AtomPlaceCard.Positions.Right));
                             } else if (placeCard.x - xCenter == 0 && placeCard.y > yCenter) {        // Bottom.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        xCenter, yCenter + 40));
+                                        xCenter, yCenter + 40, AtomPlaceCard.Positions.Bottom));
                             } else {                                                                 // Top.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        xCenter, yCenter - 40));
+                                        xCenter, yCenter - 40, AtomPlaceCard.Positions.Top));
                             }
 
                             hydrogenAtomIndex++;
                         }
                     }
+
+                    addLines(atoms);
                 }
             break;
 
@@ -75,11 +81,11 @@ public final class ShapedMolecule {
                 if (bindedAtomsLine.size() >= 1) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
 
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
-                    atoms.add(new AtomPlaceCard(bindedAtomsLine.get(0), xCenter - 20, yCenter));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(bindedAtomsLine.get(0), xCenter - 20, yCenter, AtomPlaceCard.Positions.Left));
 
                     if (bindedAtomsLine.size() >= 2)
-                        atoms.add(new AtomPlaceCard(bindedAtomsLine.get(1), xCenter + 20, yCenter));
+                        atoms.add(new AtomPlaceCard(bindedAtomsLine.get(1), xCenter + 20, yCenter, AtomPlaceCard.Positions.Right));
 
                     atomGroups.add(new AtomGroup(atoms));
 
@@ -96,10 +102,10 @@ public final class ShapedMolecule {
 
                             if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {          // Left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        xCenter - 40, yCenter));
+                                        xCenter - 40, yCenter, AtomPlaceCard.Positions.Left));
                             } else {                                                                // Right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        xCenter + 40, yCenter));
+                                        xCenter + 40, yCenter, AtomPlaceCard.Positions.Right));
                             }
 
                             hydrogenAtomIndex++;
@@ -113,13 +119,13 @@ public final class ShapedMolecule {
 
                 if (bindedAtomsPyramid.size() >= 2) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
-                    atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(0), xCenter - 20, yCenter - 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(1), xCenter + 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(0), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
+                    atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(1), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
 
                     if (bindedAtomsPyramid.size() >= 3) {
-                        atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(2), xCenter, yCenter - 30));
+                        atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(2), xCenter, yCenter - 30, AtomPlaceCard.Positions.Bottom));
                     }
 
                     atomGroups.add(new AtomGroup(atoms));
@@ -137,11 +143,12 @@ public final class ShapedMolecule {
 
                             // No distinction is made here for position.
                             atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                    placeCard.x, yCenter - 40));
+                                    placeCard.x, yCenter - 40, AtomPlaceCard.Positions.Bottom));
 
                             hydrogenAtomIndex++;
                         }
                     }
+                    addLines(atoms);
                 }
             break;
 
@@ -150,11 +157,11 @@ public final class ShapedMolecule {
 
                 if (bindedAtomsTriangular.size() == 3) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
-                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(0), xCenter - 20, yCenter - 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(1), xCenter + 20, yCenter - 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(2), xCenter, yCenter + 30));
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(0), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(1), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(2), xCenter, yCenter + 30, AtomPlaceCard.Positions.Top));
 
                     atomGroups.add(new AtomGroup(atoms));
 
@@ -171,18 +178,19 @@ public final class ShapedMolecule {
 
                             if (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) {        // Top - right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                          placeCard.x - 20, placeCard.y));
-                            } else if (placeCard.x - (xCenter + 20) == 0 && placeCard.y - (yCenter - 20) == 0) { // Top - right.
+                                          placeCard.x - 20, placeCard.y, AtomPlaceCard.Positions.TopRight));
+                            } else if (placeCard.x - (xCenter + 20) == 0 && placeCard.y - (yCenter - 20) == 0) { // Top - left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        placeCard.x + 20, placeCard.y));
+                                        placeCard.x + 20, placeCard.y, AtomPlaceCard.Positions.TopLeft));
                             } else {
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),               // Center - bottom.
-                                        placeCard.x, placeCard.y + 20));
+                                        placeCard.x, placeCard.y + 20, AtomPlaceCard.Positions.Bottom));
                             }
 
                             hydrogenAtomIndex++;
                         }
                     }
+                    addLines(atoms);
                 }
             break;
 
@@ -191,13 +199,13 @@ public final class ShapedMolecule {
 
                 if (bindedAtomsFiveStar.size() == 5) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
-                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(0), xCenter, yCenter - 40));
-                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(1), xCenter - 20, yCenter - 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(2), xCenter - 20, yCenter + 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(3), xCenter + 20, yCenter + 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(4), xCenter + 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(0), xCenter, yCenter - 40, AtomPlaceCard.Positions.Top));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(1), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(2), xCenter - 20, yCenter + 20, AtomPlaceCard.Positions.BottomRight));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(3), xCenter + 20, yCenter + 20, AtomPlaceCard.Positions.BottomLeft));
+                    atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(4), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
 
                     atomGroups.add(new AtomGroup(atoms));
 
@@ -214,20 +222,20 @@ public final class ShapedMolecule {
 
                             if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter - 20) == 0) { // Top.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                          placeCard.x, placeCard.y - 40));
+                                          placeCard.x, placeCard.y - 40, AtomPlaceCard.Positions.Top));
                             } else if ((placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) || // Top - right.
                                        (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter + 20) == 0)) { // Bottom - right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                          placeCard.x - 20, placeCard.y));
+                                          placeCard.x - 20, placeCard.y, AtomPlaceCard.Positions.Right));
                             } else { // Top - left & Bottom - left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        placeCard.x - 20, placeCard.y));
+                                        placeCard.x - 20, placeCard.y, AtomPlaceCard.Positions.Left));
                             }
 
                             hydrogenAtomIndex++;
                         }
                     }
-
+                    addLines(atoms);
                 }
             break;
 
@@ -236,14 +244,14 @@ public final class ShapedMolecule {
 
                 if (bindedAtomsSixStar.size() == 6) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
-                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(0), xCenter, yCenter - 40));
-                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(1), xCenter, yCenter + 40));
-                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(2), xCenter - 20, yCenter - 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(3), xCenter - 20, yCenter + 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(4), xCenter + 20, yCenter + 20));
-                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(5), xCenter + 20, yCenter - 20));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(0), xCenter, yCenter - 40, AtomPlaceCard.Positions.Top));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(1), xCenter, yCenter + 40, AtomPlaceCard.Positions.Bottom));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(2), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(3), xCenter - 20, yCenter + 20, AtomPlaceCard.Positions.BottomLeft));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(4), xCenter + 20, yCenter + 20, AtomPlaceCard.Positions.BottomRight));
+                    atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(5), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
 
                     atomGroups.add(new AtomGroup(atoms));
 
@@ -260,25 +268,76 @@ public final class ShapedMolecule {
 
                             if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter - 40) == 0) { // Top.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        placeCard.x, placeCard.y - 40));
+                                        placeCard.x, placeCard.y - 40, AtomPlaceCard.Positions.Bottom));
                             } else if (placeCard.x - xCenter == 0 && placeCard.y - (yCenter + 40) == 0) { // Bottom.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        placeCard.x, placeCard.y + 40));
+                                        placeCard.x, placeCard.y + 40, AtomPlaceCard.Positions.Top));
                             } else if ((placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter - 20) == 0) || // Top - right.
                                     (placeCard.x - (xCenter - 20) == 0 && placeCard.y - (yCenter + 20) == 0)) { // Bottom - right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        placeCard.x - 20, placeCard.y));
+                                        placeCard.x - 20, placeCard.y, AtomPlaceCard.Positions.Right));
                             } else { // Top - left & Bottom - left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
-                                        placeCard.x - 20, placeCard.y));
+                                        placeCard.x - 20, placeCard.y, AtomPlaceCard.Positions.Left));
                             }
 
                             hydrogenAtomIndex++;
                         }
                     }
-
+                    addLines(atoms);
                 }
             break;
+        }
+    }
+
+    private void addLines(ArrayList<AtomPlaceCard> atoms) {
+        Atom moleculeCentralAtom = molecule.getCentralAtom();
+        AtomPlaceCard currentCentralAtomPlaceCard;
+
+        if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
+            currentCentralAtomPlaceCard = atoms.get(0);
+        } else {
+            lineGroups.add(new Line(atoms.get(0).x + 10, atoms.get(1).x - 10,
+                                    atoms.get(0).y, atoms.get(0).y));
+            return;
+        }
+
+        System.out.println("[LOG] Place card size: " + atoms.size());
+
+        for (AtomPlaceCard placeCard : atoms) {
+            if (placeCard.position == AtomPlaceCard.Positions.Center)
+                continue;
+
+            if (placeCard.position == AtomPlaceCard.Positions.Left)
+                lineGroups.add(new Line(placeCard.x + 10, currentCentralAtomPlaceCard.x - 5,
+                        currentCentralAtomPlaceCard.y - 4, currentCentralAtomPlaceCard.y - 4));
+
+            else if (placeCard.position == AtomPlaceCard.Positions.Right)
+                lineGroups.add(new Line(placeCard.x - 5, currentCentralAtomPlaceCard.x + 10,
+                        currentCentralAtomPlaceCard.y - 4, currentCentralAtomPlaceCard.y - 4));
+
+            else if (placeCard.position == AtomPlaceCard.Positions.Top)
+                lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4,
+                        currentCentralAtomPlaceCard.y - 12, placeCard.y + 4));
+
+            else if (placeCard.position == AtomPlaceCard.Positions.Bottom)
+                lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4, currentCentralAtomPlaceCard.y + 4,
+                        placeCard.y - 12));
+
+            else if (placeCard.position == AtomPlaceCard.Positions.TopRight)
+                lineGroups.add(new Line(placeCard.x + 5, currentCentralAtomPlaceCard.x,
+                        placeCard.y, currentCentralAtomPlaceCard.y - 10));
+
+            else if (placeCard.position == AtomPlaceCard.Positions.BottomRight)
+                lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x - 5,
+                            placeCard.y - 10, currentCentralAtomPlaceCard.y + 1));
+
+            else if (placeCard.position == AtomPlaceCard.Positions.BottomLeft)
+                lineGroups.add(new Line(placeCard.x - 3, currentCentralAtomPlaceCard.x + 5,
+                        placeCard.y - 5, currentCentralAtomPlaceCard.y + 3));
+            else
+                lineGroups.add(new Line(placeCard.x, currentCentralAtomPlaceCard.x + 7,
+                        placeCard.y, currentCentralAtomPlaceCard.y - 11));
         }
     }
 
@@ -291,6 +350,10 @@ public final class ShapedMolecule {
         return atomGroups;
     }
 
+    public ArrayList<Line> getLineGroups() {
+        return lineGroups;
+    }
+
     /**
      * This class represents an atom to be displayed on the canvas.
      *
@@ -301,11 +364,25 @@ public final class ShapedMolecule {
         private String atomSymbol;
 
         private int x, y;
+        private Positions position;
 
-        AtomPlaceCard(Atom atom, int x, int y) {
+        public enum Positions {
+            Center,
+            Bottom,
+            Top,
+            Left,
+            Right,
+            TopLeft,
+            TopRight,
+            BottomLeft,
+            BottomRight
+        }
+
+        AtomPlaceCard(Atom atom, int x, int y, Positions position) {
             atomSymbol = atom.getSymbol();
             this.x = x;
             this.y = y;
+            this.position = position;
         }
 
         public String getAtomSymbol() {

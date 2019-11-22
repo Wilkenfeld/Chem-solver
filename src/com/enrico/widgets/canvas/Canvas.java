@@ -4,6 +4,7 @@ import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.chemistry.molecule.atomgroup.AtomGroup;
 import com.enrico.chemistry.molecule.shapedmolecule.ShapedMolecule;
+import com.enrico.drawing.Line;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,11 +33,16 @@ public class Canvas extends JPanel {
         if (atomList != null && centralAtom != null && molecule != null) {
             ShapedMolecule shapedMolecule = new ShapedMolecule(molecule, centerWidth, centerHeight);
             ArrayList<AtomGroup> atoms = shapedMolecule.getAtomGroups();
+            ArrayList<Line> lines = shapedMolecule.getLineGroups();
 
             for (AtomGroup atom : atoms) {
                 ArrayList<ShapedMolecule.AtomPlaceCard> atomList = atom.getAtoms();
                 for (ShapedMolecule.AtomPlaceCard atomListElement: atomList) {
                     g.drawString(atomListElement.getAtomSymbol(), atomListElement.getX(), atomListElement.getY());
+                }
+
+                for (Line line: lines) {
+                    g.drawLine(line.getStartX(), line.getStartY(), line.getEndX(), line.getEndY());
                 }
             }
         }
