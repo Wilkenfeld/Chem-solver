@@ -328,13 +328,24 @@ public final class ShapedMolecule {
                 lineGroups.add(new Line(placeCard.x + 5, currentCentralAtomPlaceCard.x,
                         placeCard.y, currentCentralAtomPlaceCard.y - 10));
 
-            else if (placeCard.position == AtomPlaceCard.Positions.BottomRight)
-                lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x - 5,
-                            placeCard.y - 10, currentCentralAtomPlaceCard.y + 1));
+            else if (placeCard.position == AtomPlaceCard.Positions.BottomRight) {
+                if (molecule.getMoleculeShape() == Molecule.ShapeEnum.FivePointedStar)
+                    lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x - 5,
+                            placeCard.y - 10, currentCentralAtomPlaceCard.y + 3));
+                else
+                    lineGroups.add(new Line(placeCard.x - 2, currentCentralAtomPlaceCard.x + 5,
+                                   placeCard.y - 3, currentCentralAtomPlaceCard.y + 3));
+            }
 
-            else if (placeCard.position == AtomPlaceCard.Positions.BottomLeft)
-                lineGroups.add(new Line(placeCard.x - 3, currentCentralAtomPlaceCard.x + 5,
-                        placeCard.y - 5, currentCentralAtomPlaceCard.y + 3));
+            else if (placeCard.position == AtomPlaceCard.Positions.BottomLeft) {
+                if (molecule.getMoleculeShape() == Molecule.ShapeEnum.FivePointedStar)
+                    lineGroups.add(new Line(placeCard.x - 3, currentCentralAtomPlaceCard.x + 5,
+                            placeCard.y - 5, currentCentralAtomPlaceCard.y + 3));
+                else
+                    lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x,
+                            placeCard.y - 10, currentCentralAtomPlaceCard.y));
+            }
+
             else
                 lineGroups.add(new Line(placeCard.x, currentCentralAtomPlaceCard.x + 7,
                         placeCard.y, currentCentralAtomPlaceCard.y - 11));
