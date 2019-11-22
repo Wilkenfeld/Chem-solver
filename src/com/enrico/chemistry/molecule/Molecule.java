@@ -154,4 +154,15 @@ public class Molecule {
         else
             throw new IllegalMoleculeException(this);
     }
+
+    public boolean isMoleculeSimple() {
+        for (Atom atom : atomList) {
+            if (atom.getSymbol().equals(centralAtom.getSymbol()))
+                continue;
+
+            if (!atom.getSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
+                return false;
+        }
+        return true;
+    }
 }

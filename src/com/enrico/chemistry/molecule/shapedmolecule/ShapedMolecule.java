@@ -293,6 +293,9 @@ public final class ShapedMolecule {
     private void addLines(ArrayList<AtomPlaceCard> atoms) {
         Atom moleculeCentralAtom = molecule.getCentralAtom();
         AtomPlaceCard currentCentralAtomPlaceCard;
+        AtomPlaceCard lastPlaceCard = null;
+
+        ArrayList<AtomPlaceCard> placeCardsForHydrogen = new ArrayList<>();
 
         if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
             currentCentralAtomPlaceCard = atoms.get(0);
@@ -305,6 +308,17 @@ public final class ShapedMolecule {
         System.out.println("[LOG] Place card size: " + atoms.size());
 
         for (AtomPlaceCard placeCard : atoms) {
+            if (lastPlaceCard == null)
+                lastPlaceCard = placeCard;
+
+            if (placeCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
+                if (!molecule.isMoleculeSimple()) {
+                    placeCardsForHydrogen.add(placeCard);
+                    continue;
+                }
+            }
+
+
             if (placeCard.position == AtomPlaceCard.Positions.Center)
                 continue;
 
@@ -334,7 +348,7 @@ public final class ShapedMolecule {
                             placeCard.y - 10, currentCentralAtomPlaceCard.y + 3));
                 else
                     lineGroups.add(new Line(placeCard.x - 2, currentCentralAtomPlaceCard.x + 5,
-                                   placeCard.y - 3, currentCentralAtomPlaceCard.y + 3));
+                            placeCard.y - 3, currentCentralAtomPlaceCard.y + 3));
             }
 
             else if (placeCard.position == AtomPlaceCard.Positions.BottomLeft) {
@@ -350,6 +364,33 @@ public final class ShapedMolecule {
                 lineGroups.add(new Line(placeCard.x, currentCentralAtomPlaceCard.x + 7,
                         placeCard.y, currentCentralAtomPlaceCard.y - 11));
         }
+/*
+        for (AtomPlaceCard placeCard : placeCardsForHydrogen) {
+            for (AtomPlaceCard formulaPlaceCard : atoms) {
+                if (formulaPlaceCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
+
+                    if (formulaPlaceCard.position == AtomPlaceCard.Positions.Left ||
+                        formulaPlaceCard.position == AtomPlaceCard.Positions.TopLeft ||
+                        formulaPlaceCard.position == AtomPlaceCard.Positions.BottomLeft)
+                        lineGroups.add(new Line(formulaPlaceCard.x + 10, placeCard.x - 5,
+                                placeCard.y - 4, placeCard.y - 4));
+
+                    else if (formulaPlaceCard.position == AtomPlaceCard.Positions.Right ||
+                            formulaPlaceCard.position == AtomPlaceCard.Positions.TopRight ||
+                            formulaPlaceCard.position == AtomPlaceCard.Positions.BottomRight)
+                        lineGroups.add(new Line(formulaPlaceCard.x - 5, placeCard.x + 10,
+                                placeCard.y - 4, placeCard.y - 4));
+
+                    else if (formulaPlaceCard.position == AtomPlaceCard.Positions.Top)
+                        lineGroups.add(new Line(formulaPlaceCard.x + 4, formulaPlaceCard.x + 4,
+                                placeCard.y - 12, formulaPlaceCard.y + 4));
+
+                    else if (placeCard.position == AtomPlaceCard.Positions.Bottom)
+                        lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4, placeCard.y + 4,
+                                placeCard.y - 12));
+                }
+            }
+        }*/
     }
 
     private boolean hydrogenLoopCondition(int hydrogenAtomsSize, ArrayList<Atom> bindedList,
