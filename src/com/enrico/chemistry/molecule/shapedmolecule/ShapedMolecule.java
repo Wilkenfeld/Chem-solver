@@ -315,51 +315,59 @@ public final class ShapedMolecule {
                     continue;
                 }
             }
+            
+            switch (placeCard.position) {
+                case Center:
+                    continue;
 
-            if (placeCard.position == AtomPlaceCard.Positions.Center)
-                continue;
+                case Top:
+                    lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4,
+                            currentCentralAtomPlaceCard.y - 12, placeCard.y + 4));
+                break;
 
-            if (placeCard.position == AtomPlaceCard.Positions.Left)
-                lineGroups.add(new Line(placeCard.x + 10, currentCentralAtomPlaceCard.x - 5,
-                        currentCentralAtomPlaceCard.y - 4, currentCentralAtomPlaceCard.y - 4));
+                case Bottom:
+                    lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4, currentCentralAtomPlaceCard.y + 4,
+                            placeCard.y - 12));
+                break;
 
-            else if (placeCard.position == AtomPlaceCard.Positions.Right)
-                lineGroups.add(new Line(placeCard.x - 5, currentCentralAtomPlaceCard.x + 10,
-                        currentCentralAtomPlaceCard.y - 4, currentCentralAtomPlaceCard.y - 4));
+                case Left:
+                    lineGroups.add(new Line(placeCard.x + 10, currentCentralAtomPlaceCard.x - 5,
+                            currentCentralAtomPlaceCard.y - 4, currentCentralAtomPlaceCard.y - 4));
+                break;
 
-            else if (placeCard.position == AtomPlaceCard.Positions.Top)
-                lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4,
-                        currentCentralAtomPlaceCard.y - 12, placeCard.y + 4));
+                case Right:
+                    lineGroups.add(new Line(placeCard.x - 5, currentCentralAtomPlaceCard.x + 10,
+                            currentCentralAtomPlaceCard.y - 4, currentCentralAtomPlaceCard.y - 4));
+                break;
 
-            else if (placeCard.position == AtomPlaceCard.Positions.Bottom)
-                lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4, currentCentralAtomPlaceCard.y + 4,
-                        placeCard.y - 12));
+                case TopRight:
+                    lineGroups.add(new Line(placeCard.x + 5, currentCentralAtomPlaceCard.x,
+                            placeCard.y, currentCentralAtomPlaceCard.y - 10));
+                break;
 
-            else if (placeCard.position == AtomPlaceCard.Positions.TopRight)
-                lineGroups.add(new Line(placeCard.x + 5, currentCentralAtomPlaceCard.x,
-                        placeCard.y, currentCentralAtomPlaceCard.y - 10));
+                case TopLeft:
+                    lineGroups.add(new Line(placeCard.x, currentCentralAtomPlaceCard.x + 7,
+                            placeCard.y, currentCentralAtomPlaceCard.y - 11));
+                break;
 
-            else if (placeCard.position == AtomPlaceCard.Positions.BottomRight) {
-                if (molecule.getMoleculeShape() == Molecule.ShapeEnum.FivePointedStar)
-                    lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x - 5,
-                            placeCard.y - 10, currentCentralAtomPlaceCard.y + 3));
-                else
-                    lineGroups.add(new Line(placeCard.x - 2, currentCentralAtomPlaceCard.x + 5,
-                            placeCard.y - 3, currentCentralAtomPlaceCard.y + 3));
+                case BottomLeft:
+                    if (molecule.getMoleculeShape() == Molecule.ShapeEnum.FivePointedStar)
+                        lineGroups.add(new Line(placeCard.x - 3, currentCentralAtomPlaceCard.x + 5,
+                                placeCard.y - 5, currentCentralAtomPlaceCard.y + 3));
+                    else
+                        lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x,
+                                placeCard.y - 10, currentCentralAtomPlaceCard.y));
+                break;
+
+                case BottomRight:
+                    if (molecule.getMoleculeShape() == Molecule.ShapeEnum.FivePointedStar)
+                        lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x - 5,
+                                placeCard.y - 10, currentCentralAtomPlaceCard.y + 3));
+                    else
+                        lineGroups.add(new Line(placeCard.x - 2, currentCentralAtomPlaceCard.x + 5,
+                                placeCard.y - 3, currentCentralAtomPlaceCard.y + 3));
+                break;
             }
-
-            else if (placeCard.position == AtomPlaceCard.Positions.BottomLeft) {
-                if (molecule.getMoleculeShape() == Molecule.ShapeEnum.FivePointedStar)
-                    lineGroups.add(new Line(placeCard.x - 3, currentCentralAtomPlaceCard.x + 5,
-                            placeCard.y - 5, currentCentralAtomPlaceCard.y + 3));
-                else
-                    lineGroups.add(new Line(placeCard.x + 3, currentCentralAtomPlaceCard.x,
-                            placeCard.y - 10, currentCentralAtomPlaceCard.y));
-            }
-
-            else
-                lineGroups.add(new Line(placeCard.x, currentCentralAtomPlaceCard.x + 7,
-                        placeCard.y, currentCentralAtomPlaceCard.y - 11));
         }
 
         if (!molecule.isMoleculeSimple() && molecule.containsHydrogen()) {
