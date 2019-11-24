@@ -291,7 +291,7 @@ public final class ShapedMolecule {
         }
     }
 
-    // This function adds the binding lines to an array list where they will be drawed.
+    // This function adds the binding lines to an array list where they will be drawn.
     private void addLines(ArrayList<AtomPlaceCard> atoms) {
         Atom moleculeCentralAtom = molecule.getCentralAtom();
         AtomPlaceCard currentCentralAtomPlaceCard;
