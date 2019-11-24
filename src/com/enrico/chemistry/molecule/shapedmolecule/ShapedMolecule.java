@@ -291,6 +291,7 @@ public final class ShapedMolecule {
         }
     }
 
+    // This function adds the binding lines to an array list where they will be drawed.
     private void addLines(ArrayList<AtomPlaceCard> atoms) {
         Atom moleculeCentralAtom = molecule.getCentralAtom();
         AtomPlaceCard currentCentralAtomPlaceCard;
@@ -368,6 +369,7 @@ public final class ShapedMolecule {
             }
         }
 
+        // If the molecule is more complex than just a simple atom surrounded by hydrogen atoms, then start adding atoms.
         if (!molecule.isMoleculeSimple() && molecule.containsHydrogen()) {
             addHydrogenToHydrogenAtomsList(atoms);
 
