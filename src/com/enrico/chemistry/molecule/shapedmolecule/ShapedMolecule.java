@@ -389,6 +389,13 @@ public final class ShapedMolecule {
         }
     }
 
+    /*
+     * This function makes two array lists, one that will contain all the hydrogen atoms, and one that contains all
+     * of the other atoms (except the central one).
+     *
+     * Then it proceeds to iterate inside the array list that contains the atoms different from hydrogen, and for every
+     * atom of that, it will add an hydrogen atom creating a new instance of the HydrogenAtomPlaceCard class.
+     */
     private void addHydrogenToHydrogenAtomsList(ArrayList<AtomPlaceCard> atoms) {
         int atomPlaceCardIndex = 0;
 
