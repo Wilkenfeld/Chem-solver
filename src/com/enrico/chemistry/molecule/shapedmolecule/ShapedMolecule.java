@@ -295,8 +295,7 @@ public final class ShapedMolecule {
         Atom moleculeCentralAtom = molecule.getCentralAtom();
         AtomPlaceCard currentCentralAtomPlaceCard;
         AtomPlaceCard lastPlaceCard = null;
-
-
+        
         if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
             currentCentralAtomPlaceCard = atoms.get(0);
         } else {
@@ -311,11 +310,10 @@ public final class ShapedMolecule {
 
             if (placeCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
                 if (!molecule.isMoleculeSimple()) {
-                    //placeCardsForHydrogen.add(new HydrogenAtomPlaceCard(placeCard));
                     continue;
                 }
             }
-            
+
             switch (placeCard.position) {
                 case Center:
                     continue;
