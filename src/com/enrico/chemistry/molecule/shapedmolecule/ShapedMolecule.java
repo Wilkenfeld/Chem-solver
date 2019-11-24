@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public final class ShapedMolecule {
     private ArrayList<AtomGroup> atomGroups = new ArrayList<>();
     private ArrayList<Line> lineGroups = new ArrayList<>();
+    private ArrayList<HydrogenAtomPlaceCard> placeCardsForHydrogen = new ArrayList<>();
     private final Molecule molecule;
 
     public ShapedMolecule(Molecule molecule, int xCenter, int yCenter) {
@@ -295,7 +296,6 @@ public final class ShapedMolecule {
         AtomPlaceCard currentCentralAtomPlaceCard;
         AtomPlaceCard lastPlaceCard = null;
 
-        ArrayList<AtomPlaceCard> placeCardsForHydrogen = new ArrayList<>();
 
         if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
             currentCentralAtomPlaceCard = atoms.get(0);
@@ -311,7 +311,7 @@ public final class ShapedMolecule {
 
             if (placeCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
                 if (!molecule.isMoleculeSimple()) {
-                    placeCardsForHydrogen.add(placeCard);
+                    //placeCardsForHydrogen.add(new HydrogenAtomPlaceCard(placeCard));
                     continue;
                 }
             }
@@ -361,33 +361,52 @@ public final class ShapedMolecule {
                 lineGroups.add(new Line(placeCard.x, currentCentralAtomPlaceCard.x + 7,
                         placeCard.y, currentCentralAtomPlaceCard.y - 11));
         }
-/*
-        for (AtomPlaceCard placeCard : placeCardsForHydrogen) {
-            for (AtomPlaceCard formulaPlaceCard : atoms) {
-                if (formulaPlaceCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
 
-                    if (formulaPlaceCard.position == AtomPlaceCard.Positions.Left ||
-                        formulaPlaceCard.position == AtomPlaceCard.Positions.TopLeft ||
-                        formulaPlaceCard.position == AtomPlaceCard.Positions.BottomLeft)
-                        lineGroups.add(new Line(formulaPlaceCard.x + 10, placeCard.x - 5,
-                                placeCard.y - 4, placeCard.y - 4));
+        if (!molecule.isMoleculeSimple() && molecule.containsHydrogen()) {
+            addHydrogenToHydrogenAtomsList(atoms);
 
-                    else if (formulaPlaceCard.position == AtomPlaceCard.Positions.Right ||
-                            formulaPlaceCard.position == AtomPlaceCard.Positions.TopRight ||
-                            formulaPlaceCard.position == AtomPlaceCard.Positions.BottomRight)
-                        lineGroups.add(new Line(formulaPlaceCard.x - 5, placeCard.x + 10,
-                                placeCard.y - 4, placeCard.y - 4));
+            for (HydrogenAtomPlaceCard placeCard : placeCardsForHydrogen) {
+                if (placeCard.getPosition() == AtomPlaceCard.Positions.Left ||
+                    placeCard.getPosition() == AtomPlaceCard.Positions.TopLeft ||
+                    placeCard.getPosition() == AtomPlaceCard.Positions.BottomLeft)
+                    lineGroups.add(new Line(placeCard.getX() - 5, placeCard.getBindedAtomX() + 10,
+                                       placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
-                    else if (formulaPlaceCard.position == AtomPlaceCard.Positions.Top)
-                        lineGroups.add(new Line(formulaPlaceCard.x + 4, formulaPlaceCard.x + 4,
-                                placeCard.y - 12, formulaPlaceCard.y + 4));
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Right ||
+                         placeCard.getPosition() == AtomPlaceCard.Positions.TopRight ||
+                         placeCard.getPosition() == AtomPlaceCard.Positions.BottomRight)
+                    lineGroups.add(new Line(placeCard.getX() + 10, placeCard.getBindedAtomX() - 5,
+                                           placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
-                    else if (placeCard.position == AtomPlaceCard.Positions.Bottom)
-                        lineGroups.add(new Line(placeCard.x + 4, placeCard.x + 4, placeCard.y + 4,
-                                placeCard.y - 12));
-                }
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Top)
+                    lineGroups.add(new Line(placeCard.getX(), placeCard.getX(),
+                                            placeCard.getY(), placeCard.getBindedAtomY()));
+
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Bottom)
+                    lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getBindedAtomX() + 4,
+                                            placeCard.getY() - 10, placeCard.getBindedAtomY() + 3));
             }
-        }*/
+        }
+    }
+
+    private void addHydrogenToHydrogenAtomsList(ArrayList<AtomPlaceCard> atoms) {
+        int atomPlaceCardIndex = 0;
+
+        ArrayList<AtomPlaceCard> hydrogenAtoms = new ArrayList<>();
+        ArrayList<AtomPlaceCard> otherAtoms = new ArrayList<>();
+
+        for (AtomPlaceCard placeCard : atoms) {
+            if (placeCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
+                hydrogenAtoms.add(placeCard);
+            else
+                if (placeCard.position != AtomPlaceCard.Positions.Center)
+                    otherAtoms.add(placeCard);
+        }
+
+        for (AtomPlaceCard placeCard : otherAtoms) {
+            placeCardsForHydrogen.add(new HydrogenAtomPlaceCard(hydrogenAtoms.get(atomPlaceCardIndex), placeCard));
+            atomPlaceCardIndex++;
+        }
     }
 
     private boolean hydrogenLoopCondition(int hydrogenAtomsSize, ArrayList<Atom> bindedList,
@@ -409,11 +428,13 @@ public final class ShapedMolecule {
      * Instead of the "Atom" class that is used to handle the operations for the physical part of the atom,
      * this class is only here to represent the Atom's symbol and its place on the Canvas.
      */
-    public static final class AtomPlaceCard {
-        private String atomSymbol;
+    public static class AtomPlaceCard {
+        private final String atomSymbol;
 
-        private int x, y;
-        private Positions position;
+        private final int x, y;
+        private final Positions position;
+
+        private final Atom atom;
 
         public enum Positions {
             Center,
@@ -432,18 +453,27 @@ public final class ShapedMolecule {
             this.x = x;
             this.y = y;
             this.position = position;
+            this.atom = atom;
         }
 
-        public String getAtomSymbol() {
+        public final String getAtomSymbol() {
             return atomSymbol;
         }
 
-        public int getX() {
+        public final int getX() {
             return x;
         }
 
-        public int getY() {
+        public final int getY() {
             return y;
+        }
+
+        final Positions getPosition() {
+            return position;
+        }
+
+        final Atom getAtomPlaceCardAtom() {
+            return atom;
         }
     }
 }

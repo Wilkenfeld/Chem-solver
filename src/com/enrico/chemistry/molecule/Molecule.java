@@ -165,4 +165,11 @@ public class Molecule {
         }
         return true;
     }
+
+    public boolean containsHydrogen() {
+        for (Atom atom : atomList)
+            if (atom.getSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
+                return true;
+        return false;
+    }
 }
