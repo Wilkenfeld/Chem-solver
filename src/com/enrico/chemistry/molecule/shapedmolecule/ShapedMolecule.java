@@ -125,7 +125,7 @@ public final class ShapedMolecule {
                     atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(1), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
 
                     if (bindedAtomsPyramid.size() >= 3) {
-                        atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(2), xCenter, yCenter - 30, AtomPlaceCard.Positions.Bottom));
+                        atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(2), xCenter, yCenter - 30, AtomPlaceCard.Positions.Top));
                     }
 
                     atomGroups.add(new AtomGroup(atoms));
@@ -161,7 +161,7 @@ public final class ShapedMolecule {
 
                     atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(0), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
                     atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(1), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
-                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(2), xCenter, yCenter + 30, AtomPlaceCard.Positions.Top));
+                    atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(2), xCenter, yCenter + 30, AtomPlaceCard.Positions.Bottom));
 
                     atomGroups.add(new AtomGroup(atoms));
 
@@ -305,8 +305,6 @@ public final class ShapedMolecule {
             return;
         }
 
-        System.out.println("[LOG] Place card size: " + atoms.size());
-
         for (AtomPlaceCard placeCard : atoms) {
             if (lastPlaceCard == null)
                 lastPlaceCard = placeCard;
@@ -317,7 +315,6 @@ public final class ShapedMolecule {
                     continue;
                 }
             }
-
 
             if (placeCard.position == AtomPlaceCard.Positions.Center)
                 continue;
@@ -365,7 +362,6 @@ public final class ShapedMolecule {
                         placeCard.y, currentCentralAtomPlaceCard.y - 11));
         }
 /*
-        This is for displaying hydrogen atoms outside of simple molecules
         for (AtomPlaceCard placeCard : placeCardsForHydrogen) {
             for (AtomPlaceCard formulaPlaceCard : atoms) {
                 if (formulaPlaceCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
