@@ -5,11 +5,15 @@ import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.canvas.Canvas;
+import com.enrico.widgets.canvas.ImageSaver;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.BasicWindow;
+import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public final class MolecularShapeProblemWindow extends BasicWindow implements FontInterface {
     private JPanel mainPanel;
@@ -74,9 +78,55 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
             
             mainCanvas.repaint();
         });
+
+        JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
+        saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
     }
 
     public void createUIComponents() {
         mainCanvas = new Canvas();
+    }
+
+    private void saveImageProcedure() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save file.");
+
+        int selection = fileChooser.showSaveDialog(this);
+        boolean saveStatus = false;
+
+        if (selection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            int i; // Used to count how many tomes the dialog is shown.
+
+            for (i = 0; i < 3; i++) {
+                try {
+                    ImageSaver saver = new ImageSaver(mainCanvas);
+
+                    saveStatus = saver.saveImage(fileToSave.getAbsolutePath(), 0);
+
+                    if (!saveStatus) {
+                        OverwriteDialog dialog = new OverwriteDialog();
+                        dialog.setFilePath(saver.getCompleteName());
+
+                        if (dialog.showDialog() != OverwriteDialog.CHOICE_OK)
+                            break;
+                    } else {
+                        break;
+                    }
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this,
+                            e.getMessage(),
+                            "IO Error.",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            if (!saveStatus && i == 2) {
+                JOptionPane.showMessageDialog(this,
+                        "Error: cannot save the image.",
+                        "IO Error.",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }

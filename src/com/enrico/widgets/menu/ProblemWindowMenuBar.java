@@ -8,11 +8,12 @@ import javax.swing.*;
 public final class ProblemWindowMenuBar extends MainMenuBar {
 
     public JMenuItem problemMenuItemSolve;
+    public JMenu problemMenu;
 
     public ProblemWindowMenuBar(BasicWindow win) {
         super();
 
-        JMenu problemMenu = new JMenu("Problem");
+        problemMenu = new JMenu("Problem");
         problemMenu.setFont(menuBarFont);
 
         problemMenuItemSolve = problemMenu.add("Solve");
