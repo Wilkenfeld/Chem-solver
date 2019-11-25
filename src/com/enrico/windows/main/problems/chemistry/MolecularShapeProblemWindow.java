@@ -5,6 +5,7 @@ import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.canvas.Canvas;
+import com.enrico.widgets.canvas.FileTypeFilter;
 import com.enrico.widgets.canvas.ImageSaver;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.BasicWindow;
@@ -89,20 +90,34 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
 
     private void saveImageProcedure() {
         JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.addChoosableFileFilter(new FileTypeFilter(".png", "PNG file"));
+        fileChooser.addChoosableFileFilter(new FileTypeFilter(".jpg", "JPG file"));
+
+        fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.setDialogTitle("Save file.");
 
         int selection = fileChooser.showSaveDialog(this);
         boolean saveStatus = false;
+        int imageFormat;
 
         if (selection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
+
+            // Check extension type.
+            FileTypeFilter filter = (FileTypeFilter) fileChooser.getFileFilter();
+            if (filter.getExtension().equals(".png"))
+                imageFormat = ImageSaver.IMAGE_PNG_FORMAT;
+            else
+                imageFormat = ImageSaver.IMAGE_JPG_FORMAT;
+
             int i; // Used to count how many tomes the dialog is shown.
 
             for (i = 0; i < 3; i++) {
                 try {
                     ImageSaver saver = new ImageSaver(mainCanvas);
 
-                    saveStatus = saver.saveImage(fileToSave.getAbsolutePath(), 0);
+                    saveStatus = saver.saveImage(fileToSave.getAbsolutePath(), imageFormat);
 
                     if (!saveStatus) {
                         OverwriteDialog dialog = new OverwriteDialog();

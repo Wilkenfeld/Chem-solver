@@ -12,6 +12,7 @@ public final class ImageSaver {
     private String completeName;
 
     public static final int IMAGE_PNG_FORMAT = 0;
+    public static final int IMAGE_JPG_FORMAT = 1;
 
     public ImageSaver(Canvas canvas) {
         this.canvas = canvas;
