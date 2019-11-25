@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class OverwriteDialog extends JDialog {
+public final class OverwriteDialog extends JDialog {
     private JPanel contentPane;
     private DefaultButton buttonOK;
     private DefaultButton buttonCancel;
@@ -22,6 +22,7 @@ public class OverwriteDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        setTitle("Overwrite");
 
         buttonOK.addActionListener(e -> onOK());
 

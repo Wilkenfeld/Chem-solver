@@ -82,6 +82,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
 
         JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
         saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
+        saveImageItem.setFont(menuBarFont);
     }
 
     public void createUIComponents() {
@@ -91,9 +92,11 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
     private void saveImageProcedure() {
         JFileChooser fileChooser = new JFileChooser();
 
+        // Add extension types.
         fileChooser.addChoosableFileFilter(new FileTypeFilter(".png", "PNG file"));
         fileChooser.addChoosableFileFilter(new FileTypeFilter(".jpg", "JPG file"));
 
+        // Disable the possibility for user to save in some other format other than jpg and png.
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.setDialogTitle("Save file.");
 
@@ -111,9 +114,9 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
             else
                 imageFormat = ImageSaver.IMAGE_JPG_FORMAT;
 
-            int i; // Used to count how many tomes the dialog is shown.
+            int counter; // Used to count how many times the dialog is shown.
 
-            for (i = 0; i < 3; i++) {
+            for (counter = 0; counter < 3; counter++) {
                 try {
                     ImageSaver saver = new ImageSaver(mainCanvas);
 
@@ -133,10 +136,12 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                             e.getMessage(),
                             "IO Error.",
                             JOptionPane.ERROR_MESSAGE);
+                    break;
                 }
             }
 
-            if (!saveStatus && i == 2) {
+            // If the saving process has failed both times.
+            if (!saveStatus && counter == 2) {
                 JOptionPane.showMessageDialog(this,
                         "Error: cannot save the image.",
                         "IO Error.",

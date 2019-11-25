@@ -3,6 +3,9 @@ package com.enrico.widgets.canvas;
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
 
+/**
+ * This class is used to make easier the process of making a file filter for the JFileChooser.
+ */
 public final class FileTypeFilter extends FileFilter {
     private String extension;
     private String description;
