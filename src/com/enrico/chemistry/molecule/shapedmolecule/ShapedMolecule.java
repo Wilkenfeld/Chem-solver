@@ -112,6 +112,7 @@ public final class ShapedMolecule {
                             hydrogenAtomIndex++;
                         }
                     }
+                    addLines(atoms);
                 }
             break;
 
