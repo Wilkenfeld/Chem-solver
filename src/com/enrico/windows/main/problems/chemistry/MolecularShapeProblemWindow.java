@@ -10,6 +10,7 @@ import com.enrico.widgets.canvas.ImageSaver;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
+import com.enrico.windows.dialogs.savedialog.SaveDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -90,26 +91,18 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
     }
 
     private void saveImageProcedure() {
-        JFileChooser fileChooser = new JFileChooser();
+        SaveDialog saveDialog = new SaveDialog(this);
 
-        // Add extension types.
-        fileChooser.addChoosableFileFilter(new FileTypeFilter(".png", "PNG file"));
-        fileChooser.addChoosableFileFilter(new FileTypeFilter(".jpg", "JPG file"));
-
-        // Disable the possibility for user to save in some other format other than jpg and png.
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.setDialogTitle("Save file.");
-
-        int selection = fileChooser.showSaveDialog(this);
+        int selection = saveDialog.showDialog();
         boolean saveStatus = false;
         int imageFormat;
 
         if (selection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
+            File fileToSave = saveDialog.getSelectedFile();
 
             // Check extension type.
-            FileTypeFilter filter = (FileTypeFilter) fileChooser.getFileFilter();
-            if (filter.getExtension().equals(".png"))
+            FileTypeFilter filter = saveDialog.getFileTypeFilter();
+            if (filter.getExtension().equals(SaveDialog.PNG_EXTENSION))
                 imageFormat = ImageSaver.IMAGE_PNG_FORMAT;
             else
                 imageFormat = ImageSaver.IMAGE_JPG_FORMAT;
