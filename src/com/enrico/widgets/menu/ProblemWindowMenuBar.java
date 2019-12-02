@@ -8,6 +8,7 @@ import javax.swing.*;
 public final class ProblemWindowMenuBar extends MainMenuBar {
 
     public JMenuItem problemMenuItemSolve;
+    public JMenuItem saveMenuItem;
     public JMenu problemMenu;
 
     public ProblemWindowMenuBar(BasicWindow win) {
@@ -27,6 +28,8 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
             MainWindow window = new MainWindow();
             window.showWindow();
         });
+        saveMenuItem = problemMenu.add("Save");
+        saveMenuItem.setFont(menuBarFont);
 
         add(problemMenu);
     }

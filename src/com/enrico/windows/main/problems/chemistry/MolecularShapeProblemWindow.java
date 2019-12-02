@@ -4,6 +4,9 @@ import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.interfaces.FontInterface;
+import com.enrico.interfaces.WindowInterface;
+import com.enrico.project.saver.OverwriteException;
+import com.enrico.project.saver.ProjectSaver;
 import com.enrico.widgets.canvas.Canvas;
 import com.enrico.widgets.canvas.FileTypeFilter;
 import com.enrico.widgets.canvas.ImageSaver;
@@ -11,13 +14,15 @@ import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
 import com.enrico.windows.dialogs.savedialog.SaveDialog;
+import com.enrico.windows.dialogs.savedialog.saveProject.ProjectSaveDialog;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
-public final class MolecularShapeProblemWindow extends BasicWindow implements FontInterface {
+public final class MolecularShapeProblemWindow extends BasicWindow implements FontInterface, WindowInterface {
     private JPanel mainPanel;
     private Canvas mainCanvas;
     private JTextField textFieldFormula;
@@ -84,6 +89,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
         saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
         saveImageItem.setFont(menuBarFont);
+        problemWindowMenuBar.saveMenuItem.addActionListener(actionEvent -> saveProject());
     }
 
     public void createUIComponents() {
@@ -139,6 +145,45 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                         "Error: cannot save the image.",
                         "IO Error.",
                         JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    @Override
+    public void saveProject() {
+        ProjectSaveDialog dialog = new ProjectSaveDialog(this);
+
+        int selection = dialog.showDialog();
+        boolean overwrite = false;
+
+        if (selection == JFileChooser.APPROVE_OPTION) {
+
+            String path = dialog.getSelectedFile().getAbsolutePath();
+
+            for (int counter = 0; counter < 3; counter++) {
+                HashMap<String, String> projectMap = new HashMap<>();
+                projectMap.put("formula", textFieldFormula.getText());
+
+                try {
+                    ProjectSaver saver = new ProjectSaver(projectMap, path, overwrite);
+                    saver.saveProject();
+                    break;
+                }  catch (OverwriteException oe) {
+                    OverwriteDialog overwriteDialog = new OverwriteDialog();
+                    overwriteDialog.setFilePath(path + ProjectSaver.CHEM_SOLVER_PROJECT_FILE_EXTENSION);
+                    overwriteDialog.showDialog();
+
+                    if (dialog.showDialog() != OverwriteDialog.CHOICE_OK)
+                        break;
+                    else
+                        overwrite = true;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this,
+                            e.getMessage(),
+                            "Unexpected error.",
+                            JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
             }
         }
     }
