@@ -5,6 +5,7 @@ import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.interfaces.FontInterface;
 import com.enrico.interfaces.WindowInterface;
+import com.enrico.project.saver.FormulaShapeProjectSaver;
 import com.enrico.project.saver.OverwriteException;
 import com.enrico.project.saver.ProjectSaver;
 import com.enrico.widgets.canvas.Canvas;
@@ -165,7 +166,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
                 projectMap.put("formula", textFieldFormula.getText());
 
                 try {
-                    ProjectSaver saver = new ProjectSaver(projectMap, path, overwrite);
+                    FormulaShapeProjectSaver saver = new FormulaShapeProjectSaver(projectMap, path, overwrite);
                     saver.saveProject();
                     break;
                 }  catch (OverwriteException oe) {
