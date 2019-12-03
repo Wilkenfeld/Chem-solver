@@ -50,48 +50,54 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         formulaLbl.setFont(normalTextFont);
         resultLbl.setFont(normalTextFont);
 
-        problemWindowMenuBar.problemMenuItemSolve.addActionListener(ActionEvent -> {
-            String formula = textFieldFormula.getText();
-            if (formula.isEmpty()) {
-                JOptionPane.showMessageDialog(this,
-                                     "Please insert a formula to evaluate.",
-                                        "No formula found.",
-                                             JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            FormulaParser parser;
-            Atom[] atomList;
-            Molecule molecule;
-            Atom centralAtom;
-
-            try {
-                parser = new FormulaParser(formula);
-
-                atomList = parser.getAtoms();
-                molecule = new Molecule(atomList, formula);
-                centralAtom = molecule.getCentralAtom();
-
-                molecule.calculateShape();
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(this,
-                        e.getMessage(),
-                        "Formula error.",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            mainCanvas.setAtomList(atomList);
-            mainCanvas.setCentralAtom(centralAtom);
-            mainCanvas.setMolecule(molecule);
-            
-            mainCanvas.repaint();
-        });
+        problemWindowMenuBar.problemMenuItemSolve.addActionListener(ActionEvent -> solveProblem());
 
         JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
         saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
         saveImageItem.setFont(menuBarFont);
         problemWindowMenuBar.saveMenuItem.addActionListener(actionEvent -> saveProject());
+    }
+
+    public void setFormulaOnTextField(String formula) {
+        textFieldFormula.setText(formula);
+    }
+
+    public void solveProblem() {
+        String formula = textFieldFormula.getText();
+        if (formula.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Please insert a formula to evaluate.",
+                    "No formula found.",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        FormulaParser parser;
+        Atom[] atomList;
+        Molecule molecule;
+        Atom centralAtom;
+
+        try {
+            parser = new FormulaParser(formula);
+
+            atomList = parser.getAtoms();
+            molecule = new Molecule(atomList, formula);
+            centralAtom = molecule.getCentralAtom();
+
+            molecule.calculateShape();
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage(),
+                    "Formula error.",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        mainCanvas.setAtomList(atomList);
+        mainCanvas.setCentralAtom(centralAtom);
+        mainCanvas.setMolecule(molecule);
+
+        mainCanvas.repaint();
     }
 
     public void createUIComponents() {
