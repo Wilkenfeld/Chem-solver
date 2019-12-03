@@ -420,6 +420,9 @@ public final class ShapedMolecule {
         }
 
         for (AtomPlaceCard placeCard : otherAtoms) {
+            if (atomPlaceCardIndex > hydrogenAtoms.size()-1)
+                break;
+
             placeCardsForHydrogen.add(new HydrogenAtomPlaceCard(hydrogenAtoms.get(atomPlaceCardIndex), placeCard));
             atomPlaceCardIndex++;
         }
