@@ -33,6 +33,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
 
     public static final String MOLECULAR_RETURN_STATUS = "Molecular shape";
     public static final String MOLECULAR_SHAPE_WINDOW_IDENTIFIER = "MOLECULAR_SHAPE_WINDOW_IDENTIFIER";
+    public static final String PROJECT_ID = "molecular_shape";
 
     public MolecularShapeProblemWindow() {
         super(MOLECULAR_RETURN_STATUS);
@@ -167,7 +168,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
 
                 try {
                     FormulaShapeProjectSaver saver = new FormulaShapeProjectSaver(projectMap, path, overwrite);
-                    saver.saveProject();
+                    saver.saveProject(PROJECT_ID);
                     break;
                 }  catch (OverwriteException oe) {
                     OverwriteDialog overwriteDialog = new OverwriteDialog();

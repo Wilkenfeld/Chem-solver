@@ -14,6 +14,7 @@ import java.util.Map;
 
 public abstract class ProjectSaver {
     public static final String CHEM_SOLVER_PROJECT_FILE_EXTENSION = ".cmfp";
+    public static final String PROJECT_TYPE_ID = "project_type";
 
     final String ROOT_ELEMENT = "project";
     private HashMap<String, String> tagsAndValues;
@@ -44,7 +45,7 @@ public abstract class ProjectSaver {
         }
     }
 
-    public abstract void saveProject() throws ParserConfigurationException, TransformerException, FileNotFoundException;
+    public abstract void saveProject(String projectType) throws ParserConfigurationException, TransformerException, FileNotFoundException;
 
      final Node makeNode() {
         Element node;

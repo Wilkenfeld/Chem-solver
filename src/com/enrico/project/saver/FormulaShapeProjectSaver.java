@@ -23,12 +23,13 @@ public class FormulaShapeProjectSaver extends ProjectSaver {
     }
 
      @Override
-     public void saveProject() throws ParserConfigurationException, TransformerException, FileNotFoundException {
+     public void saveProject(String projectType) throws ParserConfigurationException, TransformerException, FileNotFoundException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         fileDocument = builder.newDocument();
 
         rootElement = fileDocument.createElement(ROOT_ELEMENT);
+        rootElement.setAttribute(PROJECT_TYPE_ID, projectType);
         fileDocument.appendChild(rootElement);
 
         Node formulaToAdd = makeNode();
