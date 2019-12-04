@@ -375,11 +375,20 @@ public final class ShapedMolecule {
             addHydrogenToHydrogenAtomsList(atoms);
 
             for (HydrogenAtomPlaceCard placeCard : placeCardsForHydrogen) {
+                /*
                 if (placeCard.getPosition() == AtomPlaceCard.Positions.Left ||
                     placeCard.getPosition() == AtomPlaceCard.Positions.TopLeft ||
                     placeCard.getPosition() == AtomPlaceCard.Positions.BottomLeft)
                     lineGroups.add(new Line(placeCard.getX() - 5, placeCard.getBindedAtomX() + 10,
-                                       placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
+                                       placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));*/
+                if (placeCard.getPosition() == AtomPlaceCard.Positions.Left)
+                    lineGroups.add(new Line(placeCard.getX() + 10, placeCard.getBindedAtomX() - 45,
+                                     placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
+
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.TopLeft ||
+                        placeCard.getPosition() == AtomPlaceCard.Positions.BottomLeft)
+                            lineGroups.add(new Line(placeCard.getX() - 5, placeCard.getBindedAtomX() + 10,
+                            placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Right ||
                          placeCard.getPosition() == AtomPlaceCard.Positions.TopRight ||
@@ -388,8 +397,8 @@ public final class ShapedMolecule {
                                            placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Top)
-                    lineGroups.add(new Line(placeCard.getX(), placeCard.getX(),
-                                            placeCard.getY(), placeCard.getBindedAtomY()));
+                    lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getX() + 4,
+                                            placeCard.getY(), placeCard.getBindedAtomY() - 35));
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Bottom)
                     lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getBindedAtomX() + 4,

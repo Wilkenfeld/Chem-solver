@@ -1,7 +1,6 @@
 package com.enrico.chemistry.molecule;
 
 import com.enrico.chemistry.atoms.Atom;
-import com.enrico.chemistry.atoms.ChlorineAtom;
 import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
