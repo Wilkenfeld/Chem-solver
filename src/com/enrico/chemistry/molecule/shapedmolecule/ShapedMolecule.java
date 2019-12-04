@@ -375,12 +375,6 @@ public final class ShapedMolecule {
             addHydrogenToHydrogenAtomsList(atoms);
 
             for (HydrogenAtomPlaceCard placeCard : placeCardsForHydrogen) {
-                /*
-                if (placeCard.getPosition() == AtomPlaceCard.Positions.Left ||
-                    placeCard.getPosition() == AtomPlaceCard.Positions.TopLeft ||
-                    placeCard.getPosition() == AtomPlaceCard.Positions.BottomLeft)
-                    lineGroups.add(new Line(placeCard.getX() - 5, placeCard.getBindedAtomX() + 10,
-                                       placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));*/
                 if (placeCard.getPosition() == AtomPlaceCard.Positions.Left)
                     lineGroups.add(new Line(placeCard.getX() + 10, placeCard.getBindedAtomX() - 45,
                                      placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
