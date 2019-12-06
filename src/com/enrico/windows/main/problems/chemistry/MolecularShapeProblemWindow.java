@@ -98,6 +98,8 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         mainCanvas.setMolecule(molecule);
 
         mainCanvas.repaint();
+
+        dataPane.setText(molecule.getOperationString());
     }
 
     public void createUIComponents() {

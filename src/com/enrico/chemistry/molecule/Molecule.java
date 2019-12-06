@@ -12,6 +12,8 @@ public class Molecule {
 
     private final String formula;
 
+    private String operationString = "";
+
     // AXE Parameters.
     private Atom centralAtom;
     private ArrayList<Atom> bindedAtoms; // Atoms binded to the central atom.
@@ -40,6 +42,10 @@ public class Molecule {
         findCentralAtom();
         findDoublets();
         setBindedAtoms();
+    }
+
+    public String getOperationString() {
+        return operationString;
     }
 
     public ShapeEnum getMoleculeShape() {
@@ -98,18 +104,29 @@ public class Molecule {
         }
 
         centralAtom = central;
+
+        operationString = operationString.concat("Found central atom: " +
+                                                 centralAtom.getSymbol() + "(" +
+                                                 centralAtom.getCompleteName() + ")\n");
     }
 
     private void findDoublets() {
         doubletsNumber = centralAtom.getDoublets();
+        operationString = operationString.concat("Found free doublets of central atom: " +
+                                                 centralAtom.getDoublets() + "\n");
     }
 
     private void setBindedAtoms() {
+
+        operationString = operationString.concat("Binded atoms:\n");
 
         // Check if molecule is Hydrogen molecule.
         if (atomList.length == 2 && centralAtom.getClass() == HydrogenAtom.class &&
             atomList[1].getClass() == HydrogenAtom.class) {
             bindedAtoms.add(atomList[1]);
+
+            operationString = operationString.concat("H (Hydrogen)\n");
+
             return;
         }
 
@@ -121,40 +138,52 @@ public class Molecule {
                 continue;
             }
 
-            if (!atom.equals(centralAtom))
+            if (!atom.equals(centralAtom)) {
                 bindedAtoms.add(atom);
+                operationString = operationString.concat(atom.getSymbol() + "(" + atom.getCompleteName() + ")\n");
+            }
         }
 
         // All the binded atoms are Hydrogen atoms.
         if (bindedAtoms.size() == 0) {
             bindedAtoms.addAll(hydrogenAtoms);
+            operationString = operationString.concat("added " + hydrogenAtoms.size() + " Hydrogen atoms\n");
         }
     }
 
     public void calculateShape() throws IllegalMoleculeException {
+        operationString = operationString.concat("Found shape of molecule: ");
+
         if ((bindedAtoms.size() == 4 && doubletsNumber == 0) ||
-            (bindedAtoms.size() == 4 && doubletsNumber == 2))
+            (bindedAtoms.size() == 4 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.SquareShape;
-        else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
+            operationString = operationString.concat("Square shape.\n");
+        } else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
                  (bindedAtoms.size() == 2 && doubletsNumber == 5) ||
-                 (bindedAtoms.size() == 3 && doubletsNumber == 1))
+                 (bindedAtoms.size() == 3 && doubletsNumber == 1)) {
             moleculeShape = ShapeEnum.PyramidShape;
-        else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
+            operationString = operationString.concat("Pyramid shape.\n");
+        } else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
                  (bindedAtoms.size() == 1 && doubletsNumber == 0) ||
                  (bindedAtoms.size() == 2 && doubletsNumber == 1) ||
                  (bindedAtoms.size() == 1 && doubletsNumber == 3) ||
-                 (bindedAtoms.size() == 1 && doubletsNumber == 2))
+                 (bindedAtoms.size() == 1 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.LineShape;
-        else if ((bindedAtoms.size() == 3 && doubletsNumber == 2) ||
+            operationString = operationString.concat("Line shape.\n");
+        } else if ((bindedAtoms.size() == 3 && doubletsNumber == 2) ||
                  (bindedAtoms.size() == 3 && doubletsNumber == 0) ||
-                 (bindedAtoms.size() == 3 && doubletsNumber == 3))
+                 (bindedAtoms.size() == 3 && doubletsNumber == 3)) {
             moleculeShape = ShapeEnum.TriangularShape;
-        else if ((bindedAtoms.size() == 5 && doubletsNumber == 2))
+            operationString = operationString.concat("Triangular shape.\n");
+        } else if ((bindedAtoms.size() == 5 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.FivePointedStar;
-        else if ((bindedAtoms.size() == 6 && doubletsNumber == 2))
+            operationString = operationString.concat("Five pointed star shape.\n");
+        } else if ((bindedAtoms.size() == 6 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.SixPointedStar;
-        else
+            operationString = operationString.concat("Six pointed star shape.\n");
+        } else {
             throw new IllegalMoleculeException(this);
+        }
     }
 
     public boolean isMoleculeSimple() {
