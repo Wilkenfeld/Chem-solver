@@ -3,7 +3,7 @@ package com.enrico.chemistry.atoms;
 public class OxygenAtom extends Atom {
 
     public static final String ATOM_SYMBOL = "O";
-    public static final String ATOM_NAME = "Hydrogen";
+    public static final String ATOM_NAME = "Oxygen";
     public static final int ATOMIC_NUMBER = 8;
     public static final int BINDING_ELECTRONS = 6;
     public static final int IONIZATION_ENERGY = 1314;
