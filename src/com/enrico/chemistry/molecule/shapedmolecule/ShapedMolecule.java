@@ -384,18 +384,21 @@ public final class ShapedMolecule {
                             lineGroups.add(new Line(placeCard.getX() - 5, placeCard.getBindedAtomX() + 10,
                             placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
-                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Right ||
-                         placeCard.getPosition() == AtomPlaceCard.Positions.TopRight ||
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Right)
+                            lineGroups.add(new Line(placeCard.getX() - 5, placeCard.getBindedAtomX() + 50,
+                                                placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
+
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.TopRight ||
                          placeCard.getPosition() == AtomPlaceCard.Positions.BottomRight)
-                    lineGroups.add(new Line(placeCard.getX() + 10, placeCard.getBindedAtomX() - 5,
+                            lineGroups.add(new Line(placeCard.getX() + 10, placeCard.getBindedAtomX() - 5,
                                            placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Top)
-                    lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getX() + 4,
+                            lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getX() + 4,
                                             placeCard.getY(), placeCard.getBindedAtomY() - 35));
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Bottom)
-                    lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getBindedAtomX() + 4,
+                            lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getBindedAtomX() + 4,
                                             placeCard.getY() - 10, placeCard.getBindedAtomY() + 3));
             }
         }
