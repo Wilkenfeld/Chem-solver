@@ -140,7 +140,7 @@ public class Molecule {
 
             if (!atom.equals(centralAtom)) {
                 bindedAtoms.add(atom);
-                operationString = operationString.concat(atom.getSymbol() + "(" + atom.getCompleteName() + ")\n");
+                operationString = operationString.concat(atom.getSymbol() + " (" + atom.getCompleteName() + ")\n");
             }
         }
 
