@@ -316,6 +316,8 @@ public final class ShapedMolecule {
         Atom moleculeCentralAtom = molecule.getCentralAtom();
         AtomPlaceCard currentCentralAtomPlaceCard;
         AtomPlaceCard lastPlaceCard = null;
+
+        int top_count = 0;
         
         if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
             currentCentralAtomPlaceCard = atoms.get(0);
@@ -412,9 +414,19 @@ public final class ShapedMolecule {
                             lineGroups.add(new Line(placeCard.getX() + 10, placeCard.getBindedAtomX() - 5,
                                            placeCard.getBindedAtomY() - 5, placeCard.getY() - 5));
 
-                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Top)
-                            lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getX() + 4,
-                                            placeCard.getY(), placeCard.getBindedAtomY() - 35));
+                else if (placeCard.getPosition() == AtomPlaceCard.Positions.Top) {
+                    /*
+                     * Apparently two hydrogen atoms are assigned the position top and this messes
+                     * up the interface. This is only temporary until i fix the bug, since it only
+                     * shows 2 hydrogen atoms instead of 3.
+                     */
+                    if (top_count == 1)
+                        continue;
+                    top_count++;
+                    lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getX() + 4,
+                            placeCard.getY(), placeCard.getBindedAtomY() - 33));
+                    System.out.println("PLACECARD Y: " + placeCard.getY() + " BINDED Y: " + placeCard.getBindedAtomY() + " TOPCOUNT. " + top_count);
+                }
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Bottom)
                             lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getBindedAtomX() + 4,
