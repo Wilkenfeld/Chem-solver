@@ -74,10 +74,10 @@ public final class ShapedMolecule {
                             if (placeCard.x == xCenter && placeCard.y == yCenter)
                                 continue;
 
-                            if (placeCard.x - xCenter > 0 && placeCard.y - yCenter == 0) {           // Left.
+                            if (placeCard.x > xCenter && placeCard.y - yCenter == 0) {           // Left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                       xCenter - 40, yCenter, AtomPlaceCard.Positions.Left));
-                            } else if (placeCard.x < 0 && placeCard.y - yCenter == 0) {              // Right.
+                            } else if (placeCard.x < xCenter && placeCard.y - yCenter == 0) {              // Right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter + 40, yCenter, AtomPlaceCard.Positions.Right));
                             } else if (placeCard.x - xCenter == 0 && placeCard.y > yCenter) {        // Bottom.
@@ -317,8 +317,6 @@ public final class ShapedMolecule {
         AtomPlaceCard currentCentralAtomPlaceCard;
         AtomPlaceCard lastPlaceCard = null;
 
-        int top_count = 0;
-        
         if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
             currentCentralAtomPlaceCard = atoms.get(0);
         } else {
@@ -420,12 +418,8 @@ public final class ShapedMolecule {
                      * up the interface. This is only temporary until i fix the bug, since it only
                      * shows 2 hydrogen atoms instead of 3.
                      */
-                    if (top_count == 1)
-                        continue;
-                    top_count++;
                     lineGroups.add(new Line(placeCard.getX() + 4, placeCard.getX() + 4,
-                            placeCard.getY(), placeCard.getBindedAtomY() - 33));
-                    System.out.println("PLACECARD Y: " + placeCard.getY() + " BINDED Y: " + placeCard.getBindedAtomY() + " TOPCOUNT. " + top_count);
+                            placeCard.getY(), placeCard.getBindedAtomY() - 13));
                 }
 
                 else if (placeCard.getPosition() == AtomPlaceCard.Positions.Bottom)
@@ -456,12 +450,18 @@ public final class ShapedMolecule {
                     otherAtoms.add(placeCard);
         }
 
+        AtomPlaceCard lastPlaceCard = null;
         for (AtomPlaceCard placeCard : otherAtoms) {
             if (atomPlaceCardIndex > hydrogenAtoms.size()-1)
                 break;
 
+            if (lastPlaceCard != null && lastPlaceCard.getPosition() == placeCard.getPosition())
+                continue;
+
             placeCardsForHydrogen.add(new HydrogenAtomPlaceCard(hydrogenAtoms.get(atomPlaceCardIndex), placeCard));
             atomPlaceCardIndex++;
+
+            lastPlaceCard = placeCard;
         }
     }
 
