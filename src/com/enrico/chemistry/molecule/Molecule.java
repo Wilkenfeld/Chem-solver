@@ -25,6 +25,9 @@ import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
 
+/*
+ * This class represents generic molecule.
+ */
 public class Molecule {
     private Atom[] atomList;
     private ShapeEnum moleculeShape;

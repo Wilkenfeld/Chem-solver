@@ -23,6 +23,7 @@ import com.enrico.chemistry.molecule.shapedmolecule.ShapedMolecule;
 
 import java.util.ArrayList;
 
+// This class represents an atom group of atoms, specifically designed only to hold together an array list of atoms.
 public class AtomGroup {
     private ArrayList<ShapedMolecule.AtomPlaceCard> atoms;
 

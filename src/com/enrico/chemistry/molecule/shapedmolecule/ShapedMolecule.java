@@ -46,7 +46,31 @@ public final class ShapedMolecule {
         int hydrogenAtomsSize = hydrogenAtoms.size();
         int hydrogenAtomIndex = 0;
         this.molecule = molecule;
-        
+
+        /*
+         * Every algorithm from now on follows the same basic structure.
+         *
+         * The first thing that the algorithm does is is checking if there is a sufficient number of atoms for that
+         * kind of shape. This way we won't get and IndexOutFoBounds Exception.
+         *
+         * The second thing is to create an ArrayList of PlaceCards, and to add the central atom and all the surrounding
+         * atoms to that PlaceCard.
+         *
+         * Next we add the atoms to a new group so we have the basic structure of the molecule.
+         *
+         * Next step is to copy the atoms ArrayList to another, since we can't modify atoms while iterating trough it
+         * so the purpose of that array list is only to iterate inside atoms.
+         * Before iterating inside it we check if the loop condition (so if there are Hydrogen atoms) and if true we
+         * start iterating inside the ArrayList.
+         *
+         * When iterating inside the array list we check the position of every Hydrogen atom. To avoid adding mistakenly
+         * an hydrogen atom as central (except for H2 molecule) we check the position end skip it if it's central.
+         * For every atom we check the position and we understand if they're positioned to the position specified.
+         * Note that this part of code changes for every shape because different shape can have different positions and
+         * number of hydrogen atoms.
+         *
+         * After finishing this, we just add the lines to the LineGroups and exit the constructor.
+         */
         switch (molecule.getMoleculeShape()) {
             case SquareShape:
 
@@ -74,10 +98,10 @@ public final class ShapedMolecule {
                             if (placeCard.x == xCenter && placeCard.y == yCenter)
                                 continue;
 
-                            if (placeCard.x > xCenter && placeCard.y - yCenter == 0) {           // Left.
+                            if (placeCard.x > xCenter && placeCard.y - yCenter == 0) {               // Left.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                       xCenter - 40, yCenter, AtomPlaceCard.Positions.Left));
-                            } else if (placeCard.x < xCenter && placeCard.y - yCenter == 0) {              // Right.
+                            } else if (placeCard.x < xCenter && placeCard.y - yCenter == 0) {        // Right.
                                 atoms.add(new AtomPlaceCard(hydrogenAtoms.get(hydrogenAtomIndex),
                                         xCenter + 40, yCenter, AtomPlaceCard.Positions.Right));
                             } else if (placeCard.x - xCenter == 0 && placeCard.y > yCenter) {        // Bottom.
