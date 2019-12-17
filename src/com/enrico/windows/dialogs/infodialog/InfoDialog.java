@@ -1,12 +1,17 @@
 package com.enrico.windows.dialogs.infodialog;
 
+import com.enrico.interfaces.FontInterface;
+import com.enrico.widgets.buttons.DefaultButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class InfoDialog extends JDialog {
+public class InfoDialog extends JDialog implements FontInterface {
     private JPanel contentPane;
-    private JButton buttonOK;
+    private DefaultButton buttonOK;
+    private JLabel infoLbl;
+    private JLabel titleLbl;
 
     public InfoDialog() {
         setContentPane(contentPane);
@@ -15,11 +20,15 @@ public class InfoDialog extends JDialog {
 
         buttonOK.addActionListener(e -> onOK());
 
+        titleLbl.setFont(titleFont);
+        infoLbl.setFont(normalTextFont);
+
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        setSize(new Dimension(500, 310));
+        setSize(new Dimension(500, 350));
         setResizable(false);
+        setTitle("About ChemSolver");
     }
 
     private void onOK() {
@@ -42,5 +51,9 @@ public class InfoDialog extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void createUIComponents() {
+        buttonOK = new DefaultButton("OK");
     }
 }
