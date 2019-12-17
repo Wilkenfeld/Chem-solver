@@ -19,8 +19,8 @@
 
 package com.enrico.widgets.menu;
 
-import com.enrico.windows.BasicWindow;
 import com.enrico.windows.main.MainWindow;
+import com.enrico.windows.main.problems.GenericProblemWindow;
 
 import javax.swing.*;
 
@@ -29,7 +29,7 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
     public JMenuItem saveMenuItem;
     public JMenu problemMenu;
 
-    public ProblemWindowMenuBar(BasicWindow win) {
+    public ProblemWindowMenuBar(GenericProblemWindow win) {
         super();
 
         problemMenu = new JMenu("Problem");
