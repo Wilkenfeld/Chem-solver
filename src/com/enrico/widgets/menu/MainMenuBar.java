@@ -20,6 +20,7 @@
 package com.enrico.widgets.menu;
 
 import com.enrico.interfaces.FontInterface;
+import com.enrico.windows.dialogs.infodialog.InfoDialog;
 
 import javax.swing.*;
 
@@ -40,7 +41,8 @@ public class MainMenuBar extends JMenuBar implements FontInterface {
         exitItem.setFont(menuBarFont);
 
         infoItem.addActionListener(actionEvent -> {
-            // TODO.
+            InfoDialog dialog = new InfoDialog();
+            dialog.showDialog();
         });
 
         exitItem.addActionListener(actionEvent -> System.exit(0));
