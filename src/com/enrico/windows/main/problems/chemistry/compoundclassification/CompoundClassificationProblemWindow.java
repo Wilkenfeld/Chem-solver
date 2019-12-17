@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public final class CompoundClassificationProblemWindow extends BasicWindow {
     public static final String TITLE = "Compound classification";
-    
+
     private JTextField formulaField;
     private JLabel numberOfElementsLbl;
     private JLabel moleculeTypeLbl;
