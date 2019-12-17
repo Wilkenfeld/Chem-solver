@@ -24,6 +24,7 @@ import com.enrico.chemistry.atoms.HydrogenAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
  * This class represents generic molecule.
@@ -50,6 +51,18 @@ public class Molecule {
         TriangularShape,
         FivePointedStar,
         SixPointedStar
+    }
+
+    public enum CompoundType {
+        Hydride,
+        BinaryAcid,
+        Peroxide,
+        BasicOxide,
+        BinaryRooms,
+        Anhydride,
+        Oxoacid,
+        Hydroxide,
+        TernarySalt
     }
 
     public Molecule(Atom[] atomList, String formula) throws IllegalMoleculeException {
@@ -224,5 +237,25 @@ public class Molecule {
             if (atom.getSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
                 return true;
         return false;
+    }
+
+    public int getNumberOfElements() {
+        int elementsNum = 1;
+        String[] atomSymbols = new String[118];
+        atomSymbols[0] = centralAtom.getSymbol();
+
+        if (containsHydrogen() && !isMoleculeSimple()) {
+            atomSymbols[1] = HydrogenAtom.ATOM_SYMBOL;
+            elementsNum++;
+        }
+
+        for (Atom bindedAtom : bindedAtoms) {
+            if (!Arrays.asList(atomSymbols).contains(bindedAtom.getSymbol())) {
+                atomSymbols[elementsNum] = bindedAtom.getSymbol();
+                elementsNum++;
+            }
+        }
+
+        return elementsNum;
     }
 }

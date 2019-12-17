@@ -44,6 +44,7 @@ import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.ProblemChooserDialog;
 import com.enrico.windows.dialogs.ProblemListModel;
 import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMonosaccharidesTypesProblemWindow;
+import com.enrico.windows.main.problems.chemistry.compoundclassification.CompoundClassificationProblemWindow;
 import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 
 import javax.swing.*;
@@ -104,6 +105,10 @@ public final class MainWindow extends BasicWindow implements FontInterface {
 
                 case BiologyMonosaccharidesTypesProblemWindow.BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER:
                     win = new BiologyMonosaccharidesTypesProblemWindow();
+                break;
+
+                case CompoundClassificationProblemWindow.TITLE:
+                    win = new CompoundClassificationProblemWindow();
                 break;
 
                 case ProblemChooserDialog.NO_PROBLEM_CHOOSED:

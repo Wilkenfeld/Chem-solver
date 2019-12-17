@@ -20,6 +20,7 @@
 package com.enrico.windows.dialogs;
 
 import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMonosaccharidesTypesProblemWindow;
+import com.enrico.windows.main.problems.chemistry.compoundclassification.CompoundClassificationProblemWindow;
 import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 
 import javax.swing.*;
@@ -31,7 +32,8 @@ public final class ProblemListModel extends DefaultListModel {
 
     public static final String[] chemProblems = new String[] {
             MolecularShapeProblemWindow.MOLECULAR_RETURN_STATUS,
-            BiologyMonosaccharidesTypesProblemWindow.TITLE
+            BiologyMonosaccharidesTypesProblemWindow.TITLE,
+            CompoundClassificationProblemWindow.TITLE,
     };
 
     public static final String[] physProblems = new String[] {
