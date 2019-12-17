@@ -26,7 +26,6 @@ import javax.swing.*;
 
 public final class ProblemWindowMenuBar extends MainMenuBar {
 
-    public JMenuItem problemMenuItemSolve;
     public JMenuItem saveMenuItem;
     public JMenu problemMenu;
 
@@ -36,11 +35,12 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
         problemMenu = new JMenu("Problem");
         problemMenu.setFont(menuBarFont);
 
-        problemMenuItemSolve = problemMenu.add("Solve");
+        JMenuItem problemMenuItemSolve = problemMenu.add("Solve");
         JMenuItem problemMenuItemStartAnother = problemMenu.add("Solve another problem");
 
         problemMenuItemSolve.setFont(menuBarFont);
         problemMenuItemStartAnother.setFont(menuBarFont);
+        problemMenuItemSolve.addActionListener(ActionListener -> win.solveProblem());
 
         problemMenuItemStartAnother.addActionListener(actionEvent -> {
             win.dispose();

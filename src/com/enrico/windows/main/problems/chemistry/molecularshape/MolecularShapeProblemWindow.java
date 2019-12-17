@@ -22,8 +22,6 @@ package com.enrico.windows.main.problems.chemistry.molecularshape;
 import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
-import com.enrico.interfaces.FontInterface;
-import com.enrico.interfaces.WindowInterface;
 import com.enrico.project.saver.FormulaShapeProjectSaver;
 import com.enrico.project.saver.OverwriteException;
 import com.enrico.project.saver.ProjectSaver;
@@ -31,10 +29,10 @@ import com.enrico.widgets.canvas.Canvas;
 import com.enrico.widgets.canvas.FileTypeFilter;
 import com.enrico.widgets.canvas.ImageSaver;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
-import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
 import com.enrico.windows.dialogs.savedialog.SaveDialog;
 import com.enrico.windows.dialogs.savedialog.saveProject.ProjectSaveDialog;
+import com.enrico.windows.main.problems.GenericProblemWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +40,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public final class MolecularShapeProblemWindow extends BasicWindow implements FontInterface, WindowInterface {
+public final class MolecularShapeProblemWindow extends GenericProblemWindow {
     private JPanel mainPanel;
     private Canvas mainCanvas;
     private JTextField textFieldFormula;
@@ -69,8 +67,6 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         formulaLbl.setFont(normalTextFont);
         resultLbl.setFont(normalTextFont);
 
-        problemWindowMenuBar.problemMenuItemSolve.addActionListener(ActionEvent -> solveProblem());
-
         JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
         saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
         saveImageItem.setFont(menuBarFont);
@@ -81,6 +77,7 @@ public final class MolecularShapeProblemWindow extends BasicWindow implements Fo
         textFieldFormula.setText(formula);
     }
 
+    @Override
     public void solveProblem() {
         String formula = textFieldFormula.getText();
         if (formula.isEmpty()) {

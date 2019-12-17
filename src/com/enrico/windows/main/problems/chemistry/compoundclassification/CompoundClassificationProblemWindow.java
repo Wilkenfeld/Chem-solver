@@ -1,20 +1,42 @@
+/*
+ * Chem solver. A multi-platform chemistry and physics problem solver.
+ *  Copyright (C) 2019  Giacalone Enrico
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+
 package com.enrico.windows.main.problems.chemistry.compoundclassification;
 
 import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
-import com.enrico.windows.BasicWindow;
+import com.enrico.windows.main.problems.GenericProblemWindow;
 
 import javax.swing.*;
 
-public final class CompoundClassificationProblemWindow extends BasicWindow {
+public final class CompoundClassificationProblemWindow extends GenericProblemWindow {
     public static final String TITLE = "Compound classification";
 
     private JTextField formulaField;
     private JLabel numberOfElementsLbl;
     private JLabel moleculeTypeLbl;
     private JPanel mainPane;
+    private JLabel formulaTxtLbl;
+    private JLabel numOfElementsLbl;
+    private JLabel typeLbl;
 
     public CompoundClassificationProblemWindow() {
         super(TITLE);
@@ -22,14 +44,24 @@ public final class CompoundClassificationProblemWindow extends BasicWindow {
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
 
-        problemWindowMenuBar.problemMenuItemSolve.addActionListener(ActionListener -> solveProblem());
-
         setResizable(false);
+
+        formulaField.setFont(normalTextFont);
+        numberOfElementsLbl.setFont(normalTextFont);
+        moleculeTypeLbl.setFont(normalTextFont);
+        formulaTxtLbl.setFont(normalTextFont);
+        numOfElementsLbl.setFont(normalTextFont);
+        typeLbl.setFont(normalTextFont);
 
         setContentPane(mainPane);
     }
 
-    private void solveProblem() {
+    @Override
+    public void saveProject() {
+    }
+
+    @Override
+    public void solveProblem() {
         String formula = formulaField.getText();
         if (formula.isEmpty()) {
             JOptionPane.showMessageDialog(this,

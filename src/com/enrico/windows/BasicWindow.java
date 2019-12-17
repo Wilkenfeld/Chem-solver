@@ -19,9 +19,11 @@
 
 package com.enrico.windows;
 
+import com.enrico.interfaces.FontInterface;
+
 import javax.swing.*;
 
-public abstract class BasicWindow extends JFrame {
+public abstract class BasicWindow extends JFrame implements FontInterface {
 
     public BasicWindow(String title) {
         super(title);

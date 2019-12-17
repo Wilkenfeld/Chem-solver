@@ -19,16 +19,15 @@
 
 package com.enrico.windows.main.problems.biology.monosaccharidestypes;
 
-import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.buttons.DefaultButton;
 import com.enrico.widgets.combobox.DefaultComboBox;
 import com.enrico.widgets.combobox.DefaultComboBoxItem;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
-import com.enrico.windows.BasicWindow;
+import com.enrico.windows.main.problems.GenericProblemWindow;
 
 import javax.swing.*;
 
-public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow implements FontInterface {
+public class BiologyMonosaccharidesTypesProblemWindow extends GenericProblemWindow {
     private JPanel mainPanel;
     private JTextField nVariableTxtField;
     private JLabel monosaccharideTypeLbl;
@@ -56,11 +55,6 @@ public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow implem
 
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
-
-        problemWindowMenuBar.problemMenuItemSolve.addActionListener(actionEvent -> {
-            String strVariableN = nVariableTxtField.getText();
-            calculateMonosaccharideType(strVariableN);
-        });
 
         setContentPane(mainPanel);
 
@@ -94,5 +88,15 @@ public class BiologyMonosaccharidesTypesProblemWindow extends BasicWindow implem
                 monosaccharideTypeLbl.setText("Fructose");
             }
         }
+    }
+
+    @Override
+    public void saveProject() {
+    }
+
+    @Override
+    public void solveProblem() {
+        String strVariableN = nVariableTxtField.getText();
+        calculateMonosaccharideType(strVariableN);
     }
 }

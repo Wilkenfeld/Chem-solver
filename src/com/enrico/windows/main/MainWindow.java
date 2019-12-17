@@ -37,7 +37,6 @@ Chem solver. A multi-platform chemistry and physics problem solver.
 
 package com.enrico.windows.main;
 
-import com.enrico.interfaces.FontInterface;
 import com.enrico.widgets.buttons.DefaultButton;
 import com.enrico.widgets.menu.MainMenuBar;
 import com.enrico.windows.BasicWindow;
@@ -52,7 +51,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class MainWindow extends BasicWindow implements FontInterface {
+public final class MainWindow extends BasicWindow {
     public JPanel mainPanel;
     private JLabel welcomeLbl;
     private JLabel subwelcomeLbl;

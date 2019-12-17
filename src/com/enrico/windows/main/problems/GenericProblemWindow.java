@@ -17,8 +17,14 @@
  *
  */
 
-package com.enrico.interfaces;
+package com.enrico.windows.main.problems;
 
-public interface WindowInterface {
-    void saveProject();
+import com.enrico.windows.BasicWindow;
+
+public abstract class GenericProblemWindow extends BasicWindow {
+    public GenericProblemWindow(String title) {
+        super(title);
+    }
+    public abstract void solveProblem();
+    public abstract void saveProject();
 }
