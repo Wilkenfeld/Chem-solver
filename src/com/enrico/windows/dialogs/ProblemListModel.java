@@ -20,7 +20,7 @@
 package com.enrico.windows.dialogs;
 
 import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMonosaccharidesTypesProblemWindow;
-import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
+import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 
 import javax.swing.*;
 

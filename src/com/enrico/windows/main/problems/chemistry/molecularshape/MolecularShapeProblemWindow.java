@@ -17,7 +17,7 @@
  *
  */
 
-package com.enrico.windows.main.problems.chemistry;
+package com.enrico.windows.main.problems.chemistry.molecularshape;
 
 import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.formulaparser.FormulaParser;

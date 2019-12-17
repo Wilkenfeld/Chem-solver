@@ -22,7 +22,7 @@ package com.enrico;
 import com.enrico.project.loader.GenericProjectLoader;
 import com.enrico.project.loader.MolecularShapeProjectLoader;
 import com.enrico.windows.main.MainWindow;
-import com.enrico.windows.main.problems.chemistry.MolecularShapeProblemWindow;
+import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 
 public final class Main {
     public static void main(String[] args) {
