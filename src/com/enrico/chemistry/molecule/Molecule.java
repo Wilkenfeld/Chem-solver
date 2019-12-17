@@ -21,6 +21,7 @@ package com.enrico.chemistry.molecule;
 
 import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.atoms.HydrogenAtom;
+import com.enrico.chemistry.atoms.OxygenAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import java.util.Arrays;
 public class Molecule {
     private Atom[] atomList;
     private ShapeEnum moleculeShape;
+    private CompoundType compoundType;
 
     private final String formula;
 
@@ -41,6 +43,8 @@ public class Molecule {
     private Atom centralAtom;
     private ArrayList<Atom> bindedAtoms; // Atoms binded to the central atom.
     private int doubletsNumber; // Doublets of central atom.
+
+    private final int numberOfElements;
 
     private ArrayList<HydrogenAtom> hydrogenAtoms;
 
@@ -62,7 +66,33 @@ public class Molecule {
         Anhydride,
         Oxoacid,
         Hydroxide,
-        TernarySalt
+        TernarySalt;
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case Hydride:
+                    return "Hydride";
+                case Anhydride:
+                    return "Anhydride";
+                case Oxoacid:
+                    return "Oxoacid";
+                case Peroxide:
+                    return "Peroxide";
+                case Hydroxide:
+                    return "Hydroxide";
+                case BasicOxide:
+                    return "Basic oxide";
+                case BinaryAcid:
+                    return "Binary acid";
+                case BinaryRooms:
+                    return "Binary rooms";
+                case TernarySalt:
+                    return "Ternary salt";
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
     }
 
     public Molecule(Atom[] atomList, String formula) throws IllegalMoleculeException {
@@ -77,6 +107,8 @@ public class Molecule {
         findCentralAtom();
         findDoublets();
         setBindedAtoms();
+
+        numberOfElements = getNumberOfElements();
     }
 
     public String getOperationString() {
@@ -101,6 +133,14 @@ public class Molecule {
 
     public ArrayList<HydrogenAtom> getHydrogenAtoms() {
         return hydrogenAtoms;
+    }
+
+    public CompoundType getCompoundType() {
+        return compoundType;
+    }
+
+    public int getElementsNum() {
+        return numberOfElements;
     }
 
     private void findCentralAtom() throws IllegalArgumentException {
@@ -186,6 +226,35 @@ public class Molecule {
         }
     }
 
+    private boolean containsMetal() {
+        Atom.AtomClassType atomType;
+
+        for (Atom atom : atomList) {
+            atomType = atom.getClassType();
+            if (atomType == Atom.AtomClassType.AlkalineEarthMetals ||
+                atomType == Atom.AtomClassType.AlkalineMetals ||
+                atomType == Atom.AtomClassType.PBlockMetals ||
+                atomType == Atom.AtomClassType.TransitionalMetals ||
+                atomType == Atom.AtomClassType.SemiMetals)
+                return true;
+        }
+
+        return false;
+    }
+
+    private boolean containsNonMetal() {
+        Atom.AtomClassType atomType;
+
+        for (Atom atom : atomList) {
+            atomType = atom.getClassType();
+            if (atomType == Atom.AtomClassType.NotMetals ||
+                atomType == Atom.AtomClassType.NobleGasses)
+                return true;
+        }
+
+        return false;
+    }
+
     public void calculateShape() throws IllegalMoleculeException {
         operationString = operationString.concat("Found shape of molecule: ");
 
@@ -239,7 +308,29 @@ public class Molecule {
         return false;
     }
 
-    public int getNumberOfElements() {
+    private boolean containsOxygen() {
+        for (Atom atom : atomList)
+            if (atom.getSymbol().equals(OxygenAtom.ATOM_SYMBOL))
+                return true;
+
+        return false;
+    }
+
+    private boolean containsWater() {
+        return containsOxygen() && containsHydrogen();
+    }
+
+    private boolean isPeroxide() {
+        int oxygenNumber = 0;
+        for (Atom atom : atomList) {
+            if (atom.getSymbol().equals(OxygenAtom.ATOM_SYMBOL))
+                oxygenNumber++;
+        }
+
+        return oxygenNumber == 2;
+    }
+
+    private int getNumberOfElements() {
         int elementsNum = 1;
         String[] atomSymbols = new String[118];
         atomSymbols[0] = centralAtom.getSymbol();
@@ -257,5 +348,36 @@ public class Molecule {
         }
 
         return elementsNum;
+    }
+
+    public void findCompoundType() throws IllegalMoleculeException {
+        if (numberOfElements == 2) {
+            if (containsMetal() && containsHydrogen())
+                compoundType = CompoundType.Hydride;
+            else if (isPeroxide())
+                compoundType = CompoundType.Peroxide;
+            else if (containsNonMetal() && containsHydrogen())
+                compoundType = CompoundType.BinaryAcid;
+            else if (containsMetal() && containsOxygen())
+                compoundType = CompoundType.BasicOxide;
+            else if (containsNonMetal() && containsOxygen())
+                compoundType = CompoundType.Anhydride;
+            else if (containsMetal() && containsNonMetal())
+                compoundType = CompoundType.BinaryRooms;
+            else
+                throw new IllegalMoleculeException(this);
+
+        } else if (numberOfElements == 3 || numberOfElements == 4) {
+            if (containsWater() && containsMetal())
+                compoundType = CompoundType.Hydroxide;
+            else if (containsWater() && containsNonMetal())
+                compoundType = CompoundType.Oxoacid;
+            else if (containsNonMetal() && containsMetal() && containsOxygen())
+                compoundType = CompoundType.TernarySalt;
+            else
+                throw new IllegalMoleculeException(this);
+        } else {
+            throw new IllegalMoleculeException(this);
+        }
     }
 }

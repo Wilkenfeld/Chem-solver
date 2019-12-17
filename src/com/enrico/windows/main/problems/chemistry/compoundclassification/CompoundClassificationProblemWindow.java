@@ -10,8 +10,7 @@ import javax.swing.*;
 
 public final class CompoundClassificationProblemWindow extends BasicWindow {
     public static final String TITLE = "Compound classification";
-    public static final String COMPOUND_CLASSIFICATION_PROBLEM_IDENTIFIER =
-            "COMPOUND_CLASSIFICATION_PROBLEM_IDENTIFIER";
+    
     private JTextField formulaField;
     private JLabel numberOfElementsLbl;
     private JLabel moleculeTypeLbl;
@@ -49,6 +48,7 @@ public final class CompoundClassificationProblemWindow extends BasicWindow {
 
             atomList = parser.getAtoms();
             molecule = new Molecule(atomList, formula);
+            molecule.findCompoundType();
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this,
                     e.getMessage(),
@@ -57,11 +57,8 @@ public final class CompoundClassificationProblemWindow extends BasicWindow {
             return;
         }
 
-        int elementsNum = molecule.getNumberOfElements();
+        int elementsNum = molecule.getElementsNum();
         numberOfElementsLbl.setText(String.valueOf(elementsNum));
-
-        if (elementsNum == 2) {
-
-        }
+        moleculeTypeLbl.setText("Compound type: " + molecule.getCompoundType().toString());
     }
 }
