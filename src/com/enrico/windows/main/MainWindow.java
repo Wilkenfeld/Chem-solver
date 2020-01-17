@@ -45,6 +45,7 @@ import com.enrico.windows.dialogs.ProblemListModel;
 import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMonosaccharidesTypesProblemWindow;
 import com.enrico.windows.main.problems.chemistry.compoundclassification.CompoundClassificationProblemWindow;
 import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
+import com.enrico.windows.main.problems.chemistry.moleculebuilder.MoleculeBuilderWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -108,6 +109,10 @@ public final class MainWindow extends BasicWindow {
 
                 case CompoundClassificationProblemWindow.TITLE:
                     win = new CompoundClassificationProblemWindow();
+                break;
+
+                case MoleculeBuilderWindow.TITLE:
+                    win = new MoleculeBuilderWindow();
                 break;
 
                 case ProblemChooserDialog.NO_PROBLEM_CHOOSED:
