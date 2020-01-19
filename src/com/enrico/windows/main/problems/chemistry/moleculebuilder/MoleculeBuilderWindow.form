@@ -212,7 +212,7 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="e6d61" class="com.enrico.widgets.imagebutton.ImageButton" binding="hanfiumBtn" custom-create="true">
+                      <component id="e6d61" class="com.enrico.widgets.imagebutton.ImageButton" binding="hafniumBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -332,7 +332,7 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="d3a85" class="com.enrico.widgets.imagebutton.ImageButton" binding="yttiriumBtn" custom-create="true">
+                      <component id="d3a85" class="com.enrico.widgets.imagebutton.ImageButton" binding="yttriumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -344,7 +344,7 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="2976" class="com.enrico.widgets.imagebutton.ImageButton" binding="zircornumBtn" custom-create="true">
+                      <component id="2976" class="com.enrico.widgets.imagebutton.ImageButton" binding="zirconiumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>

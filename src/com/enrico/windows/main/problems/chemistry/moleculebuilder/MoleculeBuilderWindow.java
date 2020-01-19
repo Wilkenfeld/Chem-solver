@@ -39,7 +39,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton chromiumBtn;
     private ImageButton cobaltBtn;
     private ImageButton goldBtn;
-    private ImageButton hanfiumBtn;
+    private ImageButton hafniumBtn;
     private ImageButton iridiumBtn;
     private ImageButton ironBtn;
     private ImageButton manganeseBtn;
@@ -60,9 +60,9 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton titaniumBtn;
     private ImageButton tungstenBtn;
     private ImageButton vanadiumBtn;
-    private ImageButton yttiriumBtn;
+    private ImageButton yttriumBtn;
     private ImageButton zincBtn;
-    private ImageButton zircornumBtn;
+    private ImageButton zirconiumBtn;
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -165,8 +165,8 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_gold.png");
         goldBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_hanfium.png");
-        hanfiumBtn = new ImageButton(imagePath, null);
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_hafnium.png");
+        hafniumBtn = new ImageButton(imagePath, null);
 
         imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_iridium.png");
         iridiumBtn = new ImageButton(imagePath, null);
@@ -228,13 +228,13 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_vanadium.png");
         vanadiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_yttirium.png");
-        yttiriumBtn = new ImageButton(imagePath, null);
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_yttrium.png");
+        yttriumBtn = new ImageButton(imagePath, null);
 
         imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_zinc.png");
         zincBtn = new ImageButton(imagePath, null);
 
         imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_zirconium.png");
-        zircornumBtn = new ImageButton(imagePath, null);
+        zirconiumBtn = new ImageButton(imagePath, null);
     }
 }
