@@ -10,14 +10,12 @@ import java.net.URL;
 public class ImageButton extends JPanel {
     private final BufferedImage image;
 
-    public static final int IMAGE_BUTTON_DEFAULT_DIMENSION = 0;
-
-    public ImageButton(URL imagePath, int width, int height) throws IOException {
+    public ImageButton(URL imagePath, Dimension dimension) throws IOException {
         super();
 
         Dimension defaultDimension = new Dimension(40, 40);
-        if (width > 0 || height > 0)
-            defaultDimension.setSize(width, height);
+        if (dimension != null)
+            defaultDimension.setSize(dimension);
 
         setPreferredSize(defaultDimension);
 
