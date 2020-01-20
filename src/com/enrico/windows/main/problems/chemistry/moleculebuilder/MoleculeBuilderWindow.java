@@ -63,6 +63,13 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton yttriumBtn;
     private ImageButton zincBtn;
     private ImageButton zirconiumBtn;
+    private ImageButton carbonBtn;
+    private ImageButton hydrogenBtn;
+    private ImageButton nitrogenBtn;
+    private ImageButton oxygenBtn;
+    private ImageButton phosphorusBtn;
+    private ImageButton seleniumBtn;
+    private ImageButton sulfurBtn;
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -98,6 +105,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeAlkalineButtons();
             initializeAlkalineEarthButtons();
             initializeTransitionMetalsWindow();
+            initializeNonmetals();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -236,5 +244,30 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_zirconium.png");
         zirconiumBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializeNonmetals() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_carbon.png");
+        carbonBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_hydrogen.png");
+        hydrogenBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_nitrogen.png");
+        nitrogenBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_oxygen.png");
+        oxygenBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_phosphorus.png");
+        phosphorusBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_selenium.png");
+        seleniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_sulfur.png");
+        sulfurBtn = new ImageButton(imagePath, null);
     }
 }

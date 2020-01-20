@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="753" height="493"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -166,7 +166,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="43f50" layout-manager="GridLayoutManager" row-count="5" column-count="12" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="43f50" layout-manager="GridLayoutManager" row-count="4" column-count="12" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints/>
                     <properties/>
@@ -185,7 +185,7 @@
                       </hspacer>
                       <vspacer id="73dc8">
                         <constraints>
-                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
                       <component id="6d97b" class="com.enrico.widgets.imagebutton.ImageButton" binding="chopperBtn" custom-create="true">
@@ -352,7 +352,7 @@
                       </component>
                       <component id="b5508" class="com.enrico.widgets.imagebutton.ImageButton" binding="iridiumBtn" custom-create="true">
                         <constraints>
-                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
@@ -362,14 +362,67 @@
               </scrollpane>
             </children>
           </grid>
-          <grid id="153a4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="153a4" layout-manager="GridLayoutManager" row-count="2" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Nonmetals"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="5d9b7" class="com.enrico.widgets.imagebutton.ImageButton" binding="carbonBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <hspacer id="ffbad">
+                <constraints>
+                  <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="fd88">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="93ffa" class="com.enrico.widgets.imagebutton.ImageButton" binding="hydrogenBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="a2deb" class="com.enrico.widgets.imagebutton.ImageButton" binding="nitrogenBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="d9212" class="com.enrico.widgets.imagebutton.ImageButton" binding="oxygenBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="4e6d1" class="com.enrico.widgets.imagebutton.ImageButton" binding="phosphorusBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="9352" class="com.enrico.widgets.imagebutton.ImageButton" binding="seleniumBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="964e3" class="com.enrico.widgets.imagebutton.ImageButton" binding="sulfurBtn" custom-create="true">
+                <constraints>
+                  <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
           </grid>
           <grid id="7919b" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
