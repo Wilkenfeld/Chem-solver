@@ -89,6 +89,10 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton fluorineBtn;
     private ImageButton iodineBtn;
 
+    // Noble gasses buttons.
+    private ImageButton kryptonBtn;
+    private ImageButton xenonBtn;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -126,6 +130,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeNonmetals();
             initializeSemimetals();
             initializeHalogens();
+            initializeNobleGasses();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -333,5 +338,15 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/halogens/atom_icon_iodine.png");
         iodineBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializeNobleGasses() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/noble_gasses/atom_icon_krypton.png");
+        kryptonBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/noble_gasses/atom_icon_xenon.png");
+        xenonBtn = new ImageButton(imagePath, null);
     }
 }
