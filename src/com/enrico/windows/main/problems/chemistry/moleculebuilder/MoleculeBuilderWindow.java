@@ -102,6 +102,23 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton thalliumBtn;
     private ImageButton tinBtn;
 
+    // Lanthanides buttons.
+    private ImageButton ceriumBtn;
+    private ImageButton dysprosiumBtn;
+    private ImageButton erbiumBtn;
+    private ImageButton europiumBtn;
+    private ImageButton gadoliniumBtn;
+    private ImageButton holmiumBtn;
+    private ImageButton lanthanumBtn;
+    private ImageButton lutetiumBtn;
+    private ImageButton neodymiumBtn;
+    private ImageButton praseodymiumBtn;
+    private ImageButton promethiumBtn;
+    private ImageButton samariumBtn;
+    private ImageButton terbiumBtn;
+    private ImageButton thuliumBtn;
+    private ImageButton ytterbiumBtn;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -141,6 +158,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeHalogens();
             initializeNobleGasses();
             initializePBlockMetals();
+            initializeLanthanides();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -383,5 +401,54 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_tin.png");
         tinBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializeLanthanides() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_cerium.png");
+        ceriumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_dysprosium.png");
+        dysprosiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_erbium.png");
+        erbiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_europium.png");
+        europiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_gadolinium.png");
+        gadoliniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_holmium.png");
+        holmiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_lanthanum.png");
+        lanthanumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_lutetium.png");
+        lutetiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_neodymium.png");
+        neodymiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_praseodymium.png");
+        praseodymiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_promethium.png");
+        promethiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_samarium.png");
+        samariumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_terbium.png");
+        terbiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_thulium.png");
+        thuliumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_ytterbium.png");
+        ytterbiumBtn = new ImageButton(imagePath, null);
     }
 }
