@@ -63,6 +63,8 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton yttriumBtn;
     private ImageButton zincBtn;
     private ImageButton zirconiumBtn;
+
+    // Nonmetals buttons.
     private ImageButton carbonBtn;
     private ImageButton hydrogenBtn;
     private ImageButton nitrogenBtn;
@@ -70,6 +72,16 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton phosphorusBtn;
     private ImageButton seleniumBtn;
     private ImageButton sulfurBtn;
+
+    // Semimetals buttons.
+    private ImageButton antimonyBtn;
+    private ImageButton arsenicBtn;
+    private ImageButton astatineBtn;
+    private ImageButton boronBtn;
+    private ImageButton germaniumBtn;
+    private ImageButton poloniumBtn;
+    private ImageButton siliconBtn;
+    private ImageButton telluriumBtn;
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -106,6 +118,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeAlkalineEarthButtons();
             initializeTransitionMetalsWindow();
             initializeNonmetals();
+            initializeSemimetals();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -269,5 +282,33 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_sulfur.png");
         sulfurBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializeSemimetals() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_antimony.png");
+        antimonyBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_arsenic.png");
+        arsenicBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_astatine.png");
+        astatineBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_boron.png");
+        boronBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_germanium.png");
+        germaniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_polonium.png");
+        poloniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_silicon.png");
+        siliconBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_tellurium.png");
+        telluriumBtn = new ImageButton(imagePath, null);
     }
 }
