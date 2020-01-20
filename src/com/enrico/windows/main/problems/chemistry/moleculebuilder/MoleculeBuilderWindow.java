@@ -83,6 +83,12 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton siliconBtn;
     private ImageButton telluriumBtn;
 
+    // Halogens buttons.
+    private ImageButton bromineBtn;
+    private ImageButton chlorineBtn;
+    private ImageButton fluorineBtn;
+    private ImageButton iodineBtn;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -119,6 +125,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeTransitionMetalsWindow();
             initializeNonmetals();
             initializeSemimetals();
+            initializeHalogens();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -127,188 +134,204 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private void initializeAlkalineButtons() throws IOException {
         URL imagePath;
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_metals/atom_icon_lithium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_lithium.png");
         lithiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_metals/atom_icon_sodium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_sodium.png");
         sodiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_metals/atom_icon_potassium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_potassium.png");
         potassiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_metals/atom_icon_rubidium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_rubidium.png");
         rubidiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_metals/atom_icon_cesium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_cesium.png");
         cesiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_metals/atom_icon_francium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_francium.png");
         franciumBtn = new ImageButton(imagePath, null);
     }
 
     private void initializeAlkalineEarthButtons() throws IOException {
         URL imagePath;
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_earth_metals/atom_icon_beryllium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_earth_metals/atom_icon_beryllium.png");
         berylliumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_earth_metals/atom_icon_magnesium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_earth_metals/atom_icon_magnesium.png");
         magnesiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_earth_metals/atom_icon_calcium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_earth_metals/atom_icon_calcium.png");
         calciumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_earth_metals/atom_icon_strontium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_earth_metals/atom_icon_strontium.png");
         strontiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_earth_metals/atom_icon_barium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_earth_metals/atom_icon_barium.png");
         bariumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/alkaline_earth_metals/atom_icon_radium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_earth_metals/atom_icon_radium.png");
         radiumBtn = new ImageButton(imagePath, null);
     }
 
     private void initializeTransitionMetalsWindow() throws IOException {
         URL imagePath;
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_cadmium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_cadmium.png");
         cadmiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_chopper.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_chopper.png");
         chopperBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_chromium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_chromium.png");
         chromiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_cobalt.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_cobalt.png");
         cobaltBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_gold.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_gold.png");
         goldBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_hafnium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_hafnium.png");
         hafniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_iridium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_iridium.png");
         iridiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_iron.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_iron.png");
         ironBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_manganese.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_manganese.png");
         manganeseBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_mercury.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_mercury.png");
         mercuryBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_molybdenum.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_molybdenum.png");
         molybdenumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_nickel.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_nickel.png");
         nickelBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_niobium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_niobium.png");
         niobiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_osmium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_osmium.png");
         osmiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_palladium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_palladium.png");
         palladiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_platinum.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_platinum.png");
         platinumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_rhenium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_rhenium.png");
         rheniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_rhodium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_rhodium.png");
         rhodiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_ruthenium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_ruthenium.png");
         rutheniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_scandium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_scandium.png");
         scandiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_silver.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_silver.png");
         silverBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_tantalum.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_tantalum.png");
         tantalumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_technetium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_technetium.png");
         technetiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_titanium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_titanium.png");
         titaniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_tungsten.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_tungsten.png");
         tungstenBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_vanadium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_vanadium.png");
         vanadiumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_yttrium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_yttrium.png");
         yttriumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_zinc.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_zinc.png");
         zincBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/transition_metals/atom_icon_zirconium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_zirconium.png");
         zirconiumBtn = new ImageButton(imagePath, null);
     }
 
     private void initializeNonmetals() throws IOException {
         URL imagePath;
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_carbon.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_carbon.png");
         carbonBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_hydrogen.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_hydrogen.png");
         hydrogenBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_nitrogen.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_nitrogen.png");
         nitrogenBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_oxygen.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_oxygen.png");
         oxygenBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_phosphorus.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_phosphorus.png");
         phosphorusBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_selenium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_selenium.png");
         seleniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/nonmetals/atom_icon_sulfur.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_sulfur.png");
         sulfurBtn = new ImageButton(imagePath, null);
     }
 
     private void initializeSemimetals() throws IOException {
         URL imagePath;
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_antimony.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_antimony.png");
         antimonyBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_arsenic.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_arsenic.png");
         arsenicBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_astatine.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_astatine.png");
         astatineBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_boron.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_boron.png");
         boronBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_germanium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_germanium.png");
         germaniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_polonium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_polonium.png");
         poloniumBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_silicon.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_silicon.png");
         siliconBtn = new ImageButton(imagePath, null);
 
-        imagePath = getClass().getClassLoader().getResource("molecule_icons/semimetals/atom_icon_tellurium.png");
+        imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_tellurium.png");
         telluriumBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializeHalogens() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/halogens/atom_icon_bromine.png");
+        bromineBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/halogens/atom_icon_chlorine.png");
+        chlorineBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/halogens/atom_icon_fluorine.png");
+        fluorineBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/halogens/atom_icon_iodine.png");
+        iodineBtn = new ImageButton(imagePath, null);
     }
 }
