@@ -93,6 +93,15 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton kryptonBtn;
     private ImageButton xenonBtn;
 
+    // P-Block metals buttons.
+    private ImageButton aluminiumBtn;
+    private ImageButton bismuthBtn;
+    private ImageButton galliumBtn;
+    private ImageButton indiumBtn;
+    private ImageButton leadBtn;
+    private ImageButton thalliumBtn;
+    private ImageButton tinBtn;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -131,6 +140,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeSemimetals();
             initializeHalogens();
             initializeNobleGasses();
+            initializePBlockMetals();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -348,5 +358,30 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/noble_gasses/atom_icon_xenon.png");
         xenonBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializePBlockMetals() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_aluminium.png");
+        aluminiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_bismuth.png");
+        bismuthBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_gallium.png");
+        galliumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_indium.png");
+        indiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_lead.png");
+        leadBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_thallium.png");
+        thalliumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_tin.png");
+        tinBtn = new ImageButton(imagePath, null);
     }
 }
