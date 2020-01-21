@@ -17,24 +17,24 @@
  *
  */
 
-package com.enrico.widgets.canvas;
+package com.enrico.widgets.canvas.moleculeshapecanvas;
 
 import com.enrico.chemistry.atoms.Atom;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.chemistry.molecule.atomgroup.AtomGroup;
 import com.enrico.chemistry.molecule.shapedmolecule.ShapedMolecule;
 import com.enrico.drawing.Line;
+import com.enrico.widgets.canvas.GenericCanvas;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Canvas extends JPanel {
+public final class MoleculeShapeCanvas extends GenericCanvas {
     private Atom[] atomList = null;
     private Atom centralAtom = null;
     private Molecule molecule = null;
 
-    public Canvas() {
+    public MoleculeShapeCanvas() {
         super();
 
         setPreferredSize(new Dimension(100, 100));

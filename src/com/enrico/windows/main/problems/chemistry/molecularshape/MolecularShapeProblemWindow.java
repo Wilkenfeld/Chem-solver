@@ -25,7 +25,7 @@ import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.project.saver.FormulaShapeProjectSaver;
 import com.enrico.project.saver.OverwriteException;
 import com.enrico.project.saver.ProjectSaver;
-import com.enrico.widgets.canvas.Canvas;
+import com.enrico.widgets.canvas.moleculeshapecanvas.MoleculeShapeCanvas;
 import com.enrico.widgets.canvas.FileTypeFilter;
 import com.enrico.widgets.canvas.ImageSaver;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -42,7 +42,7 @@ import java.util.HashMap;
 
 public final class MolecularShapeProblemWindow extends GenericProblemWindow {
     private JPanel mainPanel;
-    private Canvas mainCanvas;
+    private MoleculeShapeCanvas mainMoleculeShapeCanvas;
     private JTextField textFieldFormula;
     private JTextPane dataPane;
     private JLabel formulaLbl;
@@ -109,17 +109,17 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
             return;
         }
 
-        mainCanvas.setAtomList(atomList);
-        mainCanvas.setCentralAtom(centralAtom);
-        mainCanvas.setMolecule(molecule);
+        mainMoleculeShapeCanvas.setAtomList(atomList);
+        mainMoleculeShapeCanvas.setCentralAtom(centralAtom);
+        mainMoleculeShapeCanvas.setMolecule(molecule);
 
-        mainCanvas.repaint();
+        mainMoleculeShapeCanvas.repaint();
 
         dataPane.setText(molecule.getOperationString());
     }
 
     public void createUIComponents() {
-        mainCanvas = new Canvas();
+        mainMoleculeShapeCanvas = new MoleculeShapeCanvas();
     }
 
     private void saveImageProcedure() {
@@ -143,7 +143,7 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
 
             for (counter = 0; counter < 3; counter++) {
                 try {
-                    ImageSaver saver = new ImageSaver(mainCanvas);
+                    ImageSaver saver = new ImageSaver(mainMoleculeShapeCanvas);
 
                     saveStatus = saver.saveImage(fileToSave.getAbsolutePath(), imageFormat);
 

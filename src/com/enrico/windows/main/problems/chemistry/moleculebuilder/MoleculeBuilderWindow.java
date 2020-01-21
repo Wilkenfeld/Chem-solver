@@ -1,6 +1,6 @@
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
-import com.enrico.widgets.canvas.Canvas;
+import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.main.problems.GenericProblemWindow;
@@ -13,9 +13,9 @@ import java.net.URL;
 public final class MoleculeBuilderWindow extends GenericProblemWindow {
     public static final String TITLE =
             "Molecule Builder";
-    private Canvas canvas;
     private JPanel mainPanel;
     private JTabbedPane atomsPane;
+    private MoleculeDrawingCanvas canvas;
 
     // Alkaline metals buttons.
     private ImageButton sodiumBtn;
@@ -162,7 +162,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     }
 
     private void createUIComponents() {
-        canvas = new Canvas();
+        canvas = new MoleculeDrawingCanvas();
 
         // Initializing image buttons.
         try {

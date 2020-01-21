@@ -20,11 +20,8 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="911ec" class="com.enrico.widgets.canvas.Canvas" binding="canvas" custom-create="true">
+          <component id="e72c5" class="com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas" binding="canvas" custom-create="true">
             <constraints/>
-            <properties>
-              <preferredSize width="1000" height="1000"/>
-            </properties>
           </component>
         </children>
       </scrollpane>

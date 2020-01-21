@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="7a612" class="com.enrico.widgets.canvas.Canvas" binding="mainCanvas" custom-create="true">
+      <component id="7a612" class="com.enrico.widgets.canvas.moleculeshapecanvas.MoleculeShapeCanvas" binding="mainMoleculeShapeCanvas" custom-create="true">
         <constraints>
           <grid row="0" column="0" row-span="4" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="1" use-parent-layout="false">
             <minimum-size width="500" height="500"/>
