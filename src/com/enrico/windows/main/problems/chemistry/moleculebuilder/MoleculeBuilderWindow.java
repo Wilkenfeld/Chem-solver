@@ -119,6 +119,22 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton thuliumBtn;
     private ImageButton ytterbiumBtn;
 
+    // Actinides buttons.
+    private ImageButton actiniumBtn;
+    private ImageButton americiumBtn;
+    private ImageButton berkeliumBtn;
+    private ImageButton californiumBtn;
+    private ImageButton curiumBtn;
+    private ImageButton einsteiniumBtn;
+    private ImageButton fermiumBtn;
+    private ImageButton mendeleviumBtn;
+    private ImageButton neptuniumBtn;
+    private ImageButton nobeliumBtn;
+    private ImageButton plutoniumBtn;
+    private ImageButton protactiniumBtn;
+    private ImageButton thoriumBtn;
+    private ImageButton uraniumBtn;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -159,6 +175,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeNobleGasses();
             initializePBlockMetals();
             initializeLanthanides();
+            initializeActinides();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
         }
@@ -450,5 +467,51 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_ytterbium.png");
         ytterbiumBtn = new ImageButton(imagePath, null);
+    }
+
+    private void initializeActinides() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_actinium.png");
+        actiniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_americium.png");
+        americiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_berkelium.png");
+        berkeliumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_californium.png");
+        californiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_curium.png");
+        curiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_einsteinium.png");
+        einsteiniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_fermium.png");
+        fermiumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_mendelevium.png");
+        mendeleviumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_neptunium.png");
+        neptuniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_nobelium.png");
+        nobeliumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_plutonium.png");
+        plutoniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_protactinium.png");
+        protactiniumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_thorium.png");
+        thoriumBtn = new ImageButton(imagePath, null);
+
+        imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_uranium.png");
+        uraniumBtn = new ImageButton(imagePath, null);
     }
 }
