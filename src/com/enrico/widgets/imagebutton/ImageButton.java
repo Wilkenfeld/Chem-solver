@@ -16,8 +16,8 @@ public class ImageButton extends JPanel {
         Dimension defaultDimension = new Dimension(40, 40);
         if (dimension != null)
             defaultDimension.setSize(dimension);
-
-        setPreferredSize(defaultDimension);
+        else
+            setPreferredSize(defaultDimension);
 
         image = ImageIO.read(imagePath);
     }
