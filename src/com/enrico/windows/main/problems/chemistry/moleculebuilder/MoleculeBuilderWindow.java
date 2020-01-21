@@ -177,7 +177,15 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializeLanthanides();
             initializeActinides();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Can't find internal assets.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(),
+                                          "IO ERROR.", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e1) {
+            JOptionPane.showMessageDialog(this,
+                                 "Error: some assets are missing or have changed name.",
+                                    "Internal assets error.", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e2) {
+            JOptionPane.showMessageDialog(this, e2.getMessage(), "Unexpected error.",
+                                          JOptionPane.ERROR_MESSAGE);
         }
     }
 
