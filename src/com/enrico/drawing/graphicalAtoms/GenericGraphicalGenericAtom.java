@@ -1,6 +1,6 @@
 package com.enrico.drawing.graphicalAtoms;
 
-git import com.enrico.chemistry.atoms.GenericAtom;
+import com.enrico.chemistry.atoms.GenericAtom;
 
 public abstract class GenericGraphicalGenericAtom extends GenericAtom {
     public GenericGraphicalGenericAtom() { // PLACEHOLDER.
