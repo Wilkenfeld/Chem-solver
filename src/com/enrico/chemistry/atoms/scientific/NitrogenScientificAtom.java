@@ -17,20 +17,20 @@
  *
  */
 
-package com.enrico.chemistry.atoms;
+package com.enrico.chemistry.atoms.scientific;
 
-public class HydrogenAtom extends Atom {
+public class NitrogenScientificAtom extends GenericScientificAtom {
+    public static final String ATOM_SYMBOL = "N";
+    public static final String ATOM_NAME = "Nitrogen";
+    public static final int ATOMIC_NUMBER = 7;
+    public static final int BINDING_ELECTRONS = 5;
+    public static final int IONIZATION_ENERGY = 1402;
+    public static final int DOUBLETS = 1;
+    public static final double ATOMIC_MASS = 14.01;
+    public static final double ELECTRONEGATIVITY = 3.04;
 
-    public static final String ATOM_SYMBOL = "H";
-    public static final String ATOM_NAME = "Hydrogen";
-    public static final int ATOMIC_NUMBER = 1;
-    public static final int BINDING_ELECTRONS = 1;
-    public static final int IONIZATION_ENERGY = 1312;
-    public static final double ATOMIC_MASS = 1.008;
-    public static final double ELECTRONEGATIVITY = 2.2;
-
-    public HydrogenAtom() {
+    public NitrogenScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              BINDING_ELECTRONS, 0, IONIZATION_ENERGY, AtomClassType.NotMetals);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, AtomClassType.NotMetals);
     }
 }

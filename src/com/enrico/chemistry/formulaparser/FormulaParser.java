@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.formulaparser;
 
-import com.enrico.chemistry.atoms.*;
+import com.enrico.chemistry.atoms.scientific.*;
 import com.enrico.chemistry.formulaparser.exceptions.IllegalFormulaException;
 
 import java.util.ArrayList;
@@ -44,8 +44,8 @@ public class FormulaParser {
      * Carbon monoxide:
      * C,02
      */
-    public Atom[] getAtoms() throws IllegalArgumentException {
-        ArrayList<Atom> atomList = new ArrayList<>();
+    public GenericScientificAtom[] getAtoms() throws IllegalArgumentException {
+        ArrayList<GenericScientificAtom> GenericScientificAtomList = new ArrayList<>();
 
         String[] splittedFormula = formula.split(",");
         for (String atomName : splittedFormula) {
@@ -74,47 +74,47 @@ public class FormulaParser {
             if (atomName.equals(","))
                 continue;
 
-            Atom currentAtom;
+            GenericScientificAtom currentGenericScientificAtom;
 
             switch (atomSymbol) {
-                case HydrogenAtom.ATOM_SYMBOL:
-                    currentAtom = new HydrogenAtom();
+                case HydrogenScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new HydrogenScientificAtom();
                 break;
 
-                case HeliumAtom.ATOM_SYMBOL:
-                    currentAtom = new HeliumAtom();
+                case HeliumScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new HeliumScientificAtom();
                 break;
 
-                case CarbonAtom.ATOM_SYMBOL:
-                    currentAtom = new CarbonAtom();
+                case CarbonScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new CarbonScientificAtom();
                 break;
 
-                case OxygenAtom.ATOM_SYMBOL:
-                    currentAtom = new OxygenAtom();
+                case OxygenScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new OxygenScientificAtom();
                 break;
 
-                case SulfurAtom.ATOM_SYMBOL:
-                    currentAtom = new SulfurAtom();
+                case SulfurScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new SulfurScientificAtom();
                 break;
 
-                case NitrogenAtom.ATOM_SYMBOL:
-                    currentAtom = new NitrogenAtom();
+                case NitrogenScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new NitrogenScientificAtom();
                 break;
 
-                case PhosphorAtom.ATOM_SYMBOL:
-                    currentAtom = new PhosphorAtom();
+                case PhosphorScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new PhosphorScientificAtom();
                 break;
 
-                case ChlorineAtom.ATOM_SYMBOL:
-                    currentAtom = new ChlorineAtom();
+                case ChlorineScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new ChlorineScientificAtom();
                 break;
 
-                case FluorineAtom.ATOM_SYMBOL:
-                    currentAtom = new FluorineAtom();
+                case FluorineScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new FluorineScientificAtom();
                 break;
 
-                case SiliconAtom.ATOM_SYMBOL:
-                    currentAtom = new SiliconAtom();
+                case SiliconScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new SiliconScientificAtom();
                 break;
 
                 default:
@@ -128,12 +128,12 @@ public class FormulaParser {
 
 
             for (int i = 1; i <= atomNumberInteger; i++)
-                atomList.add(currentAtom);
+                GenericScientificAtomList.add(currentGenericScientificAtom);
         }
 
-        Atom[] atomArray = new Atom[atomList.size()];
-        atomArray = atomList.toArray(atomArray);
+        GenericScientificAtom[] GenericScientificAtomArray = new GenericScientificAtom[GenericScientificAtomList.size()];
+        GenericScientificAtomArray = GenericScientificAtomList.toArray(GenericScientificAtomArray);
 
-        return atomArray;
+        return GenericScientificAtomArray;
     }
 }

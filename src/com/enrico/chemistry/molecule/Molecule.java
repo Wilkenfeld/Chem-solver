@@ -19,9 +19,10 @@
 
 package com.enrico.chemistry.molecule;
 
-import com.enrico.chemistry.atoms.Atom;
-import com.enrico.chemistry.atoms.HydrogenAtom;
-import com.enrico.chemistry.atoms.OxygenAtom;
+import com.enrico.chemistry.atoms.GenericAtom;
+import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
+import com.enrico.chemistry.atoms.scientific.HydrogenScientificAtom;
+import com.enrico.chemistry.atoms.scientific.OxygenScientificAtom;
 import com.enrico.chemistry.molecule.exceptions.IllegalMoleculeException;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import java.util.Arrays;
  * This class represents generic molecule.
  */
 public class Molecule {
-    private Atom[] atomList;
+    private GenericScientificAtom[] GenericScientificAtomList;
     private ShapeEnum moleculeShape;
     private CompoundType compoundType;
 
@@ -40,13 +41,13 @@ public class Molecule {
     private String operationString = "";
 
     // AXE Parameters.
-    private Atom centralAtom;
-    private ArrayList<Atom> bindedAtoms; // Atoms binded to the central atom.
+    private GenericScientificAtom centralGenericScientificAtom;
+    private ArrayList<GenericScientificAtom> bindedGenericScientificAtoms; // Atoms binded to the central atom.
     private int doubletsNumber; // Doublets of central atom.
 
     private final int numberOfElements;
 
-    private ArrayList<HydrogenAtom> hydrogenAtoms;
+    private ArrayList<HydrogenScientificAtom> hydrogenAtoms;
 
     public enum ShapeEnum {
         SquareShape,
@@ -95,13 +96,13 @@ public class Molecule {
         }
     }
 
-    public Molecule(Atom[] atomList, String formula) throws IllegalMoleculeException {
-        this.atomList = atomList;
+    public Molecule(GenericScientificAtom[] GenericScientificAtomList, String formula) throws IllegalMoleculeException {
+        this.GenericScientificAtomList = GenericScientificAtomList;
         this.formula = formula;
 
         doubletsNumber = 0;
 
-        bindedAtoms = new ArrayList<>();
+        bindedGenericScientificAtoms = new ArrayList<>();
         hydrogenAtoms = new ArrayList<>();
 
         findCentralAtom();
@@ -119,19 +120,19 @@ public class Molecule {
         return moleculeShape;
     }
 
-    public Atom getCentralAtom() {
-        return centralAtom;
+    public GenericScientificAtom getCentralGenericScientificAtom() {
+        return centralGenericScientificAtom;
     }
 
-    public ArrayList<Atom> getBindedAtoms() {
-        return bindedAtoms;
+    public ArrayList<GenericScientificAtom> getBindedGenericScientificAtoms() {
+        return bindedGenericScientificAtoms;
     }
 
     public String getFormula() {
         return formula;
     }
 
-    public ArrayList<HydrogenAtom> getHydrogenAtoms() {
+    public ArrayList<HydrogenScientificAtom> getHydrogenAtoms() {
         return hydrogenAtoms;
     }
 
@@ -144,51 +145,51 @@ public class Molecule {
     }
 
     private void findCentralAtom() throws IllegalArgumentException {
-        Atom central = null;
+        GenericScientificAtom central = null;
 
         double currentElectronegativity;
         double minElectronegativity = 0.0;
 
-        for (Atom atom : atomList) {
-            Atom.checkIfUsable(atom);
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList) {
+            com.enrico.chemistry.atoms.scientific.GenericScientificAtom.checkIfUsable(GenericScientificAtom);
 
-            if (minElectronegativity == 0.0 && atom.getClass() != HydrogenAtom.class) {
-                minElectronegativity = atom.getElectronegativity();
-                central = atom;
+            if (minElectronegativity == 0.0 && GenericScientificAtom.getClass() != HydrogenScientificAtom.class) {
+                minElectronegativity = GenericScientificAtom.getElectronegativity();
+                central = GenericScientificAtom;
                 continue;
             }
 
-            currentElectronegativity = atom.getElectronegativity();
+            currentElectronegativity = GenericScientificAtom.getElectronegativity();
 
             if (currentElectronegativity < minElectronegativity) {
-                if (atom.getClass() == HydrogenAtom.class)
+                if (GenericScientificAtom.getClass() == HydrogenScientificAtom.class)
                     continue;
 
-                central = atom;
+                central = GenericScientificAtom;
                 minElectronegativity = currentElectronegativity;
             }
         }
 
         // It is possible for Hydrogen to be the central atom only for the molecule H2.
         if (central == null) {
-            if (atomList[0].getClass() == HydrogenAtom.class && atomList[1].getClass() == HydrogenAtom.class) {
-                central = atomList[0];
+            if (GenericScientificAtomList[0].getClass() == HydrogenScientificAtom.class && GenericScientificAtomList[1].getClass() == HydrogenScientificAtom.class) {
+                central = GenericScientificAtomList[0];
             } else { // No valid molecule.
                 throw new IllegalMoleculeException(this);
             }
         }
 
-        centralAtom = central;
+        centralGenericScientificAtom = central;
 
         operationString = operationString.concat("Found central atom: " +
-                                                 centralAtom.getSymbol() + "(" +
-                                                 centralAtom.getCompleteName() + ")\n");
+                                                 centralGenericScientificAtom.getSymbol() + "(" +
+                                                 centralGenericScientificAtom.getCompleteName() + ")\n");
     }
 
     private void findDoublets() {
-        doubletsNumber = centralAtom.getDoublets();
+        doubletsNumber = centralGenericScientificAtom.getDoublets();
         operationString = operationString.concat("Found free doublets of central atom: " +
-                                                 centralAtom.getDoublets() + "\n");
+                                                 centralGenericScientificAtom.getDoublets() + "\n");
     }
 
     private void setBindedAtoms() {
@@ -196,46 +197,46 @@ public class Molecule {
         operationString = operationString.concat("Binded atoms:\n");
 
         // Check if molecule is Hydrogen molecule.
-        if (atomList.length == 2 && centralAtom.getClass() == HydrogenAtom.class &&
-            atomList[1].getClass() == HydrogenAtom.class) {
-            bindedAtoms.add(atomList[1]);
+        if (GenericScientificAtomList.length == 2 && centralGenericScientificAtom.getClass() == HydrogenScientificAtom.class &&
+            GenericScientificAtomList[1].getClass() == HydrogenScientificAtom.class) {
+            bindedGenericScientificAtoms.add(GenericScientificAtomList[1]);
 
             operationString = operationString.concat("H (Hydrogen)\n");
 
             return;
         }
 
-        for (Atom atom : atomList) {
-            Atom.checkIfUsable(atom);
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList) {
+            com.enrico.chemistry.atoms.scientific.GenericScientificAtom.checkIfUsable(GenericScientificAtom);
 
-            if (atom.getClass().equals(HydrogenAtom.class)) {
-                hydrogenAtoms.add((HydrogenAtom) atom);
+            if (GenericScientificAtom.getClass().equals(HydrogenScientificAtom.class)) {
+                hydrogenAtoms.add((HydrogenScientificAtom) GenericScientificAtom);
                 continue;
             }
 
-            if (!atom.equals(centralAtom)) {
-                bindedAtoms.add(atom);
-                operationString = operationString.concat(atom.getSymbol() + " (" + atom.getCompleteName() + ")\n");
+            if (!GenericScientificAtom.equals(centralGenericScientificAtom)) {
+                bindedGenericScientificAtoms.add(GenericScientificAtom);
+                operationString = operationString.concat(GenericScientificAtom.getSymbol() + " (" + GenericScientificAtom.getCompleteName() + ")\n");
             }
         }
 
         // All the binded atoms are Hydrogen atoms.
-        if (bindedAtoms.size() == 0) {
-            bindedAtoms.addAll(hydrogenAtoms);
+        if (bindedGenericScientificAtoms.size() == 0) {
+            bindedGenericScientificAtoms.addAll(hydrogenAtoms);
             operationString = operationString.concat("added " + hydrogenAtoms.size() + " Hydrogen atoms\n");
         }
     }
 
     private boolean containsMetal() {
-        Atom.AtomClassType atomType;
+        GenericScientificAtom.AtomClassType atomType;
 
-        for (Atom atom : atomList) {
-            atomType = atom.getClassType();
-            if (atomType == Atom.AtomClassType.AlkalineEarthMetals ||
-                atomType == Atom.AtomClassType.AlkalineMetals ||
-                atomType == Atom.AtomClassType.PBlockMetals ||
-                atomType == Atom.AtomClassType.TransitionalMetals ||
-                atomType == Atom.AtomClassType.SemiMetals)
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList) {
+            atomType = GenericScientificAtom.getClassType();
+            if (atomType == GenericAtom.AtomClassType.AlkalineEarthMetals ||
+                atomType == GenericAtom.AtomClassType.AlkalineMetals ||
+                atomType == GenericAtom.AtomClassType.PBlockMetals ||
+                atomType == GenericAtom.AtomClassType.TransitionalMetals ||
+                atomType == GenericAtom.AtomClassType.SemiMetals)
                 return true;
         }
 
@@ -243,12 +244,12 @@ public class Molecule {
     }
 
     private boolean containsNonMetal() {
-        Atom.AtomClassType atomType;
+        GenericScientificAtom.AtomClassType atomType;
 
-        for (Atom atom : atomList) {
-            atomType = atom.getClassType();
-            if (atomType == Atom.AtomClassType.NotMetals ||
-                atomType == Atom.AtomClassType.NobleGasses)
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList) {
+            atomType = GenericScientificAtom.getClassType();
+            if (atomType == GenericAtom.AtomClassType.NotMetals ||
+                atomType == GenericAtom.AtomClassType.NobleGasses)
                 return true;
         }
 
@@ -258,31 +259,31 @@ public class Molecule {
     public void calculateShape() throws IllegalMoleculeException {
         operationString = operationString.concat("Found shape of molecule: ");
 
-        if ((bindedAtoms.size() == 4 && doubletsNumber == 0) ||
-            (bindedAtoms.size() == 4 && doubletsNumber == 2)) {
+        if ((bindedGenericScientificAtoms.size() == 4 && doubletsNumber == 0) ||
+            (bindedGenericScientificAtoms.size() == 4 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.SquareShape;
             operationString = operationString.concat("Square shape.\n");
-        } else if ((bindedAtoms.size() == 2 && doubletsNumber == 2) ||
-                 (bindedAtoms.size() == 2 && doubletsNumber == 5) ||
-                 (bindedAtoms.size() == 3 && doubletsNumber == 1)) {
+        } else if ((bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 2) ||
+                 (bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 5) ||
+                 (bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 1)) {
             moleculeShape = ShapeEnum.PyramidShape;
             operationString = operationString.concat("Pyramid shape.\n");
-        } else if ((bindedAtoms.size() == 2 && doubletsNumber == 0) ||
-                 (bindedAtoms.size() == 1 && doubletsNumber == 0) ||
-                 (bindedAtoms.size() == 2 && doubletsNumber == 1) ||
-                 (bindedAtoms.size() == 1 && doubletsNumber == 3) ||
-                 (bindedAtoms.size() == 1 && doubletsNumber == 2)) {
+        } else if ((bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 0) ||
+                 (bindedGenericScientificAtoms.size() == 1 && doubletsNumber == 0) ||
+                 (bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 1) ||
+                 (bindedGenericScientificAtoms.size() == 1 && doubletsNumber == 3) ||
+                 (bindedGenericScientificAtoms.size() == 1 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.LineShape;
             operationString = operationString.concat("Line shape.\n");
-        } else if ((bindedAtoms.size() == 3 && doubletsNumber == 2) ||
-                 (bindedAtoms.size() == 3 && doubletsNumber == 0) ||
-                 (bindedAtoms.size() == 3 && doubletsNumber == 3)) {
+        } else if ((bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 2) ||
+                 (bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 0) ||
+                 (bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 3)) {
             moleculeShape = ShapeEnum.TriangularShape;
             operationString = operationString.concat("Triangular shape.\n");
-        } else if ((bindedAtoms.size() == 5 && doubletsNumber == 2)) {
+        } else if ((bindedGenericScientificAtoms.size() == 5 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.FivePointedStar;
             operationString = operationString.concat("Five pointed star shape.\n");
-        } else if ((bindedAtoms.size() == 6 && doubletsNumber == 2)) {
+        } else if ((bindedGenericScientificAtoms.size() == 6 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.SixPointedStar;
             operationString = operationString.concat("Six pointed star shape.\n");
         } else {
@@ -291,26 +292,26 @@ public class Molecule {
     }
 
     public boolean isMoleculeSimple() {
-        for (Atom atom : atomList) {
-            if (atom.getSymbol().equals(centralAtom.getSymbol()))
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList) {
+            if (GenericScientificAtom.getSymbol().equals(centralGenericScientificAtom.getSymbol()))
                 continue;
 
-            if (!atom.getSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
+            if (!GenericScientificAtom.getSymbol().equals(HydrogenScientificAtom.ATOM_SYMBOL))
                 return false;
         }
         return true;
     }
 
     public boolean containsHydrogen() {
-        for (Atom atom : atomList)
-            if (atom.getSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList)
+            if (GenericScientificAtom.getSymbol().equals(HydrogenScientificAtom.ATOM_SYMBOL))
                 return true;
         return false;
     }
 
     private boolean containsOxygen() {
-        for (Atom atom : atomList)
-            if (atom.getSymbol().equals(OxygenAtom.ATOM_SYMBOL))
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList)
+            if (GenericScientificAtom.getSymbol().equals(OxygenScientificAtom.ATOM_SYMBOL))
                 return true;
 
         return false;
@@ -322,8 +323,8 @@ public class Molecule {
 
     private boolean isPeroxide() {
         int oxygenNumber = 0;
-        for (Atom atom : atomList) {
-            if (atom.getSymbol().equals(OxygenAtom.ATOM_SYMBOL))
+        for (GenericScientificAtom GenericScientificAtom : GenericScientificAtomList) {
+            if (GenericScientificAtom.getSymbol().equals(OxygenScientificAtom.ATOM_SYMBOL))
                 oxygenNumber++;
         }
 
@@ -333,16 +334,16 @@ public class Molecule {
     private int getNumberOfElements() {
         int elementsNum = 1;
         String[] atomSymbols = new String[118];
-        atomSymbols[0] = centralAtom.getSymbol();
+        atomSymbols[0] = centralGenericScientificAtom.getSymbol();
 
         if (containsHydrogen() && !isMoleculeSimple()) {
-            atomSymbols[1] = HydrogenAtom.ATOM_SYMBOL;
+            atomSymbols[1] = HydrogenScientificAtom.ATOM_SYMBOL;
             elementsNum++;
         }
 
-        for (Atom bindedAtom : bindedAtoms) {
-            if (!Arrays.asList(atomSymbols).contains(bindedAtom.getSymbol())) {
-                atomSymbols[elementsNum] = bindedAtom.getSymbol();
+        for (GenericScientificAtom bindedGenericScientificAtom : bindedGenericScientificAtoms) {
+            if (!Arrays.asList(atomSymbols).contains(bindedGenericScientificAtom.getSymbol())) {
+                atomSymbols[elementsNum] = bindedGenericScientificAtom.getSymbol();
                 elementsNum++;
             }
         }

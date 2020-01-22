@@ -19,8 +19,8 @@
 
 package com.enrico.chemistry.molecule.shapedmolecule;
 
-import com.enrico.chemistry.atoms.Atom;
-import com.enrico.chemistry.atoms.HydrogenAtom;
+import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
+import com.enrico.chemistry.atoms.scientific.HydrogenScientificAtom;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.chemistry.molecule.atomgroup.AtomGroup;
 import com.enrico.drawing.Line;
@@ -42,7 +42,7 @@ public final class ShapedMolecule {
 
     public ShapedMolecule(Molecule molecule, int xCenter, int yCenter) {
 
-        ArrayList<HydrogenAtom> hydrogenAtoms = molecule.getHydrogenAtoms();
+        ArrayList<HydrogenScientificAtom> hydrogenAtoms = molecule.getHydrogenAtoms();
         int hydrogenAtomsSize = hydrogenAtoms.size();
         int hydrogenAtomIndex = 0;
         this.molecule = molecule;
@@ -74,22 +74,22 @@ public final class ShapedMolecule {
         switch (molecule.getMoleculeShape()) {
             case SquareShape:
 
-                ArrayList<Atom> bindedAtoms = molecule.getBindedAtoms();
+                ArrayList<GenericScientificAtom> bindedGenericScientificAtoms = molecule.getBindedGenericScientificAtoms();
 
-                if (bindedAtoms.size() == 4) {
+                if (bindedGenericScientificAtoms.size() == 4) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralGenericScientificAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(0), xCenter - 20, yCenter, AtomPlaceCard.Positions.Left));
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(1), xCenter + 20, yCenter, AtomPlaceCard.Positions.Right));
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(2), xCenter, yCenter - 20, AtomPlaceCard.Positions.Top));
-                    atoms.add(new AtomPlaceCard(bindedAtoms.get(3), xCenter, yCenter + 20, AtomPlaceCard.Positions.Bottom));
+                    atoms.add(new AtomPlaceCard(bindedGenericScientificAtoms.get(0), xCenter - 20, yCenter, AtomPlaceCard.Positions.Left));
+                    atoms.add(new AtomPlaceCard(bindedGenericScientificAtoms.get(1), xCenter + 20, yCenter, AtomPlaceCard.Positions.Right));
+                    atoms.add(new AtomPlaceCard(bindedGenericScientificAtoms.get(2), xCenter, yCenter - 20, AtomPlaceCard.Positions.Top));
+                    atoms.add(new AtomPlaceCard(bindedGenericScientificAtoms.get(3), xCenter, yCenter + 20, AtomPlaceCard.Positions.Bottom));
 
                     atomGroups.add(new AtomGroup(atoms));
 
                     ArrayList<AtomPlaceCard> placeCardCopy = new ArrayList<>(atoms);
 
-                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedAtoms, hydrogenAtoms)) {
+                    if (hydrogenLoopCondition(hydrogenAtomsSize, bindedGenericScientificAtoms, hydrogenAtoms)) {
                         for (AtomPlaceCard placeCard : placeCardCopy) {
                             if (hydrogenAtomIndex > hydrogenAtomsSize - 1)
                                 break;
@@ -121,11 +121,11 @@ public final class ShapedMolecule {
             break;
 
             case LineShape:
-                ArrayList<Atom> bindedAtomsLine = molecule.getBindedAtoms();
+                ArrayList<GenericScientificAtom> bindedAtomsLine = molecule.getBindedGenericScientificAtoms();
                 if (bindedAtomsLine.size() >= 1) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
 
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralGenericScientificAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
                     atoms.add(new AtomPlaceCard(bindedAtomsLine.get(0), xCenter - 20, yCenter, AtomPlaceCard.Positions.Left));
 
                     if (bindedAtomsLine.size() >= 2)
@@ -160,11 +160,11 @@ public final class ShapedMolecule {
             break;
 
             case PyramidShape:
-                ArrayList<Atom> bindedAtomsPyramid = molecule.getBindedAtoms();
+                ArrayList<GenericScientificAtom> bindedAtomsPyramid = molecule.getBindedGenericScientificAtoms();
 
                 if (bindedAtomsPyramid.size() >= 2) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralGenericScientificAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
                     atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(0), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
                     atoms.add(new AtomPlaceCard(bindedAtomsPyramid.get(1), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
@@ -198,11 +198,11 @@ public final class ShapedMolecule {
             break;
 
             case TriangularShape:
-                ArrayList<Atom> bindedAtomsTriangular = molecule.getBindedAtoms();
+                ArrayList<GenericScientificAtom> bindedAtomsTriangular = molecule.getBindedGenericScientificAtoms();
 
                 if (bindedAtomsTriangular.size() == 3) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralGenericScientificAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
                     atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(0), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
                     atoms.add(new AtomPlaceCard(bindedAtomsTriangular.get(1), xCenter + 20, yCenter - 20, AtomPlaceCard.Positions.TopRight));
@@ -240,11 +240,11 @@ public final class ShapedMolecule {
             break;
 
             case FivePointedStar:
-                ArrayList<Atom> bindedAtomsFiveStar = molecule.getBindedAtoms();
+                ArrayList<GenericScientificAtom> bindedAtomsFiveStar = molecule.getBindedGenericScientificAtoms();
 
                 if (bindedAtomsFiveStar.size() == 5) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralGenericScientificAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
                     atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(0), xCenter, yCenter - 40, AtomPlaceCard.Positions.Top));
                     atoms.add(new AtomPlaceCard(bindedAtomsFiveStar.get(1), xCenter - 20, yCenter - 20, AtomPlaceCard.Positions.TopLeft));
@@ -285,11 +285,11 @@ public final class ShapedMolecule {
             break;
 
             case SixPointedStar:
-                ArrayList<Atom> bindedAtomsSixStar = molecule.getBindedAtoms();
+                ArrayList<GenericScientificAtom> bindedAtomsSixStar = molecule.getBindedGenericScientificAtoms();
 
                 if (bindedAtomsSixStar.size() == 6) {
                     ArrayList<AtomPlaceCard> atoms = new ArrayList<>();
-                    atoms.add(new AtomPlaceCard(molecule.getCentralAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
+                    atoms.add(new AtomPlaceCard(molecule.getCentralGenericScientificAtom(), xCenter, yCenter, AtomPlaceCard.Positions.Center));
 
                     atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(0), xCenter, yCenter - 40, AtomPlaceCard.Positions.Top));
                     atoms.add(new AtomPlaceCard(bindedAtomsSixStar.get(1), xCenter, yCenter + 40, AtomPlaceCard.Positions.Bottom));
@@ -337,11 +337,11 @@ public final class ShapedMolecule {
 
     // This function adds the binding lines to an array list where they will be drawn.
     private void addLines(ArrayList<AtomPlaceCard> atoms) {
-        Atom moleculeCentralAtom = molecule.getCentralAtom();
+        GenericScientificAtom moleculeCentralGenericScientificAtom = molecule.getCentralGenericScientificAtom();
         AtomPlaceCard currentCentralAtomPlaceCard;
         AtomPlaceCard lastPlaceCard = null;
 
-        if (!moleculeCentralAtom.getClass().equals(HydrogenAtom.class)) {
+        if (!moleculeCentralGenericScientificAtom.getClass().equals(HydrogenScientificAtom.class)) {
             currentCentralAtomPlaceCard = atoms.get(0);
         } else {
             lineGroups.add(new Line(atoms.get(0).x + 10, atoms.get(1).x - 10,
@@ -353,7 +353,7 @@ public final class ShapedMolecule {
             if (lastPlaceCard == null)
                 lastPlaceCard = placeCard;
 
-            if (placeCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL)) {
+            if (placeCard.getAtomSymbol().equals(HydrogenScientificAtom.ATOM_SYMBOL)) {
                 if (!molecule.isMoleculeSimple()) {
                     continue;
                 }
@@ -467,7 +467,7 @@ public final class ShapedMolecule {
         ArrayList<AtomPlaceCard> otherAtoms = new ArrayList<>();
 
         for (AtomPlaceCard placeCard : atoms) {
-            if (placeCard.getAtomSymbol().equals(HydrogenAtom.ATOM_SYMBOL))
+            if (placeCard.getAtomSymbol().equals(HydrogenScientificAtom.ATOM_SYMBOL))
                 hydrogenAtoms.add(placeCard);
             else
                 if (placeCard.position != AtomPlaceCard.Positions.Center)
@@ -489,8 +489,8 @@ public final class ShapedMolecule {
         }
     }
 
-    private boolean hydrogenLoopCondition(int hydrogenAtomsSize, ArrayList<Atom> bindedList,
-                                          ArrayList<HydrogenAtom> hydrogenAtoms) {
+    private boolean hydrogenLoopCondition(int hydrogenAtomsSize, ArrayList<GenericScientificAtom> bindedList,
+                                          ArrayList<HydrogenScientificAtom> hydrogenAtoms) {
         return hydrogenAtomsSize > 0 && !bindedList.containsAll(hydrogenAtoms);
     }
 
@@ -514,7 +514,7 @@ public final class ShapedMolecule {
         private final int x, y;
         private final Positions position;
 
-        private final Atom atom;
+        private final GenericScientificAtom GenericScientificAtom;
 
         public enum Positions {
             Center,
@@ -528,12 +528,12 @@ public final class ShapedMolecule {
             BottomRight
         }
 
-        AtomPlaceCard(Atom atom, int x, int y, Positions position) {
-            atomSymbol = atom.getSymbol();
+        AtomPlaceCard(GenericScientificAtom GenericScientificAtom, int x, int y, Positions position) {
+            atomSymbol = GenericScientificAtom.getSymbol();
             this.x = x;
             this.y = y;
             this.position = position;
-            this.atom = atom;
+            this.GenericScientificAtom = GenericScientificAtom;
         }
 
         public final String getAtomSymbol() {
@@ -552,8 +552,8 @@ public final class ShapedMolecule {
             return position;
         }
 
-        final Atom getAtomPlaceCardAtom() {
-            return atom;
+        final GenericScientificAtom getAtomPlaceCardAtom() {
+            return GenericScientificAtom;
         }
     }
 }

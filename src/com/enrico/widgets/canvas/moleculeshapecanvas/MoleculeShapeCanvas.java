@@ -19,7 +19,7 @@
 
 package com.enrico.widgets.canvas.moleculeshapecanvas;
 
-import com.enrico.chemistry.atoms.Atom;
+import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.chemistry.molecule.atomgroup.AtomGroup;
 import com.enrico.chemistry.molecule.shapedmolecule.ShapedMolecule;
@@ -30,8 +30,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public final class MoleculeShapeCanvas extends GenericCanvas {
-    private Atom[] atomList = null;
-    private Atom centralAtom = null;
+    private GenericScientificAtom[] GenericScientificAtomList = null;
+    private GenericScientificAtom centralGenericScientificAtom = null;
     private Molecule molecule = null;
 
     public MoleculeShapeCanvas() {
@@ -49,7 +49,7 @@ public final class MoleculeShapeCanvas extends GenericCanvas {
         int centerWidth = getWidth() / 2;
         int centerHeight = getHeight() / 2;
 
-        if (atomList != null && centralAtom != null && molecule != null) {
+        if (GenericScientificAtomList != null && centralGenericScientificAtom != null && molecule != null) {
             ShapedMolecule shapedMolecule = new ShapedMolecule(molecule, centerWidth, centerHeight);
             ArrayList<AtomGroup> atoms = shapedMolecule.getAtomGroups();
             ArrayList<Line> lines = shapedMolecule.getLineGroups();
@@ -71,12 +71,12 @@ public final class MoleculeShapeCanvas extends GenericCanvas {
     public void createUIComponents() {
     }
 
-    public void setAtomList(Atom[] atomList) {
-        this.atomList = atomList;
+    public void setGenericScientificAtomList(GenericScientificAtom[] GenericScientificAtomList) {
+        this.GenericScientificAtomList = GenericScientificAtomList;
     }
 
-    public void setCentralAtom(Atom centralAtom) {
-        this.centralAtom = centralAtom;
+    public void setCentralGenericScientificAtom(GenericScientificAtom centralGenericScientificAtom) {
+        this.centralGenericScientificAtom = centralGenericScientificAtom;
     }
 
     public void setMolecule(Molecule molecule) {

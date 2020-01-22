@@ -19,7 +19,7 @@
 
 package com.enrico.windows.main.problems.chemistry.compoundclassification;
 
-import com.enrico.chemistry.atoms.Atom;
+import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -72,14 +72,14 @@ public final class CompoundClassificationProblemWindow extends GenericProblemWin
         }
 
         FormulaParser parser;
-        Atom[] atomList;
+        GenericScientificAtom[] GenericScientificAtomList;
         Molecule molecule;
 
         try {
             parser = new FormulaParser(formula);
 
-            atomList = parser.getAtoms();
-            molecule = new Molecule(atomList, formula);
+            GenericScientificAtomList = parser.getAtoms();
+            molecule = new Molecule(GenericScientificAtomList, formula);
             molecule.findCompoundType();
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this,

@@ -19,7 +19,7 @@
 
 package com.enrico.windows.main.problems.chemistry.molecularshape;
 
-import com.enrico.chemistry.atoms.Atom;
+import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.project.saver.FormulaShapeProjectSaver;
@@ -89,16 +89,16 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
         }
 
         FormulaParser parser;
-        Atom[] atomList;
+        GenericScientificAtom[] GenericScientificAtomList;
         Molecule molecule;
-        Atom centralAtom;
+        GenericScientificAtom centralGenericScientificAtom;
 
         try {
             parser = new FormulaParser(formula);
 
-            atomList = parser.getAtoms();
-            molecule = new Molecule(atomList, formula);
-            centralAtom = molecule.getCentralAtom();
+            GenericScientificAtomList = parser.getAtoms();
+            molecule = new Molecule(GenericScientificAtomList, formula);
+            centralGenericScientificAtom = molecule.getCentralGenericScientificAtom();
 
             molecule.calculateShape();
         } catch (IllegalArgumentException e) {
@@ -109,8 +109,8 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
             return;
         }
 
-        mainMoleculeShapeCanvas.setAtomList(atomList);
-        mainMoleculeShapeCanvas.setCentralAtom(centralAtom);
+        mainMoleculeShapeCanvas.setGenericScientificAtomList(GenericScientificAtomList);
+        mainMoleculeShapeCanvas.setCentralGenericScientificAtom(centralGenericScientificAtom);
         mainMoleculeShapeCanvas.setMolecule(molecule);
 
         mainMoleculeShapeCanvas.repaint();
