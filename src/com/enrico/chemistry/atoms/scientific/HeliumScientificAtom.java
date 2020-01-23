@@ -20,15 +20,10 @@
 package com.enrico.chemistry.atoms.scientific;
 
 import com.enrico.annotations.chemistry.UnusableAtom;
+import com.enrico.annotations.chemistry.atoms.HeliumAtomInterface;
 
 @UnusableAtom
-public class HeliumScientificAtom extends GenericScientificAtom {
-
-    public static final String ATOM_SYMBOL = "He";
-    public static final String ATOM_NAME = "Helium";
-    public static final int ATOMIC_NUMBER = 2;
-    public static final double ATOMIC_MASS = 4.003;
-    public static final double ELECTRONEGATIVITY = 0;
+public class HeliumScientificAtom extends GenericScientificAtom implements HeliumAtomInterface {
 
     public HeliumScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,

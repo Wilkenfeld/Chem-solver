@@ -19,14 +19,9 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-public class ChlorineScientificAtom extends GenericScientificAtom {
-    public static final String ATOM_SYMBOL = "Cl";
-    public static final String ATOM_NAME = "Chlorine";
-    public static final int ATOMIC_NUMBER = 17;
-    public static final int BINDING_ELECTRONS = 7;
-    public static final int IONIZATION_ENERGY = 1251;
-    public static final double ATOMIC_MASS = 35.45;
-    public static final double ELECTRONEGATIVITY = 3.16;
+import com.enrico.annotations.chemistry.atoms.ChlorineAtomInterface;
+
+public class ChlorineScientificAtom extends GenericScientificAtom implements ChlorineAtomInterface {
 
     public ChlorineScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,

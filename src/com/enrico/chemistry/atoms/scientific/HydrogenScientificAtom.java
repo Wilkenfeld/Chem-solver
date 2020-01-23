@@ -19,15 +19,9 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-public class HydrogenScientificAtom extends GenericScientificAtom {
+import com.enrico.annotations.chemistry.atoms.HydrogenAtomInterface;
 
-    public static final String ATOM_SYMBOL = "H";
-    public static final String ATOM_NAME = "Hydrogen";
-    public static final int ATOMIC_NUMBER = 1;
-    public static final int BINDING_ELECTRONS = 1;
-    public static final int IONIZATION_ENERGY = 1312;
-    public static final double ATOMIC_MASS = 1.008;
-    public static final double ELECTRONEGATIVITY = 2.2;
+public class HydrogenScientificAtom extends GenericScientificAtom implements HydrogenAtomInterface {
 
     public HydrogenScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
