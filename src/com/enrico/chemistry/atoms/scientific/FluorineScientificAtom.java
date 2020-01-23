@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.FluorineAtomInterface;
+import com.enrico.interfaces.atoms.FluorineAtomInterface;
 
 public class FluorineScientificAtom extends GenericScientificAtom implements FluorineAtomInterface {
 
     public FluorineScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, 2, IONIZATION_ENERGY, AtomClassType.Halogens);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.HydrogenAtomInterface;
+import com.enrico.interfaces.atoms.HydrogenAtomInterface;
 
 public class HydrogenScientificAtom extends GenericScientificAtom implements HydrogenAtomInterface {
 
     public HydrogenScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              BINDING_ELECTRONS, 0, IONIZATION_ENERGY, AtomClassType.NotMetals);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

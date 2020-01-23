@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.ChlorineAtomInterface;
+import com.enrico.interfaces.atoms.ChlorineAtomInterface;
 
 public class ChlorineScientificAtom extends GenericScientificAtom implements ChlorineAtomInterface {
 
     public ChlorineScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, 3, IONIZATION_ENERGY, AtomClassType.Halogens);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

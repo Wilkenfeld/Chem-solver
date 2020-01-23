@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.NitrogenAtomInterface;
+import com.enrico.interfaces.atoms.NitrogenAtomInterface;
 
 public class NitrogenScientificAtom extends GenericScientificAtom implements NitrogenAtomInterface {
 
     public NitrogenScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, AtomClassType.NotMetals);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

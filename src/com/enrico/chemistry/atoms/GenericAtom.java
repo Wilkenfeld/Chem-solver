@@ -19,8 +19,6 @@
 
 package com.enrico.chemistry.atoms;
 
-import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
-
 public abstract class GenericAtom {
 
     protected final String symbol;
@@ -35,7 +33,6 @@ public abstract class GenericAtom {
 
     protected final AtomClassType classType;
 
-
     public enum AtomClassType {
         AlkalineMetals,
         AlkalineEarthMetals,
@@ -48,7 +45,7 @@ public abstract class GenericAtom {
     }
 
     public GenericAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
-                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, GenericScientificAtom.AtomClassType classType) {
+                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType) {
         this.symbol = symbol;
         this.completeName = completeName;
         this.atomicNumber = atomicNumber;

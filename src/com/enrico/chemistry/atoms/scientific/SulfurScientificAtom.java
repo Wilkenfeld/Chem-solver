@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.SulfurAtomInterface;
+import com.enrico.interfaces.atoms.SulfurAtomInterface;
 
 public class SulfurScientificAtom extends GenericScientificAtom implements SulfurAtomInterface {
 
     public SulfurScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, 2, IONIZATION_ENERGY, AtomClassType.NotMetals);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.CarbonAtomInterface;
+import com.enrico.interfaces.atoms.CarbonAtomInterface;
 
 public class CarbonScientificAtom extends GenericScientificAtom implements CarbonAtomInterface {
 
     public CarbonScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              BINDING_ELECTRONS, 0, IONIZATION_NUMBER, AtomClassType.NotMetals);
+              BINDING_ELECTRONS, DOUBLETS, IONIZATION_NUMBER, AtomClassType.NotMetals);
     }
 }

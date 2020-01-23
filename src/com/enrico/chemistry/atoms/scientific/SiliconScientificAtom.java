@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.SiliconAtomInterface;
+import com.enrico.interfaces.atoms.SiliconAtomInterface;
 
 public class SiliconScientificAtom extends GenericScientificAtom implements SiliconAtomInterface {
 
     public SiliconScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, 2, IONIZATION_ENERGY, AtomClassType.SemiMetals);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

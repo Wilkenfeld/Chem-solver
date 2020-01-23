@@ -20,13 +20,13 @@
 package com.enrico.chemistry.atoms.scientific;
 
 import com.enrico.annotations.chemistry.UnusableAtom;
-import com.enrico.annotations.chemistry.atoms.HeliumAtomInterface;
+import com.enrico.interfaces.atoms.HeliumAtomInterface;
 
 @UnusableAtom
 public class HeliumScientificAtom extends GenericScientificAtom implements HeliumAtomInterface {
 
     public HeliumScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              0, 0, 0, AtomClassType.NobleGasses);
+              BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

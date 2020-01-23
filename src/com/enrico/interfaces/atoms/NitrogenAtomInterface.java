@@ -1,4 +1,6 @@
-package com.enrico.annotations.chemistry.atoms;
+package com.enrico.interfaces.atoms;
+
+import com.enrico.chemistry.atoms.GenericAtom;
 
 public interface NitrogenAtomInterface {
     String ATOM_SYMBOL = "N";
@@ -9,4 +11,5 @@ public interface NitrogenAtomInterface {
     int DOUBLETS = 1;
     double ATOMIC_MASS = 14.01;
     double ELECTRONEGATIVITY = 3.04;
+    GenericAtom.AtomClassType CLASS_TYPE = GenericAtom.AtomClassType.NotMetals;
 }

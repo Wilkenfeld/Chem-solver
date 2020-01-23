@@ -19,12 +19,12 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.annotations.chemistry.atoms.PhosphorAtomInterface;
+import com.enrico.interfaces.atoms.PhosphorAtomInterface;
 
 public class PhosphorScientificAtom extends GenericScientificAtom implements PhosphorAtomInterface {
 
     public PhosphorScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, 2, IONIZATION_ENERGY, AtomClassType.NotMetals);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }
