@@ -1,7 +1,7 @@
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
-import com.enrico.widgets.imagebutton.ImageButton;
+import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.main.problems.GenericProblemWindow;
 

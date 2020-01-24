@@ -1,4 +1,4 @@
-package com.enrico.widgets.imagebutton;
+package com.enrico.widgets.buttons.imagebutton;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -44,7 +44,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="9a51d" class="com.enrico.widgets.imagebutton.ImageButton" binding="sodiumBtn" custom-create="true">
+              <component id="9a51d" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="sodiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -60,31 +60,31 @@
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="ad89b" class="com.enrico.widgets.imagebutton.ImageButton" binding="potassiumBtn" custom-create="true">
+              <component id="ad89b" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="potassiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="c5109" class="com.enrico.widgets.imagebutton.ImageButton" binding="lithiumBtn" custom-create="true">
+              <component id="c5109" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="lithiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="e570f" class="com.enrico.widgets.imagebutton.ImageButton" binding="rubidiumBtn" custom-create="true">
+              <component id="e570f" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="rubidiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="521c0" class="com.enrico.widgets.imagebutton.ImageButton" binding="cesiumBtn" custom-create="true">
+              <component id="521c0" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="cesiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="ae3b5" class="com.enrico.widgets.imagebutton.ImageButton" binding="franciumBtn" custom-create="true">
+              <component id="ae3b5" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="franciumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -100,7 +100,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="2bfd6" class="com.enrico.widgets.imagebutton.ImageButton" binding="berylliumBtn" custom-create="true">
+              <component id="2bfd6" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="berylliumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -116,31 +116,31 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="57825" class="com.enrico.widgets.imagebutton.ImageButton" binding="magnesiumBtn" custom-create="true">
+              <component id="57825" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="magnesiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="845ba" class="com.enrico.widgets.imagebutton.ImageButton" binding="calciumBtn" custom-create="true">
+              <component id="845ba" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="calciumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="8433" class="com.enrico.widgets.imagebutton.ImageButton" binding="strontiumBtn" custom-create="true">
+              <component id="8433" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="strontiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="4a30d" class="com.enrico.widgets.imagebutton.ImageButton" binding="bariumBtn" custom-create="true">
+              <component id="4a30d" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="bariumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="1b4fe" class="com.enrico.widgets.imagebutton.ImageButton" binding="radiumBtn" custom-create="true">
+              <component id="1b4fe" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="radiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -169,7 +169,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="12a29" class="com.enrico.widgets.imagebutton.ImageButton" binding="cadmiumBtn" custom-create="true">
+                      <component id="12a29" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="cadmiumBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -185,169 +185,169 @@
                           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
-                      <component id="6d97b" class="com.enrico.widgets.imagebutton.ImageButton" binding="chopperBtn" custom-create="true">
+                      <component id="6d97b" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="chopperBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="d6cdb" class="com.enrico.widgets.imagebutton.ImageButton" binding="chromiumBtn" custom-create="true">
+                      <component id="d6cdb" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="chromiumBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="ea780" class="com.enrico.widgets.imagebutton.ImageButton" binding="cobaltBtn" custom-create="true">
+                      <component id="ea780" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="cobaltBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="4898c" class="com.enrico.widgets.imagebutton.ImageButton" binding="goldBtn" custom-create="true">
+                      <component id="4898c" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="goldBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="e6d61" class="com.enrico.widgets.imagebutton.ImageButton" binding="hafniumBtn" custom-create="true">
+                      <component id="e6d61" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="hafniumBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="ccffa" class="com.enrico.widgets.imagebutton.ImageButton" binding="ironBtn" custom-create="true">
+                      <component id="ccffa" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="ironBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="b01a8" class="com.enrico.widgets.imagebutton.ImageButton" binding="manganeseBtn" custom-create="true">
+                      <component id="b01a8" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="manganeseBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="d62b0" class="com.enrico.widgets.imagebutton.ImageButton" binding="mercuryBtn" custom-create="true">
+                      <component id="d62b0" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="mercuryBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="f478e" class="com.enrico.widgets.imagebutton.ImageButton" binding="molybdenumBtn" custom-create="true">
+                      <component id="f478e" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="molybdenumBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="e8915" class="com.enrico.widgets.imagebutton.ImageButton" binding="nickelBtn" custom-create="true">
+                      <component id="e8915" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="nickelBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="eeb9b" class="com.enrico.widgets.imagebutton.ImageButton" binding="niobiumBtn" custom-create="true">
+                      <component id="eeb9b" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="niobiumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="4f920" class="com.enrico.widgets.imagebutton.ImageButton" binding="osmiumBtn" custom-create="true">
+                      <component id="4f920" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="osmiumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="1a5c4" class="com.enrico.widgets.imagebutton.ImageButton" binding="palladiumBtn" custom-create="true">
+                      <component id="1a5c4" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="palladiumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="4085d" class="com.enrico.widgets.imagebutton.ImageButton" binding="platinumBtn" custom-create="true">
+                      <component id="4085d" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="platinumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="7da32" class="com.enrico.widgets.imagebutton.ImageButton" binding="rheniumBtn" custom-create="true">
+                      <component id="7da32" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="rheniumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="72acc" class="com.enrico.widgets.imagebutton.ImageButton" binding="rhodiumBtn" custom-create="true">
+                      <component id="72acc" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="rhodiumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="d4174" class="com.enrico.widgets.imagebutton.ImageButton" binding="rutheniumBtn" custom-create="true">
+                      <component id="d4174" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="rutheniumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="8dd6" class="com.enrico.widgets.imagebutton.ImageButton" binding="scandiumBtn" custom-create="true">
+                      <component id="8dd6" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="scandiumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="141d" class="com.enrico.widgets.imagebutton.ImageButton" binding="silverBtn" custom-create="true">
+                      <component id="141d" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="silverBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="9" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="d221" class="com.enrico.widgets.imagebutton.ImageButton" binding="tantalumBtn" custom-create="true">
+                      <component id="d221" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="tantalumBtn" custom-create="true">
                         <constraints>
                           <grid row="1" column="10" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="cb3cb" class="com.enrico.widgets.imagebutton.ImageButton" binding="technetiumBtn" custom-create="true">
+                      <component id="cb3cb" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="technetiumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="f7323" class="com.enrico.widgets.imagebutton.ImageButton" binding="titaniumBtn" custom-create="true">
+                      <component id="f7323" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="titaniumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="14265" class="com.enrico.widgets.imagebutton.ImageButton" binding="tungstenBtn" custom-create="true">
+                      <component id="14265" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="tungstenBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="77da9" class="com.enrico.widgets.imagebutton.ImageButton" binding="vanadiumBtn" custom-create="true">
+                      <component id="77da9" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="vanadiumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="d3a85" class="com.enrico.widgets.imagebutton.ImageButton" binding="yttriumBtn" custom-create="true">
+                      <component id="d3a85" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="yttriumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="a2498" class="com.enrico.widgets.imagebutton.ImageButton" binding="zincBtn" custom-create="true">
+                      <component id="a2498" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="zincBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="2976" class="com.enrico.widgets.imagebutton.ImageButton" binding="zirconiumBtn" custom-create="true">
+                      <component id="2976" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="zirconiumBtn" custom-create="true">
                         <constraints>
                           <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="b5508" class="com.enrico.widgets.imagebutton.ImageButton" binding="iridiumBtn" custom-create="true">
+                      <component id="b5508" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="iridiumBtn" custom-create="true">
                         <constraints>
                           <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
@@ -367,7 +367,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="5d9b7" class="com.enrico.widgets.imagebutton.ImageButton" binding="carbonBtn" custom-create="true">
+              <component id="5d9b7" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="carbonBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -383,37 +383,37 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="93ffa" class="com.enrico.widgets.imagebutton.ImageButton" binding="hydrogenBtn" custom-create="true">
+              <component id="93ffa" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="hydrogenBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="a2deb" class="com.enrico.widgets.imagebutton.ImageButton" binding="nitrogenBtn" custom-create="true">
+              <component id="a2deb" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="nitrogenBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="d9212" class="com.enrico.widgets.imagebutton.ImageButton" binding="oxygenBtn" custom-create="true">
+              <component id="d9212" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="oxygenBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="4e6d1" class="com.enrico.widgets.imagebutton.ImageButton" binding="phosphorusBtn" custom-create="true">
+              <component id="4e6d1" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="phosphorusBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="9352" class="com.enrico.widgets.imagebutton.ImageButton" binding="seleniumBtn" custom-create="true">
+              <component id="9352" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="seleniumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="964e3" class="com.enrico.widgets.imagebutton.ImageButton" binding="sulfurBtn" custom-create="true">
+              <component id="964e3" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="sulfurBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -429,7 +429,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="cbb46" class="com.enrico.widgets.imagebutton.ImageButton" binding="antimonyBtn" custom-create="true">
+              <component id="cbb46" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="antimonyBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -445,43 +445,43 @@
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="88149" class="com.enrico.widgets.imagebutton.ImageButton" binding="arsenicBtn" custom-create="true">
+              <component id="88149" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="arsenicBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="8a5b4" class="com.enrico.widgets.imagebutton.ImageButton" binding="astatineBtn" custom-create="true">
+              <component id="8a5b4" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="astatineBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="8e47d" class="com.enrico.widgets.imagebutton.ImageButton" binding="boronBtn" custom-create="true">
+              <component id="8e47d" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="boronBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="c094a" class="com.enrico.widgets.imagebutton.ImageButton" binding="germaniumBtn" custom-create="true">
+              <component id="c094a" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="germaniumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="cd7af" class="com.enrico.widgets.imagebutton.ImageButton" binding="poloniumBtn" custom-create="true">
+              <component id="cd7af" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="poloniumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="ddf" class="com.enrico.widgets.imagebutton.ImageButton" binding="siliconBtn" custom-create="true">
+              <component id="ddf" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="siliconBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="c2b9a" class="com.enrico.widgets.imagebutton.ImageButton" binding="telluriumBtn" custom-create="true">
+              <component id="c2b9a" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="telluriumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -497,7 +497,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="4b306" class="com.enrico.widgets.imagebutton.ImageButton" binding="aluminiumBtn" custom-create="true">
+              <component id="4b306" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="aluminiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -513,37 +513,37 @@
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="aa6ca" class="com.enrico.widgets.imagebutton.ImageButton" binding="bismuthBtn" custom-create="true">
+              <component id="aa6ca" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="bismuthBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="8fc42" class="com.enrico.widgets.imagebutton.ImageButton" binding="galliumBtn" custom-create="true">
+              <component id="8fc42" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="galliumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="873c6" class="com.enrico.widgets.imagebutton.ImageButton" binding="indiumBtn" custom-create="true">
+              <component id="873c6" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="indiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="9e448" class="com.enrico.widgets.imagebutton.ImageButton" binding="leadBtn" custom-create="true">
+              <component id="9e448" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="leadBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="98daf" class="com.enrico.widgets.imagebutton.ImageButton" binding="thalliumBtn" custom-create="true">
+              <component id="98daf" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="thalliumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="d5a14" class="com.enrico.widgets.imagebutton.ImageButton" binding="tinBtn" custom-create="true">
+              <component id="d5a14" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="tinBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -559,7 +559,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="c704" class="com.enrico.widgets.imagebutton.ImageButton" binding="bromineBtn" custom-create="true">
+              <component id="c704" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="bromineBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -575,19 +575,19 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="563cd" class="com.enrico.widgets.imagebutton.ImageButton" binding="chlorineBtn" custom-create="true">
+              <component id="563cd" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="chlorineBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="d11a3" class="com.enrico.widgets.imagebutton.ImageButton" binding="fluorineBtn" custom-create="true">
+              <component id="d11a3" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="fluorineBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="3b128" class="com.enrico.widgets.imagebutton.ImageButton" binding="iodineBtn" custom-create="true">
+              <component id="3b128" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="iodineBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -603,7 +603,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="c01cd" class="com.enrico.widgets.imagebutton.ImageButton" binding="kryptonBtn" custom-create="true">
+              <component id="c01cd" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="kryptonBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -619,7 +619,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="2238b" class="com.enrico.widgets.imagebutton.ImageButton" binding="xenonBtn" custom-create="true">
+              <component id="2238b" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="xenonBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -635,7 +635,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="d1423" class="com.enrico.widgets.imagebutton.ImageButton" binding="ceriumBtn" custom-create="true">
+              <component id="d1423" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="ceriumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -651,85 +651,85 @@
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="c0c25" class="com.enrico.widgets.imagebutton.ImageButton" binding="dysprosiumBtn" custom-create="true">
+              <component id="c0c25" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="dysprosiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="d2311" class="com.enrico.widgets.imagebutton.ImageButton" binding="erbiumBtn" custom-create="true">
+              <component id="d2311" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="erbiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="1f6d4" class="com.enrico.widgets.imagebutton.ImageButton" binding="europiumBtn" custom-create="true">
+              <component id="1f6d4" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="europiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="eed72" class="com.enrico.widgets.imagebutton.ImageButton" binding="gadoliniumBtn" custom-create="true">
+              <component id="eed72" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="gadoliniumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="4d9f7" class="com.enrico.widgets.imagebutton.ImageButton" binding="holmiumBtn" custom-create="true">
+              <component id="4d9f7" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="holmiumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="df202" class="com.enrico.widgets.imagebutton.ImageButton" binding="lanthanumBtn" custom-create="true">
+              <component id="df202" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="lanthanumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="e4b38" class="com.enrico.widgets.imagebutton.ImageButton" binding="lutetiumBtn" custom-create="true">
+              <component id="e4b38" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="lutetiumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="c7ecd" class="com.enrico.widgets.imagebutton.ImageButton" binding="neodymiumBtn" custom-create="true">
+              <component id="c7ecd" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="neodymiumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="70222" class="com.enrico.widgets.imagebutton.ImageButton" binding="praseodymiumBtn" custom-create="true">
+              <component id="70222" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="praseodymiumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="616b1" class="com.enrico.widgets.imagebutton.ImageButton" binding="promethiumBtn" custom-create="true">
+              <component id="616b1" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="promethiumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="56c75" class="com.enrico.widgets.imagebutton.ImageButton" binding="samariumBtn" custom-create="true">
+              <component id="56c75" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="samariumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="5bcf5" class="com.enrico.widgets.imagebutton.ImageButton" binding="terbiumBtn" custom-create="true">
+              <component id="5bcf5" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="terbiumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="9feb" class="com.enrico.widgets.imagebutton.ImageButton" binding="thuliumBtn" custom-create="true">
+              <component id="9feb" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="thuliumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="6769b" class="com.enrico.widgets.imagebutton.ImageButton" binding="ytterbiumBtn" custom-create="true">
+              <component id="6769b" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="ytterbiumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -745,7 +745,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="211ab" class="com.enrico.widgets.imagebutton.ImageButton" binding="actiniumBtn" custom-create="true">
+              <component id="211ab" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="actiniumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -761,79 +761,79 @@
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="936aa" class="com.enrico.widgets.imagebutton.ImageButton" binding="americiumBtn" custom-create="true">
+              <component id="936aa" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="americiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="cceaa" class="com.enrico.widgets.imagebutton.ImageButton" binding="berkeliumBtn" custom-create="true">
+              <component id="cceaa" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="berkeliumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="ab4d5" class="com.enrico.widgets.imagebutton.ImageButton" binding="californiumBtn" custom-create="true">
+              <component id="ab4d5" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="californiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="952c7" class="com.enrico.widgets.imagebutton.ImageButton" binding="curiumBtn" custom-create="true">
+              <component id="952c7" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="curiumBtn" custom-create="true">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="77bbd" class="com.enrico.widgets.imagebutton.ImageButton" binding="fermiumBtn" custom-create="true">
+              <component id="77bbd" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="fermiumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="5501f" class="com.enrico.widgets.imagebutton.ImageButton" binding="mendeleviumBtn" custom-create="true">
+              <component id="5501f" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="mendeleviumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="11046" class="com.enrico.widgets.imagebutton.ImageButton" binding="neptuniumBtn" custom-create="true">
+              <component id="11046" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="neptuniumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="36136" class="com.enrico.widgets.imagebutton.ImageButton" binding="nobeliumBtn" custom-create="true">
+              <component id="36136" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="nobeliumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="b7fa3" class="com.enrico.widgets.imagebutton.ImageButton" binding="plutoniumBtn" custom-create="true">
+              <component id="b7fa3" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="plutoniumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="5c407" class="com.enrico.widgets.imagebutton.ImageButton" binding="protactiniumBtn" custom-create="true">
+              <component id="5c407" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="protactiniumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="eadf0" class="com.enrico.widgets.imagebutton.ImageButton" binding="thoriumBtn" custom-create="true">
+              <component id="eadf0" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="thoriumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="ead34" class="com.enrico.widgets.imagebutton.ImageButton" binding="uraniumBtn" custom-create="true">
+              <component id="ead34" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="uraniumBtn" custom-create="true">
                 <constraints>
                   <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
-              <component id="59d37" class="com.enrico.widgets.imagebutton.ImageButton" binding="einsteiniumBtn" custom-create="true">
+              <component id="59d37" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="einsteiniumBtn" custom-create="true">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
