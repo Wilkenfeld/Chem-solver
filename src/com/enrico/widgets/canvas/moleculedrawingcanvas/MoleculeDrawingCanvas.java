@@ -1,16 +1,17 @@
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
-import com.enrico.interfaces.GraphicalAtom;
+import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.widgets.canvas.GenericCanvas;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public final class MoleculeDrawingCanvas extends GenericCanvas implements MouseListener {
     private final Cursor drawingCursor;
 
-    private GraphicalAtom currentAtom;
+    private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
 
     public MoleculeDrawingCanvas() {
         super();
@@ -23,8 +24,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas implements MouseL
         setCursor(drawingCursor);
     }
 
-    public void setCurrentAtom(GraphicalAtom atom) {
-        currentAtom = atom;
+    public void addGraphicalAtom(GenericGraphicalAtom atom) {
+        graphicalAtomsList.add(atom);
+    }
+
+    public GenericGraphicalAtom getGraphicalAtomFromCoordinates(int x, int y) {
+        for(GenericGraphicalAtom indexAtom : graphicalAtomsList) {
+            if ((x >= indexAtom.getStartX() && x <= indexAtom.getEndX()) &&
+                (y >= indexAtom.getStartY() && y <= indexAtom.getEndY()))
+                return indexAtom;
+        }
+        return null;
     }
 
     @Override
