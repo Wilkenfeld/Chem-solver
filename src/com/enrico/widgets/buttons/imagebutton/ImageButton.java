@@ -3,14 +3,19 @@ package com.enrico.widgets.buttons.imagebutton;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.Callable;
 
 public class ImageButton extends JPanel {
     private final BufferedImage image;
 
-    public ImageButton(URL imagePath, Dimension dimension) throws IOException {
+    private final Callable<Void> btnFunction;
+
+    public ImageButton(URL imagePath, Dimension dimension, Callable<Void> btnFunction) throws IOException {
         super();
 
         Dimension defaultDimension = new Dimension(40, 40);
@@ -20,6 +25,10 @@ public class ImageButton extends JPanel {
             setPreferredSize(defaultDimension);
 
         image = ImageIO.read(imagePath);
+
+        this.btnFunction = btnFunction;
+
+        addMouseListener(new MouseListenerImpl());
     }
 
     @Override
@@ -31,5 +40,18 @@ public class ImageButton extends JPanel {
     }
 
     public void createUIComponents() {
+    }
+
+    private final class MouseListenerImpl extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            try {
+                btnFunction.call();
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "This button's method is null.", "Null method", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Unexpected error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }
