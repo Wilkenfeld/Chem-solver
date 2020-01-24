@@ -168,14 +168,14 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         try {
             initializeAlkalineButtons();
             initializeAlkalineEarthButtons();
-            initializeTransitionMetalsWindow();
+            initializeTransitionMetalsButtons();
             initializeNonmetals();
-            initializeSemimetals();
-            initializeHalogens();
-            initializeNobleGasses();
-            initializePBlockMetals();
-            initializeLanthanides();
-            initializeActinides();
+            initializeSemimetalsButtons();
+            initializeHalogensButtons();
+            initializeNobleGassesButtons();
+            initializePBlockMetalsButtons();
+            initializeLanthanidesButtons();
+            initializeActinidesButtons();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
                                           "IO ERROR.", JOptionPane.ERROR_MESSAGE);
@@ -233,7 +233,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         radiumBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializeTransitionMetalsWindow() throws IOException {
+    private void initializeTransitionMetalsButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_cadmium.png");
@@ -349,7 +349,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         sulfurBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializeSemimetals() throws IOException {
+    private void initializeSemimetalsButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_antimony.png");
@@ -377,7 +377,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         telluriumBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializeHalogens() throws IOException {
+    private void initializeHalogensButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/halogens/atom_icon_bromine.png");
@@ -393,7 +393,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         iodineBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializeNobleGasses() throws IOException {
+    private void initializeNobleGassesButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/noble_gasses/atom_icon_krypton.png");
@@ -403,7 +403,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         xenonBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializePBlockMetals() throws IOException {
+    private void initializePBlockMetalsButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_aluminium.png");
@@ -428,7 +428,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         tinBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializeLanthanides() throws IOException {
+    private void initializeLanthanidesButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_cerium.png");
@@ -477,7 +477,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         ytterbiumBtn = new ImageButton(imagePath, null);
     }
 
-    private void initializeActinides() throws IOException {
+    private void initializeActinidesButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_actinium.png");
