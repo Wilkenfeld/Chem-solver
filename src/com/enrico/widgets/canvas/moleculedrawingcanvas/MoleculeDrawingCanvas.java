@@ -1,19 +1,28 @@
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
+import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
 import com.enrico.widgets.canvas.GenericCanvas;
+import com.enrico.windows.main.problems.chemistry.moleculebuilder.MoleculeBuilderWindow;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public final class MoleculeDrawingCanvas extends GenericCanvas implements MouseListener {
+public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor drawingCursor;
 
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
+    private MoleculeBuilderWindow moleculeBuilderWindow;
+    private String currentAtomSymbol;
 
-    public MoleculeDrawingCanvas() {
+    public MoleculeDrawingCanvas(MoleculeBuilderWindow window) {
         super();
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -22,10 +31,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas implements MouseL
 
         drawingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_image");
         setCursor(drawingCursor);
+
+        moleculeBuilderWindow = window;
+        currentAtomSymbol = "";
+
+        addMouseListener(new MouseListenerImpl());
     }
 
-    public void addGraphicalAtom(GenericGraphicalAtom atom) {
-        graphicalAtomsList.add(atom);
+    public void setCurrentAtomSymbol(String currentAtomSymbol) {
+        this.currentAtomSymbol = currentAtomSymbol;
     }
 
     public GenericGraphicalAtom getGraphicalAtomFromCoordinates(int x, int y) {
@@ -38,36 +52,65 @@ public final class MoleculeDrawingCanvas extends GenericCanvas implements MouseL
     }
 
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        BufferedImage image;
+        if (graphicalAtomsList.size() > 0) {
+            for (GenericGraphicalAtom atom : graphicalAtomsList) {
+                try {
+                    image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(atom.getImagePath())));
+                } catch (IOException ioe) {
+                    JOptionPane.showMessageDialog(this, ioe.getMessage(), "IO Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (image == null) {
+                    JOptionPane.showMessageDialog(this, "Can't load atom " + atom.getImagePath() + " image.", "Drawing error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                g.drawImage(image, atom.getStartX(), atom.getStartY(), 50, 50, null);
+            }
+        }
     }
 
     public void createUIComponents() {
     }
 
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        //System.out.println(currentAtom.getClass());
+    private final class MouseListenerImpl extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            addNewAtom(e.getX(), e.getY());
+            repaint();
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            super.mouseEntered(e);
+            setCursor(drawingCursor);
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            super.mouseExited(e);
+            setCursor(Cursor.getDefaultCursor());
+        }
     }
 
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
+    private void addNewAtom(int x, int y) {
+        if (currentAtomSymbol.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select an atom.", "No atom selected", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    }
+        System.out.println(currentAtomSymbol);
 
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-        setCursor(drawingCursor);
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-        // Set the default cursor.
-        setCursor(Cursor.getDefaultCursor());
+        switch (currentAtomSymbol) {
+            case GraphicalCarbonAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalCarbonAtom(x - 2, y - 2, x+50, y+50));
+            break;
+        }
     }
 }

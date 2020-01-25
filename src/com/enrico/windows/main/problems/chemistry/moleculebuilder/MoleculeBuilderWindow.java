@@ -1,6 +1,7 @@
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
+import com.enrico.interfaces.atoms.CarbonAtomInterface;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -10,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.concurrent.Callable;
 
 public final class MoleculeBuilderWindow extends GenericProblemWindow {
     public static final String TITLE =
@@ -164,7 +164,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     }
 
     private void createUIComponents() {
-        canvas = new MoleculeDrawingCanvas();
+        canvas = new MoleculeDrawingCanvas(this);
 
         // Initializing image buttons.
         try {
@@ -330,7 +330,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_carbon.png");
-        carbonBtn = new ImageButton(imagePath, null, () -> {System.out.println("CARBON"); return null;});
+        carbonBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(CarbonAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_hydrogen.png");
         hydrogenBtn = new ImageButton(imagePath, null, null);
