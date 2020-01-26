@@ -164,7 +164,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     }
 
     private void createUIComponents() {
-        canvas = new MoleculeDrawingCanvas(this);
+        canvas = new MoleculeDrawingCanvas();
 
         // Initializing image buttons.
         try {

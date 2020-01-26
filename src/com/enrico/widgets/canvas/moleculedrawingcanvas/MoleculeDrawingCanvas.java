@@ -19,10 +19,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor drawingCursor;
 
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
-    private MoleculeBuilderWindow moleculeBuilderWindow;
     private String currentAtomSymbol;
 
-    public MoleculeDrawingCanvas(MoleculeBuilderWindow window) {
+    public MoleculeDrawingCanvas() {
         super();
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -32,7 +31,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         drawingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_image");
         setCursor(drawingCursor);
 
-        moleculeBuilderWindow = window;
         currentAtomSymbol = "";
 
         addMouseListener(new MouseListenerImpl());
@@ -70,7 +68,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     return;
                 }
 
-                g.drawImage(image, atom.getStartX(), atom.getStartY(), 50, 50, null);
+                g.drawImage(image, atom.getCenterX(), atom.getCenterY(), 50, 50, null);
             }
         }
     }
@@ -105,11 +103,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             return;
         }
 
-        System.out.println(currentAtomSymbol);
-
         switch (currentAtomSymbol) {
             case GraphicalCarbonAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalCarbonAtom(x - 2, y - 2, x+50, y+50));
+                graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x - 25, y - 25, x + 25, y + 25));
             break;
         }
     }
