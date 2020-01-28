@@ -138,6 +138,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
     // Drawing buttons.
     private ImageButton selectBtn;
+    private ImageButton drawBtn;
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -538,6 +539,14 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
                                             canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorSelecting);
                                             return null;
                                           }
+        );
+
+        imagePath = getClass().getClassLoader().getResource("button_assets/cursor_draw.png");
+        drawBtn = new ImageButton(imagePath, new Dimension(100, 100),
+                                 () -> {
+                                    canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorDrawing);
+                                    return null;
+                                 }
         );
     }
 }

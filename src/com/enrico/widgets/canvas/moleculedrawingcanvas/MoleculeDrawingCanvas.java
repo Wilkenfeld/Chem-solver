@@ -93,6 +93,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
+
+            if (cursorState == CursorStates.CursorSelecting)
+                return;
+
             addNewAtom(e.getX(), e.getY());
             repaint();
         }
