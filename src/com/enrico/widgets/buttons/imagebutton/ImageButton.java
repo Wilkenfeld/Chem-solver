@@ -39,6 +39,11 @@ public class ImageButton extends JPanel {
         g.drawImage(image, 0, 0, size.width, size.height, 0, 0, image.getWidth(), image.getHeight(), null);
     }
 
+    @Override
+    public Dimension getMaximumSize() {
+        return getPreferredSize();
+    }
+
     public void createUIComponents() {
     }
 

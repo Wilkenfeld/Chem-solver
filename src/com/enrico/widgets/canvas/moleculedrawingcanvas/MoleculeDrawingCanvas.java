@@ -3,7 +3,6 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
 import com.enrico.widgets.canvas.GenericCanvas;
-import com.enrico.windows.main.problems.chemistry.moleculebuilder.MoleculeBuilderWindow;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,9 +16,15 @@ import java.util.Objects;
 
 public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor drawingCursor;
+    private CursorStates cursorState;
 
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
     private String currentAtomSymbol;
+
+    public enum CursorStates {
+        CursorSelecting, // Normal arrow.
+        CursorDrawing    // Circle.
+    }
 
     public MoleculeDrawingCanvas() {
         super();
@@ -30,6 +35,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         drawingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_image");
         setCursor(drawingCursor);
+        cursorState = CursorStates.CursorDrawing;
 
         currentAtomSymbol = "";
 
@@ -37,7 +43,14 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     }
 
     public void setCurrentAtomSymbol(String currentAtomSymbol) {
+        if (cursorState == CursorStates.CursorSelecting)
+            return;
+
         this.currentAtomSymbol = currentAtomSymbol;
+    }
+
+    public void setCursorState(CursorStates state) {
+        cursorState = state;
     }
 
     public GenericGraphicalAtom getGraphicalAtomFromCoordinates(int x, int y) {
@@ -87,7 +100,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         @Override
         public void mouseEntered(MouseEvent e) {
             super.mouseEntered(e);
-            setCursor(drawingCursor);
+
+            if (cursorState == CursorStates.CursorDrawing)
+                setCursor(drawingCursor);
+            else
+                setCursor(Cursor.getDefaultCursor());
         }
 
         @Override

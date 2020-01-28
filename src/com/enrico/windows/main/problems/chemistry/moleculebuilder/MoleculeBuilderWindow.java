@@ -1,6 +1,5 @@
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
-import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
 import com.enrico.interfaces.atoms.CarbonAtomInterface;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
@@ -137,6 +136,9 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton thoriumBtn;
     private ImageButton uraniumBtn;
 
+    // Drawing buttons.
+    private ImageButton selectBtn;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -178,6 +180,8 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
             initializePBlockMetalsButtons();
             initializeLanthanidesButtons();
             initializeActinidesButtons();
+
+            initializeDrawingButtons();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),
                                           "IO ERROR.", JOptionPane.ERROR_MESSAGE);
@@ -523,5 +527,17 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_uranium.png");
         uraniumBtn = new ImageButton(imagePath, null, null);
+    }
+
+    private void initializeDrawingButtons() throws IOException {
+        URL imagePath;
+
+        imagePath = getClass().getClassLoader().getResource("button_assets/cursor_select.png");
+        selectBtn = new ImageButton(imagePath, new Dimension(100, 100),
+                                    () -> {
+                                            canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorSelecting);
+                                            return null;
+                                          }
+        );
     }
 }
