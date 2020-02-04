@@ -7,8 +7,6 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     protected int endX;
     protected int startY;
     protected int endY;
-    protected int centerX;
-    protected int centerY;
 
     protected final String imagePath;
 
@@ -42,14 +40,6 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return endY;
     }
 
-    public int getCenterX() {
-        return centerX;
-    }
-
-    public int getCenterY() {
-        return centerY;
-    }
-
     public void setStartX(int startX) {
         this.startX = startX;
     }
@@ -64,14 +54,6 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public void setEndY(int endY) {
         this.endY = endY;
-    }
-
-    public void setCenterX(int centerX) {
-        this.centerX = centerX;
-    }
-
-    public void setCenterY(int centerY) {
-        this.centerY = centerY;
     }
 
     public String getImagePath() {
