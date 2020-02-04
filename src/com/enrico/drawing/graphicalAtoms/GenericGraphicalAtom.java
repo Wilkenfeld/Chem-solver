@@ -14,15 +14,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
-                                int centerX, int centerY, int startX, int startY, int endX, int endY, String imagePath) {
+                                int startX, int startY, int endX, int endY, String imagePath) {
         super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets, ionizationEnergy, classType);
 
         this.startX = startX;
         this.endX = endX;
         this.startY = startY;
         this.endY = endY;
-        this.centerX = centerX;
-        this.centerY = centerY;
 
         this.imagePath = imagePath;
     }
@@ -31,6 +29,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return startX;
     }
 
+    // These functions will give the range where the atom can be selected by a mouse click.
     public int getEndX() {
         return endX;
     }

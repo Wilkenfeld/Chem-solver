@@ -81,7 +81,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     return;
                 }
 
-                g.drawImage(image, atom.getCenterX(), atom.getCenterY(), 50, 50, null);
+                g.drawImage(image, atom.getStartX(), atom.getStartY(), 50, 50, null);
             }
         }
     }
@@ -94,11 +94,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
 
-            if (cursorState == CursorStates.CursorSelecting)
-                return;
-
-            addNewAtom(e.getX(), e.getY());
-            repaint();
+            if (cursorState == CursorStates.CursorSelecting) {
+                for (GenericGraphicalAtom atom : graphicalAtomsList) {
+                    if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
+                        (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
+                        System.out.println("ATOM");
+                    }
+                }
+            } else {
+                addNewAtom(e.getX(), e.getY());
+                repaint();
+            }
         }
 
         @Override
@@ -126,7 +132,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         switch (currentAtomSymbol) {
             case GraphicalCarbonAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x - 25, y - 25, x + 25, y + 25));
+                graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45));
             break;
         }
     }
