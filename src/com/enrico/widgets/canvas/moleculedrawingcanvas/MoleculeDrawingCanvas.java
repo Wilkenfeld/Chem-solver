@@ -21,6 +21,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
     private String currentAtomSymbol;
 
+    private int atoms_inserted = 0;
+
     public enum CursorStates {
         CursorSelecting, // Normal arrow.
         CursorDrawing    // Circle.
@@ -98,7 +100,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 for (GenericGraphicalAtom atom : graphicalAtomsList) {
                     if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
                         (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
-                        System.out.println("ATOM");
+                        System.out.println(atom.getAtomId());
                     }
                 }
             } else {
@@ -132,8 +134,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         switch (currentAtomSymbol) {
             case GraphicalCarbonAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45));
+                graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45, "ATOM_" + atoms_inserted));
             break;
         }
+
+        atoms_inserted++;
     }
 }

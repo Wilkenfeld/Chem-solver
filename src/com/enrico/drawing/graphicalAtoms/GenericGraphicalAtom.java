@@ -9,10 +9,12 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     protected int endY;
 
     protected final String imagePath;
+    
+    private String atomId;
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
-                                int startX, int startY, int endX, int endY, String imagePath) {
+                                int startX, int startY, int endX, int endY, String imagePath, String atomId) {
         super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets, ionizationEnergy, classType);
 
         this.startX = startX;
@@ -21,6 +23,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         this.endY = endY;
 
         this.imagePath = imagePath;
+        this.atomId = atomId;
     }
 
     public int getStartX() {
@@ -56,7 +59,15 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         this.endY = endY;
     }
 
+    public void setAtomId(String atomId) {
+        this.atomId = atomId;
+    }
+
     public String getImagePath() {
         return imagePath;
+    }
+
+    public String getAtomId() {
+        return atomId;
     }
 }
