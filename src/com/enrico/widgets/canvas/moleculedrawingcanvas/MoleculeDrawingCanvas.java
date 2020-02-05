@@ -3,6 +3,7 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
 import com.enrico.widgets.canvas.GenericCanvas;
+import com.enrico.widgets.menu.popupmenu.MoleculeDrawingPopupMenu;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -100,7 +101,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 for (GenericGraphicalAtom atom : graphicalAtomsList) {
                     if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
                         (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
-                        System.out.println(atom.getAtomId());
+                        if (SwingUtilities.isRightMouseButton(e)) {
+                            generatePopupMenuForAtom(atom);
+                        }
                     }
                 }
             } else {
@@ -139,5 +142,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
 
         atoms_inserted++;
+    }
+
+    private void generatePopupMenuForAtom(GenericGraphicalAtom atom) {
+        MoleculeDrawingPopupMenu popupMenu = new MoleculeDrawingPopupMenu(atom.getAtomId());
+        popupMenu.show(this, atom.getStartX(), atom.getStartY());
     }
 }
