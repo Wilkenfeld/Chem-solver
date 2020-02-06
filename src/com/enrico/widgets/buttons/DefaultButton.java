@@ -19,6 +19,8 @@
 
 package com.enrico.widgets.buttons;
 
+import com.enrico.programresources.ColorResources;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,8 +35,7 @@ public class DefaultButton extends JButton {
         textLbl.setForeground(Color.white);
         add(textLbl);
 
-        Color defaultBackgroundColor = new Color(0x439e43);
-        setBackground(defaultBackgroundColor);
+        setBackground(ColorResources.btnBackgroundColor);
     }
 
     public void createUIComponents() {

@@ -1,9 +1,9 @@
 package com.enrico.widgets.menu.popupmenu;
 
 import com.enrico.interfaces.FontInterface;
+import com.enrico.programresources.ColorResources;
 
 import javax.swing.*;
-import java.awt.*;
 
 public abstract class GenericPopupMenu extends JPopupMenu implements FontInterface {
     public GenericPopupMenu(String title) {
@@ -18,7 +18,7 @@ public abstract class GenericPopupMenu extends JPopupMenu implements FontInterfa
         super.add(item);
 
         item.setFont(menuBarFont);
-        item.setBackground(new Color(0x439e43));
+        item.setBackground(ColorResources.btnBackgroundColor);
 
         return item;
     }
