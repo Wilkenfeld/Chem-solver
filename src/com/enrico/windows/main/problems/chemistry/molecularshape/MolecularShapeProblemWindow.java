@@ -22,6 +22,7 @@ package com.enrico.windows.main.problems.chemistry.molecularshape;
 import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
+import com.enrico.programresources.FontResources;
 import com.enrico.project.saver.FormulaShapeProjectSaver;
 import com.enrico.project.saver.OverwriteException;
 import com.enrico.project.saver.ProjectSaver;
@@ -63,13 +64,13 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
 
-        dataPane.setFont(normalTextFont);
-        formulaLbl.setFont(normalTextFont);
-        resultLbl.setFont(normalTextFont);
+        dataPane.setFont(FontResources.normalTextFont);
+        formulaLbl.setFont(FontResources.normalTextFont);
+        resultLbl.setFont(FontResources.normalTextFont);
 
         JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
         saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
-        saveImageItem.setFont(menuBarFont);
+        saveImageItem.setFont(FontResources.menuBarFont);
         problemWindowMenuBar.saveMenuItem.addActionListener(actionEvent -> saveProject());
     }
 

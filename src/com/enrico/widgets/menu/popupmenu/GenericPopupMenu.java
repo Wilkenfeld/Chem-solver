@@ -1,14 +1,14 @@
 package com.enrico.widgets.menu.popupmenu;
 
-import com.enrico.interfaces.FontInterface;
 import com.enrico.programresources.ColorResources;
+import com.enrico.programresources.FontResources;
 
 import javax.swing.*;
 
-public abstract class GenericPopupMenu extends JPopupMenu implements FontInterface {
+public abstract class GenericPopupMenu extends JPopupMenu {
     public GenericPopupMenu(String title) {
         JLabel titleLabel = new JLabel(title);
-        titleLabel.setFont(normalTextFont);
+        titleLabel.setFont(FontResources.normalTextFont);
 
         add(titleLabel);
     }
@@ -17,7 +17,7 @@ public abstract class GenericPopupMenu extends JPopupMenu implements FontInterfa
     public JMenuItem add(JMenuItem item) {
         super.add(item);
 
-        item.setFont(menuBarFont);
+        item.setFont(FontResources.menuBarFont);
         item.setBackground(ColorResources.btnBackgroundColor);
 
         return item;

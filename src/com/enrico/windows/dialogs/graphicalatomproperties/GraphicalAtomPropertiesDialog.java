@@ -1,14 +1,14 @@
 package com.enrico.windows.dialogs.graphicalatomproperties;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.interfaces.FontInterface;
+import com.enrico.programresources.FontResources;
 import com.enrico.widgets.buttons.DefaultButton;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public final class GraphicalAtomPropertiesDialog extends JDialog implements FontInterface {
+public final class GraphicalAtomPropertiesDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JLabel atom_id_lbl;
@@ -37,30 +37,30 @@ public final class GraphicalAtomPropertiesDialog extends JDialog implements Font
 
         this.atom = atom;
 
-        atom_id_lbl.setFont(normalTextFont);
-        atom_id_txt_field.setFont(normalTextFont);
+        atom_id_lbl.setFont(FontResources.normalTextFont);
+        atom_id_txt_field.setFont(FontResources.normalTextFont);
         atom_id_txt_field.setText(atom.getAtomId());
 
-        atom_name_lbl.setFont(normalTextFont);
-        atom_name_lbl_out.setFont(normalTextFont);
+        atom_name_lbl.setFont(FontResources.normalTextFont);
+        atom_name_lbl_out.setFont(FontResources.normalTextFont);
         atom_name_lbl_out.setText(atom.getCompleteName());
 
-        general_properties_lbl.setFont(normalTextFont);
+        general_properties_lbl.setFont(FontResources.normalTextFont);
 
-        electronegativity_lbl.setFont(normalTextFont);
-        electronegativity_out_lbl.setFont(normalTextFont);
+        electronegativity_lbl.setFont(FontResources.normalTextFont);
+        electronegativity_out_lbl.setFont(FontResources.normalTextFont);
         electronegativity_out_lbl.setText(String.valueOf(atom.getElectronegativity()));
 
-        mass_lbl.setFont(normalTextFont);
-        mass_out_lbl.setFont(normalTextFont);
+        mass_lbl.setFont(FontResources.normalTextFont);
+        mass_out_lbl.setFont(FontResources.normalTextFont);
         mass_out_lbl.setText(String.valueOf(atom.getAtomicMass()));
 
-        atomic_number_lbl.setFont(normalTextFont);
-        atomic_number_out_lbl.setFont(normalTextFont);
+        atomic_number_lbl.setFont(FontResources.normalTextFont);
+        atomic_number_out_lbl.setFont(FontResources.normalTextFont);
         atomic_number_out_lbl.setText(String.valueOf(atom.getAtomicNumber()));
 
-        atom_class_lbl.setFont(normalTextFont);
-        atom_class_out_lbl.setFont(normalTextFont);
+        atom_class_lbl.setFont(FontResources.normalTextFont);
+        atom_class_out_lbl.setFont(FontResources.normalTextFont);
         atom_class_out_lbl.setText(atom.getClassType().toString());
 
         buttonOK.addActionListener(e -> onOK());

@@ -19,7 +19,7 @@
 
 package com.enrico.widgets.menu;
 
-import com.enrico.interfaces.FontInterface;
+import com.enrico.programresources.FontResources;
 import com.enrico.windows.dialogs.infodialog.InfoDialog;
 
 import javax.swing.*;
@@ -27,18 +27,18 @@ import javax.swing.*;
 /**
  * This class is for the default menu bar used in all the program windows.
  */
-public class MainMenuBar extends JMenuBar implements FontInterface {
+public class MainMenuBar extends JMenuBar {
 
     public MainMenuBar() {
         JMenu programMenu = new JMenu("Program");
-        programMenu.setFont(menuBarFont);
+        programMenu.setFont(FontResources.menuBarFont);
 
         // Items for "Program" menu.
         JMenuItem infoItem = programMenu.add("Info");
         JMenuItem exitItem = programMenu.add("Exit");
 
-        infoItem.setFont(menuBarFont);
-        exitItem.setFont(menuBarFont);
+        infoItem.setFont(FontResources.menuBarFont);
+        exitItem.setFont(FontResources.menuBarFont);
 
         infoItem.addActionListener(actionEvent -> {
             InfoDialog dialog = new InfoDialog();

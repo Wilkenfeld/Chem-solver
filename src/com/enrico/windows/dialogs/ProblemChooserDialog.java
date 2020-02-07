@@ -19,13 +19,13 @@
 
 package com.enrico.windows.dialogs;
 
-import com.enrico.interfaces.FontInterface;
+import com.enrico.programresources.FontResources;
 import com.enrico.widgets.buttons.DefaultButton;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ProblemChooserDialog extends JDialog implements FontInterface {
+public class ProblemChooserDialog extends JDialog {
     private JPanel contentPane;
     private DefaultButton buttonOK;
     private DefaultButton buttonCancel;
@@ -68,11 +68,11 @@ public class ProblemChooserDialog extends JDialog implements FontInterface {
         chemProblemList.setModel(chemProblemListModel);
         physProblemList.setModel(physProblemListModel);
 
-        chemProblemList.setFont(normalTextFont);
-        physProblemList.setFont(normalTextFont);
+        chemProblemList.setFont(FontResources.normalTextFont);
+        physProblemList.setFont(FontResources.normalTextFont);
 
-        chemTitleLbl.setFont(normalTextFont);
-        physTitleLbl.setFont(normalTextFont);
+        chemTitleLbl.setFont(FontResources.normalTextFont);
+        physTitleLbl.setFont(FontResources.normalTextFont);
     }
 
     private void onOK() {

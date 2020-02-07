@@ -19,6 +19,7 @@
 
 package com.enrico.widgets.menu;
 
+import com.enrico.programresources.FontResources;
 import com.enrico.windows.main.MainWindow;
 import com.enrico.windows.main.problems.GenericProblemWindow;
 
@@ -33,13 +34,13 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
         super();
 
         problemMenu = new JMenu("Problem");
-        problemMenu.setFont(menuBarFont);
+        problemMenu.setFont(FontResources.menuBarFont);
 
         JMenuItem problemMenuItemSolve = problemMenu.add("Solve");
         JMenuItem problemMenuItemStartAnother = problemMenu.add("Solve another problem");
 
-        problemMenuItemSolve.setFont(menuBarFont);
-        problemMenuItemStartAnother.setFont(menuBarFont);
+        problemMenuItemSolve.setFont(FontResources.menuBarFont);
+        problemMenuItemStartAnother.setFont(FontResources.menuBarFont);
         problemMenuItemSolve.addActionListener(ActionListener -> win.solveProblem());
 
         problemMenuItemStartAnother.addActionListener(actionEvent -> {
@@ -48,7 +49,7 @@ public final class ProblemWindowMenuBar extends MainMenuBar {
             window.showWindow();
         });
         saveMenuItem = problemMenu.add("Save");
-        saveMenuItem.setFont(menuBarFont);
+        saveMenuItem.setFont(FontResources.menuBarFont);
 
         add(problemMenu);
     }

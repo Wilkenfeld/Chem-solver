@@ -22,6 +22,7 @@ package com.enrico.windows.main.problems.chemistry.compoundclassification;
 import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
+import com.enrico.programresources.FontResources;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.main.problems.GenericProblemWindow;
 
@@ -46,12 +47,12 @@ public final class CompoundClassificationProblemWindow extends GenericProblemWin
 
         setResizable(false);
 
-        formulaField.setFont(normalTextFont);
-        numberOfElementsLbl.setFont(normalTextFont);
-        moleculeTypeLbl.setFont(normalTextFont);
-        formulaTxtLbl.setFont(normalTextFont);
-        numOfElementsLbl.setFont(normalTextFont);
-        typeLbl.setFont(normalTextFont);
+        formulaField.setFont(FontResources.normalTextFont);
+        numberOfElementsLbl.setFont(FontResources.normalTextFont);
+        moleculeTypeLbl.setFont(FontResources.normalTextFont);
+        formulaTxtLbl.setFont(FontResources.normalTextFont);
+        numOfElementsLbl.setFont(FontResources.normalTextFont);
+        typeLbl.setFont(FontResources.normalTextFont);
 
         setContentPane(mainPane);
     }

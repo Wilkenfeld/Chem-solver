@@ -1,13 +1,13 @@
 package com.enrico.windows.dialogs.infodialog;
 
-import com.enrico.interfaces.FontInterface;
+import com.enrico.programresources.FontResources;
 import com.enrico.widgets.buttons.DefaultButton;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class InfoDialog extends JDialog implements FontInterface {
+public class InfoDialog extends JDialog {
     private JPanel contentPane;
     private DefaultButton buttonOK;
     private JLabel infoLbl;
@@ -20,8 +20,8 @@ public class InfoDialog extends JDialog implements FontInterface {
 
         buttonOK.addActionListener(e -> onOK());
 
-        titleLbl.setFont(titleFont);
-        infoLbl.setFont(normalTextFont);
+        titleLbl.setFont(FontResources.titleFont);
+        infoLbl.setFont(FontResources.normalTextFont);
 
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);

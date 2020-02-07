@@ -19,25 +19,25 @@
 
 package com.enrico.widgets.combobox;
 
-import com.enrico.interfaces.FontInterface;
+import com.enrico.programresources.FontResources;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
-public class DefaultComboBox extends JComboBox implements FontInterface {
+public class DefaultComboBox extends JComboBox {
     public DefaultComboBox(DefaultComboBoxItem[] items) {
         for (DefaultComboBoxItem item : items)
             addItem(item);
 
-        setFont(normalTextFont);
+        setFont(FontResources.normalTextFont);
     }
 
     public DefaultComboBox(ArrayList<DefaultComboBoxItem> items) {
         for (DefaultComboBoxItem item : items)
             addItem(item);
 
-        setFont(normalTextFont);
+        setFont(FontResources.normalTextFont);
     }
 
     private void createUIComponents() {

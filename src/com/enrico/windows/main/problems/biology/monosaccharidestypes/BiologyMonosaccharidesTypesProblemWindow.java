@@ -19,6 +19,7 @@
 
 package com.enrico.windows.main.problems.biology.monosaccharidestypes;
 
+import com.enrico.programresources.FontResources;
 import com.enrico.widgets.buttons.DefaultButton;
 import com.enrico.widgets.combobox.DefaultComboBox;
 import com.enrico.widgets.combobox.DefaultComboBoxItem;
@@ -58,10 +59,10 @@ public class BiologyMonosaccharidesTypesProblemWindow extends GenericProblemWind
 
         setContentPane(mainPanel);
 
-        monosaccharideTypeLbl.setFont(normalTextFont);
-        monosaccharideLbl.setFont(normalTextFont);
-        nVarLbl.setFont(normalTextFont);
-        molecularTypeLbl.setFont(normalTextFont);
+        monosaccharideTypeLbl.setFont(FontResources.normalTextFont);
+        monosaccharideLbl.setFont(FontResources.normalTextFont);
+        nVarLbl.setFont(FontResources.normalTextFont);
+        molecularTypeLbl.setFont(FontResources.normalTextFont);
     }
 
     private void createUIComponents() {
