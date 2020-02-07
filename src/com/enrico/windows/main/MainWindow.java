@@ -38,7 +38,7 @@ Chem solver. A multi-platform chemistry and physics problem solver.
 package com.enrico.windows.main;
 
 import com.enrico.programresources.FontResources;
-import com.enrico.widgets.buttons.DefaultButton;
+import com.enrico.widgets.buttons.ProgramButton;
 import com.enrico.widgets.menu.MainMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.ProblemChooserDialog;
@@ -47,6 +47,7 @@ import com.enrico.windows.main.problems.biology.monosaccharidestypes.BiologyMono
 import com.enrico.windows.main.problems.chemistry.compoundclassification.CompoundClassificationProblemWindow;
 import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 import com.enrico.windows.main.problems.chemistry.moleculebuilder.MoleculeBuilderWindow;
+import com.enrico.widgets.label.ProgramLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,9 +56,9 @@ import java.util.Map;
 
 public final class MainWindow extends BasicWindow {
     public JPanel mainPanel;
-    private JLabel welcomeLbl;
-    private JLabel subwelcomeLbl;
-    private DefaultButton solveButton;
+    private ProgramLabel welcomeLbl;
+    private ProgramLabel subwelcomeLbl;
+    private ProgramButton solveButton;
 
     private static final String title = "Chem solver";
 
@@ -85,7 +86,7 @@ public final class MainWindow extends BasicWindow {
     }
 
     private void createUIComponents() {
-        solveButton = new DefaultButton("Solve problem!");
+        solveButton = new ProgramButton("Solve problem!");
         solveButton.addActionListener(actionEvent -> {
             ProblemChooserDialog problemChooserDialog = new ProblemChooserDialog();
             String res = problemChooserDialog.showDialog();

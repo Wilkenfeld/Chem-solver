@@ -21,7 +21,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="24ad2" class="javax.swing.JLabel" binding="infoLbl">
+          <component id="e90ec" class="com.enrico.widgets.label.ProgramLabel" binding="infoLbl">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -39,7 +39,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="c9027" class="com.enrico.widgets.buttons.DefaultButton" binding="buttonOK" custom-create="true">
+          <component id="c9027" class="com.enrico.widgets.buttons.ProgramButton" binding="buttonOK" custom-create="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -47,7 +47,7 @@
           </component>
         </children>
       </grid>
-      <component id="91df7" class="javax.swing.JLabel" binding="titleLbl">
+      <component id="9e6e5" class="com.enrico.widgets.label.ProgramLabel" binding="titleLbl">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

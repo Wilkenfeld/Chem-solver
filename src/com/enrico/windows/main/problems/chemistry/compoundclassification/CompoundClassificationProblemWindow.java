@@ -25,19 +25,21 @@ import com.enrico.chemistry.molecule.Molecule;
 import com.enrico.programresources.FontResources;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.main.problems.GenericProblemWindow;
+import com.enrico.widgets.label.ProgramLabel;
+import com.enrico.widgets.textfiled.ProgramTextField;
 
 import javax.swing.*;
 
 public final class CompoundClassificationProblemWindow extends GenericProblemWindow {
     public static final String TITLE = "Compound classification";
 
-    private JTextField formulaField;
-    private JLabel numberOfElementsLbl;
-    private JLabel moleculeTypeLbl;
+    private ProgramTextField formulaField;
+    private ProgramLabel numberOfElementsLbl;
+    private ProgramLabel moleculeTypeLbl;
     private JPanel mainPane;
-    private JLabel formulaTxtLbl;
-    private JLabel numOfElementsLbl;
-    private JLabel typeLbl;
+    private ProgramLabel formulaTxtLbl;
+    private ProgramLabel numOfElementsLbl;
+    private ProgramLabel typeLbl;
 
     public CompoundClassificationProblemWindow() {
         super(TITLE);

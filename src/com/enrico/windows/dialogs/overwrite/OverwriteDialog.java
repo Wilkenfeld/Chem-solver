@@ -19,7 +19,7 @@
 
 package com.enrico.windows.dialogs.overwrite;
 
-import com.enrico.widgets.buttons.DefaultButton;
+import com.enrico.widgets.buttons.ProgramButton;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -27,8 +27,8 @@ import java.io.File;
 
 public final class OverwriteDialog extends JDialog {
     private JPanel contentPane;
-    private DefaultButton buttonOK;
-    private DefaultButton buttonCancel;
+    private ProgramButton buttonOK;
+    private ProgramButton buttonCancel;
 
     private String filePath;
 
@@ -84,8 +84,8 @@ public final class OverwriteDialog extends JDialog {
     }
 
     private void createUIComponents() {
-        buttonOK = new DefaultButton("OK");
-        buttonCancel = new DefaultButton("Cancel");
+        buttonOK = new ProgramButton("OK");
+        buttonCancel = new ProgramButton("Cancel");
     }
 
     public void setFilePath(String filePath) {

@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="ab3b7" class="javax.swing.JLabel" binding="formulaTxtLbl">
+      <component id="ea44b" class="com.enrico.widgets.label.ProgramLabel" binding="formulaTxtLbl">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -21,7 +21,7 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="50fa3" class="javax.swing.JLabel" binding="numOfElementsLbl">
+      <component id="5e8c6" class="com.enrico.widgets.label.ProgramLabel" binding="numOfElementsLbl">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -29,7 +29,7 @@
           <text value="Number of elements:"/>
         </properties>
       </component>
-      <component id="ac6b" class="javax.swing.JLabel" binding="typeLbl">
+      <component id="f764c" class="com.enrico.widgets.label.ProgramLabel" binding="typeLbl">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -37,7 +37,7 @@
           <text value="Type:"/>
         </properties>
       </component>
-      <component id="cefbf" class="javax.swing.JLabel" binding="numberOfElementsLbl">
+      <component id="2de6c" class="com.enrico.widgets.label.ProgramLabel" binding="numberOfElementsLbl">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -45,7 +45,7 @@
           <text value="                  "/>
         </properties>
       </component>
-      <component id="49637" class="javax.swing.JTextField" binding="formulaField">
+      <component id="a9cea" class="com.enrico.widgets.textfiled.ProgramTextField" binding="formulaField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -53,7 +53,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="3f1aa" class="javax.swing.JLabel" binding="moleculeTypeLbl">
+      <component id="9d283" class="com.enrico.widgets.label.ProgramLabel" binding="moleculeTypeLbl">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

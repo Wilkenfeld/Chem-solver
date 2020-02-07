@@ -20,15 +20,15 @@
 package com.enrico.windows.dialogs;
 
 import com.enrico.programresources.FontResources;
-import com.enrico.widgets.buttons.DefaultButton;
+import com.enrico.widgets.buttons.ProgramButton;
 
 import javax.swing.*;
 import java.awt.event.*;
 
 public class ProblemChooserDialog extends JDialog {
     private JPanel contentPane;
-    private DefaultButton buttonOK;
-    private DefaultButton buttonCancel;
+    private ProgramButton buttonOK;
+    private ProgramButton buttonCancel;
     private JList chemProblemList;
     private JList physProblemList;
     private JLabel chemTitleLbl;
@@ -99,8 +99,8 @@ public class ProblemChooserDialog extends JDialog {
     }
 
     public void createUIComponents() {
-        buttonOK = new DefaultButton("OK");
-        buttonCancel = new DefaultButton("Cancel");
+        buttonOK = new ProgramButton("OK");
+        buttonCancel = new ProgramButton("Cancel");
     }
 
     public static void main(String[] args) {

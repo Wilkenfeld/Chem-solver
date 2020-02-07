@@ -34,6 +34,8 @@ import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
 import com.enrico.windows.dialogs.savedialog.SaveDialog;
 import com.enrico.windows.dialogs.savedialog.saveProject.ProjectSaveDialog;
 import com.enrico.windows.main.problems.GenericProblemWindow;
+import com.enrico.widgets.textfiled.ProgramTextField;
+import com.enrico.widgets.label.ProgramLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,10 +46,10 @@ import java.util.HashMap;
 public final class MolecularShapeProblemWindow extends GenericProblemWindow {
     private JPanel mainPanel;
     private MoleculeShapeCanvas mainMoleculeShapeCanvas;
-    private JTextField textFieldFormula;
+    private ProgramTextField textFieldFormula;
     private JTextPane dataPane;
-    private JLabel formulaLbl;
-    private JLabel resultLbl;
+    private ProgramLabel formulaLbl;
+    private ProgramLabel resultLbl;
 
     public static final String MOLECULAR_RETURN_STATUS = "Molecular shape";
     public static final String MOLECULAR_SHAPE_WINDOW_IDENTIFIER = "MOLECULAR_SHAPE_WINDOW_IDENTIFIER";

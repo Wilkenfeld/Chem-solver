@@ -27,9 +27,9 @@ import java.awt.*;
 /**
  * Main button used in the program.
  */
-public class DefaultButton extends JButton {
+public class ProgramButton extends JButton {
 
-    public DefaultButton(String text) {
+    public ProgramButton(String text) {
         super();
         JLabel textLbl = new JLabel("<html><center>" + text + "</center></html>");
         textLbl.setForeground(Color.white);

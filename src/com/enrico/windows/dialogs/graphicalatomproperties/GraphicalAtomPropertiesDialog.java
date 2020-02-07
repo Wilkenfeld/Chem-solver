@@ -2,7 +2,9 @@ package com.enrico.windows.dialogs.graphicalatomproperties;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.programresources.FontResources;
-import com.enrico.widgets.buttons.DefaultButton;
+import com.enrico.widgets.buttons.ProgramButton;
+import com.enrico.widgets.label.ProgramLabel;
+import com.enrico.widgets.textfiled.ProgramTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,20 +12,20 @@ import java.awt.event.*;
 
 public final class GraphicalAtomPropertiesDialog extends JDialog {
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JLabel atom_id_lbl;
-    private JTextField atom_id_txt_field;
-    private JLabel atom_name_lbl;
-    private JLabel atom_name_lbl_out;
-    private JLabel general_properties_lbl;
-    private JLabel electronegativity_lbl;
-    private JLabel electronegativity_out_lbl;
-    private JLabel mass_lbl;
-    private JLabel mass_out_lbl;
-    private JLabel atomic_number_lbl;
-    private JLabel atomic_number_out_lbl;
-    private JLabel atom_class_lbl;
-    private JLabel atom_class_out_lbl;
+    private ProgramButton buttonOK;
+    private ProgramLabel atom_id_lbl;
+    private ProgramTextField atom_id_txt_field;
+    private ProgramLabel atom_name_lbl;
+    private ProgramLabel atom_name_lbl_out;
+    private ProgramLabel general_properties_lbl;
+    private ProgramLabel electronegativity_lbl;
+    private ProgramLabel electronegativity_out_lbl;
+    private ProgramLabel mass_lbl;
+    private ProgramLabel mass_out_lbl;
+    private ProgramLabel atomic_number_lbl;
+    private ProgramLabel atomic_number_out_lbl;
+    private ProgramLabel atom_class_lbl;
+    private ProgramLabel atom_class_out_lbl;
 
     private GenericGraphicalAtom atom;
 
@@ -87,7 +89,7 @@ public final class GraphicalAtomPropertiesDialog extends JDialog {
     }
 
     private void createUIComponents() {
-        buttonOK = new DefaultButton("OK");
+        buttonOK = new ProgramButton("OK");
     }
 
     public void showDialog() {

@@ -20,23 +20,25 @@
 package com.enrico.windows.main.problems.biology.monosaccharidestypes;
 
 import com.enrico.programresources.FontResources;
-import com.enrico.widgets.buttons.DefaultButton;
+import com.enrico.widgets.buttons.ProgramButton;
 import com.enrico.widgets.combobox.DefaultComboBox;
 import com.enrico.widgets.combobox.DefaultComboBoxItem;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.main.problems.GenericProblemWindow;
+import com.enrico.widgets.label.ProgramLabel;
+import com.enrico.widgets.textfiled.ProgramTextField;
 
 import javax.swing.*;
 
-public class BiologyMonosaccharidesTypesProblemWindow extends GenericProblemWindow {
+public final class BiologyMonosaccharidesTypesProblemWindow extends GenericProblemWindow {
     private JPanel mainPanel;
-    private JTextField nVariableTxtField;
-    private JLabel monosaccharideTypeLbl;
-    private DefaultButton moreInfoButton;
+    private ProgramTextField nVariableTxtField;
+    private ProgramLabel monosaccharideTypeLbl;
+    private ProgramButton moreInfoButton;
     private DefaultComboBox moleculeTypeComboBox;
-    private JLabel monosaccharideLbl;
-    private JLabel nVarLbl;
-    private JLabel molecularTypeLbl;
+    private ProgramLabel monosaccharideLbl;
+    private ProgramLabel nVarLbl;
+    private ProgramLabel molecularTypeLbl;
 
     public static final String TITLE = "Monosaccharides types";
     public static final String BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER =
@@ -69,7 +71,7 @@ public class BiologyMonosaccharidesTypesProblemWindow extends GenericProblemWind
         moleculeTypes[0] = new DefaultComboBoxItem(ALDOSE_TXT, ALDOSE_VAL);
         moleculeTypes[1] = new DefaultComboBoxItem(KETONE_TXT, KETONE_VAL);
 
-        moreInfoButton = new DefaultButton("More info");
+        moreInfoButton = new ProgramButton("More info");
         moleculeTypeComboBox = new DefaultComboBox(moleculeTypes);
     }
 

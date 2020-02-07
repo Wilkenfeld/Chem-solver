@@ -1,7 +1,8 @@
 package com.enrico.windows.dialogs.infodialog;
 
 import com.enrico.programresources.FontResources;
-import com.enrico.widgets.buttons.DefaultButton;
+import com.enrico.widgets.buttons.ProgramButton;
+import com.enrico.widgets.label.ProgramLabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +10,9 @@ import java.awt.event.*;
 
 public class InfoDialog extends JDialog {
     private JPanel contentPane;
-    private DefaultButton buttonOK;
-    private JLabel infoLbl;
-    private JLabel titleLbl;
+    private ProgramButton buttonOK;
+    private ProgramLabel infoLbl;
+    private ProgramLabel titleLbl;
 
     public InfoDialog() {
         setContentPane(contentPane);
@@ -54,6 +55,6 @@ public class InfoDialog extends JDialog {
     }
 
     private void createUIComponents() {
-        buttonOK = new DefaultButton("OK");
+        buttonOK = new ProgramButton("OK");
     }
 }
