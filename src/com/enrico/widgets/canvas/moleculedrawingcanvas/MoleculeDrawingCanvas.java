@@ -145,7 +145,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     }
 
     private void generatePopupMenuForAtom(GenericGraphicalAtom atom) {
-        MoleculeDrawingPopupMenu popupMenu = new MoleculeDrawingPopupMenu(atom.getAtomId());
+        MoleculeDrawingPopupMenu popupMenu = new MoleculeDrawingPopupMenu(atom);
         popupMenu.show(this, atom.getStartX(), atom.getStartY());
     }
 }

@@ -17,42 +17,6 @@ public abstract class GenericScientificAtom extends GenericAtom {
         super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets, ionizationEnergy, classType);
     }
 
-    public int getAtomicNumber() {
-        return atomicNumber;
-    }
-
-    public double getAtomicMass() {
-        return atomicMass;
-    }
-
-    public double getElectronegativity() {
-        return electronegativity;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getCompleteName() {
-        return completeName;
-    }
-
-    public AtomClassType getClassType() {
-        return classType;
-    }
-
-    public int getDoublets() {
-        return doublets;
-    }
-
-    public int getBindingElectronsNumber() {
-        return bindingElectronsNumber;
-    }
-
-    public int getIonizationEnergy() {
-        return ionizationEnergy;
-    }
-
     public static double getElectronegativityDifference(GenericScientificAtom genericAtom1, GenericScientificAtom genericAtom2) {
         double atomElectroNegativity1 = genericAtom1.getElectronegativity();
         double atomElectroNegativity2 = genericAtom2.getElectronegativity();

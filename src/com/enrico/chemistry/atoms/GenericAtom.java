@@ -34,14 +34,54 @@ public abstract class GenericAtom {
     protected final AtomClassType classType;
 
     public enum AtomClassType {
-        AlkalineMetals,
-        AlkalineEarthMetals,
-        TransitionalMetals,
-        NotMetals,
-        SemiMetals,
-        PBlockMetals,
-        Halogens,
-        NobleGasses
+        AlkalineMetals {
+            @Override
+            public String toString() {
+                return "Alkaline metals";
+            }
+        },
+        AlkalineEarthMetals {
+            @Override
+            public String toString() {
+                return "Alkaline earth metals";
+            }
+        },
+        TransitionalMetals {
+            @Override
+            public String toString() {
+                return "Transitional metals";
+            }
+        },
+        NotMetals {
+            @Override
+            public String toString() {
+                return "Non metals";
+            }
+        },
+        SemiMetals  {
+            @Override
+            public String toString() {
+                return "Semi metals";
+            }
+        },
+        PBlockMetals  {
+            @Override
+            public String toString() {
+                return "P-Block metals";
+            }
+        },
+        Halogens {
+            @Override
+            public String toString() {
+                return "Halogens";
+            }
+        },
+        NobleGasses {
+            @Override
+            public String toString() {
+                return "Noble gasses";
+            }
+        }
     }
 
     public GenericAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
@@ -55,6 +95,42 @@ public abstract class GenericAtom {
         this.classType = classType;
         this.bindingElectronsNumber = bindingElectronsNumber;
         this.ionizationEnergy = ionizationEnergy;
+    }
+
+    public int getAtomicNumber() {
+        return atomicNumber;
+    }
+
+    public double getAtomicMass() {
+        return atomicMass;
+    }
+
+    public double getElectronegativity() {
+        return electronegativity;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getCompleteName() {
+        return completeName;
+    }
+
+    public AtomClassType getClassType() {
+        return classType;
+    }
+
+    public int getDoublets() {
+        return doublets;
+    }
+
+    public int getBindingElectronsNumber() {
+        return bindingElectronsNumber;
+    }
+
+    public int getIonizationEnergy() {
+        return ionizationEnergy;
     }
 
 }
