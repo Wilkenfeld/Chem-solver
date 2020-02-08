@@ -49,13 +49,6 @@ public final class CompoundClassificationProblemWindow extends GenericProblemWin
 
         setResizable(false);
 
-        formulaField.setFont(FontResources.normalTextFont);
-        numberOfElementsLbl.setFont(FontResources.normalTextFont);
-        moleculeTypeLbl.setFont(FontResources.normalTextFont);
-        formulaTxtLbl.setFont(FontResources.normalTextFont);
-        numOfElementsLbl.setFont(FontResources.normalTextFont);
-        typeLbl.setFont(FontResources.normalTextFont);
-
         setContentPane(mainPane);
     }
 

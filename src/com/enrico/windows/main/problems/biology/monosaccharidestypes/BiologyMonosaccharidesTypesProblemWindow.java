@@ -60,11 +60,6 @@ public final class BiologyMonosaccharidesTypesProblemWindow extends GenericProbl
         setJMenuBar(problemWindowMenuBar);
 
         setContentPane(mainPanel);
-
-        monosaccharideTypeLbl.setFont(FontResources.normalTextFont);
-        monosaccharideLbl.setFont(FontResources.normalTextFont);
-        nVarLbl.setFont(FontResources.normalTextFont);
-        molecularTypeLbl.setFont(FontResources.normalTextFont);
     }
 
     private void createUIComponents() {

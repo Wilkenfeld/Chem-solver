@@ -66,10 +66,6 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
 
-        dataPane.setFont(FontResources.normalTextFont);
-        formulaLbl.setFont(FontResources.normalTextFont);
-        resultLbl.setFont(FontResources.normalTextFont);
-
         JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
         saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
         saveImageItem.setFont(FontResources.menuBarFont);
