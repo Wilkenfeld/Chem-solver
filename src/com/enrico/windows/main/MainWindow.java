@@ -72,7 +72,9 @@ public final class MainWindow extends BasicWindow {
 
         MainMenuBar menuBar = new MainMenuBar();
         setJMenuBar(menuBar);
-        
+
+        welcomeLbl.setFont(FontResources.titleFont);
+        subwelcomeLbl.setFont(FontResources.subtitleFont);
 
         Dimension mainWinDimension = new Dimension(500, 350);
         setSize(mainWinDimension);
