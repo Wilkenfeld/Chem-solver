@@ -8,13 +8,16 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     protected int startY;
     protected int endY;
 
+    private int bindingsRemaining; // How many binding the atom can still do.
+
     protected final String imagePath;
     
     private String atomId;
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
-                                int startX, int startY, int endX, int endY, String imagePath, String atomId) {
+                                int startX, int startY, int endX, int endY, int bindingsRemaining, String imagePath,
+                                String atomId) {
         super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets, ionizationEnergy, classType);
 
         this.startX = startX;
@@ -24,6 +27,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
         this.imagePath = imagePath;
         this.atomId = atomId;
+
+        this.bindingsRemaining = bindingsRemaining;
     }
 
     public int getStartX() {
@@ -41,6 +46,18 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public int getEndY() {
         return endY;
+    }
+
+    public int getCenterX() {
+        return startX + 23;
+    }
+
+    public int getCenterY() {
+        return startY + 23;
+    }
+
+    public int getBindingsRemaining() {
+        return bindingsRemaining;
     }
 
     public void setStartX(int startX) {
@@ -61,6 +78,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public void setAtomId(String atomId) {
         this.atomId = atomId;
+    }
+
+    public void doBinding() {
+        if (bindingsRemaining > 0)
+            bindingsRemaining--;
     }
 
     public String getImagePath() {
