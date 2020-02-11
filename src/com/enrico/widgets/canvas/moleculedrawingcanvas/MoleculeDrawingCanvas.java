@@ -117,7 +117,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     return;
                 }
 
-                atom.reload();
+                atom.reload(); // Reloading the atom si the bindings will be moving automatically.
 
                 g.drawImage(image, atom.getStartX(), atom.getStartY(), 50, 50, null);
             }
@@ -136,8 +136,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             lastYClick = e.getY();
 
             for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
-                        (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
+                if ((e.getX() >= atom.getSelectableStartX() && e.getX() <= atom.getSelectableEndX()) &&
+                        (e.getY() >= atom.getSelectableStartY() && e.getY() <= atom.getSelectableEndY())) {
                     if (SwingUtilities.isRightMouseButton(e)) {
                         lastSelectedAtom = atom;
                     }
@@ -152,8 +152,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                 case CursorSelecting:
                     for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                        if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
-                                (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
+                        if ((e.getX() >= atom.getSelectableStartX() && e.getX() <= atom.getSelectableEndX()) &&
+                                (e.getY() >= atom.getSelectableStartY() && e.getY() <= atom.getSelectableEndY())) {
                             if (SwingUtilities.isRightMouseButton(e)) {
                                 lastSelectedAtom = atom;
                                 generatePopupMenuForAtom(atom);
@@ -272,8 +272,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             GenericGraphicalAtom selectedAtom = null;
 
             for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
-                        (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
+                if ((e.getX() >= atom.getSelectableStartX() && e.getX() <= atom.getSelectableEndX()) &&
+                        (e.getY() >= atom.getSelectableStartY() && e.getY() <= atom.getSelectableEndY())) {
                     selectedAtom = atom;
                 }
             }

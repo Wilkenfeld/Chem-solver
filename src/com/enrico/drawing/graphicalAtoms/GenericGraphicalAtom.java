@@ -12,6 +12,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     protected int startY;
     protected int endY;
 
+    protected int selectableStartX;
+    protected int selectableStartY;
+    protected int selectableEndX;
+    protected int selectableEndY;
+
     private int bindingsRemaining; // How many binding the atom can still do.
 
     protected final String imagePath;
@@ -33,6 +38,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
         this.imagePath = imagePath;
         this.atomId = atomId;
+
+        setSelectableCoordinates();
 
         this.bindingsRemaining = bindingsRemaining;
     }
@@ -64,6 +71,22 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public int getBindingsRemaining() {
         return bindingsRemaining;
+    }
+
+    public int getSelectableEndX() {
+        return selectableEndX;
+    }
+
+    public int getSelectableStartX() {
+        return selectableStartX;
+    }
+
+    public int getSelectableEndY() {
+        return selectableEndY;
+    }
+
+    public int getSelectableStartY() {
+        return selectableStartY;
     }
 
     public void setStartX(int startX) {
@@ -100,9 +123,15 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         endX = startX + 23;
         endY = startY + 23;
 
+        setSelectableCoordinates();
+
         moveBindings();
     }
 
+    /*
+     * Since when we move an atom the binding won't be moving correctly between the two atoms, this functions reloads
+     * the atom by moving it at the same position it was before, so that the binding will adjust itself.
+     */
     public void reload() {
         move(getStartX(), getStartY());
     }
@@ -123,6 +152,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
             bindingIndex++;
         }
+    }
+
+    private void setSelectableCoordinates() {
+        selectableStartX = this.startX - 20;
+        selectableStartY = this.startY - 20;
+        selectableEndX = this.endX + 20;
+        selectableEndY = this.endY + 20;
     }
 
     public String getImagePath() {
