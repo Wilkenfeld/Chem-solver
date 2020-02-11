@@ -3,6 +3,7 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
 import com.enrico.drawing.graphicalAtoms.binding.GraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.binding.GraphicalBindingList;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.MoleculeDrawingPopupMenu;
 
@@ -20,6 +21,7 @@ import java.util.Objects;
 public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor drawingCursor;
     private final Cursor singleBindingCursor;
+    private final Cursor movingCursor;
 
     private CursorStates cursorState;
 
@@ -36,9 +38,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private int lastYClick;
 
     public enum CursorStates {
-        CursorSelecting,    // Normal arrow.
-        CursorDrawing,      // Circle.
-        CursorSingleBinding // Bold circle.
+        CursorSelecting,      // Normal arrow.
+        CursorDrawing,        // Circle.
+        CursorSingleBinding,  // Bold circle.
+        CursorMoving          // Normal hand.
     }
 
     public MoleculeDrawingCanvas() {
@@ -53,6 +56,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_single_binding.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
         singleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_binding_image");
+        movingCursor = new Cursor(Cursor.MOVE_CURSOR);
 
         setCursor(drawingCursor);
         cursorState = CursorStates.CursorDrawing;
@@ -60,6 +64,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         currentAtomSymbol = "";
 
         addMouseListener(new MouseListenerImpl());
+        addMouseMotionListener(new MouseMotionAdapterImpl());
     }
 
     public void setCurrentAtomSymbol(String currentAtomSymbol) {
@@ -128,6 +133,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             lastXClick = e.getX();
             lastYClick = e.getY();
 
+            for (GenericGraphicalAtom atom : graphicalAtomsList) {
+                if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
+                        (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
+                    if (SwingUtilities.isRightMouseButton(e)) {
+                        lastSelectedAtom = atom;
+                    }
+                }
+            }
+
             switch (cursorState) {
                 case CursorDrawing:
                     addNewAtom(e.getX(), e.getY());
@@ -176,19 +190,21 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                         return;
                     }
 
-                    graphicalBindingList.add(new GraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
-                                                                  selectedAtom.getCenterY(), lastSelectedAtom.getCenterY()));
+                    GraphicalBinding binding = new GraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
+                                                                    selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
 
-                    originAtom.doBinding();
-                    selectedAtom.doBinding();
+                    graphicalBindingList.add(binding);
 
-                    System.out.println(originAtom.getAtomId() + " --- " + originAtom.getBindingsRemaining());
-                    System.out.println(selectedAtom.getAtomId() + " --- " + selectedAtom.getBindingsRemaining());
+                    originAtom.doBinding(binding, GraphicalBindingList.Edges.Start);
+                    selectedAtom.doBinding(binding, GraphicalBindingList.Edges.End);
 
                     setCursor(Cursor.getDefaultCursor());
                     cursorState = CursorStates.CursorSelecting;
 
                     repaint();
+                break;
+
+                case CursorMoving:
                 break;
 
                 default:
@@ -227,18 +243,51 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             super.mouseExited(e);
             setCursor(Cursor.getDefaultCursor());
         }
-    }
-
-    private final class MouseMotionListenerImpl extends MouseMotionAdapter {
 
         @Override
-        public void mouseDragged(MouseEvent mouseEvent) {
+        public void mouseReleased(MouseEvent e) {
+            super.mouseReleased(e);
 
+            if (lastSelectedAtom == null || cursorState != CursorStates.CursorMoving)
+                return;
+
+            lastSelectedAtom.move(e.getX(), e.getY());
+
+            setCursorState(CursorStates.CursorSelecting);
+            setCursor(Cursor.getDefaultCursor());
+
+            lastSelectedAtom = null;
+
+            repaint();
+        }
+    }
+
+    private final class MouseMotionAdapterImpl extends MouseMotionAdapter {
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            super.mouseDragged(e);
+
+            GenericGraphicalAtom selectedAtom = null;
+
+            for (GenericGraphicalAtom atom : graphicalAtomsList) {
+                if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
+                        (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
+                    selectedAtom = atom;
+                }
+            }
+
+            if (selectedAtom == null)
+                return;
+
+            setCursor(movingCursor);
+            setCursorState(CursorStates.CursorMoving);
+
+            lastSelectedAtom = selectedAtom;
         }
 
         @Override
-        public void mouseMoved(MouseEvent mouseEvent) {
-
+        public void mouseMoved(MouseEvent e) {
+            super.mouseMoved(e);
         }
     }
 

@@ -1,6 +1,8 @@
 package com.enrico.drawing.graphicalAtoms;
 
 import com.enrico.chemistry.atoms.GenericAtom;
+import com.enrico.drawing.graphicalAtoms.binding.GraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.binding.GraphicalBindingList;
 
 public abstract class GenericGraphicalAtom extends GenericAtom {
     protected int startX;
@@ -13,6 +15,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     protected final String imagePath;
     
     private String atomId;
+
+    private GraphicalBindingList bindingList = new GraphicalBindingList();
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
@@ -80,9 +84,19 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         this.atomId = atomId;
     }
 
-    public void doBinding() {
+    public void doBinding(GraphicalBinding binding, GraphicalBindingList.Edges edge) {
         if (bindingsRemaining > 0)
             bindingsRemaining--;
+
+        bindingList.addBinding(binding, edge);
+    }
+
+    public void move(int startX, int startY) {
+        this.startX = startX;
+        this.startY = startY;
+
+        endX = startX + 23;
+        endY = startY + 23;
     }
 
     public String getImagePath() {
