@@ -26,4 +26,16 @@ public final class GraphicalBindingList {
     public Edges getEdgeFromIndex(int index) {
         return bindingsEdges.get(index);
     }
+
+    public int getNumberOfBindings() {
+        return bindings.size();
+    }
+
+    public ArrayList<GraphicalBinding> getBindings() {
+        return bindings;
+    }
+
+    public ArrayList<Edges> getBindingsEdges() {
+        return bindingsEdges;
+    }
 }

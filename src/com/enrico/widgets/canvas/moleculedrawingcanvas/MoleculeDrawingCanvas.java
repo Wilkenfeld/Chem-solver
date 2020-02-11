@@ -117,6 +117,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     return;
                 }
 
+                atom.reload();
+
                 g.drawImage(image, atom.getStartX(), atom.getStartY(), 50, 50, null);
             }
         }

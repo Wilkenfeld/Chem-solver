@@ -20,11 +20,11 @@
 package com.enrico.drawing;
 
 public class Line {
-    private final int startX;
-    private final int endX;
+    private int startX;
+    private int endX;
 
-    private final int startY;
-    private final int endY;
+    private int startY;
+    private int endY;
 
     public Line(int startX, int endX, int startY, int endY) {
         this.startX = startX;
@@ -48,5 +48,21 @@ public class Line {
 
     public int getEndY() {
         return endY;
+    }
+
+    public void setStartY(int startY) {
+        this.startY = startY;
+    }
+
+    public void setEndY(int endY) {
+        this.endY = endY;
+    }
+
+    public void setStartX(int startX) {
+        this.startX = startX;
+    }
+
+    public void setEndX(int endX) {
+        this.endX = endX;
     }
 }

@@ -4,6 +4,8 @@ import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.binding.GraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.GraphicalBindingList;
 
+import java.util.ArrayList;
+
 public abstract class GenericGraphicalAtom extends GenericAtom {
     protected int startX;
     protected int endX;
@@ -97,6 +99,30 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
         endX = startX + 23;
         endY = startY + 23;
+
+        moveBindings();
+    }
+
+    public void reload() {
+        move(getStartX(), getStartY());
+    }
+
+    private void moveBindings() {
+        ArrayList<GraphicalBinding> bindings = bindingList.getBindings();
+        ArrayList<GraphicalBindingList.Edges> edges = bindingList.getBindingsEdges();
+        int bindingIndex = 0;
+
+        for (GraphicalBinding binding : bindings) {
+            if (edges.get(bindingIndex) == GraphicalBindingList.Edges.Start) {
+                binding.setStartX(getCenterX());
+                binding.setStartY(getCenterY());
+            } else {
+                binding.setEndX(getCenterX());
+                binding.setEndY(getCenterY());
+            }
+
+            bindingIndex++;
+        }
     }
 
     public String getImagePath() {
