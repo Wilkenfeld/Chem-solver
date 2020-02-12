@@ -6,8 +6,8 @@ import com.enrico.windows.dialogs.graphicalatomproperties.GraphicalAtomPropertie
 
 import javax.swing.*;
 
-public final class MoleculeDrawingPopupMenu extends GenericPopupMenu {
-    public MoleculeDrawingPopupMenu(GenericGraphicalAtom atom, MoleculeDrawingCanvas canvas) {
+public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
+    public GraphicalAtomPopupMenu(GenericGraphicalAtom atom, MoleculeDrawingCanvas canvas) {
         super("Atom: " + atom.getAtomId());
 
         JMenuItem propertiesItem = new JMenuItem("Properties");
@@ -21,7 +21,13 @@ public final class MoleculeDrawingPopupMenu extends GenericPopupMenu {
             canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorSingleBinding);
         });
 
+        JMenuItem removeSingleBindingItem = new JMenuItem("Remove single binding");
+        removeSingleBindingItem.addActionListener(actionEvent -> {
+            canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveSingleBinding);
+        });
+
         add(propertiesItem);
         add(singleBindingItem);
+        add(removeSingleBindingItem);
     }
 }

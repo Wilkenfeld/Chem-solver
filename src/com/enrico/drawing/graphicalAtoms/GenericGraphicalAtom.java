@@ -168,4 +168,31 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     public String getAtomId() {
         return atomId;
     }
+
+    public boolean hasAtomBinding(String bindingID) {
+        ArrayList<GraphicalBinding> bindings = bindingList.getBindings();
+
+        for (GraphicalBinding binding : bindings) {
+            if (binding.getID().equals(bindingID)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void removeBinding(String bindingID) {
+        ArrayList<GraphicalBinding> bindings = bindingList.getBindings();
+        int index = 0;
+
+        for (GraphicalBinding binding : bindings) {
+            if (binding.getID().equals(bindingID)) {
+                bindings.remove(index);
+                bindingsRemaining++;
+                return;
+            }
+
+            index++;
+        }
+    }
 }
