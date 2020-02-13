@@ -378,6 +378,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         popupMenu.show(this, atom.getStartX(), atom.getStartY());
     }
 
+    /* This function cleans up the list of the bindings between atoms, so that there won't be any bindings with only
+     * one atom at one edge, or any binding without any atoms.
+     */
     private void sanitizeBindings() {
         ArrayList<GraphicalBinding> graphicalBindingListClone = (ArrayList<GraphicalBinding>)graphicalBindingList.clone();
         int index = 0;
