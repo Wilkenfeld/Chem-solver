@@ -160,28 +160,14 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 break;
 
                 case CursorSelecting:
-                    for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                        if ((e.getX() >= atom.getSelectableStartX() && e.getX() <= atom.getSelectableEndX()) &&
-                                (e.getY() >= atom.getSelectableStartY() && e.getY() <= atom.getSelectableEndY())) {
-                            if (SwingUtilities.isRightMouseButton(e)) {
-                                lastSelectedAtom = atom;
-                                generatePopupMenuForAtom(atom);
-                            }
-                        }
-                    }
+                    GenericGraphicalAtom atom = getGenericGraphicalAtom(e.getX(), e.getY());
+                    generatePopupMenuForAtom(atom);
                 break;
 
                 case CursorSingleBinding:
                     GenericGraphicalAtom originAtom = lastSelectedAtom;
-                    GenericGraphicalAtom selectedAtom = null;
+                    GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(e.getX(), e.getY());
 
-                    // Get the destination atom.
-                    for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                        if ((e.getX() >= atom.getStartX() && e.getX() <= atom.getEndX()) &&
-                                (e.getY() >= atom.getStartY() && e.getY() <= atom.getEndY())) {
-                            selectedAtom = atom;
-                        }
-                    }
                     if (selectedAtom == null) {
                         String msg = "No atom was selected for binding.";
                         JOptionPane.showMessageDialog(null, msg, "No atom selected", JOptionPane.ERROR_MESSAGE);
@@ -368,10 +354,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     }
 
     private GenericGraphicalAtom getGenericGraphicalAtom(int x, int y) {
-        // Get the destination atom.
+        final int errorMargin = 40;
+
         for (GenericGraphicalAtom atom : graphicalAtomsList) {
-            if ((x >= atom.getStartX() && x <= atom.getEndX()) &&
-                (y >= atom.getStartY() && y <= atom.getEndY())) {
+            if ((x >= atom.getStartX() - errorMargin && x <= atom.getEndX() + errorMargin) &&
+                (y >= atom.getStartY() - errorMargin && y <= atom.getEndY() + errorMargin)) {
                 return atom;
             }
         }
