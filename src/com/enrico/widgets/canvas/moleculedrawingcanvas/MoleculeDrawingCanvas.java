@@ -16,7 +16,6 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 public final class MoleculeDrawingCanvas extends GenericCanvas {
@@ -105,6 +104,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             g2d.setColor(GraphicalBinding.DEFAULT_COLOR);
             g2d.setStroke(GraphicalBinding.DEFAULT_STROKE); // Set thickness of the line.
 
+            sanitizeBindings();
+
             for (GraphicalBinding binding : graphicalBindingList) {
                 g.drawLine(binding.getStartX(), binding.getStartY(), binding.getEndX(), binding.getEndY());
             }
@@ -187,6 +188,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                         return;
                     }
 
+                    // Checking if these two atoms have already been binded.
+                    if (lastSelectedAtom.hasAtomCommonBindings(selectedAtom)) {
+                        String msg = "These two atoms have already been binded.";
+                        JOptionPane.showMessageDialog(null, msg, "Atoms already binded", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
                     // Check if it's still possible to make bindings.
                     if (originAtom.getBindingsRemaining() == 0) {
                         String msg = "Maximum number of bindings for atom " + originAtom.getAtomId() + " has been reached.";
@@ -215,34 +223,41 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 break;
 
                 case CursorRemoveSingleBinding:
-                     // We now use the straight line's formulas to check if the point where we click contains a binding.
-
+                    // We now use the straight line's formulas to check if the point where we click contains a binding.
                     double m; // Angular coefficient.
                     double q;
 
                     int index = 0;
+                    final int errorMargin = 20;
 
                     // Cloning the ArrayList.
                     ArrayList<GraphicalBinding> graphicalBindingListClone = (ArrayList<GraphicalBinding>)graphicalBindingList.clone();
-                    Collections.copy(graphicalBindingListClone, graphicalBindingList);
 
                     for (GraphicalBinding bind: graphicalBindingListClone) {
                         m = ((double)bind.getEndY() - (double)bind.getStartY()) / ((double)bind.getEndX() - (double)bind.getStartX());
                         q = bind.getEndY() - m * bind.getEndX();
 
-                        if ((e.getY() + 20 >= (m * e.getX() + q) - 20) &&
-                            (e.getY() - 20 <= (m * e.getX() + q) + 20)) {
+                        if ((e.getY() + errorMargin >= (m * e.getX() + q) - errorMargin) &&
+                            (e.getY() - errorMargin <= (m * e.getX() + q) + errorMargin)) {
 
                             if (lastSelectedAtom.hasAtomBinding(bind.getID())) {
                                 lastSelectedAtom.removeBinding(bind.getID());
 
-                                graphicalBindingList.remove(index);
+                                try {
+                                    graphicalBindingList.remove(bind);
+                                    bind.removeAtom();
+                                } catch (IndexOutOfBoundsException ioobe) {
+                                    continue;
+                                }
                             }
 
                             // Removing the binding also from the other atom that was binded.
                             for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                                if (atom.hasAtomBinding(bind.getID()))
+                                if (atom.hasAtomBinding(bind.getID())) {
                                     atom.removeBinding(bind.getID());
+                                    bind.removeAtom();
+                                    //break;
+                                }
                             }
                         }
 
@@ -361,5 +376,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private void generatePopupMenuForAtom(GenericGraphicalAtom atom) {
         GraphicalAtomPopupMenu popupMenu = new GraphicalAtomPopupMenu(atom, this);
         popupMenu.show(this, atom.getStartX(), atom.getStartY());
+    }
+
+    private void sanitizeBindings() {
+        ArrayList<GraphicalBinding> graphicalBindingListClone = (ArrayList<GraphicalBinding>)graphicalBindingList.clone();
+        int index = 0;
+
+        for (GraphicalBinding binding : graphicalBindingListClone) {
+            if (binding.getNumberOfAtomsBinded() == 0)
+                graphicalBindingList.remove(index);
+
+            index++;
+        }
     }
 }

@@ -181,18 +181,37 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return false;
     }
 
+    public boolean hasAtomCommonBindings(GenericGraphicalAtom atom) {
+        ArrayList<GraphicalBinding> thisAtomBindings = bindingList.getBindings();
+        ArrayList<GraphicalBinding> otherAtomBindings = atom.getBindingList().getBindings();
+
+        for (GraphicalBinding thisBinding : thisAtomBindings)
+            for (GraphicalBinding otherBinding : otherAtomBindings)
+                if (thisBinding.getID().equals(otherBinding.getID()))
+                    return true;
+
+        return false;
+    }
+
     public void removeBinding(String bindingID) {
         ArrayList<GraphicalBinding> bindings = bindingList.getBindings();
+        ArrayList<GraphicalBindingList.Edges> edgesList = bindingList.getBindingsEdges();
+
         int index = 0;
 
         for (GraphicalBinding binding : bindings) {
             if (binding.getID().equals(bindingID)) {
                 bindings.remove(index);
+                edgesList.remove(index);
                 bindingsRemaining++;
                 return;
             }
 
             index++;
         }
+    }
+
+    public GraphicalBindingList getBindingList() {
+        return bindingList;
     }
 }

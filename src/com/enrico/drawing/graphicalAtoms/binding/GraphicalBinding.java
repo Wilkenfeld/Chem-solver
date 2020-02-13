@@ -12,13 +12,26 @@ public final class GraphicalBinding extends Line {
 
     private static int id_count = 0;
 
+    private int numberOfAtomsBinded;
+
     public GraphicalBinding(int startX, int endX, int startY, int endY) {
         super(startX, endX, startY, endY);
         ID = "BINDING_" + id_count;
         id_count++;
+
+        numberOfAtomsBinded = 2;
     }
 
     public String getID() {
         return ID;
+    }
+
+    public void removeAtom() {
+        if (numberOfAtomsBinded > 0)
+            numberOfAtomsBinded--;
+    }
+
+    public int getNumberOfAtomsBinded() {
+        return numberOfAtomsBinded;
     }
 }
