@@ -331,6 +331,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
      * one atom at one edge, or any binding without any atoms.
      */
     private void sanitizeBindings() {
+        @SuppressWarnings("unchecked")
         ArrayList<GraphicalBinding> graphicalBindingListClone = (ArrayList<GraphicalBinding>)graphicalBindingList.clone();
         int index = 0;
 
