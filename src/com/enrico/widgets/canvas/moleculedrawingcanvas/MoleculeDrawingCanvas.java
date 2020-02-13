@@ -35,9 +35,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
     private int atomsInserted = 0;
 
-    private int lastXClick;
-    private int lastYClick;
-
     public enum CursorStates {
         CursorSelecting,            // Normal arrow.
         CursorDrawing,              // Circle.
@@ -83,15 +80,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
     public void setCursorState(CursorStates state) {
         cursorState = state;
-    }
-
-    public GenericGraphicalAtom getGraphicalAtomFromCoordinates(int x, int y) {
-        for(GenericGraphicalAtom indexAtom : graphicalAtomsList) {
-            if ((x >= indexAtom.getStartX() && x <= indexAtom.getEndX()) &&
-                (y >= indexAtom.getStartY() && y <= indexAtom.getEndY()))
-                return indexAtom;
-        }
-        return null;
     }
 
     @Override
@@ -140,9 +128,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-
-            lastXClick = e.getX();
-            lastYClick = e.getY();
 
             for (GenericGraphicalAtom atom : graphicalAtomsList) {
                 if ((e.getX() >= atom.getSelectableStartX() && e.getX() <= atom.getSelectableEndX()) &&
