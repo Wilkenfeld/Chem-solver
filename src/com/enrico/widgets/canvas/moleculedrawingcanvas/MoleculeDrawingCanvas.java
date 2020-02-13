@@ -263,6 +263,14 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             if (lastSelectedAtom == null || cursorState != CursorStates.CursorMoving)
                 return;
 
+            // Not overlapping two atoms when moving, so we check if in the released position there's an atom.
+            GenericGraphicalAtom releasedPositionAtom = getGenericGraphicalAtom(e.getX(), e.getY());
+            if (releasedPositionAtom != null && releasedPositionAtom != lastSelectedAtom) {
+                setCursorState(CursorStates.CursorSelecting);
+                setCursor(Cursor.getDefaultCursor());
+                return;
+            }
+
             lastSelectedAtom.move(e.getX(), e.getY());
 
             setCursorState(CursorStates.CursorSelecting);
