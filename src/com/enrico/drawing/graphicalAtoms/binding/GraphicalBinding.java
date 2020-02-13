@@ -26,9 +26,8 @@ public final class GraphicalBinding extends Line {
         return ID;
     }
 
-    public void removeAtom() {
-        if (numberOfAtomsBinded > 0)
-            numberOfAtomsBinded--;
+    public void markDeletion() {
+        numberOfAtomsBinded = 0;
     }
 
     public int getNumberOfAtomsBinded() {
