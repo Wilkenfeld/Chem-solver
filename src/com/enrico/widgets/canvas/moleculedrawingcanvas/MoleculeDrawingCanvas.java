@@ -279,6 +279,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
 
+            if (cursorState != CursorStates.CursorSelecting)
+                return;
+
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(e.getX(), e.getY());
 
             if (selectedAtom == null)
