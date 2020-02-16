@@ -1,7 +1,11 @@
 package com.enrico.drawing.graphicalAtoms;
 
+import com.enrico.annotations.chemistry.DoubleBinding;
+import com.enrico.annotations.chemistry.TripleBinding;
 import com.enrico.interfaces.atoms.CarbonAtomInterface;
 
+@DoubleBinding
+@TripleBinding
 public final class GraphicalCarbonAtom extends GenericGraphicalAtom implements CarbonAtomInterface {
     public static final String IMAGE_PATH_STRING =
             "atom_icons/nonmetals/atom_icon_carbon.png";

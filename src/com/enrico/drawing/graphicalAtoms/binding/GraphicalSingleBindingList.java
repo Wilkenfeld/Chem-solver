@@ -2,11 +2,11 @@ package com.enrico.drawing.graphicalAtoms.binding;
 
 import java.util.ArrayList;
 
-public final class GraphicalBindingList {
-    private ArrayList<GraphicalBinding> bindings = new ArrayList<>();
+public final class GraphicalSingleBindingList {
+    private ArrayList<SingleGraphicalBinding> bindings = new ArrayList<>();
     private ArrayList<Edges> bindingsEdges = new ArrayList<>();
 
-    public GraphicalBindingList() {
+    public GraphicalSingleBindingList() {
     }
 
     public enum Edges {
@@ -14,12 +14,12 @@ public final class GraphicalBindingList {
         End
     }
 
-    public void addBinding(GraphicalBinding binding, Edges edge) {
+    public void addBinding(SingleGraphicalBinding binding, Edges edge) {
         bindings.add(binding);
         bindingsEdges.add(edge);
     }
 
-    public GraphicalBinding getBindingFromIndex(int index) {
+    public SingleGraphicalBinding getBindingFromIndex(int index) {
         return bindings.get(index);
     }
 
@@ -31,7 +31,7 @@ public final class GraphicalBindingList {
         return bindings.size();
     }
 
-    public ArrayList<GraphicalBinding> getBindings() {
+    public ArrayList<SingleGraphicalBinding> getBindings() {
         return bindings;
     }
 

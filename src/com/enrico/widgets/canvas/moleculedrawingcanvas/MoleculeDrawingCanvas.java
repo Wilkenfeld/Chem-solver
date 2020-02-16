@@ -2,8 +2,8 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
-import com.enrico.drawing.graphicalAtoms.binding.GraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.binding.GraphicalBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.SingleGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.binding.GraphicalSingleBindingList;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
 
@@ -27,7 +27,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private CursorStates cursorState;
 
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
-    private ArrayList<GraphicalBinding> graphicalBindingList = new ArrayList<>();
+    private ArrayList<SingleGraphicalBinding> singleGraphicalBindingList = new ArrayList<>();
 
     private GenericGraphicalAtom lastSelectedAtom;
 
@@ -86,15 +86,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     public void paint(Graphics g) {
         super.paint(g);
 
-        if (graphicalBindingList.size() > 0) {
+        if (singleGraphicalBindingList.size() > 0) {
             Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setColor(GraphicalBinding.DEFAULT_COLOR);
-            g2d.setStroke(GraphicalBinding.DEFAULT_STROKE); // Set thickness of the line.
+            g2d.setColor(SingleGraphicalBinding.DEFAULT_COLOR);
+            g2d.setStroke(SingleGraphicalBinding.DEFAULT_STROKE); // Set thickness of the line.
 
             sanitizeBindings();
 
-            for (GraphicalBinding binding : graphicalBindingList) {
+            for (SingleGraphicalBinding binding : singleGraphicalBindingList) {
                 g.drawLine(binding.getStartX(), binding.getStartY(), binding.getEndX(), binding.getEndY());
             }
         }
@@ -179,13 +179,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                         return;
                     }
 
-                    GraphicalBinding binding = new GraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
+                    SingleGraphicalBinding binding = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
                                                                     selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
 
-                    graphicalBindingList.add(binding);
+                    singleGraphicalBindingList.add(binding);
 
-                    originAtom.doBinding(binding, GraphicalBindingList.Edges.Start);
-                    selectedAtom.doBinding(binding, GraphicalBindingList.Edges.End);
+                    originAtom.doSingleBinding(binding, GraphicalSingleBindingList.Edges.Start);
+                    selectedAtom.doSingleBinding(binding, GraphicalSingleBindingList.Edges.End);
 
                     setCursor(Cursor.getDefaultCursor());
                     cursorState = CursorStates.CursorSelecting;
@@ -201,10 +201,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                         return;
                     }
 
-                    for (GraphicalBinding bind : graphicalBindingList) {
+                    for (SingleGraphicalBinding bind : singleGraphicalBindingList) {
                         if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
                             bind.markDeletion();
-                            lastSelectedAtom.removeBinding(bind.getID());
+                            lastSelectedAtom.removeSingleBinding(bind.getID());
                             secondAtom.hasAtomBinding(bind.getID());
                         }
                     }
@@ -332,12 +332,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
      */
     private void sanitizeBindings() {
         @SuppressWarnings("unchecked")
-        ArrayList<GraphicalBinding> graphicalBindingListClone = (ArrayList<GraphicalBinding>)graphicalBindingList.clone();
+        ArrayList<SingleGraphicalBinding> singleGraphicalBindingListClone = (ArrayList<SingleGraphicalBinding>) singleGraphicalBindingList.clone();
         int index = 0;
 
-        for (GraphicalBinding binding : graphicalBindingListClone) {
+        for (SingleGraphicalBinding binding : singleGraphicalBindingListClone) {
             if (binding.getNumberOfAtomsBinded() == 0)
-                graphicalBindingList.remove(index);
+                singleGraphicalBindingList.remove(index);
 
             index++;
         }
