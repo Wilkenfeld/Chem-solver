@@ -1,8 +1,8 @@
 package com.enrico.drawing.graphicalAtoms;
 
 import com.enrico.chemistry.atoms.GenericAtom;
-import com.enrico.drawing.graphicalAtoms.binding.SingleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.binding.GraphicalSingleBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 
 import java.util.ArrayList;
 
@@ -23,13 +23,14 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     
     private String atomId;
 
-    private GraphicalSingleBindingList SingleBindingList = new GraphicalSingleBindingList();
+    private GenericGraphicalBindingList<SingleGraphicalBinding> SingleBindingList = new GenericGraphicalBindingList<>();
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
                                 int startX, int startY, int endX, int endY, int bindingsRemaining, String imagePath,
                                 String atomId) {
-        super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets, ionizationEnergy, classType);
+        super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets,
+              ionizationEnergy, classType);
 
         this.startX = startX;
         this.endX = endX;
@@ -109,7 +110,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         this.atomId = atomId;
     }
 
-    public void doSingleBinding(SingleGraphicalBinding binding, GraphicalSingleBindingList.Edges edge) {
+    public void doSingleBinding(SingleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
         if (bindingsRemaining > 0)
             bindingsRemaining--;
 
@@ -138,11 +139,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     private void moveSingleBindings() {
         ArrayList<SingleGraphicalBinding> bindings = SingleBindingList.getBindings();
-        ArrayList<GraphicalSingleBindingList.Edges> edges = SingleBindingList.getBindingsEdges();
+        ArrayList<GenericGraphicalBindingList.Edges> edges = SingleBindingList.getBindingsEdges();
         int bindingIndex = 0;
 
         for (SingleGraphicalBinding binding : bindings) {
-            if (edges.get(bindingIndex) == GraphicalSingleBindingList.Edges.Start) {
+            if (edges.get(bindingIndex) == GenericGraphicalBindingList.Edges.Start) {
                 binding.setStartX(getCenterX());
                 binding.setStartY(getCenterY());
             } else {
@@ -195,7 +196,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public void removeSingleBinding(String bindingID) {
         ArrayList<SingleGraphicalBinding> bindings = SingleBindingList.getBindings();
-        ArrayList<GraphicalSingleBindingList.Edges> edgesList = SingleBindingList.getBindingsEdges();
+        ArrayList<GenericGraphicalBindingList.Edges> edgesList = SingleBindingList.getBindingsEdges();
 
         int index = 0;
 
@@ -211,7 +212,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
-    public GraphicalSingleBindingList getSingleBindingList() {
+    public GenericGraphicalBindingList<SingleGraphicalBinding> getSingleBindingList() {
         return SingleBindingList;
     }
 }

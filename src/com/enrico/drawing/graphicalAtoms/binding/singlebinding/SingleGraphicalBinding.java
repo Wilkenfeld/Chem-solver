@@ -1,4 +1,6 @@
-package com.enrico.drawing.graphicalAtoms.binding;
+package com.enrico.drawing.graphicalAtoms.binding.singlebinding;
+
+import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBinding;
 
 public final class SingleGraphicalBinding extends GenericGraphicalBinding {
     private int startX;

@@ -2,8 +2,8 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
-import com.enrico.drawing.graphicalAtoms.binding.SingleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.binding.GraphicalSingleBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
 
@@ -184,8 +184,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                     singleGraphicalBindingList.add(binding);
 
-                    originAtom.doSingleBinding(binding, GraphicalSingleBindingList.Edges.Start);
-                    selectedAtom.doSingleBinding(binding, GraphicalSingleBindingList.Edges.End);
+                    originAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
+                    selectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.End);
 
                     setCursor(Cursor.getDefaultCursor());
                     cursorState = CursorStates.CursorSelecting;
