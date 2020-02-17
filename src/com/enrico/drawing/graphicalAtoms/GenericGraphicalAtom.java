@@ -136,6 +136,9 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         setSelectableCoordinates();
 
         moveSingleBindings();
+
+        if (doubleBindingList != null)
+            moveDoubleBindings();
     }
 
     /*
@@ -158,6 +161,28 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
             } else {
                 binding.setEndX(getCenterX());
                 binding.setEndY(getCenterY());
+            }
+
+            bindingIndex++;
+        }
+    }
+
+    private void moveDoubleBindings() {
+        ArrayList<DoubleGraphicalBinding> bindings = doubleBindingList.getBindings();
+        ArrayList<GenericGraphicalBindingList.Edges> edges = doubleBindingList.getBindingsEdges();
+        int bindingIndex = 0;
+
+        for (DoubleGraphicalBinding binding : bindings) {
+            if (edges.get(bindingIndex) == GenericGraphicalBindingList.Edges.Start) {
+                binding.setStartXL(getCenterX() - 10);
+                binding.setStartXR(getCenterX() + 10);
+                binding.setStartYL(getCenterY());
+                binding.setStartYR(getCenterY());
+            } else {
+                binding.setEndXL(getCenterX() - 10);
+                binding.setEndXR(getCenterX() + 10);
+                binding.setEndYL(getCenterY());
+                binding.setEndYR(getCenterY());
             }
 
             bindingIndex++;

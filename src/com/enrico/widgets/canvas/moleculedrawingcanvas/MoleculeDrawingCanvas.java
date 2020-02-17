@@ -239,6 +239,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                     originAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
                     selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
+                    System.out.println("OK");
 
                     setCursor(Cursor.getDefaultCursor());
                     cursorState = CursorStates.CursorSelecting;
