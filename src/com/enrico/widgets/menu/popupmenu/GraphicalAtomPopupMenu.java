@@ -11,6 +11,7 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
     public GraphicalAtomPopupMenu(@NotNull GenericGraphicalAtom atom, MoleculeDrawingCanvas canvas) {
         super("Atom: " + atom.getAtomId());
 
+        // Primary actions.
         JMenuItem propertiesItem = new JMenuItem("Properties");
         propertiesItem.addActionListener(actionEvent -> {
             GraphicalAtomPropertiesDialog dialog = new GraphicalAtomPropertiesDialog(atom);
@@ -30,5 +31,15 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
         add(propertiesItem);
         add(singleBindingItem);
         add(removeSingleBindingItem);
+
+        // Secondary actions.
+        if (atom.getDoubleBindingList() != null) {
+            JMenuItem doubleBindingItem = new JMenuItem("Double bind to");
+            doubleBindingItem.addActionListener(actionEvent -> {
+                canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorDoubleBinding);
+            });
+
+            add(doubleBindingItem);
+        }
     }
 }

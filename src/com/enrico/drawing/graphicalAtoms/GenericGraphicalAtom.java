@@ -2,6 +2,7 @@ package com.enrico.drawing.graphicalAtoms;
 
 import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     
     private String atomId;
 
-    private GenericGraphicalBindingList<SingleGraphicalBinding> SingleBindingList = new GenericGraphicalBindingList<>();
+    private GenericGraphicalBindingList<SingleGraphicalBinding> singleBindingList = new GenericGraphicalBindingList<>();
+    protected GenericGraphicalBindingList<DoubleGraphicalBinding> doubleBindingList = null;
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
@@ -114,7 +116,14 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         if (bindingsRemaining > 0)
             bindingsRemaining--;
 
-        SingleBindingList.addBinding(binding, edge);
+        singleBindingList.addBinding(binding, edge);
+    }
+    
+    public void doDoubleBinding(DoubleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
+        if (bindingsRemaining > 0)
+            bindingsRemaining -= 2;
+        
+        doubleBindingList.addBinding(binding, edge);
     }
 
     public void move(int startX, int startY) {
@@ -138,8 +147,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     private void moveSingleBindings() {
-        ArrayList<SingleGraphicalBinding> bindings = SingleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edges = SingleBindingList.getBindingsEdges();
+        ArrayList<SingleGraphicalBinding> bindings = singleBindingList.getBindings();
+        ArrayList<GenericGraphicalBindingList.Edges> edges = singleBindingList.getBindingsEdges();
         int bindingIndex = 0;
 
         for (SingleGraphicalBinding binding : bindings) {
@@ -171,7 +180,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     public boolean hasAtomBinding(String bindingID) {
-        ArrayList<SingleGraphicalBinding> bindings = SingleBindingList.getBindings();
+        ArrayList<SingleGraphicalBinding> bindings = singleBindingList.getBindings();
 
         for (SingleGraphicalBinding binding : bindings) {
             if (binding.getID().equals(bindingID)) {
@@ -183,8 +192,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     public boolean hasAtomCommonBindings(GenericGraphicalAtom atom) {
-        ArrayList<SingleGraphicalBinding> thisAtomBindings = SingleBindingList.getBindings();
-        ArrayList<SingleGraphicalBinding> otherAtomBindings = atom.getSingleBindingList().getBindings();
+        ArrayList<SingleGraphicalBinding> thisAtomBindings = singleBindingList.getBindings();
+        ArrayList<SingleGraphicalBinding> otherAtomBindings = atom.getsingleBindingList().getBindings();
 
         for (SingleGraphicalBinding thisBinding : thisAtomBindings)
             for (SingleGraphicalBinding otherBinding : otherAtomBindings)
@@ -195,8 +204,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     public void removeSingleBinding(String bindingID) {
-        ArrayList<SingleGraphicalBinding> bindings = SingleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edgesList = SingleBindingList.getBindingsEdges();
+        ArrayList<SingleGraphicalBinding> bindings = singleBindingList.getBindings();
+        ArrayList<GenericGraphicalBindingList.Edges> edgesList = singleBindingList.getBindingsEdges();
 
         int index = 0;
 
@@ -212,7 +221,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
-    public GenericGraphicalBindingList<SingleGraphicalBinding> getSingleBindingList() {
-        return SingleBindingList;
+    public GenericGraphicalBindingList<SingleGraphicalBinding> getsingleBindingList() {
+        return singleBindingList;
+    }
+    public GenericGraphicalBindingList<DoubleGraphicalBinding> getDoubleBindingList() {
+        return doubleBindingList;
     }
 }

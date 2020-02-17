@@ -3,6 +3,7 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
+import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
@@ -23,11 +24,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor singleBindingCursor;
     private final Cursor movingCursor;
     private final Cursor removeSingleBindingCursor;
+    private final Cursor doubleBindingCursor;
 
     private CursorStates cursorState;
 
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
     private ArrayList<SingleGraphicalBinding> singleGraphicalBindingList = new ArrayList<>();
+    private ArrayList<DoubleGraphicalBinding> doubleGraphicalBindingList = new ArrayList<>();
 
     private GenericGraphicalAtom lastSelectedAtom;
 
@@ -39,6 +42,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         CursorSelecting,            // Normal arrow.
         CursorDrawing,              // Circle.
         CursorSingleBinding,        // Bold circle.
+        CursorDoubleBinding,        // Double bold circle.
         CursorRemoveSingleBinding,  // Removing the single binding.
         CursorMoving                // Normal hand.
     }
@@ -59,6 +63,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_remove_bindings_cursor.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
         removeSingleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_binding_remove_image");
+
+        cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_double_binding.png"));
+        cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
+        doubleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_double_binding_image");
 
         movingCursor = new Cursor(Cursor.MOVE_CURSOR);
 
@@ -86,6 +94,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     public void paint(Graphics g) {
         super.paint(g);
 
+        // Draw single Bindings.
         if (singleGraphicalBindingList.size() > 0) {
             Graphics2D g2d = (Graphics2D) g;
 
@@ -99,6 +108,22 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
         }
 
+        // Draw double bindings.
+        if (doubleGraphicalBindingList.size() > 0) {
+            Graphics2D g2d = (Graphics2D) g;
+
+            g2d.setColor(SingleGraphicalBinding.DEFAULT_COLOR);
+            g2d.setStroke(DoubleGraphicalBinding.DEFAULT_STROKE);
+
+            sanitizeBindings();
+
+            for (DoubleGraphicalBinding binding : doubleGraphicalBindingList) {
+                g.drawLine(binding.getStartXL(), binding.getStartYL(), binding.getEndXL(), binding.getEndYL());
+                g.drawLine(binding.getStartXR(), binding.getStartYR(), binding.getEndXR(), binding.getEndYR());
+            }
+        }
+
+        // Draw atoms.
         BufferedImage image;
         if (graphicalAtomsList.size() > 0) {
             for (GenericGraphicalAtom atom : graphicalAtomsList) {
@@ -193,6 +218,34 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     repaint();
                 break;
 
+                case CursorDoubleBinding:
+                    originAtom = lastSelectedAtom;
+                    selectedAtom = getGenericGraphicalAtom(e.getX(), e.getY());
+
+                    if (selectedAtom == null)
+                        return;
+
+                    DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(originAtom.getCenterX() - 10,
+                                                                                       selectedAtom.getCenterX() - 10,
+                                                                                      originAtom.getCenterY(),
+                                                                                       selectedAtom.getCenterY(),
+
+                                                                                    originAtom.getCenterX() + 10,
+                                                                                     selectedAtom.getCenterX() + 10,
+                                                                                     originAtom.getCenterY(),
+                                                                                     selectedAtom.getCenterY());
+
+                    doubleGraphicalBindingList.add(doubleBinding);
+
+                    originAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
+                    selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
+
+                    setCursor(Cursor.getDefaultCursor());
+                    cursorState = CursorStates.CursorSelecting;
+
+                    repaint();
+                break;
+
                 case CursorRemoveSingleBinding:
                     GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(e.getX(), e.getY());
                     if (secondAtom == null) {
@@ -231,6 +284,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     setCursor(singleBindingCursor);
                 break;
 
+                case CursorDoubleBinding:
+                    setCursor(doubleBindingCursor);
+                break;
+
                 case CursorDrawing:
                     setCursor(drawingCursor);
                 break;
@@ -241,6 +298,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                 case CursorRemoveSingleBinding:
                     setCursor(removeSingleBindingCursor);
+                break;
+
+                case CursorMoving:
                 break;
 
                 default:
@@ -333,11 +393,23 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private void sanitizeBindings() {
         @SuppressWarnings("unchecked")
         ArrayList<SingleGraphicalBinding> singleGraphicalBindingListClone = (ArrayList<SingleGraphicalBinding>) singleGraphicalBindingList.clone();
+
+        @SuppressWarnings("unchecked")
+        ArrayList<DoubleGraphicalBinding> doubleGraphicalBindingListClone = (ArrayList<DoubleGraphicalBinding>) doubleGraphicalBindingList.clone();
         int index = 0;
 
+        // Sanitizing singe bindings.
         for (SingleGraphicalBinding binding : singleGraphicalBindingListClone) {
             if (binding.getNumberOfAtomsBinded() == 0)
                 singleGraphicalBindingList.remove(index);
+
+            index++;
+        }
+
+        index = 0;
+        for (DoubleGraphicalBinding binding : doubleGraphicalBindingListClone) {
+            if (binding.getNumberOfAtomsBinded() == 0)
+                doubleGraphicalBindingList.remove(index);
 
             index++;
         }
