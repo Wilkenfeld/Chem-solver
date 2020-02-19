@@ -27,6 +27,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor movingCursor;
     private final Cursor removeSingleBindingCursor;
     private final Cursor doubleBindingCursor;
+    private final Cursor removeDoubleBindingCursor;
 
     private CursorStates cursorState;
 
@@ -46,6 +47,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         CursorSingleBinding,        // Bold circle.
         CursorDoubleBinding,        // Double bold circle.
         CursorRemoveSingleBinding,  // Removing the single binding.
+        CursorRemoveDoubleBinding,  // Removing the double binding.
         CursorMoving                // Normal hand.
     }
 
@@ -69,6 +71,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_double_binding.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
         doubleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_double_binding_image");
+
+        cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_remove_bindings_cursor.png"));
+        cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
+        removeDoubleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_binding_remove_image");
 
         movingCursor = new Cursor(Cursor.MOVE_CURSOR);
 
@@ -270,6 +276,30 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     repaint();
                 break;
 
+                case CursorRemoveDoubleBinding:
+                    secondAtom = getGenericGraphicalAtom(e.getX(), e.getY());
+                    if (secondAtom == null) {
+                        String msg = "No atom selected";
+                        JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    for (DoubleGraphicalBinding bind : doubleGraphicalBindingList) {
+                        if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
+                            bind.markDeletion();
+                            lastSelectedAtom.removeDoubleBinding(bind.getID());
+
+                            setCursorState(CursorStates.CursorSelecting);
+                            setCursor(Cursor.getDefaultCursor());
+
+                            repaint();
+                        }
+                    }
+                break;
+
+                case CursorMoving:
+                break;
+
                 default:
                     String msg = "Cursor mode: " + cursorState + "(" + cursorState.toString() + ") is not defined.";
                     JOptionPane.showMessageDialog(null, msg, "Unknown cursor mode", JOptionPane.ERROR_MESSAGE);
@@ -300,6 +330,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                 case CursorRemoveSingleBinding:
                     setCursor(removeSingleBindingCursor);
+                break;
+
+                case CursorRemoveDoubleBinding:
+                    setCursor(removeDoubleBindingCursor);
                 break;
 
                 case CursorMoving:

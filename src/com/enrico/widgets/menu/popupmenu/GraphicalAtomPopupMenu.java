@@ -39,7 +39,13 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
                 canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorDoubleBinding);
             });
 
+            JMenuItem removeDoubleBindingItem = new JMenuItem("Remove double binding");
+            removeDoubleBindingItem.addActionListener(actionEvent -> {
+                canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveDoubleBinding);
+            });
+
             add(doubleBindingItem);
+            add(removeDoubleBindingItem);
         }
     }
 }

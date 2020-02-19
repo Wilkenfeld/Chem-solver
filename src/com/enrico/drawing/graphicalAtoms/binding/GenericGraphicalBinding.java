@@ -17,15 +17,15 @@ public abstract class GenericGraphicalBinding {
         idCount++;
     }
 
-    public String getID() {
+    public final String getID() {
         return ID;
     }
 
-    public int getNumberOfAtomsBinded() {
+    public final int getNumberOfAtomsBinded() {
         return atomsBinded;
     }
 
-    public void markDeletion() {
+    public final void markDeletion() {
         atomsBinded = 0;
     }
 }

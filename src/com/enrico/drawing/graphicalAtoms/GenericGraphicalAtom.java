@@ -259,6 +259,24 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    public void removeDoubleBinding(String bindingID) {
+        ArrayList<DoubleGraphicalBinding> bindings = doubleBindingList.getBindings();
+        ArrayList<GenericGraphicalBindingList.Edges> edgesList = doubleBindingList.getBindingsEdges();
+
+        int index = 0;
+
+        for (DoubleGraphicalBinding binding : bindings) {
+            if (binding.getID().equals(bindingID)) {
+                bindings.remove(index);
+                edgesList.remove(index);
+                bindingsRemaining += 2;
+                return;
+            }
+
+            index++;
+        }
+    }
+
     @Nullable
     public DoubleGraphicalBinding getDoubleGraphicalBindingFromID(String ID) {
         for (DoubleGraphicalBinding binding : doubleBindingList.getBindings())
