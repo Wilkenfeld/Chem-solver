@@ -2,7 +2,6 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
-import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
