@@ -1,6 +1,6 @@
 /*
  * Chem solver. A multi-platform chemistry and physics problem solver.
- *  Copyright (C) 2019  Giacalone Enrico
+ *  Copyright (C) 2019 - 2020  Giacalone Enrico
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
