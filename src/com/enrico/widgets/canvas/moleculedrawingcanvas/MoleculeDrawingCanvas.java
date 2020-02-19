@@ -437,7 +437,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         ArrayList<DoubleGraphicalBinding> doubleGraphicalBindingListClone = (ArrayList<DoubleGraphicalBinding>) doubleGraphicalBindingList.clone();
         int index = 0;
 
-        // Sanitizing singe bindings.
+        // Sanitizing single bindings.
         for (SingleGraphicalBinding binding : singleGraphicalBindingListClone) {
             if (binding.getNumberOfAtomsBinded() == 0)
                 singleGraphicalBindingList.remove(index);
@@ -445,6 +445,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             index++;
         }
 
+        // Sanitizing double bindings.
         index = 0;
         for (DoubleGraphicalBinding binding : doubleGraphicalBindingListClone) {
             if (binding.getNumberOfAtomsBinded() == 0)
