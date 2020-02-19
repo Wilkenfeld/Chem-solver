@@ -4,6 +4,8 @@ import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -205,24 +207,35 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     public boolean hasAtomBinding(String bindingID) {
-        ArrayList<SingleGraphicalBinding> bindings = singleBindingList.getBindings();
+        ArrayList<SingleGraphicalBinding> singleBindings = singleBindingList.getBindings();
+        ArrayList<DoubleGraphicalBinding> doubleBindings = doubleBindingList.getBindings();
 
-        for (SingleGraphicalBinding binding : bindings) {
-            if (binding.getID().equals(bindingID)) {
+        for (SingleGraphicalBinding singleBinding : singleBindings)
+            if (singleBinding.getID().equals(bindingID))
                 return true;
-            }
-        }
+
+        for (DoubleGraphicalBinding doubleBinding : doubleBindings)
+            if (doubleBinding.getID().equals(bindingID))
+                return true;
 
         return false;
     }
 
-    public boolean hasAtomCommonBindings(GenericGraphicalAtom atom) {
-        ArrayList<SingleGraphicalBinding> thisAtomBindings = singleBindingList.getBindings();
-        ArrayList<SingleGraphicalBinding> otherAtomBindings = atom.getsingleBindingList().getBindings();
+    public boolean hasAtomCommonBindings(@NotNull GenericGraphicalAtom atom) {
+        ArrayList<SingleGraphicalBinding> thisAtomSingleBindings = singleBindingList.getBindings();
+        ArrayList<SingleGraphicalBinding> otherAtomSingleBindings = atom.getsingleBindingList().getBindings();
 
-        for (SingleGraphicalBinding thisBinding : thisAtomBindings)
-            for (SingleGraphicalBinding otherBinding : otherAtomBindings)
-                if (thisBinding.getID().equals(otherBinding.getID()))
+        ArrayList<DoubleGraphicalBinding> thisAtomDoubleBindings = doubleBindingList.getBindings();
+        ArrayList<DoubleGraphicalBinding> otherAtomDoubleBindings = atom.getDoubleBindingList().getBindings();
+
+        for (SingleGraphicalBinding thisSingleBinding : thisAtomSingleBindings)
+            for (SingleGraphicalBinding otherSingleBinding : otherAtomSingleBindings)
+                if (thisSingleBinding.getID().equals(otherSingleBinding.getID()))
+                    return true;
+
+        for (DoubleGraphicalBinding thisDoubleBinding : thisAtomDoubleBindings)
+            for (DoubleGraphicalBinding otherDoubleBinding : otherAtomDoubleBindings)
+                if (thisDoubleBinding.getID().equals(otherDoubleBinding.getID()))
                     return true;
 
         return false;
@@ -246,9 +259,33 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    @Nullable
+    public DoubleGraphicalBinding getDoubleGraphicalBindingFromID(String ID) {
+        for (DoubleGraphicalBinding binding : doubleBindingList.getBindings())
+            if (binding.getID().equals(ID))
+                return binding;
+
+        return null;
+    }
+
+    @Nullable
+    public GenericGraphicalBindingList.Edges getDoubleGraphicalBindingEdge(String ID) {
+        int index = 0;
+
+        for (DoubleGraphicalBinding binding : doubleBindingList.getBindings()) {
+            if (binding.getID().equals(ID))
+                return doubleBindingList.getEdgeFromIndex(index);
+
+            index++;
+        }
+
+        return null;
+    }
+
     public GenericGraphicalBindingList<SingleGraphicalBinding> getsingleBindingList() {
         return singleBindingList;
     }
+
     public GenericGraphicalBindingList<DoubleGraphicalBinding> getDoubleBindingList() {
         return doubleBindingList;
     }

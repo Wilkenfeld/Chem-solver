@@ -2,11 +2,14 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
+import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -239,7 +242,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                     originAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
                     selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
-                    System.out.println("OK");
 
                     setCursor(Cursor.getDefaultCursor());
                     cursorState = CursorStates.CursorSelecting;
@@ -337,6 +339,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             setCursorState(CursorStates.CursorSelecting);
             setCursor(Cursor.getDefaultCursor());
 
+            if (lastSelectedAtom.getDoubleBindingList() != null)
+                checkDoubleBindings(lastSelectedAtom);
+
             lastSelectedAtom = null;
 
             repaint();
@@ -414,8 +419,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             index++;
         }
+
+        for (GenericGraphicalAtom atom : graphicalAtomsList)
+            if (atom.getDoubleBindingList() != null)
+                checkDoubleBindings(atom);
     }
 
+    @Nullable
     private GenericGraphicalAtom getGenericGraphicalAtom(int x, int y) {
         final int errorMargin = 40;
 
@@ -427,5 +437,79 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
 
         return null;
+    }
+
+    private void checkDoubleBindings(@NotNull GenericGraphicalAtom atom) {
+        GenericGraphicalAtom bindedAtom = null;
+
+        DoubleGraphicalBinding atomBinding = null;
+        DoubleGraphicalBinding bindedAtomBinding = null;
+
+        for (GenericGraphicalAtom graphicalAtom : graphicalAtomsList) {
+            for (DoubleGraphicalBinding binding : atom.getDoubleBindingList().getBindings()) {
+                if (graphicalAtom == atom)
+                    continue;
+
+                if (graphicalAtom.hasAtomBinding(binding.getID())) {
+                    bindedAtom = graphicalAtom;
+                    atomBinding = atom.getDoubleGraphicalBindingFromID(binding.getID());
+                    bindedAtomBinding = bindedAtom.getDoubleGraphicalBindingFromID(binding.getID());
+                    break;
+                }
+            }
+        }
+
+        if (bindedAtom == null || atomBinding == null || bindedAtomBinding == null)
+            return;
+
+        if (bindedAtom.getCenterX() <= bindedAtom.getCenterY()) {
+            if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
+                atomBinding.setStartYL(atom.getCenterX() + 10);
+                atomBinding.setStartYR(atom.getCenterX() - 10);
+                atomBinding.setStartXL(atom.getCenterY() + 10);
+                atomBinding.setStartXR(atom.getCenterY() - 10);
+
+                atomBinding.setEndYL(bindedAtom.getCenterY() + 10);
+                atomBinding.setEndYR(bindedAtom.getCenterY() - 10);
+                atomBinding.setEndXL(bindedAtom.getCenterX() + 10);
+                atomBinding.setEndXR(bindedAtom.getCenterX() - 10);
+            } else {
+                atomBinding.setStartYL(bindedAtom.getCenterY() + 10);
+                atomBinding.setStartYR(bindedAtom.getCenterY() - 10);
+                atomBinding.setStartXL(bindedAtom.getCenterX() + 10);
+                atomBinding.setStartXR(bindedAtom.getCenterX() - 10);
+
+                atomBinding.setEndYL(atom.getCenterY() + 10);
+                atomBinding.setEndYR(atom.getCenterY() - 10);
+                atomBinding.setEndXL(atom.getCenterX() + 10);
+                atomBinding.setEndXR(atom.getCenterX() - 10);
+            }
+        } else {
+            System.out.println("NO");
+            if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
+                atomBinding.setStartYL(atom.getCenterY() - 10);
+                atomBinding.setStartYR(atom.getCenterY() + 10);
+                atomBinding.setStartXL(atom.getCenterX() - 10);
+                atomBinding.setStartXR(atom.getCenterX() + 10);
+
+                atomBinding.setEndYL(bindedAtom.getCenterY() - 10);
+                atomBinding.setEndYR(bindedAtom.getCenterY() + 10);
+                atomBinding.setEndXL(bindedAtom.getCenterX() - 10);
+                atomBinding.setEndXR(bindedAtom.getCenterX() + 10);
+            } else {
+                atomBinding.setStartYL(bindedAtom.getCenterY() - 10);
+                atomBinding.setStartYR(bindedAtom.getCenterY() + 10);
+                atomBinding.setStartXL(bindedAtom.getCenterX() - 10);
+                atomBinding.setStartXR(bindedAtom.getCenterX() + 10);
+
+                atomBinding.setEndYL(atom.getCenterY() - 10);
+                atomBinding.setEndYR(atom.getCenterY() + 10);
+                atomBinding.setEndXL(atom.getCenterX() - 10);
+                atomBinding.setEndXR(atom.getCenterX() + 10);
+            }
+        }
+
+        System.out.println("CENTRAL: X: " + atom.getCenterX() + " Y: " + atom.getCenterY());
+        System.out.println("BINDED: X: " + bindedAtom.getCenterX() + " Y: " + bindedAtom.getCenterY());
     }
 }
