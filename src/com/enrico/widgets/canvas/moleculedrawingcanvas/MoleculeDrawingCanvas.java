@@ -485,7 +485,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 atomBinding.setEndXR(atom.getCenterX() - 10);
             }
         } else {
-            System.out.println("NO");
             if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
                 atomBinding.setStartYL(atom.getCenterY() - 10);
                 atomBinding.setStartYR(atom.getCenterY() + 10);
@@ -508,8 +507,5 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 atomBinding.setEndXR(atom.getCenterX() + 10);
             }
         }
-
-        System.out.println("CENTRAL: X: " + atom.getCenterX() + " Y: " + atom.getCenterY());
-        System.out.println("BINDED: X: " + bindedAtom.getCenterX() + " Y: " + bindedAtom.getCenterY());
     }
 }
