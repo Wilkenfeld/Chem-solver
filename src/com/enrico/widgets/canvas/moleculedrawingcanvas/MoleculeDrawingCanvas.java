@@ -184,6 +184,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         private void selectAtomEvent(int x, int y) {
             GenericGraphicalAtom atom = getGenericGraphicalAtom(x, y);
+            if (atom == null)
+                return;
+            
             generatePopupMenuForAtom(atom);
         }
 
@@ -466,8 +469,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         atomsInserted++;
     }
 
-    private void generatePopupMenuForAtom(GenericGraphicalAtom atom) {
+    private void generatePopupMenuForAtom(@NotNull GenericGraphicalAtom atom) {
         GraphicalAtomPopupMenu popupMenu = new GraphicalAtomPopupMenu(atom, this);
+        if (atom == null)
+            return;
+
         popupMenu.show(this, atom.getStartX(), atom.getStartY());
     }
 
