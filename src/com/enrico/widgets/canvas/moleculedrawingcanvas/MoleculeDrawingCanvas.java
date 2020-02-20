@@ -186,7 +186,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             GenericGraphicalAtom atom = getGenericGraphicalAtom(x, y);
             if (atom == null)
                 return;
-            
+
             generatePopupMenuForAtom(atom);
         }
 
@@ -267,6 +267,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            
+            if (secondAtom == lastSelectedAtom) {
+                String msg = "You can't unbind an atom from itself.";
+                JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             for (SingleGraphicalBinding bind : singleGraphicalBindingList) {
                 if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
@@ -286,6 +292,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
             if (secondAtom == null) {
                 String msg = "No atom selected";
+                JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (secondAtom == lastSelectedAtom) {
+                String msg = "You can't unbind an atom from itself.";
                 JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
