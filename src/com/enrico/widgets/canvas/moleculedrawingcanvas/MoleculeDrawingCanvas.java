@@ -199,6 +199,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
+            if (selectedAtom == lastSelectedAtom) {
+                String msg = "You can't bind an atom to itself.";
+                JOptionPane.showMessageDialog(null, msg, "NO valid atom selected", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             // Checking if these two atoms have already been binded.
             if (lastSelectedAtom.hasAtomCommonBindings(selectedAtom)) {
                 String msg = "These two atoms have already been binded.";
@@ -236,8 +242,30 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         private void doubleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
-            if (selectedAtom == null)
+            if (selectedAtom == null) {
+                String msg = "No atom was selected for binding.";
+                JOptionPane.showMessageDialog(null, msg, "No atom selected", JOptionPane.ERROR_MESSAGE);
                 return;
+            }
+
+            if (selectedAtom == lastSelectedAtom) {
+                String msg = "You can't bind an atom to itself.";
+                JOptionPane.showMessageDialog(null, msg, "NO valid atom selected", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if it's still possible to make bindings.
+            if (lastSelectedAtom.getBindingsRemaining() == 0) {
+                String msg = "Maximum number of bindings for atom " + lastSelectedAtom.getAtomId() + " has been reached.";
+                JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (selectedAtom.getBindingsRemaining() == 0) {
+                String msg = "Maximum number of bindings for the selected atom has been reached.";
+                JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(lastSelectedAtom.getCenterX() - 10,
                     selectedAtom.getCenterX() - 10,
@@ -267,7 +295,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
+
             if (secondAtom == lastSelectedAtom) {
                 String msg = "You can't unbind an atom from itself.";
                 JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
