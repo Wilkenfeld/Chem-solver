@@ -188,7 +188,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
 
         private void singleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
-            GenericGraphicalAtom originAtom = lastSelectedAtom;
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
             if (selectedAtom == null) {
@@ -205,8 +204,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             // Check if it's still possible to make bindings.
-            if (originAtom.getBindingsRemaining() == 0) {
-                String msg = "Maximum number of bindings for atom " + originAtom.getAtomId() + " has been reached.";
+            if (lastSelectedAtom.getBindingsRemaining() == 0) {
+                String msg = "Maximum number of bindings for atom " + lastSelectedAtom.getAtomId() + " has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -222,7 +221,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             singleGraphicalBindingList.add(binding);
 
-            originAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
+            lastSelectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
             selectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.End);
 
             setCursor(Cursor.getDefaultCursor());
@@ -232,25 +231,24 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
 
         private void doubleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
-            GenericGraphicalAtom originAtom = lastSelectedAtom;
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
             if (selectedAtom == null)
                 return;
 
-            DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(originAtom.getCenterX() - 10,
+            DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(lastSelectedAtom.getCenterX() - 10,
                     selectedAtom.getCenterX() - 10,
-                    originAtom.getCenterY(),
+                    lastSelectedAtom.getCenterY(),
                     selectedAtom.getCenterY(),
 
-                    originAtom.getCenterX() + 10,
+                    lastSelectedAtom.getCenterX() + 10,
                     selectedAtom.getCenterX() + 10,
-                    originAtom.getCenterY(),
+                    lastSelectedAtom.getCenterY(),
                     selectedAtom.getCenterY());
 
             doubleGraphicalBindingList.add(doubleBinding);
 
-            originAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
+            lastSelectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
             selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
 
             setCursor(Cursor.getDefaultCursor());
@@ -281,7 +279,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
-        private void doubleBindingRemoveEvent(GenericGraphicalAtom genericGraphicalAtom, int x, int y) {
+        private void doubleBindingRemoveEvent(int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
             if (secondAtom == null) {
                 String msg = "No atom selected";
@@ -321,8 +319,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             if (lastSelectedAtom.getDoubleBindingList() != null)
                 checkDoubleBindings(lastSelectedAtom);
-
-            lastSelectedAtom = null;
 
             repaint();
         }
@@ -367,10 +363,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 break;
 
                 case CursorRemoveDoubleBinding:
-                    doubleBindingRemoveEvent(lastSelectedAtom, e.getX(), e.getY());
+                    doubleBindingRemoveEvent(e.getX(), e.getY());
                 break;
 
-                case CursorMoving:;
+                case CursorMoving:
                 break;
 
                 default:
@@ -408,7 +404,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     setCursor(removeDoubleBindingCursor);
                 break;
 
-                case CursorMoving:;
+                case CursorMoving:
                 break;
 
                 default:
