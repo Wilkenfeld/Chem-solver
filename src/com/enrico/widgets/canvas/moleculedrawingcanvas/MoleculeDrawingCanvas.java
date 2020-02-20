@@ -177,6 +177,161 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     }
 
     private final class MouseListenerImpl extends MouseAdapter {
+        private void addAtomEvent(int x, int y) {
+            addNewAtom(x, y);
+            repaint();
+        }
+
+        private void selectAtomEvent(int x, int y) {
+            GenericGraphicalAtom atom = getGenericGraphicalAtom(x, y);
+            generatePopupMenuForAtom(atom);
+        }
+
+        private void singleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+            GenericGraphicalAtom originAtom = lastSelectedAtom;
+            GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
+
+            if (selectedAtom == null) {
+                String msg = "No atom was selected for binding.";
+                JOptionPane.showMessageDialog(null, msg, "No atom selected", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Checking if these two atoms have already been binded.
+            if (lastSelectedAtom.hasAtomCommonBindings(selectedAtom)) {
+                String msg = "These two atoms have already been binded.";
+                JOptionPane.showMessageDialog(null, msg, "Atoms already binded", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if it's still possible to make bindings.
+            if (originAtom.getBindingsRemaining() == 0) {
+                String msg = "Maximum number of bindings for atom " + originAtom.getAtomId() + " has been reached.";
+                JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (selectedAtom.getBindingsRemaining() == 0) {
+                String msg = "Maximum number of bindings for the selected atom has been reached.";
+                JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            SingleGraphicalBinding binding = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
+                    selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
+
+            singleGraphicalBindingList.add(binding);
+
+            originAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
+            selectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.End);
+
+            setCursor(Cursor.getDefaultCursor());
+            cursorState = CursorStates.CursorSelecting;
+
+            repaint();
+        }
+
+        private void doubleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+            GenericGraphicalAtom originAtom = lastSelectedAtom;
+            GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
+
+            if (selectedAtom == null)
+                return;
+
+            DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(originAtom.getCenterX() - 10,
+                    selectedAtom.getCenterX() - 10,
+                    originAtom.getCenterY(),
+                    selectedAtom.getCenterY(),
+
+                    originAtom.getCenterX() + 10,
+                    selectedAtom.getCenterX() + 10,
+                    originAtom.getCenterY(),
+                    selectedAtom.getCenterY());
+
+            doubleGraphicalBindingList.add(doubleBinding);
+
+            originAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
+            selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
+
+            setCursor(Cursor.getDefaultCursor());
+            cursorState = CursorStates.CursorSelecting;
+
+            repaint();
+        }
+
+        private void singleBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+            GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
+            if (secondAtom == null) {
+                String msg = "No atom selected";
+                JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            for (SingleGraphicalBinding bind : singleGraphicalBindingList) {
+                if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
+                    bind.markDeletion();
+                    lastSelectedAtom.removeSingleBinding(bind.getID());
+                    secondAtom.hasAtomBinding(bind.getID());
+                }
+            }
+
+            setCursorState(CursorStates.CursorSelecting);
+            setCursor(Cursor.getDefaultCursor());
+
+            repaint();
+        }
+
+        private void doubleBindingRemoveEvent(GenericGraphicalAtom genericGraphicalAtom, int x, int y) {
+            GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
+            if (secondAtom == null) {
+                String msg = "No atom selected";
+                JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            for (DoubleGraphicalBinding bind : doubleGraphicalBindingList) {
+                if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
+                    bind.markDeletion();
+                    lastSelectedAtom.removeDoubleBinding(bind.getID());
+
+                    setCursorState(CursorStates.CursorSelecting);
+                    setCursor(Cursor.getDefaultCursor());
+
+                    repaint();
+                }
+            }
+        }
+
+        private void mouseReleasedEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+            if (lastSelectedAtom == null || cursorState != CursorStates.CursorMoving)
+                return;
+
+            // Not overlapping two atoms when moving, so we check if in the released position there's an atom.
+            GenericGraphicalAtom releasedPositionAtom = getGenericGraphicalAtom(x, y);
+            if (releasedPositionAtom != null && releasedPositionAtom != lastSelectedAtom) {
+                setCursorState(CursorStates.CursorSelecting);
+                setCursor(Cursor.getDefaultCursor());
+                return;
+            }
+
+            lastSelectedAtom.move(x, y);
+
+            setCursorState(CursorStates.CursorSelecting);
+            setCursor(Cursor.getDefaultCursor());
+
+            if (lastSelectedAtom.getDoubleBindingList() != null)
+                checkDoubleBindings(lastSelectedAtom);
+
+            lastSelectedAtom = null;
+
+            repaint();
+        }
+
+        private void undefinedCursorModeEvent() {
+            String msg = "Cursor mode: " + cursorState + "(" + cursorState.toString() + ") is not defined.";
+            JOptionPane.showMessageDialog(null, msg, "Unknown cursor mode", JOptionPane.ERROR_MESSAGE);
+        }
+
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
@@ -192,136 +347,34 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             switch (cursorState) {
                 case CursorDrawing:
-                    addNewAtom(e.getX(), e.getY());
-                    repaint();
+                    addAtomEvent(e.getX(), e.getY());
                 break;
 
                 case CursorSelecting:
-                    GenericGraphicalAtom atom = getGenericGraphicalAtom(e.getX(), e.getY());
-                    generatePopupMenuForAtom(atom);
+                    selectAtomEvent(e.getX(), e.getY());
                 break;
 
                 case CursorSingleBinding:
-                    GenericGraphicalAtom originAtom = lastSelectedAtom;
-                    GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(e.getX(), e.getY());
-
-                    if (selectedAtom == null) {
-                        String msg = "No atom was selected for binding.";
-                        JOptionPane.showMessageDialog(null, msg, "No atom selected", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    // Checking if these two atoms have already been binded.
-                    if (lastSelectedAtom.hasAtomCommonBindings(selectedAtom)) {
-                        String msg = "These two atoms have already been binded.";
-                        JOptionPane.showMessageDialog(null, msg, "Atoms already binded", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    // Check if it's still possible to make bindings.
-                    if (originAtom.getBindingsRemaining() == 0) {
-                        String msg = "Maximum number of bindings for atom " + originAtom.getAtomId() + " has been reached.";
-                        JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    if (selectedAtom.getBindingsRemaining() == 0) {
-                        String msg = "Maximum number of bindings for the selected atom has been reached.";
-                        JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    SingleGraphicalBinding binding = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
-                                                                    selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
-
-                    singleGraphicalBindingList.add(binding);
-
-                    originAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
-                    selectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.End);
-
-                    setCursor(Cursor.getDefaultCursor());
-                    cursorState = CursorStates.CursorSelecting;
-
-                    repaint();
+                    singleBindingEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
                 case CursorDoubleBinding:
-                    originAtom = lastSelectedAtom;
-                    selectedAtom = getGenericGraphicalAtom(e.getX(), e.getY());
-
-                    if (selectedAtom == null)
-                        return;
-
-                    DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(originAtom.getCenterX() - 10,
-                                                                                       selectedAtom.getCenterX() - 10,
-                                                                                      originAtom.getCenterY(),
-                                                                                       selectedAtom.getCenterY(),
-
-                                                                                    originAtom.getCenterX() + 10,
-                                                                                     selectedAtom.getCenterX() + 10,
-                                                                                     originAtom.getCenterY(),
-                                                                                     selectedAtom.getCenterY());
-
-                    doubleGraphicalBindingList.add(doubleBinding);
-
-                    originAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
-                    selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
-
-                    setCursor(Cursor.getDefaultCursor());
-                    cursorState = CursorStates.CursorSelecting;
-
-                    repaint();
+                    doubleBindingEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
                 case CursorRemoveSingleBinding:
-                    GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(e.getX(), e.getY());
-                    if (secondAtom == null) {
-                        String msg = "No atom selected";
-                        JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    for (SingleGraphicalBinding bind : singleGraphicalBindingList) {
-                        if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
-                            bind.markDeletion();
-                            lastSelectedAtom.removeSingleBinding(bind.getID());
-                            secondAtom.hasAtomBinding(bind.getID());
-                        }
-                    }
-
-                    setCursorState(CursorStates.CursorSelecting);
-                    setCursor(Cursor.getDefaultCursor());
-
-                    repaint();
+                    singleBindingRemoveEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
                 case CursorRemoveDoubleBinding:
-                    secondAtom = getGenericGraphicalAtom(e.getX(), e.getY());
-                    if (secondAtom == null) {
-                        String msg = "No atom selected";
-                        JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    for (DoubleGraphicalBinding bind : doubleGraphicalBindingList) {
-                        if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
-                            bind.markDeletion();
-                            lastSelectedAtom.removeDoubleBinding(bind.getID());
-
-                            setCursorState(CursorStates.CursorSelecting);
-                            setCursor(Cursor.getDefaultCursor());
-
-                            repaint();
-                        }
-                    }
+                    doubleBindingRemoveEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
-                case CursorMoving:
+                case CursorMoving:;
                 break;
 
                 default:
-                    String msg = "Cursor mode: " + cursorState + "(" + cursorState.toString() + ") is not defined.";
-                    JOptionPane.showMessageDialog(null, msg, "Unknown cursor mode", JOptionPane.ERROR_MESSAGE);
+                    undefinedCursorModeEvent();
                 break;
             }
         }
@@ -355,12 +408,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     setCursor(removeDoubleBindingCursor);
                 break;
 
-                case CursorMoving:
+                case CursorMoving:;
                 break;
 
                 default:
-                    String msg = "Cursor mode: " + cursorState + "(" + cursorState.toString() + ") is not defined.";
-                    JOptionPane.showMessageDialog(null, msg, "Unknown cursor mode", JOptionPane.ERROR_MESSAGE);
+                    undefinedCursorModeEvent();
                 break;
             }
         }
@@ -374,29 +426,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         @Override
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
-
-            if (lastSelectedAtom == null || cursorState != CursorStates.CursorMoving)
-                return;
-
-            // Not overlapping two atoms when moving, so we check if in the released position there's an atom.
-            GenericGraphicalAtom releasedPositionAtom = getGenericGraphicalAtom(e.getX(), e.getY());
-            if (releasedPositionAtom != null && releasedPositionAtom != lastSelectedAtom) {
-                setCursorState(CursorStates.CursorSelecting);
-                setCursor(Cursor.getDefaultCursor());
-                return;
-            }
-
-            lastSelectedAtom.move(e.getX(), e.getY());
-
-            setCursorState(CursorStates.CursorSelecting);
-            setCursor(Cursor.getDefaultCursor());
-
-            if (lastSelectedAtom.getDoubleBindingList() != null)
-                checkDoubleBindings(lastSelectedAtom);
-
-            lastSelectedAtom = null;
-
-            repaint();
+            mouseReleasedEvent(lastSelectedAtom, e.getX(), e.getY());
         }
     }
 
