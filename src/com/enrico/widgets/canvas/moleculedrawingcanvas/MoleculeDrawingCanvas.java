@@ -638,15 +638,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 atomBinding.setEndXL(bindedAtom.getCenterX() - 10);
                 atomBinding.setEndXR(bindedAtom.getCenterX() + 10);
             } else {
-                atomBinding.setStartYL(bindedAtom.getCenterY() - 10);
-                atomBinding.setStartYR(bindedAtom.getCenterY() + 10);
-                atomBinding.setStartXL(bindedAtom.getCenterX() - 10);
-                atomBinding.setStartXR(bindedAtom.getCenterX() + 10);
+                atomBinding.setStartYL(bindedAtom.getCenterY() + 10);
+                atomBinding.setStartYR(bindedAtom.getCenterY() - 10);
+                atomBinding.setStartXL(bindedAtom.getCenterX() + 10);
+                atomBinding.setStartXR(bindedAtom.getCenterX() - 10);
 
-                atomBinding.setEndYL(atom.getCenterY() - 10);
-                atomBinding.setEndYR(atom.getCenterY() + 10);
-                atomBinding.setEndXL(atom.getCenterX() - 10);
-                atomBinding.setEndXR(atom.getCenterX() + 10);
+                atomBinding.setEndYL(atom.getCenterY() + 10);
+                atomBinding.setEndYR(atom.getCenterY() - 10);
+                atomBinding.setEndXL(atom.getCenterX() + 10);
+                atomBinding.setEndXR(atom.getCenterX() - 10);
             }
         }
     }
