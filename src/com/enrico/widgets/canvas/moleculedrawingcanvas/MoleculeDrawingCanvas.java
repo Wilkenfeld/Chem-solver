@@ -602,7 +602,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         if (bindedAtom == null || atomBinding == null || bindedAtomBinding == null)
             return;
 
-        if (bindedAtom.getCenterX() - bindedAtom.getCenterY() < 100) {
+        if (bindedAtom.getCenterX() - bindedAtom.getCenterY() > 50) {
             if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
                 atomBinding.setStartYL(atom.getCenterX() + 10);
                 atomBinding.setStartYR(atom.getCenterX() - 10);
