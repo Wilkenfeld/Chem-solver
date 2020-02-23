@@ -517,6 +517,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             return;
         }
 
+        GenericGraphicalAtom overlappedAtom = getGenericGraphicalAtom(x, y);
+        if (overlappedAtom != null)
+            return;
+
         switch (currentAtomSymbol) {
             case GraphicalCarbonAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
