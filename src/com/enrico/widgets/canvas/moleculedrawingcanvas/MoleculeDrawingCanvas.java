@@ -604,7 +604,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         if (bindedAtom == null || atomBinding == null || bindedAtomBinding == null)
             return;
 
-        if (bindedAtom.getCenterX() - bindedAtom.getCenterY() > 50) {
+        if (atom.getCenterY() < 1) {
             if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
                 atomBinding.setStartYL(atom.getCenterX() + 10);
                 atomBinding.setStartYR(atom.getCenterX() - 10);
@@ -627,27 +627,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 atomBinding.setEndXR(atom.getCenterX() - 10);
             }
         } else {
-            if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
-                atomBinding.setStartYL(atom.getCenterY() - 10);
-                atomBinding.setStartYR(atom.getCenterY() + 10);
-                atomBinding.setStartXL(atom.getCenterX() - 10);
-                atomBinding.setStartXR(atom.getCenterX() + 10);
+            atomBinding.setStartYL(atom.getCenterY() - 10);
+            atomBinding.setStartYR(atom.getCenterY() + 10);
+            atomBinding.setStartXL(atom.getCenterX() - 10);
+            atomBinding.setStartXR(atom.getCenterX() + 10);
 
-                atomBinding.setEndYL(bindedAtom.getCenterY() - 10);
-                atomBinding.setEndYR(bindedAtom.getCenterY() + 10);
-                atomBinding.setEndXL(bindedAtom.getCenterX() - 10);
-                atomBinding.setEndXR(bindedAtom.getCenterX() + 10);
-            } else {
-                atomBinding.setStartYL(bindedAtom.getCenterY() + 10);
-                atomBinding.setStartYR(bindedAtom.getCenterY() - 10);
-                atomBinding.setStartXL(bindedAtom.getCenterX() + 10);
-                atomBinding.setStartXR(bindedAtom.getCenterX() - 10);
-
-                atomBinding.setEndYL(atom.getCenterY() + 10);
-                atomBinding.setEndYR(atom.getCenterY() - 10);
-                atomBinding.setEndXL(atom.getCenterX() + 10);
-                atomBinding.setEndXR(atom.getCenterX() - 10);
-            }
+            atomBinding.setEndYL(bindedAtom.getCenterY() - 10);
+            atomBinding.setEndYR(bindedAtom.getCenterY() + 10);
+            atomBinding.setEndXL(bindedAtom.getCenterX() - 10);
+            atomBinding.setEndXR(bindedAtom.getCenterX() + 10);
         }
     }
 }
