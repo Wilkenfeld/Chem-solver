@@ -242,7 +242,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public boolean hasAtomCommonBindings(@NotNull GenericGraphicalAtom atom) {
         ArrayList<SingleGraphicalBinding> thisAtomSingleBindings = singleBindingList.getBindings();
-        ArrayList<SingleGraphicalBinding> otherAtomSingleBindings = atom.getsingleBindingList().getBindings();
+        ArrayList<SingleGraphicalBinding> otherAtomSingleBindings = atom.getSingleBindingList().getBindings();
 
         ArrayList<DoubleGraphicalBinding> thisAtomDoubleBindings = doubleBindingList.getBindings();
         ArrayList<DoubleGraphicalBinding> otherAtomDoubleBindings = atom.getDoubleBindingList().getBindings();
@@ -319,7 +319,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return null;
     }
 
-    public GenericGraphicalBindingList<SingleGraphicalBinding> getsingleBindingList() {
+    public GenericGraphicalBindingList<SingleGraphicalBinding> getSingleBindingList() {
         return singleBindingList;
     }
 
