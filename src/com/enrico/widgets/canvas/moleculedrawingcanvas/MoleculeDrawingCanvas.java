@@ -39,6 +39,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor drawingCursor;
@@ -302,13 +303,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            for (SingleGraphicalBinding bind : singleGraphicalBindingList) {
-                if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
-                    bind.markDeletion();
-                    lastSelectedAtom.removeSingleBinding(bind.getID());
-                    secondAtom.hasAtomBinding(bind.getID());
-                }
-            }
+            Stream<SingleGraphicalBinding> graphicalBindingStream = singleGraphicalBindingList.stream();
+            SingleGraphicalBinding binding = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
+                                                                   .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                                                                   .findFirst().orElse(null);
+
+            if (binding == null)
+                return;
+
+            binding.markDeletion();
+            lastSelectedAtom.removeSingleBinding(binding.getID());
+            secondAtom.hasAtomBinding(binding.getID());
 
             setCursorState(CursorStates.CursorSelecting);
             setCursor(Cursor.getDefaultCursor());
@@ -330,6 +335,23 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
+            Stream<DoubleGraphicalBinding> graphicalBindingStream = doubleGraphicalBindingList.stream();
+            DoubleGraphicalBinding binding = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
+                                                                   .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                                                                   .findFirst().orElse(null);
+            if (binding == null)
+                return;
+
+            binding.markDeletion();
+            lastSelectedAtom.removeDoubleBinding(binding.getID());
+
+            setCursorState(CursorStates.CursorSelecting);
+            setCursor(Cursor.getDefaultCursor());
+
+            repaint();
+
+
+            /*
             for (DoubleGraphicalBinding bind : doubleGraphicalBindingList) {
                 if (lastSelectedAtom.hasAtomBinding(bind.getID()) && secondAtom.hasAtomBinding(bind.getID())) {
                     bind.markDeletion();
@@ -340,7 +362,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
                     repaint();
                 }
-            }
+            }*/
         }
 
         private void mouseReleasedEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
@@ -375,14 +397,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
 
-            for (GenericGraphicalAtom atom : graphicalAtomsList) {
-                if ((e.getX() >= atom.getSelectableStartX() && e.getX() <= atom.getSelectableEndX()) &&
-                        (e.getY() >= atom.getSelectableStartY() && e.getY() <= atom.getSelectableEndY())) {
-                    if (SwingUtilities.isRightMouseButton(e)) {
-                        lastSelectedAtom = atom;
-                    }
-                }
-            }
+            GenericGraphicalAtom atom = getGenericGraphicalAtom(e.getX(), e.getY());
+            if (SwingUtilities.isRightMouseButton(e))
+                lastSelectedAtom = atom;
 
             switch (cursorState) {
                 case CursorDrawing:
@@ -551,17 +568,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     }
 
     @Nullable
-    private GenericGraphicalAtom getGenericGraphicalAtom(int x, int y) {
+    private GenericGraphicalAtom getGenericGraphicalAtom(final int x, final int y) {
         final int errorMargin = 40;
 
-        for (GenericGraphicalAtom atom : graphicalAtomsList) {
-            if ((x >= atom.getStartX() - errorMargin && x <= atom.getEndX() + errorMargin) &&
-                (y >= atom.getStartY() - errorMargin && y <= atom.getEndY() + errorMargin)) {
-                return atom;
-            }
-        }
-
-        return null;
+        Stream<GenericGraphicalAtom> atomStream = graphicalAtomsList.stream();
+        return atomStream.filter(e -> x >= e.getStartX() - errorMargin)
+                                              .filter(e -> x <= e.getEndX() + errorMargin)
+                                              .filter(e -> y >= e.getStartY() - errorMargin)
+                                              .filter(e -> y <= e.getStartY() + errorMargin)
+                                              .findFirst().orElse(null);
     }
 
     private void checkDoubleBindings(@NotNull GenericGraphicalAtom atom) {
