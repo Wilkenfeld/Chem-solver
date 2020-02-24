@@ -136,21 +136,21 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     public void doSingleBinding(SingleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
-        if (bindingsRemaining > 0)
+        if (bindingsRemaining - 1 >= 0)
             bindingsRemaining--;
 
         singleBindingList.addBinding(binding, edge);
     }
     
     public void doDoubleBinding(DoubleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
-        if (bindingsRemaining > 0 && bindingsRemaining - 2 >= 0)
+        if (bindingsRemaining - 2 >= 0)
             bindingsRemaining -= 2;
         
         doubleBindingList.addBinding(binding, edge);
     }
 
     public void doTripleBinding(TripleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
-        if (bindingsRemaining > 0 && bindingsRemaining - 3 >= 0)
+        if (bindingsRemaining - 3 >= 0)
             bindingsRemaining -= 3;
 
         tripleBindingList.addBinding(binding, edge);

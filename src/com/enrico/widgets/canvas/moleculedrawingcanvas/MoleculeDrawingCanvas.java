@@ -245,13 +245,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             // Check if it's still possible to make bindings.
-            if (lastSelectedAtom.getBindingsRemaining() == 0) {
+            if (lastSelectedAtom.getBindingsRemaining() - 1 < 0) {
                 String msg = "Maximum number of bindings for atom " + lastSelectedAtom.getAtomId() + " has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            if (selectedAtom.getBindingsRemaining() == 0) {
+            if (selectedAtom.getBindingsRemaining() - 1 < 0) {
                 String msg = "Maximum number of bindings for the selected atom has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -287,13 +287,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             // Check if it's still possible to make bindings.
-            if (lastSelectedAtom.getBindingsRemaining() == 0) {
+            if (lastSelectedAtom.getBindingsRemaining() - 2 < 0) {
                 String msg = "Maximum number of bindings for atom " + lastSelectedAtom.getAtomId() + " has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            if (selectedAtom.getBindingsRemaining() == 0) {
+            if (selectedAtom.getBindingsRemaining() - 2 < 0) {
                 String msg = "Maximum number of bindings for the selected atom has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -336,13 +336,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             // Check if it's still possible to make bindings.
-            if (lastSelectedAtom.getBindingsRemaining() == 0) {
+            if (lastSelectedAtom.getBindingsRemaining() - 3 < 0) {
                 String msg = "Maximum number of bindings for atom " + lastSelectedAtom.getAtomId() + " has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            if (selectedAtom.getBindingsRemaining() == 0) {
+            if (selectedAtom.getBindingsRemaining() - 3 < 0) {
                 String msg = "Maximum number of bindings for the selected atom has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return;
