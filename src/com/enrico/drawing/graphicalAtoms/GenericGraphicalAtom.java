@@ -23,6 +23,7 @@ import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.binding.triplebinding.TripleGraphicalBinding;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,6 +48,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     private GenericGraphicalBindingList<SingleGraphicalBinding> singleBindingList = new GenericGraphicalBindingList<>();
     protected GenericGraphicalBindingList<DoubleGraphicalBinding> doubleBindingList = null;
+    protected GenericGraphicalBindingList<TripleGraphicalBinding> tripleBindingList = null;
 
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
@@ -141,10 +143,17 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
     
     public void doDoubleBinding(DoubleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
-        if (bindingsRemaining > 0)
+        if (bindingsRemaining > 0 && bindingsRemaining - 2 >= 0)
             bindingsRemaining -= 2;
         
         doubleBindingList.addBinding(binding, edge);
+    }
+
+    public void doTripleBinding(TripleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
+        if (bindingsRemaining > 0 && bindingsRemaining - 3 >= 0)
+            bindingsRemaining -= 3;
+
+        tripleBindingList.addBinding(binding, edge);
     }
 
     public void move(int startX, int startY) {
@@ -160,6 +169,9 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
         if (doubleBindingList != null)
             moveDoubleBindings();
+
+        if (tripleBindingList != null)
+            moveTripleBindings();
     }
 
     /*
@@ -210,6 +222,30 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    private void moveTripleBindings() {
+        ArrayList<TripleGraphicalBinding> bindings = tripleBindingList.getBindings();
+        ArrayList<GenericGraphicalBindingList.Edges> edges = tripleBindingList.getBindingsEdges();
+        int bindingIndex = 0;
+
+        for (TripleGraphicalBinding binding : bindings) {
+            if (edges.get(bindingIndex) == GenericGraphicalBindingList.Edges.Start) {
+                binding.setStartCentralX(getCenterX());
+                binding.setStartCentralY(getCenterY());
+                binding.setStartRightX(getCenterX() - 10);
+                binding.setStartRightY(getCenterY());
+                binding.setStartLeftX(getCenterX() + 10);
+                binding.setStartLeftY(getCenterY());
+            } else {
+                binding.setEndCentralX(getCenterX());
+                binding.setEndCentralY(getCenterY());
+                binding.setEndRightX(getCenterX() - 10);
+                binding.setEndRightY(getCenterY());
+                binding.setEndLeftX(getCenterX() + 10);
+                binding.setEndLeftY(getCenterY());
+            }
+        }
+    }
+
     private void setSelectableCoordinates() {
         selectableStartX = this.startX - 20;
         selectableStartY = this.startY - 20;
@@ -227,15 +263,28 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public boolean hasAtomBinding(String bindingID) {
         ArrayList<SingleGraphicalBinding> singleBindings = singleBindingList.getBindings();
-        ArrayList<DoubleGraphicalBinding> doubleBindings = doubleBindingList.getBindings();
+        ArrayList<DoubleGraphicalBinding> doubleBindings = null;
+        ArrayList<TripleGraphicalBinding> tripleBindings = null;
+
+        if (doubleBindingList != null)
+            doubleBindings = doubleBindingList.getBindings();
+
+        if (tripleBindingList != null)
+            tripleBindings = tripleBindingList.getBindings();
 
         for (SingleGraphicalBinding singleBinding : singleBindings)
             if (singleBinding.getID().equals(bindingID))
                 return true;
 
-        for (DoubleGraphicalBinding doubleBinding : doubleBindings)
-            if (doubleBinding.getID().equals(bindingID))
-                return true;
+        if (doubleBindings != null)
+            for (DoubleGraphicalBinding doubleBinding : doubleBindings)
+                if (doubleBinding.getID().equals(bindingID))
+                    return true;
+
+        if (tripleBindings != null)
+            for (TripleGraphicalBinding tripleBinding : tripleBindings)
+                if (tripleBinding.getID().equals(bindingID))
+                    return true;
 
         return false;
     }
@@ -296,6 +345,24 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    public void removeTripleBinding(String bindingID) {
+        ArrayList<TripleGraphicalBinding> bindings = tripleBindingList.getBindings();
+        ArrayList<GenericGraphicalBindingList.Edges> edgesList = tripleBindingList.getBindingsEdges();
+
+        int index = 0;
+
+        for (TripleGraphicalBinding binding: bindings) {
+            if (binding.getID().equals(bindingID)) {
+                bindings.remove(index);
+                edgesList.remove(index);
+                bindingsRemaining += 3;
+                return;
+            }
+
+            index++;
+        }
+    }
+
     @Nullable
     public DoubleGraphicalBinding getDoubleGraphicalBindingFromID(String ID) {
         for (DoubleGraphicalBinding binding : doubleBindingList.getBindings())
@@ -325,5 +392,9 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public GenericGraphicalBindingList<DoubleGraphicalBinding> getDoubleBindingList() {
         return doubleBindingList;
+    }
+
+    public GenericGraphicalBindingList<TripleGraphicalBinding> getTripleBindingList() {
+        return tripleBindingList;
     }
 }

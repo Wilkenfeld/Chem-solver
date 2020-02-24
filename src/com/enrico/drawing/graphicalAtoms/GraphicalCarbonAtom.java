@@ -33,5 +33,6 @@ public final class GraphicalCarbonAtom extends GenericGraphicalAtom implements C
                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, CARBON_STD_BINDINGS, IMAGE_PATH_STRING, atomId);
 
         doubleBindingList = new GenericGraphicalBindingList<>();
+        tripleBindingList = new GenericGraphicalBindingList<>();
     }
 }

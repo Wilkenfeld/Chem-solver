@@ -66,5 +66,20 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
             add(doubleBindingItem);
             add(removeDoubleBindingItem);
         }
+
+        if (atom.getTripleBindingList() != null) {
+            JMenuItem tripleBindingItem = new JMenuItem("Triple binding to");
+            tripleBindingItem.addActionListener(actionEvent -> {
+                canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorTripleBinding);
+            });
+
+            JMenuItem removeTripleBindingItem = new JMenuItem("Remove triple binding");
+            removeTripleBindingItem.addActionListener(actionEvent -> {
+                canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveTripleBinding);
+            });
+
+            add(tripleBindingItem);
+            add(removeTripleBindingItem);
+        }
     }
 }
