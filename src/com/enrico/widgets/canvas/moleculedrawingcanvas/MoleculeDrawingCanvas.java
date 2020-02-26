@@ -151,6 +151,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 for (SingleGraphicalBinding binding : singleBindings) {
                     if (bindedAtom.hasAtomBinding(binding.getID())) {
                         bindedAtom.removeSingleBinding(binding.getID());
+                        binding.markDeletion();
                         try {
                             singleGraphicalBindingList.remove(index);
                         } catch (IndexOutOfBoundsException ignored) {
@@ -159,17 +160,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     index++;
                 }
             }
-            try {
-                singleGraphicalBindingList.remove(0);
-            } catch (IndexOutOfBoundsException ioobe) {
-                repaint();
-            }
 
             index = 0;
             if (doubleBindings != null && doubleGraphicalBindingList.size() > 0) {
                 for (DoubleGraphicalBinding binding : doubleBindings) {
                     if (bindedAtom.hasAtomBinding(binding.getID())) {
                         bindedAtom.removeDoubleBinding(binding.getID());
+                        binding.markDeletion();
                         doubleGraphicalBindingList.remove(index);
                     }
                     index++;
@@ -181,6 +178,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 for (TripleGraphicalBinding binding : tripleBindings) {
                     if (bindedAtom.hasAtomBinding(binding.getID())) {
                         bindedAtom.removeTripleBinding(binding.getID());
+                        binding.markDeletion();
                         tripleGraphicalBindingList.remove(index);
                     }
                     index++;
