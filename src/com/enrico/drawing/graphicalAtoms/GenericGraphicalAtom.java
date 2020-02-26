@@ -319,12 +319,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
             if (binding.getID().equals(bindingID)) {
                 bindings.remove(index);
                 edgesList.remove(index);
-                bindingsRemaining++;
-                return;
+                break;
             }
 
             index++;
         }
+
+        bindingsRemaining++;
     }
 
     public void removeDoubleBinding(String bindingID) {
@@ -337,12 +338,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
             if (binding.getID().equals(bindingID)) {
                 bindings.remove(index);
                 edgesList.remove(index);
-                bindingsRemaining += 2;
-                return;
+                break;
             }
 
             index++;
         }
+
+        bindingsRemaining += 2;
     }
 
     public void removeTripleBinding(String bindingID) {
@@ -355,12 +357,26 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
             if (binding.getID().equals(bindingID)) {
                 bindings.remove(index);
                 edgesList.remove(index);
-                bindingsRemaining += 3;
-                return;
+                break;
             }
 
             index++;
         }
+
+        bindingsRemaining += 3;
+    }
+
+    public void removeAllBindings() {
+        for (SingleGraphicalBinding binding : singleBindingList.getBindings())
+            binding.markDeletion();
+
+        if (doubleBindingList != null)
+            for (DoubleGraphicalBinding binding : doubleBindingList.getBindings())
+                binding.markDeletion();
+
+        if (tripleBindingList != null)
+            for (TripleGraphicalBinding binding : tripleBindingList.getBindings())
+                binding.markDeletion();
     }
 
     @Nullable

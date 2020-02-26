@@ -47,9 +47,15 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
             canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveSingleBinding);
         });
 
+        JMenuItem removeAtomItem = new JMenuItem("Remove atom");
+        removeAtomItem.addActionListener(actionEvent -> {
+            canvas.removeAtom(atom);
+        });
+
         add(propertiesItem);
         add(singleBindingItem);
         add(removeSingleBindingItem);
+        add(removeAtomItem);
 
         // Secondary actions.
         if (atom.getDoubleBindingList() != null) {

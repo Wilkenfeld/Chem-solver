@@ -132,6 +132,55 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         cursorState = state;
     }
 
+    public void removeAtom(@NotNull GenericGraphicalAtom atom) {
+        @SuppressWarnings("unchecked")
+        ArrayList<SingleGraphicalBinding> singleBindings = (ArrayList<SingleGraphicalBinding>) atom.getSingleBindingList().getBindings().clone();
+
+        @SuppressWarnings("unchecked")
+        ArrayList<DoubleGraphicalBinding> doubleBindings = (ArrayList<DoubleGraphicalBinding>) atom.getDoubleBindingList().getBindings().clone();
+
+        @SuppressWarnings("unchecked")
+        ArrayList<TripleGraphicalBinding> tripleBindings = (ArrayList<TripleGraphicalBinding>) atom.getTripleBindingList().getBindings().clone();
+
+        int index = 0;
+
+        for (GenericGraphicalAtom bindedAtom : graphicalAtomsList) {
+            for (SingleGraphicalBinding binding : singleBindings) {
+                if (bindedAtom.hasAtomBinding(binding.getID())) {
+                    bindedAtom.removeSingleBinding(binding.getID());
+                    singleGraphicalBindingList.remove(index);
+                }
+                index++;
+            }
+
+            index = 0;
+            if (atom.getDoubleBindingList() != null && doubleGraphicalBindingList.size() > 0) {
+                for (DoubleGraphicalBinding binding : doubleBindings) {
+                    if (bindedAtom.hasAtomBinding(binding.getID())) {
+                        bindedAtom.removeDoubleBinding(binding.getID());
+                        doubleGraphicalBindingList.remove(index);
+                    }
+                    index++;
+                }
+            }
+
+            index = 0;
+            if (atom.getTripleBindingList() != null && tripleGraphicalBindingList.size() > 0) {
+                for (TripleGraphicalBinding binding : tripleBindings) {
+                    if (bindedAtom.hasAtomBinding(binding.getID())) {
+                        bindedAtom.removeTripleBinding(binding.getID());
+                        tripleGraphicalBindingList.remove(index);
+                    }
+                    index++;
+                }
+            }
+        }
+
+        atom.removeAllBindings();
+        graphicalAtomsList.remove(atom);
+        repaint();
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -309,8 +358,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             Stream<SingleGraphicalBinding> graphicalBindingStream = singleGraphicalBindingList.stream();
             SingleGraphicalBinding binding = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                                                                   .filter(e -> secondAtom.hasAtomBinding(e.getID()))
-                                                                   .findFirst().orElse(null);
+                    .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                    .findFirst().orElse(null);
 
             if (binding == null)
                 return;
@@ -341,8 +390,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             Stream<DoubleGraphicalBinding> graphicalBindingStream = doubleGraphicalBindingList.stream();
             DoubleGraphicalBinding binding = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                                                                   .filter(e -> secondAtom.hasAtomBinding(e.getID()))
-                                                                   .findFirst().orElse(null);
+                    .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                    .findFirst().orElse(null);
             if (binding == null)
                 return;
 
@@ -372,8 +421,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             Stream<TripleGraphicalBinding> tripleBindingStream = tripleGraphicalBindingList.stream();
             TripleGraphicalBinding binding = tripleBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                                                                .filter(e -> secondAtom.hasAtomBinding(e.getID()))
-                                                                .findFirst().orElse(null);
+                    .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                    .findFirst().orElse(null);
             if (binding == null)
                 return;
 
