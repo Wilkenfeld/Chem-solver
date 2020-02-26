@@ -17,14 +17,19 @@
  *
  */
 
-package com.enrico.chemistry.atoms.scientific;
+package com.enrico.drawing.graphicalAtoms.nonmetals;
 
-import com.enrico.interfaces.atoms.PhosphorAtomInterface;
+import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
+import com.enrico.interfaces.atoms.nonmetals.HydrogenAtomInterface;
 
-public class PhosphorScientificAtom extends GenericScientificAtom implements PhosphorAtomInterface {
+public final class GraphicalHydrogenAtom extends GenericGraphicalAtom implements HydrogenAtomInterface {
+    public static final String IMAGE_PATH_STRING =
+            "atom_icons/nonmetals/atom_icon_hydrogen.png";
 
-    public PhosphorScientificAtom() {
-        super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
+    public static final int STD_BINDINGS = 1;
+
+    public GraphicalHydrogenAtom(int startX, int startY, int endX, int endY, String atomId) {
+        super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BINDING_ELECTRONS, DOUBLETS,
+                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BINDINGS, IMAGE_PATH_STRING, atomId);
     }
 }

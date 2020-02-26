@@ -17,14 +17,18 @@
  *
  */
 
-package com.enrico.chemistry.atoms.scientific;
+package com.enrico.interfaces.atoms.nonmetals;
 
-import com.enrico.interfaces.atoms.halogens.ChlorineAtomInterface;
+import com.enrico.chemistry.atoms.GenericAtom;
 
-public class ChlorineScientificAtom extends GenericScientificAtom implements ChlorineAtomInterface {
-
-    public ChlorineScientificAtom() {
-        super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
-    }
+public interface CarbonAtomInterface {
+    String ATOM_SYMBOL = "C";
+    String ATOM_NAME = "Carbon";
+    int ATOMIC_NUMBER = 6;
+    int BINDING_ELECTRONS = 6;
+    int IONIZATION_NUMBER = 1086;
+    int DOUBLETS = 2;
+    double ATOMIC_MASS = 12.01;
+    double ELECTRONEGATIVITY = 2.55;
+    GenericAtom.AtomClassType CLASS_TYPE = GenericAtom.AtomClassType.NotMetals;
 }

@@ -17,14 +17,18 @@
  *
  */
 
-package com.enrico.chemistry.atoms.scientific;
+package com.enrico.interfaces.atoms.nonmetals;
 
-import com.enrico.interfaces.atoms.halogens.ChlorineAtomInterface;
+import com.enrico.chemistry.atoms.GenericAtom;
 
-public class ChlorineScientificAtom extends GenericScientificAtom implements ChlorineAtomInterface {
-
-    public ChlorineScientificAtom() {
-        super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
-    }
+public interface PhosphorusAtomInterface {
+    String ATOM_SYMBOL = "P";
+    String ATOM_NAME = "Phosphor";
+    int ATOMIC_NUMBER = 15;
+    int BINDING_ELECTRONS = 5;
+    int IONIZATION_ENERGY = 1012;
+    int DOUBLETS = 2;
+    double ATOMIC_MASS = 30.97;
+    double ELECTRONEGATIVITY = 2.19;
+    GenericAtom.AtomClassType CLASS_TYPE = GenericAtom.AtomClassType.NotMetals;
 }

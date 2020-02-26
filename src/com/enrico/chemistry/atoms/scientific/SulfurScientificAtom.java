@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.SulfurAtomInterface;
+import com.enrico.interfaces.atoms.nonmetals.SulfurAtomInterface;
 
 public class SulfurScientificAtom extends GenericScientificAtom implements SulfurAtomInterface {
 

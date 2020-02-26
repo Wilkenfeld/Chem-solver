@@ -20,7 +20,7 @@
 package com.enrico.chemistry.atoms.scientific;
 
 import com.enrico.annotations.chemistry.UnusableAtom;
-import com.enrico.interfaces.atoms.HeliumAtomInterface;
+import com.enrico.interfaces.atoms.noblegasses.HeliumAtomInterface;
 
 @UnusableAtom
 public class HeliumScientificAtom extends GenericScientificAtom implements HeliumAtomInterface {

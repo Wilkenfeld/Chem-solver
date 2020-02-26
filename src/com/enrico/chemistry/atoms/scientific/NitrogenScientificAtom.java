@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.NitrogenAtomInterface;
+import com.enrico.interfaces.atoms.nonmetals.NitrogenAtomInterface;
 
 public class NitrogenScientificAtom extends GenericScientificAtom implements NitrogenAtomInterface {
 

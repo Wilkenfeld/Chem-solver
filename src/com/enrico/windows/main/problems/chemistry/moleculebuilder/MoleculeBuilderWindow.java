@@ -19,7 +19,7 @@
 
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
-import com.enrico.interfaces.atoms.CarbonAtomInterface;
+import com.enrico.interfaces.atoms.nonmetals.*;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -362,22 +362,22 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         carbonBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(CarbonAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_hydrogen.png");
-        hydrogenBtn = new ImageButton(imagePath, null, null);
+        hydrogenBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(HydrogenAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_nitrogen.png");
-        nitrogenBtn = new ImageButton(imagePath, null, null);
+        nitrogenBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(NitrogenAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_oxygen.png");
-        oxygenBtn = new ImageButton(imagePath, null, null);
+        oxygenBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(OxygenAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_phosphorus.png");
-        phosphorusBtn = new ImageButton(imagePath, null, null);
+        phosphorusBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(PhosphorusAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_selenium.png");
-        seleniumBtn = new ImageButton(imagePath, null, null);
+        seleniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(SeleniumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/nonmetals/atom_icon_sulfur.png");
-        sulfurBtn = new ImageButton(imagePath, null, null);
+        sulfurBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(SulfurAtomInterface.ATOM_SYMBOL); return null;});
     }
 
     private void initializeSemimetalsButtons() throws IOException {

@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.SiliconAtomInterface;
+import com.enrico.interfaces.atoms.semimetals.SiliconAtomInterface;
 
 public class SiliconScientificAtom extends GenericScientificAtom implements SiliconAtomInterface {
 

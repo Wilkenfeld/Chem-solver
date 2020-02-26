@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.HydrogenAtomInterface;
+import com.enrico.interfaces.atoms.nonmetals.HydrogenAtomInterface;
 
 public class HydrogenScientificAtom extends GenericScientificAtom implements HydrogenAtomInterface {
 

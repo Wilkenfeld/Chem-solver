@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.FluorineAtomInterface;
+import com.enrico.interfaces.atoms.halogens.FluorineAtomInterface;
 
 public class FluorineScientificAtom extends GenericScientificAtom implements FluorineAtomInterface {
 

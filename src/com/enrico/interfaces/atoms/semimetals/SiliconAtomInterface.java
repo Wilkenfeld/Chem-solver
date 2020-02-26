@@ -17,18 +17,18 @@
  *
  */
 
-package com.enrico.interfaces.atoms;
+package com.enrico.interfaces.atoms.semimetals;
 
 import com.enrico.chemistry.atoms.GenericAtom;
 
-public interface NitrogenAtomInterface {
-    String ATOM_SYMBOL = "N";
-    String ATOM_NAME = "Nitrogen";
-    int ATOMIC_NUMBER = 7;
-    int BINDING_ELECTRONS = 5;
-    int IONIZATION_ENERGY = 1402;
-    int DOUBLETS = 1;
-    double ATOMIC_MASS = 14.01;
-    double ELECTRONEGATIVITY = 3.04;
-    GenericAtom.AtomClassType CLASS_TYPE = GenericAtom.AtomClassType.NotMetals;
+public interface SiliconAtomInterface {
+    String ATOM_SYMBOL = "Si";
+    String ATOM_NAME = "Silicon";
+    int ATOMIC_NUMBER = 14;
+    int BINDING_ELECTRONS = 4;
+    int IONIZATION_ENERGY = 786;
+    int DOUBLETS = 2;
+    double ATOMIC_MASS = 28.09;
+    double ELECTRONEGATIVITY = 1.9;
+    GenericAtom.AtomClassType CLASS_TYPE = GenericAtom.AtomClassType.SemiMetals;
 }

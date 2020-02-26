@@ -17,7 +17,7 @@
  *
  */
 
-package com.enrico.interfaces.atoms;
+package com.enrico.interfaces.atoms.halogens;
 
 import com.enrico.chemistry.atoms.GenericAtom;
 

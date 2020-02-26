@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.OxygenAtomInterface;
+import com.enrico.interfaces.atoms.nonmetals.OxygenAtomInterface;
 
 public class OxygenScientificAtom extends GenericScientificAtom implements OxygenAtomInterface {
 

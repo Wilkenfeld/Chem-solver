@@ -19,7 +19,7 @@
 
 package com.enrico.chemistry.atoms.scientific;
 
-import com.enrico.interfaces.atoms.CarbonAtomInterface;
+import com.enrico.interfaces.atoms.nonmetals.CarbonAtomInterface;
 
 public class CarbonScientificAtom extends GenericScientificAtom implements CarbonAtomInterface {
 

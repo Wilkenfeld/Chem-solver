@@ -101,8 +101,8 @@ public class FormulaParser {
                     currentGenericScientificAtom = new NitrogenScientificAtom();
                 break;
 
-                case PhosphorScientificAtom.ATOM_SYMBOL:
-                    currentGenericScientificAtom = new PhosphorScientificAtom();
+                case PhosphorusScientificAtom.ATOM_SYMBOL:
+                    currentGenericScientificAtom = new PhosphorusScientificAtom();
                 break;
 
                 case ChlorineScientificAtom.ATOM_SYMBOL:

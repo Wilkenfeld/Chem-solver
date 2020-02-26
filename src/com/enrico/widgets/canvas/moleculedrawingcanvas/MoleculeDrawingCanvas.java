@@ -20,7 +20,7 @@
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.drawing.graphicalAtoms.GraphicalCarbonAtom;
+import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
@@ -593,6 +593,30 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         switch (currentAtomSymbol) {
             case GraphicalCarbonAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalHydrogenAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalHydrogenAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalNitrogenAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalNitrogenAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalOxygenAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalOxygenAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalPhosphorusAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalPhosphorusAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalSeleniumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalSeleniumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalSulfurAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalSulfurAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
             break;
         }
 
