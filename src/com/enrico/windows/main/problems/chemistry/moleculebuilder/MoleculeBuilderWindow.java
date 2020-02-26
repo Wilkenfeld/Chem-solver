@@ -158,6 +158,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     // Drawing buttons.
     private ImageButton selectBtn;
     private ImageButton drawBtn;
+    private JScrollPane scrollPane;
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -187,6 +188,10 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
     private void createUIComponents() {
         canvas = new MoleculeDrawingCanvas();
+        canvas.setPreferredSize(new Dimension(5000, 5000));
+
+        scrollPane = new JScrollPane(canvas);
+        scrollPane.add(canvas);
 
         // Initializing image buttons.
         try {
