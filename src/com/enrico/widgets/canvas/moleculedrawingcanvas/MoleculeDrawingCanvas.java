@@ -376,7 +376,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             binding.markDeletion();
             lastSelectedAtom.removeSingleBinding(binding.getID());
-            secondAtom.hasAtomBinding(binding.getID());
+            secondAtom.removeSingleBinding(binding.getID());
 
             setCursorState(CursorStates.CursorSelecting);
             setCursor(Cursor.getDefaultCursor());
@@ -407,6 +407,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             binding.markDeletion();
             lastSelectedAtom.removeDoubleBinding(binding.getID());
+            secondAtom.removeDoubleBinding(binding.getID());
 
             cursorState = CursorStates.CursorSelecting;
             setCursor(Cursor.getDefaultCursor());
@@ -438,6 +439,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             binding.markDeletion();
             lastSelectedAtom.removeTripleBinding(binding.getID());
+            secondAtom.removeTripleBinding(binding.getID());
 
             cursorState = CursorStates.CursorSelecting;
             setCursor(Cursor.getDefaultCursor());
