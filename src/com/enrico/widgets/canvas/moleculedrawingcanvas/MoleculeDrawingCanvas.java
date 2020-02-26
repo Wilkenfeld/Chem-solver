@@ -137,11 +137,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         ArrayList<SingleGraphicalBinding> singleBindings = (ArrayList<SingleGraphicalBinding>) atom.getSingleBindingList().getBindings().clone();
 
         ArrayList<DoubleGraphicalBinding> doubleBindings = null;
-        if (atom.getDoubleBindingList().getBindings() != null)
+        if (atom.getDoubleBindingList()  != null)
             doubleBindings = (ArrayList<DoubleGraphicalBinding>) atom.getDoubleBindingList().getBindings().clone();
 
         ArrayList<TripleGraphicalBinding> tripleBindings = null;
-        if (atom.getTripleBindingList().getBindings() != null)
+        if (atom.getTripleBindingList() != null)
             tripleBindings = (ArrayList<TripleGraphicalBinding>) atom.getTripleBindingList().getBindings().clone();
 
         int index = 0;
