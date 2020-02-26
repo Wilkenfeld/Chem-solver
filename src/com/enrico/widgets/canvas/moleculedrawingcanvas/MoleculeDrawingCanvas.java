@@ -132,29 +132,41 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         cursorState = state;
     }
 
+    @SuppressWarnings("unchecked")
     public void removeAtom(@NotNull GenericGraphicalAtom atom) {
-        @SuppressWarnings("unchecked")
         ArrayList<SingleGraphicalBinding> singleBindings = (ArrayList<SingleGraphicalBinding>) atom.getSingleBindingList().getBindings().clone();
 
-        @SuppressWarnings("unchecked")
-        ArrayList<DoubleGraphicalBinding> doubleBindings = (ArrayList<DoubleGraphicalBinding>) atom.getDoubleBindingList().getBindings().clone();
+        ArrayList<DoubleGraphicalBinding> doubleBindings = null;
+        if (atom.getDoubleBindingList().getBindings() != null)
+            doubleBindings = (ArrayList<DoubleGraphicalBinding>) atom.getDoubleBindingList().getBindings().clone();
 
-        @SuppressWarnings("unchecked")
-        ArrayList<TripleGraphicalBinding> tripleBindings = (ArrayList<TripleGraphicalBinding>) atom.getTripleBindingList().getBindings().clone();
+        ArrayList<TripleGraphicalBinding> tripleBindings = null;
+        if (atom.getTripleBindingList().getBindings() != null)
+            tripleBindings = (ArrayList<TripleGraphicalBinding>) atom.getTripleBindingList().getBindings().clone();
 
         int index = 0;
 
         for (GenericGraphicalAtom bindedAtom : graphicalAtomsList) {
-            for (SingleGraphicalBinding binding : singleBindings) {
-                if (bindedAtom.hasAtomBinding(binding.getID())) {
-                    bindedAtom.removeSingleBinding(binding.getID());
-                    singleGraphicalBindingList.remove(index);
+            if (singleBindings.size() > 0) {
+                for (SingleGraphicalBinding binding : singleBindings) {
+                    if (bindedAtom.hasAtomBinding(binding.getID())) {
+                        bindedAtom.removeSingleBinding(binding.getID());
+                        try {
+                            singleGraphicalBindingList.remove(index);
+                        } catch (IndexOutOfBoundsException ignored) {
+                        }
+                    }
+                    index++;
                 }
-                index++;
+            }
+            try {
+                singleGraphicalBindingList.remove(0);
+            } catch (IndexOutOfBoundsException ioobe) {
+                repaint();
             }
 
             index = 0;
-            if (atom.getDoubleBindingList() != null && doubleGraphicalBindingList.size() > 0) {
+            if (doubleBindings != null && doubleGraphicalBindingList.size() > 0) {
                 for (DoubleGraphicalBinding binding : doubleBindings) {
                     if (bindedAtom.hasAtomBinding(binding.getID())) {
                         bindedAtom.removeDoubleBinding(binding.getID());
@@ -165,7 +177,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             index = 0;
-            if (atom.getTripleBindingList() != null && tripleGraphicalBindingList.size() > 0) {
+            if (tripleBindings != null && tripleGraphicalBindingList.size() > 0) {
                 for (TripleGraphicalBinding binding : tripleBindings) {
                     if (bindedAtom.hasAtomBinding(binding.getID())) {
                         bindedAtom.removeTripleBinding(binding.getID());
@@ -473,9 +485,14 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return true;
             }
 
+            if (lastSelectedAtom == null) {
+                System.out.println("NULL");
+                return true;
+            }
+
             if (selectedAtom == lastSelectedAtom) {
                 String msg = "You can't bind an atom to itself.";
-                JOptionPane.showMessageDialog(null, msg, "NO valid atom selected", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, msg, "No valid atom selected", JOptionPane.ERROR_MESSAGE);
                 return true;
             }
 
@@ -500,8 +517,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             super.mouseClicked(e);
 
             GenericGraphicalAtom atom = getGenericGraphicalAtom(e.getX(), e.getY());
-            if (SwingUtilities.isRightMouseButton(e))
-                lastSelectedAtom = atom;
+            if (SwingUtilities.isLeftMouseButton(e) && cursorState == CursorStates.CursorSelecting)
+                return;
 
             switch (cursorState) {
                 case CursorDrawing:
@@ -543,6 +560,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     undefinedCursorModeEvent();
                 break;
             }
+
+            lastSelectedAtom = atom;
         }
 
         @Override
