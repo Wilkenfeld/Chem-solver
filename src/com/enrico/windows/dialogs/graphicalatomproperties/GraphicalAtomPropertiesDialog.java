@@ -24,6 +24,7 @@ import com.enrico.programresources.FontResources;
 import com.enrico.widgets.buttons.ProgramButton;
 import com.enrico.widgets.label.ProgramLabel;
 import com.enrico.widgets.textfiled.ProgramTextField;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +49,7 @@ public final class GraphicalAtomPropertiesDialog extends JDialog {
 
     private GenericGraphicalAtom atom;
 
-    public GraphicalAtomPropertiesDialog(GenericGraphicalAtom atom) {
+    public GraphicalAtomPropertiesDialog(@NotNull GenericGraphicalAtom atom) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -99,7 +100,8 @@ public final class GraphicalAtomPropertiesDialog extends JDialog {
     }
 
     private void onOK() {
-        // TODO: change atom ID if possible.
+        if (!(atom_id_txt_field.getText().equals(atom.getAtomId())))
+            atom.setAtomId(atom_id_txt_field.getText());
         dispose();
     }
 
