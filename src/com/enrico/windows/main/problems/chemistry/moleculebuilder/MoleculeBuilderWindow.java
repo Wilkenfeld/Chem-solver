@@ -20,6 +20,7 @@
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
 import com.enrico.interfaces.atoms.nonmetals.*;
+import com.enrico.interfaces.atoms.semimetals.*;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -384,28 +385,28 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_antimony.png");
-        antimonyBtn = new ImageButton(imagePath, null, null);
+        antimonyBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(AntimonyAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_arsenic.png");
-        arsenicBtn = new ImageButton(imagePath, null, null);
+        arsenicBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(ArsenicAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_astatine.png");
-        astatineBtn = new ImageButton(imagePath, null, null);
+        astatineBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(AstatineAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_boron.png");
-        boronBtn = new ImageButton(imagePath, null, null);
+        boronBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(BoronAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_germanium.png");
-        germaniumBtn = new ImageButton(imagePath, null, null);
+        germaniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(GermaniumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_polonium.png");
-        poloniumBtn = new ImageButton(imagePath, null, null);
+        poloniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(PoloniumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_silicon.png");
-        siliconBtn = new ImageButton(imagePath, null, null);
+        siliconBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(SiliconAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/semimetals/atom_icon_tellurium.png");
-        telluriumBtn = new ImageButton(imagePath, null, null);
+        telluriumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(TelluriumAtomInterface.ATOM_SYMBOL); return null;});
     }
 
     private void initializeHalogensButtons() throws IOException {

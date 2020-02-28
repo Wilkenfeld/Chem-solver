@@ -25,7 +25,7 @@ public interface FluorineAtomInterface {
     String ATOM_SYMBOL = "F";
     String ATOM_NAME = "Fluorine";
     int ATOMIC_NUMBER = 9;
-    int BINDING_ELECTRONS = 5;
+    int BINDING_ELECTRONS = 1;
     int IONIZATION_ENERGY = 1681;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 19.0;

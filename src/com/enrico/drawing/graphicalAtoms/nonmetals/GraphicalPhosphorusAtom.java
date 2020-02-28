@@ -27,7 +27,7 @@ public final class GraphicalPhosphorusAtom extends GenericGraphicalAtom implemen
     public static final String IMAGE_PATH_STRING =
             "atom_icons/nonmetals/atom_icon_phosphorus.png";
 
-    public static final int STD_BINDINGS = 5;
+    public static final int STD_BINDINGS = 3;
 
     public GraphicalPhosphorusAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BINDING_ELECTRONS, DOUBLETS,

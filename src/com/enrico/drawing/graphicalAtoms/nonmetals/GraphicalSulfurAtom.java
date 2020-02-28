@@ -27,7 +27,7 @@ public final class GraphicalSulfurAtom extends GenericGraphicalAtom implements S
     public static final String IMAGE_PATH_STRING =
             "atom_icons/nonmetals/atom_icon_sulfur.png";
 
-    public static final int STD_BINDINGS = 6;
+    public static final int STD_BINDINGS = 2;
 
     public GraphicalSulfurAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BINDING_ELECTRONS, DOUBLETS,

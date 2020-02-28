@@ -25,7 +25,7 @@ public interface CarbonAtomInterface {
     String ATOM_SYMBOL = "C";
     String ATOM_NAME = "Carbon";
     int ATOMIC_NUMBER = 6;
-    int BINDING_ELECTRONS = 6;
+    int BINDING_ELECTRONS = 4;
     int IONIZATION_NUMBER = 1086;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 12.01;

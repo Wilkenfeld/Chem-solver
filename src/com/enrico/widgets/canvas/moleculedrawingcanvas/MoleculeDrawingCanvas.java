@@ -25,6 +25,7 @@ import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.triplebinding.TripleGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.semimetals.*;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
 import org.jetbrains.annotations.NotNull;
@@ -659,6 +660,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             return;
 
         switch (currentAtomSymbol) {
+            // Non metals.
             case GraphicalCarbonAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
             break;
@@ -685,6 +687,39 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             case GraphicalSulfurAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalSulfurAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            // Semi metals.
+            case GraphicalBoronAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalBoronAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalSiliconAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalSiliconAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalGermaniumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalGermaniumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalArsenicAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalArsenicAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalAntimonyAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalAntimonyAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalTelluriumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalTelluriumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalPoloniumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalPoloniumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalAstatineAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalAstatineAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
             break;
         }
 

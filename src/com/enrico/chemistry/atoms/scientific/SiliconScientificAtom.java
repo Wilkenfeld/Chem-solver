@@ -25,6 +25,6 @@ public class SiliconScientificAtom extends GenericScientificAtom implements Sili
 
     public SiliconScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
+                BINDING_ELECTRONS, DOUBLETS, IONIZATION_NUMBER, CLASS_TYPE);
     }
 }
