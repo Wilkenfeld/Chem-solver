@@ -487,7 +487,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             if (lastSelectedAtom == null) {
-                System.out.println("NULL");
                 return true;
             }
 
@@ -508,6 +507,22 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 String msg = "Maximum number of bindings for the selected atom has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return true;
+            }
+
+            if (cursorState == CursorStates.CursorDoubleBinding) {
+                if (selectedAtom.getDoubleBindingList() == null) {
+                    String msg = "Can't double bind " + lastSelectedAtom.getAtomId() + " to " + selectedAtom.getAtomId();
+                    JOptionPane.showMessageDialog(null, msg, "Can't double bind atoms.", JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
+            }
+
+            if (cursorState == CursorStates.CursorTripleBinding) {
+                if (selectedAtom.getTripleBindingList() == null) {
+                    String msg = "Can't triple bind " + lastSelectedAtom.getAtomId() + " to " + selectedAtom.getAtomId();
+                    JOptionPane.showMessageDialog(null, msg, "Can't triple bind atoms.", JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
             }
 
             return false;
