@@ -19,6 +19,7 @@
 
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
+import com.enrico.interfaces.atoms.alkalinemetals.*;
 import com.enrico.interfaces.atoms.nonmetals.*;
 import com.enrico.interfaces.atoms.semimetals.*;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
@@ -225,22 +226,22 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_lithium.png");
-        lithiumBtn = new ImageButton(imagePath, null, null);
+        lithiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(LithiumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_sodium.png");
-        sodiumBtn = new ImageButton(imagePath, null, null);
+        sodiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(SodiumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_potassium.png");
-        potassiumBtn = new ImageButton(imagePath, null, null);
+        potassiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(PotassiumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_rubidium.png");
-        rubidiumBtn = new ImageButton(imagePath, null, null);
+        rubidiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(RubidiumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_cesium.png");
-        cesiumBtn = new ImageButton(imagePath, null, null);
+        cesiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(CesiumAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/alkaline_metals/atom_icon_francium.png");
-        franciumBtn = new ImageButton(imagePath, null, null);
+        franciumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(FranciumAtomInterface.ATOM_SYMBOL); return null;});
     }
 
     private void initializeAlkalineEarthButtons() throws IOException {

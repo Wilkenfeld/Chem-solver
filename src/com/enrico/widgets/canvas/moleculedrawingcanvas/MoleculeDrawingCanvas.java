@@ -20,6 +20,7 @@
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
+import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
@@ -735,6 +736,31 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             case GraphicalAstatineAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalAstatineAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            // Alkaline metals.
+            case GraphicalLithiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalLithiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalSodiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalSodiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalPotassiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalPotassiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalRubidiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalRubidiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalCesiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalCesiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalFranciumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalFranciumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
             break;
         }
 
