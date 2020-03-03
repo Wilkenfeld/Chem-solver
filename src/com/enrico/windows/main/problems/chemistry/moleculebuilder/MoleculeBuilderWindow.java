@@ -21,6 +21,8 @@ package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
 import com.enrico.interfaces.atoms.alkalineearthmetals.*;
 import com.enrico.interfaces.atoms.alkalinemetals.*;
+import com.enrico.interfaces.atoms.noblegasses.KryptonAtomInterface;
+import com.enrico.interfaces.atoms.noblegasses.XenonAtomInterface;
 import com.enrico.interfaces.atoms.nonmetals.*;
 import com.enrico.interfaces.atoms.semimetals.*;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
@@ -431,10 +433,10 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/noble_gasses/atom_icon_krypton.png");
-        kryptonBtn = new ImageButton(imagePath, null, null);
+        kryptonBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(KryptonAtomInterface.ATOM_SYMBOL); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/noble_gasses/atom_icon_xenon.png");
-        xenonBtn = new ImageButton(imagePath, null, null);
+        xenonBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentAtomSymbol(XenonAtomInterface.ATOM_SYMBOL); return null;});
     }
 
     private void initializePBlockMetalsButtons() throws IOException {

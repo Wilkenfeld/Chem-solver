@@ -17,7 +17,6 @@
  *
  */
 
-
 package com.enrico.drawing.graphicalAtoms.alkalineearthmetals;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;

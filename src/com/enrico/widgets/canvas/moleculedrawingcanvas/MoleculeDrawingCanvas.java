@@ -19,9 +19,12 @@
 
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
+import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.alkalineearthmetals.*;
 import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
+import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalKryptonAtom;
+import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalXenonAtom;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
@@ -528,8 +531,14 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             // Check if it's trying to bind two metals.
-            if (selectedAtom.isMetal() && lastSelectedAtom.isMetal()) {
+            if ((selectedAtom.isMetal() && lastSelectedAtom.isMetal())) {
                 String msg = "Can't bind two metals.";
+                JOptionPane.showMessageDialog(null, msg, msg, JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+
+            if (selectedAtom.getClassType() == GenericAtom.AtomClassType.NobleGasses && lastSelectedAtom.getClassType() == GenericAtom.AtomClassType.NobleGasses) {
+                String msg = "Can't bind two noble gasses.";
                 JOptionPane.showMessageDialog(null, msg, msg, JOptionPane.ERROR_MESSAGE);
                 return true;
             }
@@ -794,6 +803,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             case GraphicalRadiumAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalRadiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            // Noble gasses.
+            case GraphicalKryptonAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalKryptonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalXenonAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalXenonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
             break;
         }
 

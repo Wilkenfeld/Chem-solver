@@ -17,7 +17,6 @@
  *
  */
 
-
 package com.enrico.interfaces.atoms.alkalineearthmetals;
 
 import com.enrico.chemistry.atoms.GenericAtom;
