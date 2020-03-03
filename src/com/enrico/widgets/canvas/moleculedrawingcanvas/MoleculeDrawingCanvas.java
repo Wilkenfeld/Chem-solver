@@ -19,8 +19,8 @@
 
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
-import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
+import com.enrico.drawing.graphicalAtoms.alkalineearthmetals.*;
 import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
@@ -769,6 +769,31 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             case GraphicalFranciumAtom.ATOM_SYMBOL:
                 graphicalAtomsList.add(new GraphicalFranciumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            // Alkaline earth metals.
+            case GraphicalBerylliumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalBerylliumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalMagnesiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalMagnesiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalCalciumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalCalciumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalStrontiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalStrontiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalBariumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalBariumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
+            break;
+
+            case GraphicalRadiumAtom.ATOM_SYMBOL:
+                graphicalAtomsList.add(new GraphicalRadiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
             break;
         }
 
