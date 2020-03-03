@@ -19,6 +19,7 @@
 
 package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
+import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
 import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
@@ -524,6 +525,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     JOptionPane.showMessageDialog(null, msg, "Can't triple bind atoms.", JOptionPane.ERROR_MESSAGE);
                     return true;
                 }
+            }
+
+            // Check if it's trying to bind two metals.
+            if (selectedAtom.isMetal() && lastSelectedAtom.isMetal()) {
+                String msg = "Can't bind two metals.";
+                JOptionPane.showMessageDialog(null, msg, msg, JOptionPane.ERROR_MESSAGE);
+                return true;
             }
 
             return false;

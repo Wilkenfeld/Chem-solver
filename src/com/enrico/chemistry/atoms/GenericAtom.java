@@ -133,4 +133,7 @@ public abstract class GenericAtom {
         return ionizationEnergy;
     }
 
+    public boolean isMetal() {
+        return classType != AtomClassType.Halogens && classType != AtomClassType.NotMetals && classType != AtomClassType.NobleGasses;
+    }
 }
