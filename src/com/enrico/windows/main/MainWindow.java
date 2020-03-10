@@ -58,7 +58,7 @@ public final class MainWindow extends BasicWindow {
     public JPanel mainPanel;
     private ProgramLabel welcomeLbl;
     private ProgramLabel subwelcomeLbl;
-    private ProgramButton solveButton;
+    private JButton solveButton;
 
     private static final String title = "Chem solver";
 
@@ -81,12 +81,6 @@ public final class MainWindow extends BasicWindow {
         setResizable(false);
         setPreferredSize(mainWinDimension);
 
-        problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[0], MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER);
-        problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[1], BiologyMonosaccharidesTypesProblemWindow.BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER);
-    }
-
-    private void createUIComponents() {
-        solveButton = new ProgramButton("Solve problem!");
         solveButton.addActionListener(actionEvent -> {
             ProblemChooserDialog problemChooserDialog = new ProblemChooserDialog();
             String res = problemChooserDialog.showDialog();
@@ -103,19 +97,19 @@ public final class MainWindow extends BasicWindow {
             switch (res) {
                 case MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER:
                     win = new MolecularShapeProblemWindow();
-                break;
+                    break;
 
                 case BiologyMonosaccharidesTypesProblemWindow.BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER:
                     win = new BiologyMonosaccharidesTypesProblemWindow();
-                break;
+                    break;
 
                 case CompoundClassificationProblemWindow.TITLE:
                     win = new CompoundClassificationProblemWindow();
-                break;
+                    break;
 
                 case MoleculeBuilderWindow.TITLE:
                     win = new MoleculeBuilderWindow();
-                break;
+                    break;
 
                 case ProblemChooserDialog.NO_PROBLEM_CHOOSED:
                     return;
@@ -126,5 +120,12 @@ public final class MainWindow extends BasicWindow {
 
             dispose();
         });
+
+        problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[0], MolecularShapeProblemWindow.MOLECULAR_SHAPE_WINDOW_IDENTIFIER);
+        problemToWindowCodeHashMap.put(ProblemListModel.chemProblems[1], BiologyMonosaccharidesTypesProblemWindow.BIOLOGY_MONOSACCHARIDES_PROBLEM_IDENTIFIER);
+    }
+
+    private void createUIComponents() {
+
     }
 }

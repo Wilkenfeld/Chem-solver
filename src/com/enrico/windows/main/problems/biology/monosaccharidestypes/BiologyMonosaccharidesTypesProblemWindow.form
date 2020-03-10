@@ -50,11 +50,13 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="8668b" class="com.enrico.widgets.buttons.ProgramButton" binding="moreInfoButton" custom-create="true">
+      <component id="eeae3" class="javax.swing.JButton" binding="moreInfoButton">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <text value="More Info"/>
+        </properties>
       </component>
       <component id="8eef3" class="com.enrico.widgets.label.ProgramLabel" binding="molecularTypeLbl">
         <constraints>

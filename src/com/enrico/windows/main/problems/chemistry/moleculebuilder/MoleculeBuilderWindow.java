@@ -181,6 +181,9 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         // Menu bar.
         ProblemWindowMenuBar menuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(menuBar);
+
+        atomsPane.setTabPlacement(JTabbedPane.TOP);
+        atomsPane.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
     }
 
     @Override

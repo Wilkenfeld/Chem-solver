@@ -29,7 +29,7 @@ import java.awt.event.*;
 
 public class InfoDialog extends JDialog {
     private JPanel contentPane;
-    private ProgramButton buttonOK;
+    private JButton buttonOK;
     private ProgramLabel infoLbl;
     private ProgramLabel titleLbl;
 

@@ -34,7 +34,7 @@ public final class BiologyMonosaccharidesTypesProblemWindow extends GenericProbl
     private JPanel mainPanel;
     private ProgramTextField nVariableTxtField;
     private ProgramLabel monosaccharideTypeLbl;
-    private ProgramButton moreInfoButton;
+    private JButton moreInfoButton;
     private DefaultComboBox moleculeTypeComboBox;
     private ProgramLabel monosaccharideLbl;
     private ProgramLabel nVarLbl;

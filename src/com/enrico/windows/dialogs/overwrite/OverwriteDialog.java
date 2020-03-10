@@ -27,8 +27,8 @@ import java.io.File;
 
 public final class OverwriteDialog extends JDialog {
     private JPanel contentPane;
-    private ProgramButton buttonOK;
-    private ProgramButton buttonCancel;
+    private JButton buttonOK;
+    private JButton buttonCancel;
 
     private String filePath;
 

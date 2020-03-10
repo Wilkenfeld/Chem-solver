@@ -24,8 +24,17 @@ import com.enrico.project.loader.MolecularShapeProjectLoader;
 import com.enrico.windows.main.MainWindow;
 import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 
+import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
 public final class Main {
     public static void main(String[] args) {
+
+        try {
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            System.out.println("Cannot set custom Look and feel, setting default one...");
+        }
         if (args.length == 1) {
 
             String filePath = args[0];

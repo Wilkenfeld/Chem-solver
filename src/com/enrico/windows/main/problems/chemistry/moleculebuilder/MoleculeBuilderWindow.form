@@ -41,7 +41,8 @@
               <tabbedpane title="Alkaline Metals"/>
             </constraints>
             <properties>
-              <preferredSize width="100" height="44"/>
+              <maximumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
             </properties>
             <border type="none"/>
             <children>
@@ -98,7 +99,9 @@
             <constraints>
               <tabbedpane title="Alkaline Earth Metals"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="2bfd6" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="berylliumBtn" custom-create="true">
@@ -154,7 +157,11 @@
             <constraints>
               <tabbedpane title="Transition Metal"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <scrollpane id="9636f">
@@ -365,7 +372,11 @@
             <constraints>
               <tabbedpane title="Nonmetals"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="5d9b7" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="carbonBtn" custom-create="true">
@@ -427,7 +438,11 @@
             <constraints>
               <tabbedpane title="Semimetals"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="cbb46" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="antimonyBtn" custom-create="true">
@@ -495,7 +510,11 @@
             <constraints>
               <tabbedpane title="P-Block Metals"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="4b306" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="aluminiumBtn" custom-create="true">
@@ -557,7 +576,11 @@
             <constraints>
               <tabbedpane title="Halogens"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="c704" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="bromineBtn" custom-create="true">
@@ -601,7 +624,11 @@
             <constraints>
               <tabbedpane title="Noble Gasses"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="c01cd" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="kryptonBtn" custom-create="true">
@@ -633,7 +660,11 @@
             <constraints>
               <tabbedpane title="Lanthanums"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="d1423" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="ceriumBtn" custom-create="true">
@@ -743,7 +774,11 @@
             <constraints>
               <tabbedpane title="Actiniums"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="194" height="44"/>
+              <minimumSize width="194" height="44"/>
+              <preferredSize width="194" height="44"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="211ab" class="com.enrico.widgets.buttons.imagebutton.ImageButton" binding="actiniumBtn" custom-create="true">
