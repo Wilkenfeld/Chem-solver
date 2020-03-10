@@ -24,17 +24,27 @@ import com.enrico.project.loader.MolecularShapeProjectLoader;
 import com.enrico.windows.main.MainWindow;
 import com.enrico.windows.main.problems.chemistry.molecularshape.MolecularShapeProblemWindow;
 
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+
 import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import java.util.Properties;
 
 public final class Main {
     public static void main(String[] args) {
-
         try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            System.out.println("Cannot set custom Look and feel, setting default one...");
+            // Raising exception if the Aluminium look and feel is not found.
+            Class.forName("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+
+            // Modifying the properties to not show anything on the side of a menu.
+            Properties props = new Properties();
+            props.put("logoString", "");
+            AluminiumLookAndFeel.setCurrentTheme(props);
+
+            // Applying the look and feel to the GUI.
+            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+        } catch (Exception ignored) {
         }
+
         if (args.length == 1) {
 
             String filePath = args[0];
