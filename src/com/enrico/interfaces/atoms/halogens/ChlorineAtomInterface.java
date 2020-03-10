@@ -26,7 +26,7 @@ public interface ChlorineAtomInterface {
     String ATOM_NAME = "Chlorine";
     int ATOMIC_NUMBER = 17;
     int BINDING_ELECTRONS = 1;
-    int IONIZATION_ENERGY = 1251;
+    int IONIZATION_NUMBER = 1251;
     int DOUBLETS = 3;
     double ATOMIC_MASS = 35.45;
     double ELECTRONEGATIVITY = 3.16;

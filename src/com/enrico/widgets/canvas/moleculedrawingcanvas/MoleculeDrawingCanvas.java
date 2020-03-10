@@ -21,16 +21,10 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.drawing.graphicalAtoms.alkalineearthmetals.*;
-import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
-import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalKryptonAtom;
-import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalXenonAtom;
-import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.triplebinding.TripleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.semimetals.*;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
 import org.jetbrains.annotations.NotNull;
@@ -44,6 +38,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -67,7 +63,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
     private GenericGraphicalAtom lastSelectedAtom;
 
-    private String currentAtomSymbol;
+    private String currentClassPath;
 
     private int atomsInserted = 0;
 
@@ -121,17 +117,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         setCursor(drawingCursor);
         cursorState = CursorStates.CursorDrawing;
 
-        currentAtomSymbol = "";
+        currentClassPath = "";
 
         addMouseListener(new MouseListenerImpl());
         addMouseMotionListener(new MouseMotionAdapterImpl());
     }
 
-    public void setCurrentAtomSymbol(String currentAtomSymbol) {
+    public void setCurrentClassPath(String currentClassPath) {
         if (cursorState == CursorStates.CursorSelecting)
             return;
 
-        this.currentAtomSymbol = currentAtomSymbol;
+        this.currentClassPath = currentClassPath;
     }
 
     public void setCursorState(CursorStates state) {
@@ -683,7 +679,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     }
 
     private void addNewAtom(int x, int y) {
-        if (currentAtomSymbol.isEmpty()) {
+        if (currentClassPath.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please select an atom.", "No atom selected", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -692,130 +688,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         if (overlappedAtom != null)
             return;
 
-        switch (currentAtomSymbol) {
-            // Non metals.
-            case GraphicalCarbonAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalCarbonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
+        GenericGraphicalAtom atomToAdd = getAtomFromClassPath(x, y);
 
-            case GraphicalHydrogenAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalHydrogenAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalNitrogenAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalNitrogenAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalOxygenAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalOxygenAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalPhosphorusAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalPhosphorusAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalSeleniumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalSeleniumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalSulfurAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalSulfurAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            // Semi metals.
-            case GraphicalBoronAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalBoronAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalSiliconAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalSiliconAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalGermaniumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalGermaniumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalArsenicAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalArsenicAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalAntimonyAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalAntimonyAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalTelluriumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalTelluriumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalPoloniumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalPoloniumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalAstatineAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalAstatineAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            // Alkaline metals.
-            case GraphicalLithiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalLithiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalSodiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalSodiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalPotassiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalPotassiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalRubidiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalRubidiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalCesiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalCesiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalFranciumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalFranciumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            // Alkaline earth metals.
-            case GraphicalBerylliumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalBerylliumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalMagnesiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalMagnesiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalCalciumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalCalciumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalStrontiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalStrontiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalBariumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalBariumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalRadiumAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalRadiumAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            // Noble gasses.
-            case GraphicalKryptonAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalKryptonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
-
-            case GraphicalXenonAtom.ATOM_SYMBOL:
-                graphicalAtomsList.add(new GraphicalXenonAtom(x, y, x + 45, y + 45, "ATOM_" + atomsInserted));
-            break;
+        if (atomToAdd != null) {
+            graphicalAtomsList.add(atomToAdd);
+            atomsInserted++;
+        } else {
+            JOptionPane.showMessageDialog(this,
+                                          "Atom not found.",
+                                          "Atom class: " + currentClassPath + " not found." ,
+                                          JOptionPane.ERROR_MESSAGE);
         }
-
-        atomsInserted++;
     }
 
     private void generatePopupMenuForAtom(@NotNull GenericGraphicalAtom atom) {
@@ -936,6 +819,22 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             atomBinding.setEndYR(bindedAtom.getCenterY() + 10);
             atomBinding.setEndXL(bindedAtom.getCenterX() - 10);
             atomBinding.setEndXR(bindedAtom.getCenterX() + 10);
+        }
+    }
+
+    /*
+     * Using reflection we get the atom by using the class path, we get the constructor
+     * and we generate a new instance to add.
+     */
+    @Nullable
+    private GenericGraphicalAtom getAtomFromClassPath(int x, int y) {
+        try {
+            Class<?> baseClass = Class.forName(currentClassPath);
+            Constructor<?> constructor = baseClass.getConstructor(int.class, int.class, int.class, int.class, String.class);
+            return (GenericGraphicalAtom) constructor.newInstance(x, y, x + 45, y + 45, "ATOM_" + atomsInserted);
+        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

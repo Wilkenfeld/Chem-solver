@@ -26,8 +26,8 @@ public interface FluorineAtomInterface {
     String ATOM_NAME = "Fluorine";
     int ATOMIC_NUMBER = 9;
     int BINDING_ELECTRONS = 1;
-    int IONIZATION_ENERGY = 1681;
-    int DOUBLETS = 2;
+    int IONIZATION_NUMBER = 1681;
+    int DOUBLETS = 3;
     double ATOMIC_MASS = 19.0;
     double ELECTRONEGATIVITY = 3.98;
     GenericAtom.AtomClassType CLASS_TYPE = GenericAtom.AtomClassType.Halogens;
