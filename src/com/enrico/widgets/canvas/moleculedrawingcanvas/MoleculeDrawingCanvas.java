@@ -25,8 +25,10 @@ import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
 import com.enrico.drawing.graphicalAtoms.binding.doublebinding.DoubleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.binding.triplebinding.TripleGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.halogens.GraphicalFluorineAtom;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -529,6 +531,16 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             // Check if it's trying to bind two metals.
             if ((selectedAtom.isMetal() && lastSelectedAtom.isMetal())) {
                 String msg = "Can't bind two metals.";
+                JOptionPane.showMessageDialog(null, msg, msg, JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+
+            // Can't bind noble gasses if not to halogens.
+            if ((selectedAtom.getClassType() == GenericAtom.AtomClassType.NobleGasses &&
+                 !(lastSelectedAtom instanceof GraphicalFluorineAtom)) ||
+                 (!(selectedAtom instanceof GraphicalFluorineAtom) &&
+                  lastSelectedAtom.getClassType() == GenericAtom.AtomClassType.NobleGasses)) {
+                String msg = "Noble gasses can only be binded to Fluorine.";
                 JOptionPane.showMessageDialog(null, msg, msg, JOptionPane.ERROR_MESSAGE);
                 return true;
             }
