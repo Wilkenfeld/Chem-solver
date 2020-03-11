@@ -28,6 +28,7 @@ import com.enrico.drawing.graphicalAtoms.halogens.GraphicalIodineAtom;
 import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalKryptonAtom;
 import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalXenonAtom;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
+import com.enrico.drawing.graphicalAtoms.pblockmetals.*;
 import com.enrico.drawing.graphicalAtoms.semimetals.*;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
@@ -447,25 +448,25 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_aluminium.png");
-        aluminiumBtn = new ImageButton(imagePath, null, null);
+        aluminiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalAluminiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_bismuth.png");
-        bismuthBtn = new ImageButton(imagePath, null, null);
+        bismuthBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalBismuthAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_gallium.png");
-        galliumBtn = new ImageButton(imagePath, null, null);
+        galliumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalGalliumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_indium.png");
-        indiumBtn = new ImageButton(imagePath, null, null);
+        indiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalIndiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_lead.png");
-        leadBtn = new ImageButton(imagePath, null, null);
+        leadBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalLeadAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_thallium.png");
-        thalliumBtn = new ImageButton(imagePath, null, null);
+        thalliumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalThalliumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/pblock_metals/atom_icon_tin.png");
-        tinBtn = new ImageButton(imagePath, null, null);
+        tinBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalTinAtom.class.getCanonicalName()); return null;});
     }
 
     private void initializeLanthanidesButtons() throws IOException {
