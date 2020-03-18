@@ -46,7 +46,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+/**
+ * This class represents a canvas where the user can interact to draw atoms and bond them.
+ */
 public final class MoleculeDrawingCanvas extends GenericCanvas {
+    // These are all of the cursor types that can be used when inside of the canvas.
     private final Cursor drawingCursor;
     private final Cursor singleBindingCursor;
     private final Cursor movingCursor;
@@ -56,19 +60,29 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private final Cursor tripleBindingCursor;
     private final Cursor removeTripleBindingCursor;
 
+    // This member keeps track of the type of cursor that we're using.
     private CursorStates cursorState;
 
+    // This lists contains all of the atoms contained inside the canvas.
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
+
+    // These lists contain all of the type of bindings inside the canvas.
     private ArrayList<SingleGraphicalBinding> singleGraphicalBindingList = new ArrayList<>();
     private ArrayList<DoubleGraphicalBinding> doubleGraphicalBindingList = new ArrayList<>();
     private ArrayList<TripleGraphicalBinding> tripleGraphicalBindingList = new ArrayList<>();
 
+    // This member keeps track of the last atom that we clicked.
     private GenericGraphicalAtom lastSelectedAtom;
 
+    // This member contains the class path of the atom that we're currently drawing.
     private String currentClassPath;
 
+    // This member is used only to generate atom IDs.
     private int atomsInserted = 0;
 
+    /**
+     * This enum contains all of the possible cursor states to keep track of them
+     */
     public enum CursorStates {
         CursorSelecting,            // Normal arrow.
         CursorDrawing,              // Circle.
@@ -81,6 +95,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         CursorMoving                // Normal hand.
     }
 
+    /**
+     * In this constructor we generate all of the cursor type and we set the predefined (the cursor to draw).
+     */
     public MoleculeDrawingCanvas() {
         super();
 
@@ -125,6 +142,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         addMouseMotionListener(new MouseMotionAdapterImpl());
     }
 
+    /**
+     * This method sets the current class path to change the atom to draw, it works only if we're not in the selecting
+     * mode.
+     * @param currentClassPath the class path of the atom to draw
+     */
     public void setCurrentClassPath(String currentClassPath) {
         if (cursorState == CursorStates.CursorSelecting)
             return;
@@ -136,8 +158,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         cursorState = state;
     }
 
+    /**
+     * This method removes an atom from the canvas.
+     * @param atom the atom to remove.
+     */
     @SuppressWarnings("unchecked")
     public void removeAtom(@NotNull GenericGraphicalAtom atom) {
+        // First off, we get all of its bindings list.
         ArrayList<SingleGraphicalBinding> singleBindings = (ArrayList<SingleGraphicalBinding>) atom.getSingleBindingList().getBindings().clone();
 
         ArrayList<DoubleGraphicalBinding> doubleBindings = null;
@@ -150,6 +177,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         int index = 0;
 
+        // We try to find this atom and we remove every single binding that we found.
         for (GenericGraphicalAtom bindedAtom : graphicalAtomsList) {
             if (singleBindings.size() > 0) {
                 for (SingleGraphicalBinding binding : singleBindings) {
@@ -165,6 +193,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 }
             }
 
+            // We now remove all of the double bindings.
             index = 0;
             if (doubleBindings != null && doubleGraphicalBindingList.size() > 0) {
                 for (DoubleGraphicalBinding binding : doubleBindings) {
@@ -177,6 +206,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 }
             }
 
+            // We now remove all of the triple bindings.
             index = 0;
             if (tripleBindings != null && tripleGraphicalBindingList.size() > 0) {
                 for (TripleGraphicalBinding binding : tripleBindings) {
@@ -190,6 +220,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
         }
 
+        // After having deleted all of the atom bindings from every atom that was binded to the @atom, we remove the
+        // atom itself from the canvas and we repaint everything.
         atom.removeAllBindings();
         graphicalAtomsList.remove(atom);
         repaint();
@@ -270,12 +302,25 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     public void createUIComponents() {
     }
 
+    /**
+     * This internal class handles the mouse inside the canvas.
+     */
     private final class MouseListenerImpl extends MouseAdapter {
+        /**
+         * This method adds the atom to he canvas.
+         * @param x the X of the mouse (startX of atom).
+         * @param y the Y if the mouse (startY of atom).
+         */
         private void addAtomEvent(int x, int y) {
             addNewAtom(x, y);
             repaint();
         }
 
+        /**
+         * This method creates the popup menu of the atom to view the actions.
+         * @param x the clicked X coordinate.
+         * @param y the clicked Y coordinate.
+         */
         private void selectAtomEvent(int x, int y) {
             GenericGraphicalAtom atom = getGenericGraphicalAtom(x, y);
             if (atom == null)
@@ -284,6 +329,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             generatePopupMenuForAtom(atom);
         }
 
+        /**
+         * This method generates a single binding between two atoms.
+         * @param lastSelectedAtom the atom that started the binding.
+         * @param x the clicked X.
+         * @param y the clicked Y.
+         */
         private void singleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
@@ -305,6 +356,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
+        /**
+         * This method generates a double binding between two atoms.
+         * @param lastSelectedAtom the atom that started the binding.
+         * @param x the clicked X.
+         * @param y the clicked Y.
+         */
         private void doubleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
@@ -332,6 +389,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
+        /**
+         * This method generates a triple binding between two atoms.
+         * @param lastSelectedAtom the atom that started the binding.
+         * @param x the clicked X.
+         * @param y the clicked Y.
+         */
         private void tripleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
@@ -356,6 +419,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
+        /**
+         * This method removes a single binding from an atom
+         * @param lastSelectedAtom the atom that was last selected to remove the binding.
+         * @param x the clicked X
+         * @param y the clicked Y
+         */
         private void singleBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
             if (secondAtom == null) {
@@ -388,6 +457,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
+        /**
+         * This method removes a double binding from an atom
+         * @param x the clicked X
+         * @param y the clicked Y
+         */
         private void doubleBindingRemoveEvent(int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
             if (secondAtom == null) {
@@ -419,6 +493,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
+        /**
+         * This method removes a triple binding from an atom
+         * @param x the clicked X
+         * @param y the clicked Y
+         */
         private void tripleBindingRemoveEvent(int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
 
@@ -479,8 +558,11 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             JOptionPane.showMessageDialog(null, msg, "Unknown cursor mode", JOptionPane.ERROR_MESSAGE);
         }
 
-        /* Checks if the atom can perform a certain binding type.
-         * Returns true if not possible, false otherwise
+        /**
+         * Checks if the atom can perform a certain binding type.
+         * @param selectedAtom the atom to check.
+         * @param bindingNum the number of bindings on that atom
+         * @return returns true if the binding can't be performed, false otherwise.
          */
         private boolean checkIfBindingPossible(GenericGraphicalAtom selectedAtom, int bindingNum) {
             if (selectedAtom == null) {
@@ -665,6 +747,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
     }
 
+    /**
+     * This class handles actions that the upper class can't like the movement of an atom.
+     */
     private final class MouseMotionAdapterImpl extends MouseMotionAdapter {
         @Override
         public void mouseDragged(MouseEvent e) {
@@ -690,12 +775,18 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
     }
 
+    /**
+     * This method add a new atom to the canvas.
+     * @param x The clicked X (startX of the atom).
+     * @param y The clicked Y (startY of the atom).
+     */
     private void addNewAtom(int x, int y) {
         if (currentClassPath.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please select an atom.", "No atom selected", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        // We check that the atom des not overlap other atoms.
         GenericGraphicalAtom overlappedAtom = getGenericGraphicalAtom(x, y);
         if (overlappedAtom != null)
             return;
@@ -713,13 +804,18 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
     }
 
+    /**
+     * This method generates a popup menu for the atom which contains all of its properties.
+     * @param atom The atom to show the properties.
+     */
     private void generatePopupMenuForAtom(@NotNull GenericGraphicalAtom atom) {
         GraphicalAtomPopupMenu popupMenu = new GraphicalAtomPopupMenu(atom, this);
 
         popupMenu.show(this, atom.getStartX(), atom.getStartY());
     }
 
-    /* This function cleans up the list of the bindings between atoms, so that there won't be any bindings with only
+    /**
+     * This method cleans up the list of the bindings between atoms, so that there won't be any bindings with only
      * one atom at one edge, or any binding without any atoms.
      */
     private void sanitizeBindings() {
@@ -764,6 +860,13 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 checkDoubleBindings(atom);
     }
 
+    /**
+     * This method gets a graphical atom from its position
+     * @param x The clicked X
+     * @param y The clicked Y
+     * @return a GraphicalAtom from the list of the canvas if the clicked positicons are inside the range of the atom,
+     * or null otherwise.
+     */
     @Nullable
     private GenericGraphicalAtom getGenericGraphicalAtom(final int x, final int y) {
         final int errorMargin = 40;
@@ -776,6 +879,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                                               .findFirst().orElse(null);
     }
 
+    /**
+     * This method is used to move double bindings.
+     * @param atom the atom to update the double bindings with.
+     */
     private void checkDoubleBindings(@NotNull GenericGraphicalAtom atom) {
         GenericGraphicalAtom bindedAtom = null;
 
@@ -834,9 +941,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
         }
     }
 
-    /*
+    /**
      * Using reflection we get the atom by using the class path, we get the constructor
      * and we generate a new instance to add.
+     * @param x the startX of the atom.
+     * @param y the startY of the atom.
+     * @return returns the newly created atom on success, or false in case of error.
      */
     @Nullable
     private GenericGraphicalAtom getAtomFromClassPath(int x, int y) {

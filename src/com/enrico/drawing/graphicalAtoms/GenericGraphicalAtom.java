@@ -29,27 +29,62 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ *  This class represents an atom drawn in a canvas.
+ * This contains all of the methods to represent it and also to handle the bonds between atoms, by using lists.
+ * By default, atoms can only do a single binding.
+ */
 public abstract class GenericGraphicalAtom extends GenericAtom {
+    // The atom has a starting point and an end point to start drawing, it is not created by starting from a central
+    // position.
     protected int startX;
     protected int endX;
     protected int startY;
     protected int endY;
 
+    // These members represent the area where the mouse click has effect, it is usually slightly bigger than the
+    // drawable X and Y so that it will be possible to select the atom even if we're not 100% accurate.
     protected int selectableStartX;
     protected int selectableStartY;
     protected int selectableEndX;
     protected int selectableEndY;
 
-    private int bindingsRemaining; // How many binding the atom can still do.
+    // How many binding the atom can still do.
+    private int bindingsRemaining;
 
+    // The path to the image to draw of the atom.
     protected final String imagePath;
-    
+
+    // The ID, unique identifier of the atom.
     private String atomId;
 
+    // These lists represent all of the bonds that the atom has.
+    // By default, every atom can only do single bonds, but double and triple bonds can be enabled by initializing them
+    // in the sub-class constructor.
     private GenericGraphicalBindingList<SingleGraphicalBinding> singleBindingList = new GenericGraphicalBindingList<>();
     protected GenericGraphicalBindingList<DoubleGraphicalBinding> doubleBindingList = null;
     protected GenericGraphicalBindingList<TripleGraphicalBinding> tripleBindingList = null;
 
+    /**
+     * This is the only constructor of this class.
+     * NB: many of these parameters are only to satisfy the super constructor.
+     * @param symbol The symbol that represents this atom.
+     * @param completeName The complete name fo the atom.
+     * @param atomicNumber The atomic number of the atom.
+     * @param atomicMass The atomic mass of the atom.
+     * @param electronegativity The electronegativity of the atom.
+     * @param bindingElectronsNumber The binding electrons of the atom.
+     * @param doublets The doublets of electrons that this atoms possess.
+     * @param ionizationEnergy The ionization energy of this atom.
+     * @param classType The type of class of this atom (nonmetal, halogen, semi-metal etc...).
+     * @param startX The start X position of this atom.
+     * @param startY The start Y position of this atom.
+     * @param endX The end X position of this atom.
+     * @param endY The end Y position of this atom.
+     * @param bindingsRemaining The number of bindings that the atom can still perform.
+     * @param imagePath The path of the image to bre drawn on the canvas.
+     * @param atomId The unique identifier of the atom.
+     */
     public GenericGraphicalAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType,
                                 int startX, int startY, int endX, int endY, int bindingsRemaining, String imagePath,
@@ -74,7 +109,6 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return startX;
     }
 
-    // These functions will give the range where the atom can be selected by a mouse click.
     public int getEndX() {
         return endX;
     }
@@ -135,13 +169,23 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         this.atomId = atomId;
     }
 
+    /**
+     * This method performs a single binding on the current atom and sets its edge (beginning or end).
+     * @param binding The single binding to add.
+     * @param edge The edge to set (beginning or end).
+     */
     public void doSingleBinding(SingleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
         if (bindingsRemaining - 1 >= 0)
             bindingsRemaining--;
 
         singleBindingList.addBinding(binding, edge);
     }
-    
+
+    /**
+     * This method performs a double binding on the current atom and sets its edge (beginning or end).
+     * @param binding The double binding to add.
+     * @param edge The edge to set (beginning or end).
+     */
     public void doDoubleBinding(DoubleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
         if (bindingsRemaining - 2 >= 0)
             bindingsRemaining -= 2;
@@ -149,6 +193,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         doubleBindingList.addBinding(binding, edge);
     }
 
+    /**
+     * This method performs a triple binding on the current atom and sets its edge (beginning or end).
+     * @param binding The triple binding to add.
+     * @param edge The edge to set (beginning or end).
+     */
     public void doTripleBinding(TripleGraphicalBinding binding, GenericGraphicalBindingList.Edges edge) {
         if (bindingsRemaining - 3 >= 0)
             bindingsRemaining -= 3;
@@ -156,6 +205,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         tripleBindingList.addBinding(binding, edge);
     }
 
+    /**
+     * This method moves the atom to a specified X and Y position (start)
+     * @param startX the new starting X position of the atom.
+     * @param startY the new starting Y position of the atom.
+     */
     public void move(int startX, int startY) {
         this.startX = startX;
         this.startY = startY;
@@ -174,7 +228,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
             moveTripleBindings();
     }
 
-    /*
+    /**
      * Since when we move an atom the binding won't be moving correctly between the two atoms, this functions reloads
      * the atom by moving it at the same position it was before, so that the binding will adjust itself.
      */
@@ -182,6 +236,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         move(getStartX(), getStartY());
     }
 
+    /**
+     * This method moves every single binding to the new atom position.
+     * this method is usually called after moving an atom.
+     */
     private void moveSingleBindings() {
         ArrayList<SingleGraphicalBinding> bindings = singleBindingList.getBindings();
         ArrayList<GenericGraphicalBindingList.Edges> edges = singleBindingList.getBindingsEdges();
@@ -200,6 +258,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    /**
+     * This method moves every double binding to the new atom position.
+     * this method is usually called after moving an atom.
+     */
     private void moveDoubleBindings() {
         ArrayList<DoubleGraphicalBinding> bindings = doubleBindingList.getBindings();
         ArrayList<GenericGraphicalBindingList.Edges> edges = doubleBindingList.getBindingsEdges();
@@ -222,6 +284,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    /**
+     * This method moves every triple binding to the new atom position.
+     * this method is usually called after moving an atom.
+     */
     private void moveTripleBindings() {
         ArrayList<TripleGraphicalBinding> bindings = tripleBindingList.getBindings();
         ArrayList<GenericGraphicalBindingList.Edges> edges = tripleBindingList.getBindingsEdges();
@@ -246,6 +312,9 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
+    /**
+     * This method updated the selectable coordinates after the atom being moved.
+     */
     private void setSelectableCoordinates() {
         selectableStartX = this.startX - 20;
         selectableStartY = this.startY - 20;
@@ -261,6 +330,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return atomId;
     }
 
+    /**
+     * This method checks if the current atom has a binding or not.
+     * @param bindingID The ID of the binding to check if is on this atom.
+     * @return true if the binding is present, false otherwise.
+     */
     public boolean hasAtomBinding(String bindingID) {
         ArrayList<SingleGraphicalBinding> singleBindings = singleBindingList.getBindings();
         ArrayList<DoubleGraphicalBinding> doubleBindings = null;
@@ -289,6 +363,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return false;
     }
 
+    /**
+     * This method checks if the current atom has common atoms with another atom.
+     * @param atom The atom to check if has bindings in common with this atom.
+     * @return true if the atom has common bindings with the current atom, false otherwise.
+     */
     public boolean hasAtomCommonBindings(@NotNull GenericGraphicalAtom atom) {
         ArrayList<SingleGraphicalBinding> thisAtomSingleBindings = singleBindingList.getBindings();
         ArrayList<SingleGraphicalBinding> otherAtomSingleBindings = atom.getSingleBindingList().getBindings();
@@ -309,6 +388,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return false;
     }
 
+    /**
+     * This method removes a single binding from this atom.
+     * @param bindingID The binding ID that represents the binding to remove from the atom.
+     */
     public void removeSingleBinding(String bindingID) {
         ArrayList<SingleGraphicalBinding> bindings = singleBindingList.getBindings();
         ArrayList<GenericGraphicalBindingList.Edges> edgesList = singleBindingList.getBindingsEdges();
@@ -328,6 +411,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         bindingsRemaining++;
     }
 
+    /**
+     * This method removes a double binding from this atom.
+     * @param bindingID The binding ID that represents the binding to remove from the atom.
+     */
     public void removeDoubleBinding(String bindingID) {
         ArrayList<DoubleGraphicalBinding> bindings = doubleBindingList.getBindings();
         ArrayList<GenericGraphicalBindingList.Edges> edgesList = doubleBindingList.getBindingsEdges();
@@ -347,6 +434,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         bindingsRemaining += 2;
     }
 
+    /**
+     * This method removes a triple binding from this atom.
+     * @param bindingID The binding ID that represents the binding to remove from the atom.
+     */
     public void removeTripleBinding(String bindingID) {
         ArrayList<TripleGraphicalBinding> bindings = tripleBindingList.getBindings();
         ArrayList<GenericGraphicalBindingList.Edges> edgesList = tripleBindingList.getBindingsEdges();
@@ -366,6 +457,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         bindingsRemaining += 3;
     }
 
+    /**
+     * This method removes all o the bindings of the atom.
+     * This is usually called when the current atom is being deleted.
+     */
     public void removeAllBindings() {
         for (SingleGraphicalBinding binding : singleBindingList.getBindings())
             binding.markDeletion();
@@ -379,6 +474,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
                 binding.markDeletion();
     }
 
+    /**
+     * This method returns a double binding starting from its ID.
+     * @param ID The ID of the atom to check if is present.
+     * @return returns the double binding if present, or null otherwise.
+     */
     @Nullable
     public DoubleGraphicalBinding getDoubleGraphicalBindingFromID(String ID) {
         for (DoubleGraphicalBinding binding : doubleBindingList.getBindings())
@@ -388,6 +488,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return null;
     }
 
+    /**
+     * Gets the edge of a double binding starting from its ID.
+     * @param ID The ID of te atom to get the Edge from.
+     * @return The Edge of the binding, or null otherwise.
+     */
     @Nullable
     public GenericGraphicalBindingList.Edges getDoubleGraphicalBindingEdge(String ID) {
         int index = 0;
