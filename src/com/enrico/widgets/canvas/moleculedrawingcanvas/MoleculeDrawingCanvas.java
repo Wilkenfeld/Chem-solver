@@ -864,7 +864,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
      * This method gets a graphical atom from its position
      * @param x The clicked X
      * @param y The clicked Y
-     * @return a GraphicalAtom from the list of the canvas if the clicked positicons are inside the range of the atom,
+     * @return a GraphicalAtom from the list of the canvas if the clicked positic   ons are inside the range of the atom,
      * or null otherwise.
      */
     @Nullable
