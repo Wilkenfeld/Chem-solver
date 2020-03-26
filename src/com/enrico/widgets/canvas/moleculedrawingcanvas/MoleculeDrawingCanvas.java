@@ -349,16 +349,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineEarthMetals) {
 
                 ionicBindingEvent(lastSelectedAtom, selectedAtom);
-                return;
+            } else {
+                SingleGraphicalBinding binding = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
+                        selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
+
+                singleGraphicalBindingList.add(binding);
+
+                lastSelectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
+                selectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.End);
             }
-
-            SingleGraphicalBinding binding = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
-                                                                        selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
-
-            singleGraphicalBindingList.add(binding);
-
-            lastSelectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.Start);
-            selectedAtom.doSingleBinding(binding, GenericGraphicalBindingList.Edges.End);
 
             setCursor(Cursor.getDefaultCursor());
             cursorState = CursorStates.CursorSelecting;
@@ -383,7 +382,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             lastSelectedAtom.performIonicBinding(selectedAtom);
             selectedAtom.performIonicBinding(lastSelectedAtom);
-            repaint();
         }
 
         /**
