@@ -522,9 +522,12 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     }
 
     public void removeIonicBinding(String atomID) {
-        if (ionicBindedAtom != null)
-            if (ionicBindedAtom.getAtomId().equals(atomID))
+        if (ionicBindedAtom != null) {
+            if (ionicBindedAtom.getAtomId().equals(atomID)) {
                 ionicBindedAtom = null;
+                bindingsRemaining++;
+            }
+        }
     }
 
     public GenericGraphicalBindingList<SingleGraphicalBinding> getSingleBindingList() {

@@ -459,23 +459,27 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            if (secondAtom == lastSelectedAtom) {
-                String msg = "You can't unbind an atom from itself.";
-                JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
-                return;
+            if (lastSelectedAtom.hasIonicBinding() && secondAtom.hasIonicBinding()) {
+                ionicBindingRemoveEvent(lastSelectedAtom, x, y);
+            } else {
+                if (secondAtom == lastSelectedAtom) {
+                    String msg = "You can't unbind an atom from itself.";
+                    JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                Stream<SingleGraphicalBinding> graphicalBindingStream = singleGraphicalBindingList.stream();
+                SingleGraphicalBinding binding = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
+                        .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                        .findFirst().orElse(null);
+
+                if (binding == null)
+                    return;
+
+                binding.markDeletion();
+                lastSelectedAtom.removeSingleBinding(binding.getID());
+                secondAtom.removeSingleBinding(binding.getID());
             }
-
-            Stream<SingleGraphicalBinding> graphicalBindingStream = singleGraphicalBindingList.stream();
-            SingleGraphicalBinding binding = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                    .filter(e -> secondAtom.hasAtomBinding(e.getID()))
-                    .findFirst().orElse(null);
-
-            if (binding == null)
-                return;
-
-            binding.markDeletion();
-            lastSelectedAtom.removeSingleBinding(binding.getID());
-            secondAtom.removeSingleBinding(binding.getID());
 
             setCursorState(CursorStates.CursorSelecting);
             setCursor(Cursor.getDefaultCursor());
@@ -492,6 +496,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             lastSelectedAtom.removeIonicBinding(secondAtom.getAtomId());
+            secondAtom.removeIonicBinding(lastSelectedAtom.getAtomId());
         }
 
         /**
@@ -581,7 +586,6 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             if (lastSelectedAtom.hasIonicBinding() && releasedPositionAtom == null) {
                 if (y - 5 < 5 || y + 5 > getHeight() - 15) {
-                    //lastSelectedAtom.getIonicBindedAtom().move(lastSelectedAtom.getStartX(), lastSelectedAtom.getStartY() - 45);
                     setCursorState(CursorStates.CursorSelecting);
                     setCursor(Cursor.getDefaultCursor());
                     return;
