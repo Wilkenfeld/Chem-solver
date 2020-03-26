@@ -348,7 +348,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineMetals ||
                 selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineEarthMetals) {
 
-                ionicBindingEvent(lastSelectedAtom, x, y);
+                ionicBindingEvent(lastSelectedAtom, selectedAtom);
                 return;
             }
 
@@ -366,8 +366,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
-        private void ionicBindingEvent(@NotNull GenericGraphicalAtom lastSelectedAtom, int x, int y) {
-            GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
+        /**
+         * This method performs an ionic biding on two atoms.
+         * @param lastSelectedAtom The atom to bind.
+         * @param selectedAtom the other atom to bind.
+         */
+        private void ionicBindingEvent(@NotNull GenericGraphicalAtom lastSelectedAtom, GenericGraphicalAtom selectedAtom) {
             if (selectedAtom == null)
                 return;
 
@@ -460,7 +464,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             if (lastSelectedAtom.hasIonicBinding() && secondAtom.hasIonicBinding()) {
-                ionicBindingRemoveEvent(lastSelectedAtom, x, y);
+                ionicBindingRemoveEvent(lastSelectedAtom, secondAtom);
             } else {
                 if (secondAtom == lastSelectedAtom) {
                     String msg = "You can't unbind an atom from itself.";
@@ -487,8 +491,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
-        private void ionicBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
-            GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
+        /**
+         * This method removes an ionic binding.
+         * @param lastSelectedAtom the atom to remove the biding.
+         * @param secondAtom the other atom to remove the biding.
+         */
+        private void ionicBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, GenericGraphicalAtom secondAtom) {
             if (secondAtom == null) {
                 String msg = "No atom selected";
                 JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
