@@ -65,6 +65,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     protected GenericGraphicalBindingList<DoubleGraphicalBinding> doubleBindingList = null;
     protected GenericGraphicalBindingList<TripleGraphicalBinding> tripleBindingList = null;
 
+    private GenericGraphicalAtom ionicBindedAtom = null;
+
     /**
      * This is the only constructor of this class.
      * NB: many of these parameters are only to satisfy the super constructor.
@@ -147,6 +149,10 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public int getSelectableStartY() {
         return selectableStartY;
+    }
+
+    public GenericGraphicalAtom getIonicBindedAtom() {
+        return ionicBindedAtom;
     }
 
     public void setStartX(int startX) {
@@ -507,6 +513,20 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return null;
     }
 
+    public void performIonicBinding(GenericGraphicalAtom bindedAtom) {
+        if (bindingsRemaining < 0)
+            return;
+
+        ionicBindedAtom = bindedAtom;
+        bindingsRemaining--;
+    }
+
+    public void removeIonicBinding(String atomID) {
+        if (ionicBindedAtom != null)
+            if (ionicBindedAtom.getAtomId().equals(atomID))
+                ionicBindedAtom = null;
+    }
+
     public GenericGraphicalBindingList<SingleGraphicalBinding> getSingleBindingList() {
         return singleBindingList;
     }
@@ -517,5 +537,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
     public GenericGraphicalBindingList<TripleGraphicalBinding> getTripleBindingList() {
         return tripleBindingList;
+    }
+
+    public boolean isAtomUpper(@NotNull GenericGraphicalAtom atom) {
+        return getCenterY() > atom.getCenterY();
+    }
+
+    public boolean hasIonicBinding() {
+        return ionicBindedAtom != null;
     }
 }

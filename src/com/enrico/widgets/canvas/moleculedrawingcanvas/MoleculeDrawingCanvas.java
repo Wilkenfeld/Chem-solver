@@ -337,11 +337,21 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          */
         private void singleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
+            if (selectedAtom == null)
+                return;
 
             if (checkIfBindingPossible(selectedAtom, 1))
                 return;
 
-            @SuppressWarnings("ConstantConditions")
+            if (lastSelectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineMetals ||
+                lastSelectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineEarthMetals ||
+                selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineMetals ||
+                selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineEarthMetals) {
+
+                ionicBindingEvent(lastSelectedAtom, x, y);
+                return;
+            }
+
             SingleGraphicalBinding binding = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
                                                                         selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
 
@@ -353,6 +363,22 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             setCursor(Cursor.getDefaultCursor());
             cursorState = CursorStates.CursorSelecting;
 
+            repaint();
+        }
+
+        private void ionicBindingEvent(@NotNull GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+            GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
+            if (selectedAtom == null)
+                return;
+
+            if (lastSelectedAtom.isAtomUpper(selectedAtom)) {
+                lastSelectedAtom.move(selectedAtom.getStartX(), selectedAtom.getStartY() + 45);
+            } else {
+                lastSelectedAtom.move(selectedAtom.getStartX(), selectedAtom.getStartY() - 45);
+            }
+
+            lastSelectedAtom.performIonicBinding(selectedAtom);
+            selectedAtom.performIonicBinding(lastSelectedAtom);
             repaint();
         }
 
@@ -457,6 +483,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             repaint();
         }
 
+        private void ionicBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+            GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
+            if (secondAtom == null) {
+                String msg = "No atom selected";
+                JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            lastSelectedAtom.removeIonicBinding(secondAtom.getAtomId());
+        }
+
         /**
          * This method removes a double binding from an atom
          * @param x the clicked X
@@ -542,7 +579,20 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            lastSelectedAtom.move(x, y);
+            if (lastSelectedAtom.hasIonicBinding() && releasedPositionAtom == null) {
+                if (y - 5 < 5 || y + 5 > getHeight() - 15) {
+                    //lastSelectedAtom.getIonicBindedAtom().move(lastSelectedAtom.getStartX(), lastSelectedAtom.getStartY() - 45);
+                    setCursorState(CursorStates.CursorSelecting);
+                    setCursor(Cursor.getDefaultCursor());
+                    return;
+                } else {
+                    lastSelectedAtom.move(x, y);
+                    lastSelectedAtom.getIonicBindedAtom().move(lastSelectedAtom.getStartX(), lastSelectedAtom.getStartY() + 45);
+                }
+            } else {
+                if (!lastSelectedAtom.hasIonicBinding())
+                    lastSelectedAtom.move(x, y);
+            }
 
             setCursorState(CursorStates.CursorSelecting);
             setCursor(Cursor.getDefaultCursor());
