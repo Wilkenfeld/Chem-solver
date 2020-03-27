@@ -81,6 +81,18 @@ public abstract class GenericAtom {
             public String toString() {
                 return "Noble gasses";
             }
+        },
+        Lanthanides {
+            @Override
+            public String toString() {
+                return "Lanthanides";
+            }
+        },
+        Actinides {
+            @Override
+            public String toString() {
+                return "Actinides";
+            }
         }
     }
 
