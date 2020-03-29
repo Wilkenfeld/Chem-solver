@@ -19,17 +19,20 @@
 
 package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 
+import com.enrico.drawing.graphicalAtoms.actinides.*;
 import com.enrico.drawing.graphicalAtoms.alkalineearthmetals.*;
 import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
 import com.enrico.drawing.graphicalAtoms.halogens.GraphicalBromineAtom;
 import com.enrico.drawing.graphicalAtoms.halogens.GraphicalChlorineAtom;
 import com.enrico.drawing.graphicalAtoms.halogens.GraphicalFluorineAtom;
 import com.enrico.drawing.graphicalAtoms.halogens.GraphicalIodineAtom;
+import com.enrico.drawing.graphicalAtoms.lanthanides.*;
 import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalKryptonAtom;
 import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalXenonAtom;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.pblockmetals.*;
 import com.enrico.drawing.graphicalAtoms.semimetals.*;
+import com.enrico.drawing.graphicalAtoms.transitionalmetals.*;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
@@ -278,91 +281,91 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_cadmium.png");
-        cadmiumBtn = new ImageButton(imagePath, null, null);
+        cadmiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalCadmiumAtom.class.getCanonicalName()); return null;});
 
-        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_chopper.png");
-        chopperBtn = new ImageButton(imagePath, null, null);
+        imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_copper.png");
+        chopperBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalCopperAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_chromium.png");
-        chromiumBtn = new ImageButton(imagePath, null, null);
+        chromiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalChromiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_cobalt.png");
-        cobaltBtn = new ImageButton(imagePath, null, null);
+        cobaltBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalCobaltAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_gold.png");
-        goldBtn = new ImageButton(imagePath, null, null);
+        goldBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalGoldAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_hafnium.png");
-        hafniumBtn = new ImageButton(imagePath, null, null);
+        hafniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalHafniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_iridium.png");
-        iridiumBtn = new ImageButton(imagePath, null, null);
+        iridiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalIridiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_iron.png");
-        ironBtn = new ImageButton(imagePath, null, null);
+        ironBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalIronAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_manganese.png");
-        manganeseBtn = new ImageButton(imagePath, null, null);
+        manganeseBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalManganeseAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_mercury.png");
-        mercuryBtn = new ImageButton(imagePath, null, null);
+        mercuryBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalMercuryAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_molybdenum.png");
-        molybdenumBtn = new ImageButton(imagePath, null, null);
+        molybdenumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalMolybdenumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_nickel.png");
-        nickelBtn = new ImageButton(imagePath, null, null);
+        nickelBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalNickelAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_niobium.png");
-        niobiumBtn = new ImageButton(imagePath, null, null);
+        niobiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalNiobiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_osmium.png");
-        osmiumBtn = new ImageButton(imagePath, null, null);
+        osmiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalOsmiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_palladium.png");
-        palladiumBtn = new ImageButton(imagePath, null, null);
+        palladiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalPalladiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_platinum.png");
-        platinumBtn = new ImageButton(imagePath, null, null);
+        platinumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalPlatinumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_rhenium.png");
-        rheniumBtn = new ImageButton(imagePath, null, null);
+        rheniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalRheniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_rhodium.png");
-        rhodiumBtn = new ImageButton(imagePath, null, null);
+        rhodiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalRhodiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_ruthenium.png");
-        rutheniumBtn = new ImageButton(imagePath, null, null);
+        rutheniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalRutheniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_scandium.png");
-        scandiumBtn = new ImageButton(imagePath, null, null);
+        scandiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalScandiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_silver.png");
-        silverBtn = new ImageButton(imagePath, null, null);
+        silverBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalSilverAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_tantalum.png");
-        tantalumBtn = new ImageButton(imagePath, null, null);
+        tantalumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalTantalumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_technetium.png");
-        technetiumBtn = new ImageButton(imagePath, null, null);
+        technetiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalTechnetiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_titanium.png");
-        titaniumBtn = new ImageButton(imagePath, null, null);
+        titaniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalTitaniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_tungsten.png");
-        tungstenBtn = new ImageButton(imagePath, null, null);
+        tungstenBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalTungstenAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_vanadium.png");
-        vanadiumBtn = new ImageButton(imagePath, null, null);
+        vanadiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalVanadiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_yttrium.png");
-        yttriumBtn = new ImageButton(imagePath, null, null);
+        yttriumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalYttriumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_zinc.png");
-        zincBtn = new ImageButton(imagePath, null, null);
+        zincBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalZincAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/transition_metals/atom_icon_zirconium.png");
-        zirconiumBtn = new ImageButton(imagePath, null, null);
+        zirconiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalZirconiumAtom.class.getCanonicalName()); return null;});
     }
 
     private void initializeNonmetals() throws IOException {
@@ -473,95 +476,95 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_cerium.png");
-        ceriumBtn = new ImageButton(imagePath, null, null);
+        ceriumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalCeriumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_dysprosium.png");
-        dysprosiumBtn = new ImageButton(imagePath, null, null);
+        dysprosiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalDysprosiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_erbium.png");
-        erbiumBtn = new ImageButton(imagePath, null, null);
+        erbiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalErbiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_europium.png");
-        europiumBtn = new ImageButton(imagePath, null, null);
+        europiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalEuropiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_gadolinium.png");
-        gadoliniumBtn = new ImageButton(imagePath, null, null);
+        gadoliniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalGadoliniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_holmium.png");
-        holmiumBtn = new ImageButton(imagePath, null, null);
+        holmiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalHolmiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_lanthanum.png");
-        lanthanumBtn = new ImageButton(imagePath, null, null);
+        lanthanumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalLanthanumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_lutetium.png");
-        lutetiumBtn = new ImageButton(imagePath, null, null);
+        lutetiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalLutetiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_neodymium.png");
-        neodymiumBtn = new ImageButton(imagePath, null, null);
+        neodymiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalNeodymiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_praseodymium.png");
-        praseodymiumBtn = new ImageButton(imagePath, null, null);
+        praseodymiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalPraseodymiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_promethium.png");
-        promethiumBtn = new ImageButton(imagePath, null, null);
+        promethiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalPromethiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_samarium.png");
-        samariumBtn = new ImageButton(imagePath, null, null);
+        samariumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalSamariumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_terbium.png");
-        terbiumBtn = new ImageButton(imagePath, null, null);
+        terbiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalTerbiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_thulium.png");
-        thuliumBtn = new ImageButton(imagePath, null, null);
+        thuliumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalThuliumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/lanthanides/atom_icon_ytterbium.png");
-        ytterbiumBtn = new ImageButton(imagePath, null, null);
+        ytterbiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalYtterbiumAtom.class.getCanonicalName()); return null;});
     }
 
     private void initializeActinidesButtons() throws IOException {
         URL imagePath;
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_actinium.png");
-        actiniumBtn = new ImageButton(imagePath, null, null);
+        actiniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalActiniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_americium.png");
-        americiumBtn = new ImageButton(imagePath, null, null);
+        americiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalAmericiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_berkelium.png");
-        berkeliumBtn = new ImageButton(imagePath, null, null);
+        berkeliumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalBerkeliumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_californium.png");
-        californiumBtn = new ImageButton(imagePath, null, null);
+        californiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalCaliforniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_curium.png");
-        curiumBtn = new ImageButton(imagePath, null, null);
+        curiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalCuriumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_einsteinium.png");
-        einsteiniumBtn = new ImageButton(imagePath, null, null);
+        einsteiniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalEinsteiniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_fermium.png");
-        fermiumBtn = new ImageButton(imagePath, null, null);
+        fermiumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalFermiumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_mendelevium.png");
-        mendeleviumBtn = new ImageButton(imagePath, null, null);
+        mendeleviumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalMendeleviumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_neptunium.png");
-        neptuniumBtn = new ImageButton(imagePath, null, null);
+        neptuniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalNeptuniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_nobelium.png");
-        nobeliumBtn = new ImageButton(imagePath, null, null);
+        nobeliumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalNobeliumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_plutonium.png");
-        plutoniumBtn = new ImageButton(imagePath, null, null);
+        plutoniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalPlutoniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_protactinium.png");
-        protactiniumBtn = new ImageButton(imagePath, null, null);
+        protactiniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalProtactiniumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_thorium.png");
-        thoriumBtn = new ImageButton(imagePath, null, null);
+        thoriumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalThoriumAtom.class.getCanonicalName()); return null;});
 
         imagePath = getClass().getClassLoader().getResource("atom_icons/actinides/atom_icon_uranium.png");
-        uraniumBtn = new ImageButton(imagePath, null, null);
+        uraniumBtn = new ImageButton(imagePath, null, () -> {canvas.setCurrentClassPath(GraphicalUraniumAtom.class.getCanonicalName()); return null;});
     }
 
     private void initializeDrawingButtons() throws IOException {
