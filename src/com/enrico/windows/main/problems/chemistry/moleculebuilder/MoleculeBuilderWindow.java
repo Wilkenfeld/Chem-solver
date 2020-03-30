@@ -173,6 +173,8 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton drawBtn;
     private JScrollPane scrollPane;
 
+    private final int CANVAS_SIZE = 5000;
+
     public MoleculeBuilderWindow() {
         super(TITLE);
 
@@ -189,6 +191,9 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
         // Menu bar.
         ProblemWindowMenuBar menuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(menuBar);
+
+        scrollPane.getHorizontalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
+        scrollPane.getVerticalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
     }
 
     @Override
@@ -201,7 +206,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
     private void createUIComponents() {
         canvas = new MoleculeDrawingCanvas();
-        canvas.setPreferredSize(new Dimension(5000, 5000));
+        canvas.setPreferredSize(new Dimension(CANVAS_SIZE, CANVAS_SIZE));
 
         scrollPane = new JScrollPane(canvas);
         scrollPane.add(canvas);
