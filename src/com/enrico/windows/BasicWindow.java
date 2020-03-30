@@ -20,6 +20,8 @@
 package com.enrico.windows;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.Objects;
 
 public abstract class BasicWindow extends JFrame {
 
@@ -28,6 +30,9 @@ public abstract class BasicWindow extends JFrame {
 
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        ImageIcon programImage = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("program_icons/program_icon.png")));
+        setIconImage(programImage.getImage());
     }
 
     public void showWindow() {

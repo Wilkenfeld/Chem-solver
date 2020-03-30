@@ -27,8 +27,8 @@ import java.awt.event.*;
 
 public class ProblemChooserDialog extends JDialog {
     private JPanel contentPane;
-    private ProgramButton buttonOK;
-    private ProgramButton buttonCancel;
+    private JButton buttonOK;
+    private JButton buttonCancel;
     private JList chemProblemList;
     private JList physProblemList;
     private JLabel chemTitleLbl;

@@ -32,7 +32,7 @@ import java.awt.event.*;
 
 public final class GraphicalAtomPropertiesDialog extends JDialog {
     private JPanel contentPane;
-    private ProgramButton buttonOK;
+    private JButton buttonOK;
     private ProgramLabel atom_id_lbl;
     private ProgramTextField atom_id_txt_field;
     private ProgramLabel atom_name_lbl;

@@ -29,11 +29,13 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="aa695" class="com.enrico.widgets.buttons.ProgramButton" binding="buttonOK" custom-create="true">
+              <component id="1c333" class="javax.swing.JButton" binding="buttonOK">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <text value="Ok"/>
+                </properties>
               </component>
             </children>
           </grid>

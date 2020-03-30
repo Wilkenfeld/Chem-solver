@@ -194,7 +194,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow implements
         // Menu bar.
         ProblemWindowMenuBar menuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(menuBar);
-
+        
         scrollPane.getHorizontalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
         scrollPane.getVerticalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
 

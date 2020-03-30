@@ -24,13 +24,15 @@
           <text value="&lt;html&gt; Chem solver is a chemistry and &lt;br&gt; physics problem solver, easy to use &lt;br&gt; and multi platofm.&lt;br&gt;Press &quot;Solve problem&quot; to start.&lt;/html&gt;"/>
         </properties>
       </component>
-      <component id="872d6" class="com.enrico.widgets.buttons.ProgramButton" binding="solveButton" custom-create="true">
+      <component id="1747b" class="javax.swing.JButton" binding="solveButton">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="20" height="20"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value="Solve problem"/>
+        </properties>
       </component>
     </children>
   </grid>
