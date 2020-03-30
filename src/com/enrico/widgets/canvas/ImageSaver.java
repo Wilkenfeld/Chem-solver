@@ -19,8 +19,6 @@
 
 package com.enrico.widgets.canvas;
 
-import com.enrico.widgets.canvas.moleculeshapecanvas.MoleculeShapeCanvas;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,13 +27,13 @@ import java.io.IOException;
 
 public final class ImageSaver {
     private BufferedImage canvasImage;
-    private MoleculeShapeCanvas moleculeShapeCanvas;
+    private GenericCanvas moleculeShapeCanvas;
     private String completeName;
 
     public static final int IMAGE_PNG_FORMAT = 0;
     public static final int IMAGE_JPG_FORMAT = 1;
 
-    public ImageSaver(MoleculeShapeCanvas moleculeShapeCanvas) {
+    public ImageSaver(GenericCanvas moleculeShapeCanvas) {
         this.moleculeShapeCanvas = moleculeShapeCanvas;
         canvasImage = new BufferedImage(moleculeShapeCanvas.getWidth(), moleculeShapeCanvas.getHeight(), BufferedImage.TYPE_INT_RGB);
     }

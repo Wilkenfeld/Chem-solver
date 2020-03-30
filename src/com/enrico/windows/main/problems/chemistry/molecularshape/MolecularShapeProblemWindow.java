@@ -22,6 +22,7 @@ package com.enrico.windows.main.problems.chemistry.molecularshape;
 import com.enrico.chemistry.atoms.scientific.GenericScientificAtom;
 import com.enrico.chemistry.formulaparser.FormulaParser;
 import com.enrico.chemistry.molecule.Molecule;
+import com.enrico.interfaces.windows.ImageSavingInterface;
 import com.enrico.programresources.FontResources;
 import com.enrico.project.saver.FormulaShapeProjectSaver;
 import com.enrico.project.saver.OverwriteException;
@@ -43,7 +44,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public final class MolecularShapeProblemWindow extends GenericProblemWindow {
+public final class MolecularShapeProblemWindow extends GenericProblemWindow implements ImageSavingInterface {
     private JPanel mainPanel;
     private MoleculeShapeCanvas mainMoleculeShapeCanvas;
     private ProgramTextField textFieldFormula;
@@ -66,10 +67,7 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
         ProblemWindowMenuBar problemWindowMenuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(problemWindowMenuBar);
 
-        JMenuItem saveImageItem = problemWindowMenuBar.problemMenu.add("Save image");
-        saveImageItem.addActionListener(actionEvent -> saveImageProcedure());
-        saveImageItem.setFont(FontResources.menuBarFont);
-        problemWindowMenuBar.saveMenuItem.addActionListener(actionEvent -> saveProject());
+        addSaveImageItem(problemWindowMenuBar, () -> {saveImage(this, mainMoleculeShapeCanvas); return null;});
     }
 
     public void setFormulaOnTextField(String formula) {
@@ -119,59 +117,6 @@ public final class MolecularShapeProblemWindow extends GenericProblemWindow {
 
     public void createUIComponents() {
         mainMoleculeShapeCanvas = new MoleculeShapeCanvas();
-    }
-
-    private void saveImageProcedure() {
-        SaveDialog saveDialog = new SaveDialog(this);
-
-        int selection = saveDialog.showDialog();
-        boolean saveStatus = false;
-        int imageFormat;
-
-        if (selection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = saveDialog.getSelectedFile();
-
-            // Check extension type.
-            FileTypeFilter filter = saveDialog.getFileTypeFilter();
-            if (filter.getExtension().equals(SaveDialog.PNG_EXTENSION))
-                imageFormat = ImageSaver.IMAGE_PNG_FORMAT;
-            else
-                imageFormat = ImageSaver.IMAGE_JPG_FORMAT;
-
-            int counter; // Used to count how many times the dialog is shown.
-
-            for (counter = 0; counter < 3; counter++) {
-                try {
-                    ImageSaver saver = new ImageSaver(mainMoleculeShapeCanvas);
-
-                    saveStatus = saver.saveImage(fileToSave.getAbsolutePath(), imageFormat);
-
-                    if (!saveStatus) {
-                        OverwriteDialog dialog = new OverwriteDialog();
-                        dialog.setFilePath(saver.getCompleteName());
-
-                        if (dialog.showDialog() != OverwriteDialog.CHOICE_OK)
-                            break;
-                    } else {
-                        break;
-                    }
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(this,
-                            e.getMessage(),
-                            "IO Error.",
-                            JOptionPane.ERROR_MESSAGE);
-                    break;
-                }
-            }
-
-            // If the saving process has failed both times.
-            if (!saveStatus && counter == 2) {
-                JOptionPane.showMessageDialog(this,
-                        "Error: cannot save the image.",
-                        "IO Error.",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        }
     }
 
     @Override

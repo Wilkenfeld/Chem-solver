@@ -19,7 +19,14 @@
 
 package com.enrico.windows.main.problems;
 
+import com.enrico.programresources.FontResources;
+import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.BasicWindow;
+
+import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+import java.util.concurrent.Callable;
 
 public abstract class GenericProblemWindow extends BasicWindow {
     public GenericProblemWindow(String title) {
@@ -27,4 +34,17 @@ public abstract class GenericProblemWindow extends BasicWindow {
     }
     public abstract void solveProblem();
     public abstract void saveProject();
+
+    protected final void addSaveImageItem(@NotNull ProblemWindowMenuBar menuBar, Callable<Void> saveMethod) {
+        JMenuItem saveImageItem = menuBar.problemMenu.add("Save image");
+        saveImageItem.addActionListener(actionEvent -> {
+            try {
+                saveMethod.call();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        saveImageItem.setFont(FontResources.menuBarFont);
+        menuBar.saveMenuItem.addActionListener(actionEvent -> saveProject());
+    }
 }

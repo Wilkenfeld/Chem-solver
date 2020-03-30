@@ -22,28 +22,31 @@ package com.enrico.windows.main.problems.chemistry.moleculebuilder;
 import com.enrico.drawing.graphicalAtoms.actinides.*;
 import com.enrico.drawing.graphicalAtoms.alkalineearthmetals.*;
 import com.enrico.drawing.graphicalAtoms.alkalinemetals.*;
-import com.enrico.drawing.graphicalAtoms.halogens.GraphicalBromineAtom;
-import com.enrico.drawing.graphicalAtoms.halogens.GraphicalChlorineAtom;
-import com.enrico.drawing.graphicalAtoms.halogens.GraphicalFluorineAtom;
-import com.enrico.drawing.graphicalAtoms.halogens.GraphicalIodineAtom;
+import com.enrico.drawing.graphicalAtoms.halogens.*;
 import com.enrico.drawing.graphicalAtoms.lanthanides.*;
-import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalKryptonAtom;
-import com.enrico.drawing.graphicalAtoms.noblegasses.GraphicalXenonAtom;
+import com.enrico.drawing.graphicalAtoms.noblegasses.*;
 import com.enrico.drawing.graphicalAtoms.nonmetals.*;
 import com.enrico.drawing.graphicalAtoms.pblockmetals.*;
 import com.enrico.drawing.graphicalAtoms.semimetals.*;
 import com.enrico.drawing.graphicalAtoms.transitionalmetals.*;
+import com.enrico.interfaces.windows.ImageSavingInterface;
+import com.enrico.programresources.FontResources;
+import com.enrico.widgets.canvas.FileTypeFilter;
+import com.enrico.widgets.canvas.ImageSaver;
 import com.enrico.widgets.canvas.moleculedrawingcanvas.MoleculeDrawingCanvas;
 import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
+import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
+import com.enrico.windows.dialogs.savedialog.SaveDialog;
 import com.enrico.windows.main.problems.GenericProblemWindow;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public final class MoleculeBuilderWindow extends GenericProblemWindow {
+public final class MoleculeBuilderWindow extends GenericProblemWindow implements ImageSavingInterface {
     public static final String TITLE =
             "Molecule Builder";
     private JPanel mainPanel;
@@ -173,7 +176,7 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
     private ImageButton drawBtn;
     private JScrollPane scrollPane;
 
-    private final int CANVAS_SIZE = 5000;
+    private final int CANVAS_SIZE = 1000;
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -194,6 +197,8 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow {
 
         scrollPane.getHorizontalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
         scrollPane.getVerticalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
+
+        addSaveImageItem(menuBar, () -> {saveImage(this, canvas); return null;});
     }
 
     @Override
