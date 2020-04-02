@@ -66,13 +66,6 @@ public class InfoDialog extends JDialog {
         pack();
     }
 
-    public static void main(String[] args) {
-        InfoDialog dialog = new InfoDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
-
     private void createUIComponents() {
         buttonOK = new ProgramButton("OK");
     }
