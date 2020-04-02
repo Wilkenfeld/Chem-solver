@@ -38,6 +38,7 @@ import com.enrico.widgets.buttons.imagebutton.ImageButton;
 import com.enrico.widgets.menu.ProblemWindowMenuBar;
 import com.enrico.windows.dialogs.overwrite.OverwriteDialog;
 import com.enrico.windows.dialogs.savedialog.SaveDialog;
+import com.enrico.windows.dialogs.spinnerdialog.numbers.SpinnerDialogInteger;
 import com.enrico.windows.main.problems.GenericProblemWindow;
 
 import javax.swing.*;
@@ -176,7 +177,10 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow implements
     private ImageButton drawBtn;
     private JScrollPane scrollPane;
 
-    private final int CANVAS_SIZE = 1000;
+    private final int INITIAL_CANVAS_SIZE = 1000;
+    private int canvasSize = INITIAL_CANVAS_SIZE;
+    private final int MAXIMUM_CANVAS_SIZE = 5000;
+
 
     public MoleculeBuilderWindow() {
         super(TITLE);
@@ -195,10 +199,16 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow implements
         ProblemWindowMenuBar menuBar = new ProblemWindowMenuBar(this);
         setJMenuBar(menuBar);
         
-        scrollPane.getHorizontalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
-        scrollPane.getVerticalScrollBar().getModel().setValue(CANVAS_SIZE / 2);
+        scrollPane.getHorizontalScrollBar().getModel().setValue(canvasSize / 2);
+        scrollPane.getVerticalScrollBar().getModel().setValue(canvasSize / 2);
 
         addSaveImageItem(menuBar, () -> {saveImage(this, canvas); return null;});
+
+        JMenuItem sizeItem = menuBar.problemMenu.add("Canvas size");
+        sizeItem.setFont(FontResources.menuBarFont);
+        sizeItem.addActionListener(actionEvent -> {
+            showCanvasSizeDialog();
+        });
     }
 
     @Override
@@ -209,9 +219,26 @@ public final class MoleculeBuilderWindow extends GenericProblemWindow implements
     public void saveProject() {
     }
 
+    private void showCanvasSizeDialog() {
+        SpinnerDialogInteger canvasSizeDialog = new SpinnerDialogInteger(INITIAL_CANVAS_SIZE,
+                                                                         SpinnerDialogInteger.START_VALUE_IS_MINIMUM,
+                                                                         MAXIMUM_CANVAS_SIZE,
+                                                                         SpinnerDialogInteger.STANDARD_STEP,
+                                                                         "Set canvas size",
+                                                                         "Select canvas size:");
+        canvasSizeDialog.showDialog();
+
+        int newDimension = canvasSizeDialog.getSelectedValue();
+
+        canvas.setPreferredSize(new Dimension(newDimension, newDimension));
+
+        scrollPane.revalidate();
+        scrollPane.repaint();
+    }
+
     private void createUIComponents() {
         canvas = new MoleculeDrawingCanvas();
-        canvas.setPreferredSize(new Dimension(CANVAS_SIZE, CANVAS_SIZE));
+        canvas.setPreferredSize(new Dimension(canvasSize, canvasSize));
 
         scrollPane = new JScrollPane(canvas);
         scrollPane.add(canvas);
