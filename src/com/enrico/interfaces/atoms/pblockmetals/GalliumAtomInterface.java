@@ -25,7 +25,7 @@ public interface GalliumAtomInterface {
     String ATOM_SYMBOL = "Ga";
     String ATOM_NAME = "Gallium";
     int ATOMIC_NUMBER = 31;
-    int BINDING_ELECTRONS = 3;
+    int BONDING_ELECTRONS = 3;
     int IONIZATION_NUMBER = 579;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 69.2;

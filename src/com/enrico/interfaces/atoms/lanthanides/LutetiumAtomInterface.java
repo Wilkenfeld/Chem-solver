@@ -26,7 +26,7 @@ public interface LutetiumAtomInterface {
     String ATOM_SYMBOL = "Lu";
     String ATOM_NAME = "Lutetium";
     int ATOMIC_NUMBER = 71;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 523;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 174.967;

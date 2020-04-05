@@ -26,7 +26,7 @@ public interface BerkeliumAtomInterface {
     String ATOM_SYMBOL = "Bk";
     String ATOM_NAME = "Berkelium";
     int ATOMIC_NUMBER = 97;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 601;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 247;

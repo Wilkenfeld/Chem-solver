@@ -42,7 +42,7 @@ public class Molecule {
 
     // AXE Parameters.
     private GenericScientificAtom centralGenericScientificAtom;
-    private ArrayList<GenericScientificAtom> bindedGenericScientificAtoms; // Atoms binded to the central atom.
+    private ArrayList<GenericScientificAtom> bondedGenericScientificAtoms; // Atoms bonded to the central atom.
     private int doubletsNumber; // Doublets of central atom.
 
     private final int numberOfElements;
@@ -102,7 +102,7 @@ public class Molecule {
 
         doubletsNumber = 0;
 
-        bindedGenericScientificAtoms = new ArrayList<>();
+        bondedGenericScientificAtoms = new ArrayList<>();
         hydrogenAtoms = new ArrayList<>();
 
         findCentralAtom();
@@ -125,7 +125,7 @@ public class Molecule {
     }
 
     public ArrayList<GenericScientificAtom> getBindedGenericScientificAtoms() {
-        return bindedGenericScientificAtoms;
+        return bondedGenericScientificAtoms;
     }
 
     public String getFormula() {
@@ -199,7 +199,7 @@ public class Molecule {
         // Check if molecule is Hydrogen molecule.
         if (GenericScientificAtomList.length == 2 && centralGenericScientificAtom.getClass() == HydrogenScientificAtom.class &&
             GenericScientificAtomList[1].getClass() == HydrogenScientificAtom.class) {
-            bindedGenericScientificAtoms.add(GenericScientificAtomList[1]);
+            bondedGenericScientificAtoms.add(GenericScientificAtomList[1]);
 
             operationString = operationString.concat("H (Hydrogen)\n");
 
@@ -215,14 +215,14 @@ public class Molecule {
             }
 
             if (!GenericScientificAtom.equals(centralGenericScientificAtom)) {
-                bindedGenericScientificAtoms.add(GenericScientificAtom);
+                bondedGenericScientificAtoms.add(GenericScientificAtom);
                 operationString = operationString.concat(GenericScientificAtom.getSymbol() + " (" + GenericScientificAtom.getCompleteName() + ")\n");
             }
         }
 
-        // All the binded atoms are Hydrogen atoms.
-        if (bindedGenericScientificAtoms.size() == 0) {
-            bindedGenericScientificAtoms.addAll(hydrogenAtoms);
+        // All the bonded atoms are Hydrogen atoms.
+        if (bondedGenericScientificAtoms.size() == 0) {
+            bondedGenericScientificAtoms.addAll(hydrogenAtoms);
             operationString = operationString.concat("added " + hydrogenAtoms.size() + " Hydrogen atoms\n");
         }
     }
@@ -259,31 +259,31 @@ public class Molecule {
     public void calculateShape() throws IllegalMoleculeException {
         operationString = operationString.concat("Found shape of molecule: ");
 
-        if ((bindedGenericScientificAtoms.size() == 4 && doubletsNumber == 0) ||
-            (bindedGenericScientificAtoms.size() == 4 && doubletsNumber == 2)) {
+        if ((bondedGenericScientificAtoms.size() == 4 && doubletsNumber == 0) ||
+            (bondedGenericScientificAtoms.size() == 4 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.SquareShape;
             operationString = operationString.concat("Square shape.\n");
-        } else if ((bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 2) ||
-                 (bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 5) ||
-                 (bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 1)) {
+        } else if ((bondedGenericScientificAtoms.size() == 2 && doubletsNumber == 2) ||
+                 (bondedGenericScientificAtoms.size() == 2 && doubletsNumber == 5) ||
+                 (bondedGenericScientificAtoms.size() == 3 && doubletsNumber == 1)) {
             moleculeShape = ShapeEnum.PyramidShape;
             operationString = operationString.concat("Pyramid shape.\n");
-        } else if ((bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 0) ||
-                 (bindedGenericScientificAtoms.size() == 1 && doubletsNumber == 0) ||
-                 (bindedGenericScientificAtoms.size() == 2 && doubletsNumber == 1) ||
-                 (bindedGenericScientificAtoms.size() == 1 && doubletsNumber == 3) ||
-                 (bindedGenericScientificAtoms.size() == 1 && doubletsNumber == 2)) {
+        } else if ((bondedGenericScientificAtoms.size() == 2 && doubletsNumber == 0) ||
+                 (bondedGenericScientificAtoms.size() == 1 && doubletsNumber == 0) ||
+                 (bondedGenericScientificAtoms.size() == 2 && doubletsNumber == 1) ||
+                 (bondedGenericScientificAtoms.size() == 1 && doubletsNumber == 3) ||
+                 (bondedGenericScientificAtoms.size() == 1 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.LineShape;
             operationString = operationString.concat("Line shape.\n");
-        } else if ((bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 2) ||
-                 (bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 0) ||
-                 (bindedGenericScientificAtoms.size() == 3 && doubletsNumber == 3)) {
+        } else if ((bondedGenericScientificAtoms.size() == 3 && doubletsNumber == 2) ||
+                 (bondedGenericScientificAtoms.size() == 3 && doubletsNumber == 0) ||
+                 (bondedGenericScientificAtoms.size() == 3 && doubletsNumber == 3)) {
             moleculeShape = ShapeEnum.TriangularShape;
             operationString = operationString.concat("Triangular shape.\n");
-        } else if ((bindedGenericScientificAtoms.size() == 5 && doubletsNumber == 2)) {
+        } else if ((bondedGenericScientificAtoms.size() == 5 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.FivePointedStar;
             operationString = operationString.concat("Five pointed star shape.\n");
-        } else if ((bindedGenericScientificAtoms.size() == 6 && doubletsNumber == 2)) {
+        } else if ((bondedGenericScientificAtoms.size() == 6 && doubletsNumber == 2)) {
             moleculeShape = ShapeEnum.SixPointedStar;
             operationString = operationString.concat("Six pointed star shape.\n");
         } else {
@@ -341,9 +341,9 @@ public class Molecule {
             elementsNum++;
         }
 
-        for (GenericScientificAtom bindedGenericScientificAtom : bindedGenericScientificAtoms) {
-            if (!Arrays.asList(atomSymbols).contains(bindedGenericScientificAtom.getSymbol())) {
-                atomSymbols[elementsNum] = bindedGenericScientificAtom.getSymbol();
+        for (GenericScientificAtom bondedGenericScientificAtom : bondedGenericScientificAtoms) {
+            if (!Arrays.asList(atomSymbols).contains(bondedGenericScientificAtom.getSymbol())) {
+                atomSymbols[elementsNum] = bondedGenericScientificAtom.getSymbol();
                 elementsNum++;
             }
         }

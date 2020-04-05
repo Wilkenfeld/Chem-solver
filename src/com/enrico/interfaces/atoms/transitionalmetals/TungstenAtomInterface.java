@@ -26,7 +26,7 @@ public interface TungstenAtomInterface {
     String ATOM_SYMBOL = "W";
     String ATOM_NAME = "Tungsten";
     int ATOMIC_NUMBER = 74;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 770;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 183.84;

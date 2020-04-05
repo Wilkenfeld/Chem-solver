@@ -25,7 +25,7 @@ public interface OxygenAtomInterface {
     String ATOM_SYMBOL = "O";
     String ATOM_NAME = "Oxygen";
     int ATOMIC_NUMBER = 8;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_ENERGY = 1314;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 16;

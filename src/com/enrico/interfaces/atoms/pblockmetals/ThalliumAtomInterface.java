@@ -25,7 +25,7 @@ public interface ThalliumAtomInterface {
     String ATOM_SYMBOL = "Tl";
     String ATOM_NAME = "Thallium";
     int ATOMIC_NUMBER = 81;
-    int BINDING_ELECTRONS = 3;
+    int BONDING_ELECTRONS = 3;
     int IONIZATION_NUMBER = 589;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 204.4;

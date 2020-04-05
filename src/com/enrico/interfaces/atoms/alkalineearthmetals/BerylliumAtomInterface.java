@@ -25,7 +25,7 @@ public interface BerylliumAtomInterface {
     String ATOM_SYMBOL = "Be";
     String ATOM_NAME = "Beryllium";
     int ATOMIC_NUMBER = 4;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 899;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 9.012;

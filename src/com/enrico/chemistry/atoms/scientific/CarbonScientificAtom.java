@@ -25,6 +25,6 @@ public class CarbonScientificAtom extends GenericScientificAtom implements Carbo
 
     public CarbonScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              BINDING_ELECTRONS, DOUBLETS, IONIZATION_NUMBER, AtomClassType.NotMetals);
+              BONDING_ELECTRONS, DOUBLETS, IONIZATION_NUMBER, AtomClassType.NotMetals);
     }
 }

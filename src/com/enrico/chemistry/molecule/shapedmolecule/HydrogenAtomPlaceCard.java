@@ -20,37 +20,37 @@
 package com.enrico.chemistry.molecule.shapedmolecule;
 
 /*
- * Since it's not rare that some hydrogen atoms are binded to other atoms, the normal PlaceCard for the normal atom
+ * Since it's not rare that some hydrogen atoms are bonded to other atoms, the normal PlaceCard for the normal atom
  * is not enough to store the position and to do the arithmetic to draw the lines, so this PlaceCard is an extension
  * if the original.
  *
- * It will store the PlaceCard of the atom that is binded to the Hydrogen to make the arithmetic to find the lines
+ * It will store the PlaceCard of the atom that is bonded to the Hydrogen to make the arithmetic to find the lines
  * spots easier.
  */
 public final class HydrogenAtomPlaceCard extends ShapedMolecule.AtomPlaceCard {
-    private ShapedMolecule.AtomPlaceCard bindedAtom;
+    private ShapedMolecule.AtomPlaceCard bondedAtom;
 
     HydrogenAtomPlaceCard(ShapedMolecule.AtomPlaceCard hydrogenPlaceCard,
-                          ShapedMolecule.AtomPlaceCard bindedAtom) {
+                          ShapedMolecule.AtomPlaceCard bondedAtom) {
         super(hydrogenPlaceCard.getAtomPlaceCardAtom(), hydrogenPlaceCard.getX(), hydrogenPlaceCard.getY(),
               hydrogenPlaceCard.getPosition());
-        this.bindedAtom = bindedAtom;
+        this.bondedAtom = bondedAtom;
     }
 
     public int getBindedAtomX() {
-        return bindedAtom.getX();
+        return bondedAtom.getX();
     }
 
     public int getBindedAtomY() {
-        return bindedAtom.getY();
+        return bondedAtom.getY();
     }
 
     public ShapedMolecule.AtomPlaceCard getBindedAtomPlaceCard() {
-        return bindedAtom;
+        return bondedAtom;
     }
 
     public String getBindedAtomSymbol() {
-        return bindedAtom.getAtomSymbol();
+        return bondedAtom.getAtomSymbol();
     }
 
 }

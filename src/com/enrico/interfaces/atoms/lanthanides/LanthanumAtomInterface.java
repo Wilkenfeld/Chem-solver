@@ -26,7 +26,7 @@ public interface LanthanumAtomInterface {
     String ATOM_SYMBOL = "La";
     String ATOM_NAME = "Lanthanum";
     int ATOMIC_NUMBER = 57;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 538;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 138.905;

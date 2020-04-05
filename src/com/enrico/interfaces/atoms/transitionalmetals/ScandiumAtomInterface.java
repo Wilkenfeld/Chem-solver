@@ -26,7 +26,7 @@ public interface ScandiumAtomInterface {
     String ATOM_SYMBOL = "Sc";
     String ATOM_NAME = "Scandium";
     int ATOMIC_NUMBER = 21;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 633;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 44.956;

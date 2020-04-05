@@ -17,7 +17,7 @@
  *
  */
 
-package com.enrico.drawing.graphicalAtoms.binding;
+package com.enrico.drawing.graphicalAtoms.bond;
 
 import java.awt.*;
 

@@ -25,7 +25,7 @@ public interface GermaniumAtomInterface {
     String ATOM_SYMBOL = "Ge";
     String ATOM_NAME = "Germanium";
     int ATOMIC_NUMBER = 32;
-    int BINDING_ELECTRONS = 4;
+    int BONDING_ELECTRONS = 4;
     int IONIZATION_NUMBER = 726;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 72.63;

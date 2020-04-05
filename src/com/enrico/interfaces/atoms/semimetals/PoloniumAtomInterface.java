@@ -25,7 +25,7 @@ public interface PoloniumAtomInterface {
     String ATOM_SYMBOL = "Po";
     String ATOM_NAME = "Polonium";
     int ATOMIC_NUMBER = 84;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 812;
     int DOUBLETS = 3;
     double ATOMIC_MASS = 209;

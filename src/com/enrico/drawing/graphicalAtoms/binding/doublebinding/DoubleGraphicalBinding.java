@@ -17,9 +17,9 @@
  *
  */
 
-package com.enrico.drawing.graphicalAtoms.binding.doublebinding;
+package com.enrico.drawing.graphicalAtoms.bond.doublebond;
 
-import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBinding;
 
 public final class DoubleGraphicalBinding extends GenericGraphicalBinding {
     // Left line.
@@ -38,7 +38,7 @@ public final class DoubleGraphicalBinding extends GenericGraphicalBinding {
 
     public DoubleGraphicalBinding(int startXL, int endXL, int startYL, int endYL, int startXR,
                                   int endXR, int startYR, int endYR) {
-        super("DOUBLE_BINDING_");
+        super("DOUBLE_BONDING_");
 
         // Left line.
         this.startXL = startXL;

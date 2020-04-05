@@ -26,7 +26,7 @@ public interface CobaltAtomInterface {
     String ATOM_SYMBOL = "Co";
     String ATOM_NAME = "Cobalt";
     int ATOMIC_NUMBER = 27;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 760;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 58.933;

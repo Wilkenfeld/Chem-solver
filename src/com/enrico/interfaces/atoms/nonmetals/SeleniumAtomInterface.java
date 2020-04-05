@@ -25,7 +25,7 @@ public interface SeleniumAtomInterface {
     String ATOM_SYMBOL = "Se";
     String ATOM_NAME = "Selenium";
     int ATOMIC_NUMBER = 34;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_ENERGY = 941;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 78.69;

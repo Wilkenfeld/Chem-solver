@@ -26,7 +26,7 @@ public interface PalladiumAtomInterface {
     String ATOM_SYMBOL = "Pd";
     String ATOM_NAME = "Palladium";
     int ATOMIC_NUMBER = 46;
-    int BINDING_ELECTRONS = 18;
+    int BONDING_ELECTRONS = 18;
     int IONIZATION_NUMBER = 804;
     int DOUBLETS = 9;
     double ATOMIC_MASS = 106.42;

@@ -26,7 +26,7 @@ public interface VanadiumAtomInterface {
     String ATOM_SYMBOL = "V";
     String ATOM_NAME = "Vanadium";
     int ATOMIC_NUMBER = 23;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 650;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 50.942;

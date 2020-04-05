@@ -26,7 +26,7 @@ public interface TerbiumAtomInterface {
     String ATOM_SYMBOL = "Tb";
     String ATOM_NAME = "Terbium";
     int ATOMIC_NUMBER = 65;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 565;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 158.925;

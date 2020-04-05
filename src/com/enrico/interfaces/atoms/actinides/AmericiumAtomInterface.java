@@ -26,7 +26,7 @@ public interface AmericiumAtomInterface {
     String ATOM_SYMBOL = "Am";
     String ATOM_NAME = "Americium";
     int ATOMIC_NUMBER = 95;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 578;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 243;

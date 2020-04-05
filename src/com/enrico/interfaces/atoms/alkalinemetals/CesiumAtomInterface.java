@@ -25,7 +25,7 @@ public interface CesiumAtomInterface {
     String ATOM_SYMBOL = "Cs";
     String ATOM_NAME = "Cesium";
     int ATOMIC_NUMBER = 55;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 376;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 132.9;

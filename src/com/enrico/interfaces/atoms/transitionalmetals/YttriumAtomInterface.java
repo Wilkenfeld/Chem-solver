@@ -26,7 +26,7 @@ public interface YttriumAtomInterface {
     String ATOM_SYMBOL = "Y";
     String ATOM_NAME = "Yttrium";
     int ATOMIC_NUMBER = 39;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 600;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 88.906;

@@ -17,14 +17,14 @@
  *
  */
 
-package com.enrico.drawing.graphicalAtoms.binding;
+package com.enrico.drawing.graphicalAtoms.bond;
 
-import com.enrico.drawing.graphicalAtoms.binding.singlebinding.SingleGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBinding;
 
 import java.util.ArrayList;
 
 public final class GenericGraphicalBindingList<BindingType> {
-    private ArrayList<BindingType> bindings = new ArrayList<>();
+    private ArrayList<BindingType> bonds = new ArrayList<>();
     private ArrayList<Edges> edges = new ArrayList<>();
 
     public enum Edges {
@@ -35,13 +35,13 @@ public final class GenericGraphicalBindingList<BindingType> {
     public GenericGraphicalBindingList() {
     }
 
-    public void addBinding(BindingType binding, Edges edge) {
-        bindings.add(binding);
+    public void addBinding(BindingType bond, Edges edge) {
+        bonds.add(bond);
         edges.add(edge);
     }
 
     public BindingType getBindingFromIndex(int index) {
-        return bindings.get(index);
+        return bonds.get(index);
     }
 
     public Edges getEdgeFromIndex(int index) {
@@ -49,11 +49,11 @@ public final class GenericGraphicalBindingList<BindingType> {
     }
 
     public int getNumberOfBindings() {
-        return bindings.size();
+        return bonds.size();
     }
 
     public ArrayList<BindingType> getBindings() {
-        return bindings;
+        return bonds;
     }
 
     public ArrayList<Edges> getBindingsEdges() {

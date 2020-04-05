@@ -25,7 +25,7 @@ public interface BismuthAtomInterface {
     String ATOM_SYMBOL = "Bi";
     String ATOM_NAME = "Bismuth";
     int ATOMIC_NUMBER = 83;
-    int BINDING_ELECTRONS = 5;
+    int BONDING_ELECTRONS = 5;
     int IONIZATION_NUMBER = 703;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 209;

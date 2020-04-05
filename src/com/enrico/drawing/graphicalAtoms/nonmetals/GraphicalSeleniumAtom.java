@@ -20,18 +20,18 @@
 package com.enrico.drawing.graphicalAtoms.nonmetals;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBindingList;
+import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBindingList;
 import com.enrico.interfaces.atoms.nonmetals.SeleniumAtomInterface;
 
 public final class GraphicalSeleniumAtom extends GenericGraphicalAtom implements SeleniumAtomInterface {
     public static final String IMAGE_PATH_STRING =
             "atom_icons/nonmetals/atom_icon_selenium.png";
 
-    public static final int STD_BINDINGS = 2;
+    public static final int STD_BONDINGS = 2;
 
     public GraphicalSeleniumAtom(int startX, int startY, int endX, int endY, String atomId) {
-        super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BINDING_ELECTRONS, DOUBLETS,
-                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BINDINGS, IMAGE_PATH_STRING, atomId);
+        super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
+                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
 
         doubleBindingList = new GenericGraphicalBindingList<>();
         tripleBindingList = new GenericGraphicalBindingList<>();

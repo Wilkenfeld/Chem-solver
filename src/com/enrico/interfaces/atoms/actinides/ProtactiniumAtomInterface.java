@@ -26,7 +26,7 @@ public interface ProtactiniumAtomInterface {
     String ATOM_SYMBOL = "Pa";
     String ATOM_NAME = "Protactinium";
     int ATOMIC_NUMBER = 91;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 568;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 231.036;

@@ -26,7 +26,7 @@ public interface ChromiumAtomInterface {
     String ATOM_SYMBOL = "Cr";
     String ATOM_NAME = "Chromium";
     int ATOMIC_NUMBER = 24;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 652;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 51.996;

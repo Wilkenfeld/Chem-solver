@@ -26,7 +26,7 @@ public interface ErbiumAtomInterface {
     String ATOM_SYMBOL = "Er";
     String ATOM_NAME = "Erbium";
     int ATOMIC_NUMBER = 68;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 589;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 167.259;

@@ -26,7 +26,7 @@ public interface RutheniumAtomInterface {
     String ATOM_SYMBOL = "Ru";
     String ATOM_NAME = "Ruthenium";
     int ATOMIC_NUMBER = 44;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 710;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 101.07;

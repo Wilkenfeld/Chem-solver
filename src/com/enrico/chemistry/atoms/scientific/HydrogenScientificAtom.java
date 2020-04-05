@@ -25,6 +25,6 @@ public class HydrogenScientificAtom extends GenericScientificAtom implements Hyd
 
     public HydrogenScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
+                BONDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

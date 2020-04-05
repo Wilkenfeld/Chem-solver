@@ -25,7 +25,7 @@ public interface TinAtomInterface {
     String ATOM_SYMBOL = "Sn";
     String ATOM_NAME = "Tin";
     int ATOMIC_NUMBER = 50;
-    int BINDING_ELECTRONS = 4;
+    int BONDING_ELECTRONS = 4;
     int IONIZATION_NUMBER = 709;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 118.7;

@@ -26,7 +26,7 @@ public interface TantalumAtomInterface {
     String ATOM_SYMBOL = "Ta";
     String ATOM_NAME = "Tantalum";
     int ATOMIC_NUMBER = 73;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 761;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 180.948;

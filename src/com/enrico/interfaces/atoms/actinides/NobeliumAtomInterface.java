@@ -26,7 +26,7 @@ public interface NobeliumAtomInterface {
     String ATOM_SYMBOL = "No";
     String ATOM_NAME = "Nobelium";
     int ATOMIC_NUMBER = 102;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 639;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 259;

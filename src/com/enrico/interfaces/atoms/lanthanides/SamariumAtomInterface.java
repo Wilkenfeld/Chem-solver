@@ -26,7 +26,7 @@ public interface SamariumAtomInterface {
     String ATOM_SYMBOL = "Sm";
     String ATOM_NAME = "Samarium";
     int ATOMIC_NUMBER = 62;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 544;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 150.36;

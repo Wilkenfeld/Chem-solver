@@ -26,7 +26,7 @@ public interface CaliforniumAtomInterface {
     String ATOM_SYMBOL = "Cf";
     String ATOM_NAME = "Californium";
     int ATOMIC_NUMBER = 98;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 608;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 251;

@@ -26,7 +26,7 @@ public interface ZincAtomInterface {
     String ATOM_SYMBOL = "Zn";
     String ATOM_NAME = "Zinc";
     int ATOMIC_NUMBER = 30;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 906;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 65.38;

@@ -25,7 +25,7 @@ public interface FranciumAtomInterface {
     String ATOM_SYMBOL = "Fr";
     String ATOM_NAME = "Francium";
     int ATOMIC_NUMBER = 87;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 380;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 223;

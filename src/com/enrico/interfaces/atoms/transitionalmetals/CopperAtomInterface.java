@@ -26,7 +26,7 @@ public interface CopperAtomInterface {
     String ATOM_SYMBOL = "Cu";
     String ATOM_NAME = "Copper";
     int ATOMIC_NUMBER = 29;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 745;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 63.546;

@@ -26,7 +26,7 @@ public interface ZirconiumAtomInterface {
     String ATOM_SYMBOL = "Zr";
     String ATOM_NAME = "Zirconium";
     int ATOMIC_NUMBER = 40;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 640;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 91.224;

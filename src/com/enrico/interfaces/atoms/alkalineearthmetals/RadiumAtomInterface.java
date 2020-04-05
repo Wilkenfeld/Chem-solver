@@ -25,7 +25,7 @@ public interface RadiumAtomInterface {
     String ATOM_SYMBOL = "Ra";
     String ATOM_NAME = "Radium";
     int ATOMIC_NUMBER = 88;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 509;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 226;

@@ -26,7 +26,7 @@ public interface IridiumAtomInterface {
     String ATOM_SYMBOL = "Ir";
     String ATOM_NAME = "Iridium";
     int ATOMIC_NUMBER = 77;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 880;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 192.217;

@@ -26,7 +26,7 @@ public interface FermiumAtomInterface {
     String ATOM_SYMBOL = "Fm";
     String ATOM_NAME = "Fermium";
     int ATOMIC_NUMBER = 100;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 629;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 257;

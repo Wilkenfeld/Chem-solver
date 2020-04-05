@@ -26,7 +26,7 @@ public interface ThuliumAtomInterface {
     String ATOM_SYMBOL = "Tm";
     String ATOM_NAME = "Thulium";
     int ATOMIC_NUMBER = 69;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 596;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 168.934;

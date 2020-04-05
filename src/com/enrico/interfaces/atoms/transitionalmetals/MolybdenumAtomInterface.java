@@ -26,7 +26,7 @@ public interface MolybdenumAtomInterface {
     String ATOM_SYMBOL = "Mo";
     String ATOM_NAME = "Molybdenum";
     int ATOMIC_NUMBER = 42;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 684;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 95.95;

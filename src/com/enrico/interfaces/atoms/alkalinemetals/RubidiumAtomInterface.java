@@ -25,7 +25,7 @@ public interface RubidiumAtomInterface {
     String ATOM_SYMBOL = "Rb";
     String ATOM_NAME = "Rubidium";
     int ATOMIC_NUMBER = 37;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 403;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 85.47;

@@ -25,7 +25,7 @@ public interface XenonAtomInterface {
     String ATOM_SYMBOL = "Xe";
     String ATOM_NAME = "Xenon";
     int ATOMIC_NUMBER = 54;
-    int BINDING_ELECTRONS = 8;
+    int BONDING_ELECTRONS = 8;
     int DOUBLETS = 4;
     int IONIZATION_NUMBER = 1170;
     double ATOMIC_MASS = 131.3;

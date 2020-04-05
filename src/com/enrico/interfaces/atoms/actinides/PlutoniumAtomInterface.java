@@ -26,7 +26,7 @@ public interface PlutoniumAtomInterface {
     String ATOM_SYMBOL = "Pu";
     String ATOM_NAME = "Plutonium";
     int ATOMIC_NUMBER = 94;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 584;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 244;

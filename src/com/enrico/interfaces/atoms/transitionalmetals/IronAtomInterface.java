@@ -26,7 +26,7 @@ public interface IronAtomInterface {
     String ATOM_SYMBOL = "Fe";
     String ATOM_NAME = "Iron";
     int ATOMIC_NUMBER = 26;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 762;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 55.845;

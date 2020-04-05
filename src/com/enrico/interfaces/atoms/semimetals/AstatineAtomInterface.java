@@ -25,7 +25,7 @@ public interface AstatineAtomInterface {
     String ATOM_SYMBOL = "At";
     String ATOM_NAME = "Astatine";
     int ATOMIC_NUMBER = 85;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 930;
     int DOUBLETS = 3;
     double ATOMIC_MASS = 210;

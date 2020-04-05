@@ -26,7 +26,7 @@ public interface RhodiumAtomInterface {
     String ATOM_SYMBOL = "Rh";
     String ATOM_NAME = "Rhodium";
     int ATOMIC_NUMBER = 45;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 719;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 102.906;

@@ -26,7 +26,7 @@ public interface SilverAtomInterface {
     String ATOM_SYMBOL = "Ag";
     String ATOM_NAME = "Silver";
     int ATOMIC_NUMBER = 47;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 731;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 107.868;

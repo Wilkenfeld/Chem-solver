@@ -26,7 +26,7 @@ public interface HafniumAtomInterface {
     String ATOM_SYMBOL = "Hf";
     String ATOM_NAME = "Hafnium";
     int ATOMIC_NUMBER = 72;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 658;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 178.486;

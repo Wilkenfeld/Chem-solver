@@ -26,10 +26,10 @@ public final class GraphicalBismuthAtom extends GenericGraphicalAtom implements 
     public static final String IMAGE_PATH_STRING =
             "atom_icons/pblock_metals/atom_icon_bismuth.png";
 
-    public static final int STD_BINDINGS = 3;
+    public static final int STD_BONDINGS = 3;
 
     public GraphicalBismuthAtom(int startX, int startY, int endX, int endY, String atomId) {
-        super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BINDING_ELECTRONS, DOUBLETS,
-                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BINDINGS, IMAGE_PATH_STRING, atomId);
+        super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
+                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
     }
 }

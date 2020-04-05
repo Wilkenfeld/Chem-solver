@@ -26,7 +26,7 @@ public interface EinsteiniumAtomInterface {
     String ATOM_SYMBOL = "Es";
     String ATOM_NAME = "Einsteinium";
     int ATOMIC_NUMBER = 99;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 619;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 252;

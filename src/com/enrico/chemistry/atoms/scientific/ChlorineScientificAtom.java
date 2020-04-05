@@ -25,6 +25,6 @@ public class ChlorineScientificAtom extends GenericScientificAtom implements Chl
 
     public ChlorineScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_NUMBER, CLASS_TYPE);
+                BONDING_ELECTRONS, DOUBLETS, IONIZATION_NUMBER, CLASS_TYPE);
     }
 }

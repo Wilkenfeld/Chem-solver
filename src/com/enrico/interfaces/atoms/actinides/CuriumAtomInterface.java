@@ -26,7 +26,7 @@ public interface CuriumAtomInterface {
     String ATOM_SYMBOL = "Cm";
     String ATOM_NAME = "Curium";
     int ATOMIC_NUMBER = 96;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 581;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 247;

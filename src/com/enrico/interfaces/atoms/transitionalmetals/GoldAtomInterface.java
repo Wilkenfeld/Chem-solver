@@ -26,7 +26,7 @@ public interface GoldAtomInterface {
     String ATOM_SYMBOL = "Au";
     String ATOM_NAME = "Gold";
     int ATOMIC_NUMBER = 79;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 890;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 196.967;

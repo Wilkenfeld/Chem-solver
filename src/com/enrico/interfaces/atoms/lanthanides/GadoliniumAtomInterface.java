@@ -26,7 +26,7 @@ public interface GadoliniumAtomInterface {
     String ATOM_SYMBOL = "Gd";
     String ATOM_NAME = "Gadolinium";
     int ATOMIC_NUMBER = 64;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 593;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 157.25;

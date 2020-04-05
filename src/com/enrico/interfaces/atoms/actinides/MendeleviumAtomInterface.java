@@ -26,7 +26,7 @@ public interface MendeleviumAtomInterface {
     String ATOM_SYMBOL = "Md";
     String ATOM_NAME = "Mendelevium";
     int ATOMIC_NUMBER = 101;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 636;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 258;

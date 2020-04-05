@@ -25,7 +25,7 @@ public interface ArsenicAtomInterface {
     String ATOM_SYMBOL = "As";
     String ATOM_NAME = "Arsenic";
     int ATOMIC_NUMBER = 33;
-    int BINDING_ELECTRONS = 3;
+    int BONDING_ELECTRONS = 3;
     int IONIZATION_NUMBER = 947;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 74.92;

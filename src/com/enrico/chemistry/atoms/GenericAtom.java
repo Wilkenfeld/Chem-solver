@@ -28,7 +28,7 @@ public abstract class GenericAtom {
     protected final double atomicMass;
     protected final double electronegativity;
     protected final int doublets;
-    protected final int bindingElectronsNumber;
+    protected final int bondElectronsNumber;
     protected final int ionizationEnergy;
 
     protected final AtomClassType classType;
@@ -97,7 +97,7 @@ public abstract class GenericAtom {
     }
 
     public GenericAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
-                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType) {
+                                 int bondElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType) {
         this.symbol = symbol;
         this.completeName = completeName;
         this.atomicNumber = atomicNumber;
@@ -105,7 +105,7 @@ public abstract class GenericAtom {
         this.electronegativity = electronegativity;
         this.doublets = doublets;
         this.classType = classType;
-        this.bindingElectronsNumber = bindingElectronsNumber;
+        this.bondElectronsNumber = bondElectronsNumber;
         this.ionizationEnergy = ionizationEnergy;
     }
 
@@ -138,7 +138,7 @@ public abstract class GenericAtom {
     }
 
     public int getBindingElectronsNumber() {
-        return bindingElectronsNumber;
+        return bondElectronsNumber;
     }
 
     public int getIonizationEnergy() {

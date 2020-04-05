@@ -25,7 +25,7 @@ public interface BoronAtomInterface {
     String ATOM_SYMBOL = "B";
     String ATOM_NAME = "Boron";
     int ATOMIC_NUMBER = 5;
-    int BINDING_ELECTRONS = 3;
+    int BONDING_ELECTRONS = 3;
     int IONIZATION_NUMBER = 801;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 10.81;

@@ -27,6 +27,6 @@ public class HeliumScientificAtom extends GenericScientificAtom implements Heliu
 
     public HeliumScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-              BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
+              BONDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

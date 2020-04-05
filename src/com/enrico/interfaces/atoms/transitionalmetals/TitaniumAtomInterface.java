@@ -26,7 +26,7 @@ public interface TitaniumAtomInterface {
     String ATOM_SYMBOL = "Ti";
     String ATOM_NAME = "Titanium";
     int ATOMIC_NUMBER = 22;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 658;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 47.867;

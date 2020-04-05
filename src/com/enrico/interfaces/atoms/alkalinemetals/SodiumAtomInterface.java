@@ -25,7 +25,7 @@ public interface SodiumAtomInterface {
     String ATOM_SYMBOL = "Na";
     String ATOM_NAME = "Sodium";
     int ATOMIC_NUMBER = 11;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 496;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 22.99;

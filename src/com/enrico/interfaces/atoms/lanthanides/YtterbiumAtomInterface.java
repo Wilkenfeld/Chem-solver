@@ -26,7 +26,7 @@ public interface YtterbiumAtomInterface {
     String ATOM_SYMBOL = "Yb";
     String ATOM_NAME = "Ytterbium";
     int ATOMIC_NUMBER = 70;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 603;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 173.045;

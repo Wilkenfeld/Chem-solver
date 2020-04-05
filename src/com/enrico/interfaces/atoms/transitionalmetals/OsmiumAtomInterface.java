@@ -26,7 +26,7 @@ public interface OsmiumAtomInterface {
     String ATOM_SYMBOL = "Os";
     String ATOM_NAME = "Osmium";
     int ATOMIC_NUMBER = 76;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 840;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 190.23;

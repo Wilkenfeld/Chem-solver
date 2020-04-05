@@ -26,7 +26,7 @@ public interface ThoriumAtomInterface {
     String ATOM_SYMBOL = "Th";
     String ATOM_NAME = "Thorium";
     int ATOMIC_NUMBER = 90;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 587;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 232.038;

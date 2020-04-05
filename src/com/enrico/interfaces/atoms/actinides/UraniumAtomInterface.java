@@ -26,7 +26,7 @@ public interface UraniumAtomInterface {
     String ATOM_SYMBOL = "U";
     String ATOM_NAME = "Uranium";
     int ATOMIC_NUMBER = 92;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 597;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 238.029;

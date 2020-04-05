@@ -17,9 +17,9 @@
  *
  */
 
-package com.enrico.drawing.graphicalAtoms.binding.triplebinding;
+package com.enrico.drawing.graphicalAtoms.bond.triplebond;
 
-import com.enrico.drawing.graphicalAtoms.binding.GenericGraphicalBinding;
+import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBinding;
 
 public class TripleGraphicalBinding extends GenericGraphicalBinding {
     // Central line.
@@ -43,7 +43,7 @@ public class TripleGraphicalBinding extends GenericGraphicalBinding {
     public TripleGraphicalBinding(int startCentralX, int endCentralX, int startCentralY, int endCentralY,
                                   int startLeftX, int endLeftX, int startLeftY, int endLeftY,
                                   int startRightX, int endRightX, int startRightY, int endRightY) {
-        super("TRIPLE_BINDING_");
+        super("TRIPLE_BONDING_");
 
         // Central line.
         this.startCentralX = startCentralX;

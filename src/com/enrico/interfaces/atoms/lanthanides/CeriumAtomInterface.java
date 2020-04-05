@@ -26,7 +26,7 @@ public interface CeriumAtomInterface {
     String ATOM_SYMBOL = "Ce";
     String ATOM_NAME = "Cerium";
     int ATOMIC_NUMBER = 58;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 534;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 140.116;

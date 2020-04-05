@@ -25,7 +25,7 @@ public interface HydrogenAtomInterface {
     String ATOM_SYMBOL = "H";
     String ATOM_NAME = "Hydrogen";
     int ATOMIC_NUMBER = 1;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_ENERGY = 1312;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 1.008;

@@ -25,7 +25,7 @@ public interface IndiumAtomInterface {
     String ATOM_SYMBOL = "In";
     String ATOM_NAME = "Indium";
     int ATOMIC_NUMBER = 49;
-    int BINDING_ELECTRONS = 3;
+    int BONDING_ELECTRONS = 3;
     int IONIZATION_NUMBER = 558;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 114.8;

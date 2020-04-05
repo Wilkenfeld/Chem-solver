@@ -25,7 +25,7 @@ public interface BromineAtomInterface {
     String ATOM_SYMBOL = "Br";
     String ATOM_NAME = "Bromine";
     int ATOMIC_NUMBER = 35;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 1140;
     int DOUBLETS = 3;
     double ATOMIC_MASS = 79.9;

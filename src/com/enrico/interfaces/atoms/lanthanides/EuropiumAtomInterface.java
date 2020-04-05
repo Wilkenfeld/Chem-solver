@@ -26,7 +26,7 @@ public interface EuropiumAtomInterface {
     String ATOM_SYMBOL = "Eu";
     String ATOM_NAME = "Europium";
     int ATOMIC_NUMBER = 63;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 547;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 151.964;

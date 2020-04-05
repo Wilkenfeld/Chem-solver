@@ -26,7 +26,7 @@ public interface NeodymiumAtomInterface {
     String ATOM_SYMBOL = "Nd";
     String ATOM_NAME = "Neodymium";
     int ATOMIC_NUMBER = 60;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 533;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 144.242;

@@ -26,7 +26,7 @@ public interface CadmiumAtomInterface {
     String ATOM_SYMBOL = "Cd";
     String ATOM_NAME = "Cadmium";
     int ATOMIC_NUMBER = 48;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 867;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 112.414;

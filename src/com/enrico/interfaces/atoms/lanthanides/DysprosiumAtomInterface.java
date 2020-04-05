@@ -26,7 +26,7 @@ public interface DysprosiumAtomInterface {
     String ATOM_SYMBOL = "Dy";
     String ATOM_NAME = "Dysprosium";
     int ATOMIC_NUMBER = 66;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 573;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 162.500;

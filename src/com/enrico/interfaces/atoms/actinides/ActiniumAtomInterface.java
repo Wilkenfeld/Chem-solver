@@ -26,7 +26,7 @@ public interface ActiniumAtomInterface {
     String ATOM_SYMBOL = "Ac";
     String ATOM_NAME = "Actinium";
     int ATOMIC_NUMBER = 89;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 499;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 227;

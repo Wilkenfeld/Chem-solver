@@ -26,7 +26,7 @@ public interface TechnetiumAtomInterface {
     String ATOM_SYMBOL = "Tc";
     String ATOM_NAME = "Technetium";
     int ATOMIC_NUMBER = 43;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 702;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 98;

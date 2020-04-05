@@ -25,7 +25,7 @@ public interface HeliumAtomInterface {
     String ATOM_SYMBOL = "He";
     String ATOM_NAME = "Helium";
     int ATOMIC_NUMBER = 2;
-    int BINDING_ELECTRONS = 0;
+    int BONDING_ELECTRONS = 0;
     int DOUBLETS = 0;
     int IONIZATION_ENERGY = 0;
     double ATOMIC_MASS = 4.003;

@@ -26,7 +26,7 @@ public interface PlatinumAtomInterface {
     String ATOM_SYMBOL = "Pt";
     String ATOM_NAME = "Platinum";
     int ATOMIC_NUMBER = 78;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 870;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 195.084;

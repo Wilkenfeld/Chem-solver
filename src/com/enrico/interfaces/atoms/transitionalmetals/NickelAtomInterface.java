@@ -26,7 +26,7 @@ public interface NickelAtomInterface {
     String ATOM_SYMBOL = "Ni";
     String ATOM_NAME = "Nickel";
     int ATOMIC_NUMBER = 28;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 737;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 58.693;

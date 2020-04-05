@@ -25,7 +25,7 @@ public interface KryptonAtomInterface {
     String ATOM_SYMBOL = "Kr";
     String ATOM_NAME = "Krypton";
     int ATOMIC_NUMBER = 36;
-    int BINDING_ELECTRONS = 8;
+    int BONDING_ELECTRONS = 8;
     int DOUBLETS = 4;
     int IONIZATION_NUMBER = 1351;
     double ATOMIC_MASS = 83.8;

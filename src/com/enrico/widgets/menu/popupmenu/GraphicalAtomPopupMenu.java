@@ -37,12 +37,12 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
             dialog.showDialog();
         });
 
-        JMenuItem singleBindingItem = new JMenuItem("Single bind to");
+        JMenuItem singleBindingItem = new JMenuItem("Single bond to");
         singleBindingItem.addActionListener(actionEvent -> {
             canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorSingleBinding);
         });
 
-        JMenuItem removeSingleBindingItem = new JMenuItem("Remove single binding");
+        JMenuItem removeSingleBindingItem = new JMenuItem("Remove single bond");
         removeSingleBindingItem.addActionListener(actionEvent -> {
             canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveSingleBinding);
         });
@@ -59,12 +59,12 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
 
         // Secondary actions.
         if (atom.getDoubleBindingList() != null) {
-            JMenuItem doubleBindingItem = new JMenuItem("Double bind to");
+            JMenuItem doubleBindingItem = new JMenuItem("Double bond to");
             doubleBindingItem.addActionListener(actionEvent -> {
                 canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorDoubleBinding);
             });
 
-            JMenuItem removeDoubleBindingItem = new JMenuItem("Remove double binding");
+            JMenuItem removeDoubleBindingItem = new JMenuItem("Remove double bond");
             removeDoubleBindingItem.addActionListener(actionEvent -> {
                 canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveDoubleBinding);
             });
@@ -74,12 +74,12 @@ public final class GraphicalAtomPopupMenu extends GenericPopupMenu {
         }
 
         if (atom.getTripleBindingList() != null) {
-            JMenuItem tripleBindingItem = new JMenuItem("Triple binding to");
+            JMenuItem tripleBindingItem = new JMenuItem("Triple bond to");
             tripleBindingItem.addActionListener(actionEvent -> {
                 canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorTripleBinding);
             });
 
-            JMenuItem removeTripleBindingItem = new JMenuItem("Remove triple binding");
+            JMenuItem removeTripleBindingItem = new JMenuItem("Remove triple bond");
             removeTripleBindingItem.addActionListener(actionEvent -> {
                 canvas.setCursorState(MoleculeDrawingCanvas.CursorStates.CursorRemoveTripleBinding);
             });

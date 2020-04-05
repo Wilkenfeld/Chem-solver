@@ -25,7 +25,7 @@ public interface LeadAtomInterface {
     String ATOM_SYMBOL = "Pb";
     String ATOM_NAME = "Lead";
     int ATOMIC_NUMBER = 82;
-    int BINDING_ELECTRONS = 4;
+    int BONDING_ELECTRONS = 4;
     int IONIZATION_NUMBER = 716;
     int DOUBLETS = 2;
     double ATOMIC_MASS = 207.2;

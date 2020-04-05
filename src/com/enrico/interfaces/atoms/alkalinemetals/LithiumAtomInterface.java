@@ -25,7 +25,7 @@ public interface LithiumAtomInterface {
     String ATOM_SYMBOL = "Li";
     String ATOM_NAME = "Lithium";
     int ATOMIC_NUMBER = 3;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 513;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 6.941;

@@ -31,9 +31,9 @@ public abstract class GenericScientificAtom extends GenericAtom {
     }
 
     public GenericScientificAtom(String symbol, String completeName, int atomicNumber, double atomicMass, double electronegativity,
-                                 int bindingElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType) {
+                                 int bondElectronsNumber, int doublets, int ionizationEnergy, AtomClassType classType) {
 
-        super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bindingElectronsNumber, doublets, ionizationEnergy, classType);
+        super(symbol, completeName, atomicNumber, atomicMass, electronegativity, bondElectronsNumber, doublets, ionizationEnergy, classType);
     }
 
     public static double getElectronegativityDifference(GenericScientificAtom genericAtom1, GenericScientificAtom genericAtom2) {

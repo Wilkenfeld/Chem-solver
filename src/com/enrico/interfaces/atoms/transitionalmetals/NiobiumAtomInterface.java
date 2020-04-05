@@ -26,7 +26,7 @@ public interface NiobiumAtomInterface {
     String ATOM_SYMBOL = "Nb";
     String ATOM_NAME = "Niobium";
     int ATOMIC_NUMBER = 41;
-    int BINDING_ELECTRONS = 1;
+    int BONDING_ELECTRONS = 1;
     int IONIZATION_NUMBER = 652;
     int DOUBLETS = 0;
     double ATOMIC_MASS = 92.906;

@@ -25,6 +25,6 @@ public class OxygenScientificAtom extends GenericScientificAtom implements Oxyge
 
     public OxygenScientificAtom() {
         super(ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY,
-                BINDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
+                BONDING_ELECTRONS, DOUBLETS, IONIZATION_ENERGY, CLASS_TYPE);
     }
 }

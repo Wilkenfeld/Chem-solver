@@ -25,7 +25,7 @@ public interface AluminiumAtomInterface {
     String ATOM_SYMBOL = "Al";
     String ATOM_NAME = "Aluminium";
     int ATOMIC_NUMBER = 13;
-    int BINDING_ELECTRONS = 3;
+    int BONDING_ELECTRONS = 3;
     int IONIZATION_NUMBER = 578;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 26.98;

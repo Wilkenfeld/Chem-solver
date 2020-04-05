@@ -26,7 +26,7 @@ public interface HolmiumAtomInterface {
     String ATOM_SYMBOL = "Ho";
     String ATOM_NAME = "Holmium";
     int ATOMIC_NUMBER = 67;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 581;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 164.930;

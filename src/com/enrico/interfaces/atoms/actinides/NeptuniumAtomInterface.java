@@ -26,7 +26,7 @@ public interface NeptuniumAtomInterface {
     String ATOM_SYMBOL = "Np";
     String ATOM_NAME = "Neptunium";
     int ATOMIC_NUMBER = 93;
-    int BINDING_ELECTRONS = 2;
+    int BONDING_ELECTRONS = 2;
     int IONIZATION_NUMBER = 604;
     int DOUBLETS = 1;
     double ATOMIC_MASS = 237;
