@@ -28,10 +28,10 @@ public final class GraphicalTechnetiumAtom extends GenericGraphicalAtom implemen
     public static final String IMAGE_PATH_STRING =
             "atom_icons/transition_metals/atom_icon_technetium.png";
 
-    public static final int STD_BONDINGS = 2;
+    public static final int STD_BONDS = 2;
 
     public GraphicalTechnetiumAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
-                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
+                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDS, IMAGE_PATH_STRING, atomId);
     }
 }

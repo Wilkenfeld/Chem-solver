@@ -20,20 +20,19 @@
 package com.enrico.drawing.graphicalAtoms.nonmetals;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBindingList;
 import com.enrico.interfaces.atoms.nonmetals.SulfurAtomInterface;
 
 public final class GraphicalSulfurAtom extends GenericGraphicalAtom implements SulfurAtomInterface {
     public static final String IMAGE_PATH_STRING =
             "atom_icons/nonmetals/atom_icon_sulfur.png";
 
-    public static final int STD_BONDINGS = 2;
+    public static final int STD_BONDS = 2;
 
     public GraphicalSulfurAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
-                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
+                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BONDS, IMAGE_PATH_STRING, atomId);
 
-        doubleBindingList = new GenericGraphicalBindingList<>();
-        tripleBindingList = new GenericGraphicalBindingList<>();
+        doubleBondList = new com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<>();
+        tripleBondList = new com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<>();
     }
 }

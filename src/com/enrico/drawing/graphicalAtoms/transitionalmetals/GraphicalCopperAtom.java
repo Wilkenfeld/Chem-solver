@@ -28,10 +28,10 @@ public final class GraphicalCopperAtom extends GenericGraphicalAtom implements C
     public static final String IMAGE_PATH_STRING =
             "atom_icons/transition_metals/atom_icon_copper.png";
 
-    public static final int STD_BONDINGS = 1;
+    public static final int STD_BONDS = 1;
 
     public GraphicalCopperAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
-                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
+                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDS, IMAGE_PATH_STRING, atomId);
     }
 }

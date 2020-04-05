@@ -20,20 +20,19 @@
 package com.enrico.drawing.graphicalAtoms.nonmetals;
 
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBindingList;
 import com.enrico.interfaces.atoms.nonmetals.OxygenAtomInterface;
 
 public final class GraphicalOxygenAtom extends GenericGraphicalAtom implements OxygenAtomInterface {
     public static final String IMAGE_PATH_STRING =
             "atom_icons/nonmetals/atom_icon_oxygen.png";
 
-    public static final int STD_BONDINGS = 2;
+    public static final int STD_BONDS = 2;
 
     public GraphicalOxygenAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
-                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
+                IONIZATION_ENERGY, CLASS_TYPE, startX, startY, endX, endY, STD_BONDS, IMAGE_PATH_STRING, atomId);
 
-        doubleBindingList = new GenericGraphicalBindingList<>();
-        tripleBindingList = new GenericGraphicalBindingList<>();
+        doubleBondList = new com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<>();
+        tripleBondList = new com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<>();
     }
 }

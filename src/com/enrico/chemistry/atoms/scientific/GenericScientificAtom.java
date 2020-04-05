@@ -24,7 +24,7 @@ import com.enrico.chemistry.atoms.GenericAtom;
 
 public abstract class GenericScientificAtom extends GenericAtom {
 
-    public enum BindingEnum {
+    public enum BondEnum {
         PureCovalent,
         PolarCovalent,
         Ionic
@@ -63,15 +63,15 @@ public abstract class GenericScientificAtom extends GenericAtom {
             return genericAtom2;
     }
 
-    public static BindingEnum getBindingFromAtoms(GenericScientificAtom genericAtom1, GenericScientificAtom genericAtom2) {
+    public static BondEnum getBondFromAtoms(GenericScientificAtom genericAtom1, GenericScientificAtom genericAtom2) {
         double electroNegativityDifference = getElectronegativityDifference(genericAtom1, genericAtom2);
 
         if (electroNegativityDifference >= 0 && electroNegativityDifference <= 0.4)
-            return BindingEnum.PureCovalent;
+            return BondEnum.PureCovalent;
         else if (electroNegativityDifference >= 0.4 && electroNegativityDifference <= 1.9)
-            return BindingEnum.PolarCovalent;
+            return BondEnum.PolarCovalent;
         else
-            return BindingEnum.Ionic;
+            return BondEnum.Ionic;
     }
 
     public static void checkIfUsable(GenericScientificAtom genericAtom) throws IllegalArgumentException {

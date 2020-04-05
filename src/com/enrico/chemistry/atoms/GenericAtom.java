@@ -137,7 +137,7 @@ public abstract class GenericAtom {
         return doublets;
     }
 
-    public int getBindingElectronsNumber() {
+    public int getBondElectronsNumber() {
         return bondElectronsNumber;
     }
 

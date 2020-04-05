@@ -21,10 +21,6 @@ package com.enrico.widgets.canvas.moleculedrawingcanvas;
 
 import com.enrico.chemistry.atoms.GenericAtom;
 import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBindingList;
-import com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBinding;
 import com.enrico.drawing.graphicalAtoms.halogens.GraphicalFluorineAtom;
 import com.enrico.widgets.canvas.GenericCanvas;
 import com.enrico.widgets.menu.popupmenu.GraphicalAtomPopupMenu;
@@ -52,13 +48,13 @@ import java.util.stream.Stream;
 public final class MoleculeDrawingCanvas extends GenericCanvas {
     // These are all of the cursor types that can be used when inside of the canvas.
     private final Cursor drawingCursor;
-    private final Cursor singleBindingCursor;
+    private final Cursor singleBondCursor;
     private final Cursor movingCursor;
-    private final Cursor removeSingleBindingCursor;
-    private final Cursor doubleBindingCursor;
-    private final Cursor removeDoubleBindingCursor;
-    private final Cursor tripleBindingCursor;
-    private final Cursor removeTripleBindingCursor;
+    private final Cursor removeSingleBondCursor;
+    private final Cursor doubleBondCursor;
+    private final Cursor removeDoubleBondCursor;
+    private final Cursor tripleBondCursor;
+    private final Cursor removeTripleBondCursor;
 
     // This member keeps track of the type of cursor that we're using.
     private CursorStates cursorState;
@@ -67,9 +63,9 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     private ArrayList<GenericGraphicalAtom> graphicalAtomsList = new ArrayList<>();
 
     // These lists contain all of the type of bonds inside the canvas.
-    private ArrayList<SingleGraphicalBinding> singleGraphicalBindingList = new ArrayList<>();
-    private ArrayList<DoubleGraphicalBinding> doubleGraphicalBindingList = new ArrayList<>();
-    private ArrayList<TripleGraphicalBinding> tripleGraphicalBindingList = new ArrayList<>();
+    private ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> singleGraphicalBondList = new ArrayList<>();
+    private ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> doubleGraphicalBondList = new ArrayList<>();
+    private ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> tripleGraphicalBondList = new ArrayList<>();
 
     // This member keeps track of the last atom that we clicked.
     private GenericGraphicalAtom lastSelectedAtom;
@@ -86,12 +82,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     public enum CursorStates {
         CursorSelecting,            // Normal arrow.
         CursorDrawing,              // Circle.
-        CursorSingleBinding,        // Bold circle.
-        CursorDoubleBinding,        // Double bold circle.
-        CursorTripleBinding,        // Triple bold circle.
-        CursorRemoveSingleBinding,  // Cross.
-        CursorRemoveDoubleBinding,  // Cross.
-        CursorRemoveTripleBinding,  // Cross.
+        CursorSingleBond,        // Bold circle.
+        CursorDoubleBond,        // Double bold circle.
+        CursorTripleBond,        // Triple bold circle.
+        CursorRemoveSingleBond,  // Cross.
+        CursorRemoveDoubleBond,  // Cross.
+        CursorRemoveTripleBond,  // Cross.
         CursorMoving                // Normal hand.
     }
 
@@ -109,27 +105,27 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_single_bond.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
-        singleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_image");
+        singleBondCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_image");
 
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_remove_bond_cursor.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
-        removeSingleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_remove_image");
+        removeSingleBondCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_remove_image");
 
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_double_bond.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
-        doubleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_double_bond_image");
+        doubleBondCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_double_bond_image");
 
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_remove_bond_cursor.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
-        removeDoubleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_remove_image");
+        removeDoubleBondCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_remove_image");
 
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_triple_bond.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
-        tripleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_triple_bond_image");
+        tripleBondCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_triple_bond_image");
 
         cursorImageRaw = toolkit.getImage(getClass().getClassLoader().getResource("cursor_assets/molecule_builder_remove_bond_cursor.png"));
         cursorImage = cursorImageRaw.getScaledInstance(45, 45, 0);
-        removeTripleBindingCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_remove_image");
+        removeTripleBondCursor = toolkit.createCustomCursor(cursorImage, new Point(1, 1), "cursor_bond_remove_image");
 
         movingCursor = new Cursor(Cursor.MOVE_CURSOR);
 
@@ -165,27 +161,27 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     @SuppressWarnings("unchecked")
     public void removeAtom(@NotNull GenericGraphicalAtom atom) {
         // First off, we get all of its bonds list.
-        ArrayList<SingleGraphicalBinding> singleBindings = (ArrayList<SingleGraphicalBinding>) atom.getSingleBindingList().getBindings().clone();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> singleBonds = (ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond>) atom.getSingleBondList().getBonds().clone();
 
-        ArrayList<DoubleGraphicalBinding> doubleBindings = null;
-        if (atom.getDoubleBindingList()  != null)
-            doubleBindings = (ArrayList<DoubleGraphicalBinding>) atom.getDoubleBindingList().getBindings().clone();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> doubleBonds = null;
+        if (atom.getDoubleBondList()  != null)
+            doubleBonds = (ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond>) atom.getDoubleBondList().getBonds().clone();
 
-        ArrayList<TripleGraphicalBinding> tripleBindings = null;
-        if (atom.getTripleBindingList() != null)
-            tripleBindings = (ArrayList<TripleGraphicalBinding>) atom.getTripleBindingList().getBindings().clone();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> tripleBonds = null;
+        if (atom.getTripleBondList() != null)
+            tripleBonds = (ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond>) atom.getTripleBondList().getBonds().clone();
 
         int index = 0;
 
         // We try to find this atom and we remove every single bond that we found.
         for (GenericGraphicalAtom bondedAtom : graphicalAtomsList) {
-            if (singleBindings.size() > 0) {
-                for (SingleGraphicalBinding bond : singleBindings) {
-                    if (bondedAtom.hasAtomBinding(bond.getID())) {
-                        bondedAtom.removeSingleBinding(bond.getID());
+            if (singleBonds.size() > 0) {
+                for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond : singleBonds) {
+                    if (bondedAtom.hasAtomBond(bond.getID())) {
+                        bondedAtom.removeSingleBond(bond.getID());
                         bond.markDeletion();
                         try {
-                            singleGraphicalBindingList.remove(index);
+                            singleGraphicalBondList.remove(index);
                         } catch (IndexOutOfBoundsException ignored) {
                         }
                     }
@@ -195,12 +191,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             // We now remove all of the double bonds.
             index = 0;
-            if (doubleBindings != null && doubleGraphicalBindingList.size() > 0) {
-                for (DoubleGraphicalBinding bond : doubleBindings) {
-                    if (bondedAtom.hasAtomBinding(bond.getID())) {
-                        bondedAtom.removeDoubleBinding(bond.getID());
+            if (doubleBonds != null && doubleGraphicalBondList.size() > 0) {
+                for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : doubleBonds) {
+                    if (bondedAtom.hasAtomBond(bond.getID())) {
+                        bondedAtom.removeDoubleBond(bond.getID());
                         bond.markDeletion();
-                        doubleGraphicalBindingList.remove(index);
+                        doubleGraphicalBondList.remove(index);
                     }
                     index++;
                 }
@@ -208,12 +204,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
             // We now remove all of the triple bonds.
             index = 0;
-            if (tripleBindings != null && tripleGraphicalBindingList.size() > 0) {
-                for (TripleGraphicalBinding bond : tripleBindings) {
-                    if (bondedAtom.hasAtomBinding(bond.getID())) {
-                        bondedAtom.removeTripleBinding(bond.getID());
+            if (tripleBonds != null && tripleGraphicalBondList.size() > 0) {
+                for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond : tripleBonds) {
+                    if (bondedAtom.hasAtomBond(bond.getID())) {
+                        bondedAtom.removeTripleBond(bond.getID());
                         bond.markDeletion();
-                        tripleGraphicalBindingList.remove(index);
+                        tripleGraphicalBondList.remove(index);
                     }
                     index++;
                 }
@@ -222,7 +218,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
 
         // After having deleted all of the atom bonds from every atom that was bonded to the @atom, we remove the
         // atom itself from the canvas and we repaint everything.
-        atom.removeAllBindings();
+        atom.removeAllBonds();
         graphicalAtomsList.remove(atom);
         repaint();
     }
@@ -231,45 +227,45 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
     public void paint(Graphics g) {
         super.paint(g);
 
-        // Draw single Bindings.
-        if (singleGraphicalBindingList.size() > 0) {
+        // Draw single Bonds.
+        if (singleGraphicalBondList.size() > 0) {
             Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setColor(SingleGraphicalBinding.DEFAULT_COLOR);
-            g2d.setStroke(SingleGraphicalBinding.DEFAULT_STROKE); // Set thickness of the line.
+            g2d.setColor(com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond.DEFAULT_COLOR);
+            g2d.setStroke(com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond.DEFAULT_STROKE); // Set thickness of the line.
 
-            sanitizeBindings();
+            sanitizeBonds();
 
-            for (SingleGraphicalBinding bond : singleGraphicalBindingList) {
+            for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond : singleGraphicalBondList) {
                 g.drawLine(bond.getStartX(), bond.getStartY(), bond.getEndX(), bond.getEndY());
             }
         }
 
         // Draw double bonds.
-        if (doubleGraphicalBindingList.size() > 0) {
+        if (doubleGraphicalBondList.size() > 0) {
             Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setColor(DoubleGraphicalBinding.DEFAULT_COLOR);
-            g2d.setStroke(DoubleGraphicalBinding.DEFAULT_STROKE);
+            g2d.setColor(com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond.DEFAULT_COLOR);
+            g2d.setStroke(com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond.DEFAULT_STROKE);
 
-            sanitizeBindings();
+            sanitizeBonds();
 
-            for (DoubleGraphicalBinding bond : doubleGraphicalBindingList) {
+            for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : doubleGraphicalBondList) {
                 g.drawLine(bond.getStartXL(), bond.getStartYL(), bond.getEndXL(), bond.getEndYL());
                 g.drawLine(bond.getStartXR(), bond.getStartYR(), bond.getEndXR(), bond.getEndYR());
             }
         }
 
         // Draw triple bonds.
-        if (tripleGraphicalBindingList.size() > 0) {
+        if (tripleGraphicalBondList.size() > 0) {
             Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setColor(TripleGraphicalBinding.DEFAULT_COLOR);
-            g2d.setStroke(TripleGraphicalBinding.DEFAULT_STROKE);
+            g2d.setColor(com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond.DEFAULT_COLOR);
+            g2d.setStroke(com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond.DEFAULT_STROKE);
 
-            sanitizeBindings();
+            sanitizeBonds();
 
-            for (TripleGraphicalBinding bond : tripleGraphicalBindingList) {
+            for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond : tripleGraphicalBondList) {
                 g.drawLine(bond.getStartCentralX(), bond.getStartCentralY(), bond.getEndCentralX(), bond.getEndCentralY());
                 g.drawLine(bond.getStartLeftX(), bond.getStartLeftY(), bond.getEndLeftX(), bond.getEndLeftY());
                 g.drawLine(bond.getStartRightX(), bond.getStartRightY(), bond.getEndRightX(), bond.getEndRightY());
@@ -335,12 +331,12 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param x the clicked X.
          * @param y the clicked Y.
          */
-        private void singleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+        private void singleBondEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
             if (selectedAtom == null)
                 return;
 
-            if (checkIfBindingPossible(selectedAtom, 1))
+            if (checkIfBondPossible(selectedAtom, 1))
                 return;
 
             if (lastSelectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineMetals ||
@@ -348,15 +344,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineMetals ||
                 selectedAtom.getClassType() == GenericAtom.AtomClassType.AlkalineEarthMetals) {
 
-                ionicBindingEvent(lastSelectedAtom, selectedAtom);
+                ionicBondEvent(lastSelectedAtom, selectedAtom);
             } else {
-                SingleGraphicalBinding bond = new SingleGraphicalBinding(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
+                com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond = new com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond(selectedAtom.getCenterX(), lastSelectedAtom.getCenterX(),
                         selectedAtom.getCenterY(), lastSelectedAtom.getCenterY());
 
-                singleGraphicalBindingList.add(bond);
+                singleGraphicalBondList.add(bond);
 
-                lastSelectedAtom.doSingleBinding(bond, GenericGraphicalBindingList.Edges.Start);
-                selectedAtom.doSingleBinding(bond, GenericGraphicalBindingList.Edges.End);
+                lastSelectedAtom.doSingleBond(bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start);
+                selectedAtom.doSingleBond(bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.End);
             }
 
             setCursor(Cursor.getDefaultCursor());
@@ -370,7 +366,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param lastSelectedAtom The atom to bond.
          * @param selectedAtom the other atom to bond.
          */
-        private void ionicBindingEvent(@NotNull GenericGraphicalAtom lastSelectedAtom, GenericGraphicalAtom selectedAtom) {
+        private void ionicBondEvent(@NotNull GenericGraphicalAtom lastSelectedAtom, GenericGraphicalAtom selectedAtom) {
             if (selectedAtom == null)
                 return;
 
@@ -380,8 +376,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 lastSelectedAtom.move(selectedAtom.getStartX(), selectedAtom.getStartY() - 45);
             }
 
-            lastSelectedAtom.performIonicBinding(selectedAtom);
-            selectedAtom.performIonicBinding(lastSelectedAtom);
+            lastSelectedAtom.performIonicBond(selectedAtom);
+            selectedAtom.performIonicBond(lastSelectedAtom);
         }
 
         /**
@@ -390,14 +386,14 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param x the clicked X.
          * @param y the clicked Y.
          */
-        private void doubleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+        private void doubleBondEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
-            if (checkIfBindingPossible(selectedAtom, 2))
+            if (checkIfBondPossible(selectedAtom, 2))
                 return;
 
             @SuppressWarnings("ConstantConditions")
-            DoubleGraphicalBinding doubleBinding = new DoubleGraphicalBinding(lastSelectedAtom.getCenterX() - 10,
+            com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond doubleBond = new com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond(lastSelectedAtom.getCenterX() - 10,
                                                                               selectedAtom.getCenterX() - 10,
                                                                               lastSelectedAtom.getCenterY(),
                                                                               selectedAtom.getCenterY(),
@@ -406,10 +402,10 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                                                                               lastSelectedAtom.getCenterY(),
                                                                               selectedAtom.getCenterY());
 
-            doubleGraphicalBindingList.add(doubleBinding);
+            doubleGraphicalBondList.add(doubleBond);
 
-            lastSelectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.Start);
-            selectedAtom.doDoubleBinding(doubleBinding, GenericGraphicalBindingList.Edges.End);
+            lastSelectedAtom.doDoubleBond(doubleBond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start);
+            selectedAtom.doDoubleBond(doubleBond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.End);
 
             setCursor(Cursor.getDefaultCursor());
             cursorState = CursorStates.CursorSelecting;
@@ -423,23 +419,23 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param x the clicked X.
          * @param y the clicked Y.
          */
-        private void tripleBindingEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+        private void tripleBondEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom selectedAtom = getGenericGraphicalAtom(x, y);
 
-            if (checkIfBindingPossible(selectedAtom, 3))
+            if (checkIfBondPossible(selectedAtom, 3))
                 return;
 
             @SuppressWarnings("ConstantConditions")
-            TripleGraphicalBinding bond = new TripleGraphicalBinding(lastSelectedAtom.getCenterX(), selectedAtom.getCenterX(),
+            com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond = new com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond(lastSelectedAtom.getCenterX(), selectedAtom.getCenterX(),
                                                                         lastSelectedAtom.getCenterY(), selectedAtom.getCenterY(),
                                                                         lastSelectedAtom.getCenterX() + 10, selectedAtom.getCenterX() + 10,
                                                                         lastSelectedAtom.getCenterY(), selectedAtom.getCenterY(),
                                                                         lastSelectedAtom.getCenterX() - 10, selectedAtom.getCenterX() - 10,
                                                                         lastSelectedAtom.getCenterY(), selectedAtom.getCenterY());
-            tripleGraphicalBindingList.add(bond);
+            tripleGraphicalBondList.add(bond);
 
-            lastSelectedAtom.doTripleBinding(bond, GenericGraphicalBindingList.Edges.Start);
-            selectedAtom.doTripleBinding(bond, GenericGraphicalBindingList.Edges.End);
+            lastSelectedAtom.doTripleBond(bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start);
+            selectedAtom.doTripleBond(bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.End);
 
             setCursor(Cursor.getDefaultCursor());
             cursorState = CursorStates.CursorSelecting;
@@ -453,7 +449,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param x the clicked X
          * @param y the clicked Y
          */
-        private void singleBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
+        private void singleBondRemoveEvent(GenericGraphicalAtom lastSelectedAtom, int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
             if (secondAtom == null) {
                 String msg = "No atom selected";
@@ -461,8 +457,8 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            if (lastSelectedAtom.hasIonicBinding() && secondAtom.hasIonicBinding()) {
-                ionicBindingRemoveEvent(lastSelectedAtom, secondAtom);
+            if (lastSelectedAtom.hasIonicBond() && secondAtom.hasIonicBond()) {
+                ionicBondRemoveEvent(lastSelectedAtom, secondAtom);
             } else {
                 if (secondAtom == lastSelectedAtom) {
                     String msg = "You can't unbond an atom from itself.";
@@ -470,17 +466,17 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     return;
                 }
 
-                Stream<SingleGraphicalBinding> graphicalBindingStream = singleGraphicalBindingList.stream();
-                SingleGraphicalBinding bond = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                        .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+                Stream<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> graphicalBondStream = singleGraphicalBondList.stream();
+                com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond = graphicalBondStream.filter(e -> lastSelectedAtom.hasAtomBond(e.getID()))
+                        .filter(e -> secondAtom.hasAtomBond(e.getID()))
                         .findFirst().orElse(null);
 
                 if (bond == null)
                     return;
 
                 bond.markDeletion();
-                lastSelectedAtom.removeSingleBinding(bond.getID());
-                secondAtom.removeSingleBinding(bond.getID());
+                lastSelectedAtom.removeSingleBond(bond.getID());
+                secondAtom.removeSingleBond(bond.getID());
             }
 
             setCursorState(CursorStates.CursorSelecting);
@@ -494,15 +490,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param lastSelectedAtom the atom to remove the biding.
          * @param secondAtom the other atom to remove the biding.
          */
-        private void ionicBindingRemoveEvent(GenericGraphicalAtom lastSelectedAtom, GenericGraphicalAtom secondAtom) {
+        private void ionicBondRemoveEvent(GenericGraphicalAtom lastSelectedAtom, GenericGraphicalAtom secondAtom) {
             if (secondAtom == null) {
                 String msg = "No atom selected";
                 JOptionPane.showMessageDialog(null, msg, "Please select a valid atom.", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            lastSelectedAtom.removeIonicBinding(secondAtom.getAtomId());
-            secondAtom.removeIonicBinding(lastSelectedAtom.getAtomId());
+            lastSelectedAtom.removeIonicBond(secondAtom.getAtomId());
+            secondAtom.removeIonicBond(lastSelectedAtom.getAtomId());
         }
 
         /**
@@ -510,7 +506,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param x the clicked X
          * @param y the clicked Y
          */
-        private void doubleBindingRemoveEvent(int x, int y) {
+        private void doubleBondRemoveEvent(int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
             if (secondAtom == null) {
                 String msg = "No atom selected";
@@ -524,16 +520,16 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            Stream<DoubleGraphicalBinding> graphicalBindingStream = doubleGraphicalBindingList.stream();
-            DoubleGraphicalBinding bond = graphicalBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                    .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+            Stream<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> graphicalBondStream = doubleGraphicalBondList.stream();
+            com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond = graphicalBondStream.filter(e -> lastSelectedAtom.hasAtomBond(e.getID()))
+                    .filter(e -> secondAtom.hasAtomBond(e.getID()))
                     .findFirst().orElse(null);
             if (bond == null)
                 return;
 
             bond.markDeletion();
-            lastSelectedAtom.removeDoubleBinding(bond.getID());
-            secondAtom.removeDoubleBinding(bond.getID());
+            lastSelectedAtom.removeDoubleBond(bond.getID());
+            secondAtom.removeDoubleBond(bond.getID());
 
             cursorState = CursorStates.CursorSelecting;
             setCursor(Cursor.getDefaultCursor());
@@ -546,7 +542,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param x the clicked X
          * @param y the clicked Y
          */
-        private void tripleBindingRemoveEvent(int x, int y) {
+        private void tripleBondRemoveEvent(int x, int y) {
             GenericGraphicalAtom secondAtom = getGenericGraphicalAtom(x, y);
 
             if (secondAtom == null) {
@@ -561,16 +557,16 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            Stream<TripleGraphicalBinding> tripleBindingStream = tripleGraphicalBindingList.stream();
-            TripleGraphicalBinding bond = tripleBindingStream.filter(e -> lastSelectedAtom.hasAtomBinding(e.getID()))
-                    .filter(e -> secondAtom.hasAtomBinding(e.getID()))
+            Stream<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> tripleBondStream = tripleGraphicalBondList.stream();
+            com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond = tripleBondStream.filter(e -> lastSelectedAtom.hasAtomBond(e.getID()))
+                    .filter(e -> secondAtom.hasAtomBond(e.getID()))
                     .findFirst().orElse(null);
             if (bond == null)
                 return;
 
             bond.markDeletion();
-            lastSelectedAtom.removeTripleBinding(bond.getID());
-            secondAtom.removeTripleBinding(bond.getID());
+            lastSelectedAtom.removeTripleBond(bond.getID());
+            secondAtom.removeTripleBond(bond.getID());
 
             cursorState = CursorStates.CursorSelecting;
             setCursor(Cursor.getDefaultCursor());
@@ -590,7 +586,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                 return;
             }
 
-            if (lastSelectedAtom.hasIonicBinding() && releasedPositionAtom == null) {
+            if (lastSelectedAtom.hasIonicBond() && releasedPositionAtom == null) {
                 if (y - 5 < 5 || y + 5 > getHeight() - 15) {
                     setCursorState(CursorStates.CursorSelecting);
                     setCursor(Cursor.getDefaultCursor());
@@ -600,15 +596,15 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     lastSelectedAtom.getIonicBindedAtom().move(lastSelectedAtom.getStartX(), lastSelectedAtom.getStartY() + 45);
                 }
             } else {
-                if (!lastSelectedAtom.hasIonicBinding())
+                if (!lastSelectedAtom.hasIonicBond())
                     lastSelectedAtom.move(x, y);
             }
 
             setCursorState(CursorStates.CursorSelecting);
             setCursor(Cursor.getDefaultCursor());
 
-            if (lastSelectedAtom.getDoubleBindingList() != null)
-                checkDoubleBindings(lastSelectedAtom);
+            if (lastSelectedAtom.getDoubleBondList() != null)
+                checkDoubleBonds(lastSelectedAtom);
 
             repaint();
         }
@@ -624,7 +620,7 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
          * @param bondNum the number of bonds on that atom
          * @return returns true if the bond can't be performed, false otherwise.
          */
-        private boolean checkIfBindingPossible(GenericGraphicalAtom selectedAtom, int bondNum) {
+        private boolean checkIfBondPossible(GenericGraphicalAtom selectedAtom, int bondNum) {
             if (selectedAtom == null) {
                 String msg = "No atom was selected for bond.";
                 JOptionPane.showMessageDialog(null, msg, "No atom selected", JOptionPane.ERROR_MESSAGE);
@@ -642,28 +638,28 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             }
 
             // Check if it's still possible to make bonds.
-            if (lastSelectedAtom.getBindingsRemaining() - bondNum < 0) {
+            if (lastSelectedAtom.getBondsRemaining() - bondNum < 0) {
                 String msg = "Maximum number of bonds for atom " + lastSelectedAtom.getAtomId() + " has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return true;
             }
 
-            if (selectedAtom.getBindingsRemaining() - bondNum < 0) {
+            if (selectedAtom.getBondsRemaining() - bondNum < 0) {
                 String msg = "Maximum number of bonds for the selected atom has been reached.";
                 JOptionPane.showMessageDialog(null, msg, "Maximum number of atoms reached.", JOptionPane.ERROR_MESSAGE);
                 return true;
             }
 
-            if (cursorState == CursorStates.CursorDoubleBinding) {
-                if (selectedAtom.getDoubleBindingList() == null) {
+            if (cursorState == CursorStates.CursorDoubleBond) {
+                if (selectedAtom.getDoubleBondList() == null) {
                     String msg = "Can't double bond " + lastSelectedAtom.getAtomId() + " to " + selectedAtom.getAtomId();
                     JOptionPane.showMessageDialog(null, msg, "Can't double bond atoms.", JOptionPane.ERROR_MESSAGE);
                     return true;
                 }
             }
 
-            if (cursorState == CursorStates.CursorTripleBinding) {
-                if (selectedAtom.getTripleBindingList() == null) {
+            if (cursorState == CursorStates.CursorTripleBond) {
+                if (selectedAtom.getTripleBondList() == null) {
                     String msg = "Can't triple bond " + lastSelectedAtom.getAtomId() + " to " + selectedAtom.getAtomId();
                     JOptionPane.showMessageDialog(null, msg, "Can't triple bond atoms.", JOptionPane.ERROR_MESSAGE);
                     return true;
@@ -713,28 +709,28 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     selectAtomEvent(e.getX(), e.getY());
                 break;
 
-                case CursorSingleBinding:
-                    singleBindingEvent(lastSelectedAtom, e.getX(), e.getY());
+                case CursorSingleBond:
+                    singleBondEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
-                case CursorDoubleBinding:
-                    doubleBindingEvent(lastSelectedAtom, e.getX(), e.getY());
+                case CursorDoubleBond:
+                    doubleBondEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
-                case CursorTripleBinding:
-                    tripleBindingEvent(lastSelectedAtom, e.getX(), e.getY());
+                case CursorTripleBond:
+                    tripleBondEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
-                case CursorRemoveSingleBinding:
-                    singleBindingRemoveEvent(lastSelectedAtom, e.getX(), e.getY());
+                case CursorRemoveSingleBond:
+                    singleBondRemoveEvent(lastSelectedAtom, e.getX(), e.getY());
                 break;
 
-                case CursorRemoveDoubleBinding:
-                    doubleBindingRemoveEvent(e.getX(), e.getY());
+                case CursorRemoveDoubleBond:
+                    doubleBondRemoveEvent(e.getX(), e.getY());
                 break;
 
-                case CursorRemoveTripleBinding:
-                    tripleBindingRemoveEvent(e.getX(), e.getY());
+                case CursorRemoveTripleBond:
+                    tripleBondRemoveEvent(e.getX(), e.getY());
                 break;
 
                 case CursorMoving:
@@ -753,16 +749,16 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
             super.mouseEntered(e);
 
             switch (cursorState) {
-                case CursorSingleBinding:
-                    setCursor(singleBindingCursor);
+                case CursorSingleBond:
+                    setCursor(singleBondCursor);
                 break;
 
-                case CursorDoubleBinding:
-                    setCursor(doubleBindingCursor);
+                case CursorDoubleBond:
+                    setCursor(doubleBondCursor);
                 break;
 
-                case CursorTripleBinding:
-                    setCursor(tripleBindingCursor);
+                case CursorTripleBond:
+                    setCursor(tripleBondCursor);
                 break;
 
                 case CursorDrawing:
@@ -773,16 +769,16 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
                     setCursor(Cursor.getDefaultCursor());
                 break;
 
-                case CursorRemoveSingleBinding:
-                    setCursor(removeSingleBindingCursor);
+                case CursorRemoveSingleBond:
+                    setCursor(removeSingleBondCursor);
                 break;
 
-                case CursorRemoveDoubleBinding:
-                    setCursor(removeDoubleBindingCursor);
+                case CursorRemoveDoubleBond:
+                    setCursor(removeDoubleBondCursor);
                 break;
 
-                case CursorRemoveTripleBinding:
-                    setCursor(removeTripleBindingCursor);
+                case CursorRemoveTripleBond:
+                    setCursor(removeTripleBondCursor);
                 break;
 
                 case CursorMoving:
@@ -878,46 +874,46 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
      * This method cleans up the list of the bonds between atoms, so that there won't be any bonds with only
      * one atom at one edge, or any bond without any atoms.
      */
-    private void sanitizeBindings() {
+    private void sanitizeBonds() {
         @SuppressWarnings("unchecked")
-        ArrayList<SingleGraphicalBinding> singleGraphicalBindingListClone = (ArrayList<SingleGraphicalBinding>) singleGraphicalBindingList.clone();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> singleGraphicalBondListClone = (ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond>) singleGraphicalBondList.clone();
 
         @SuppressWarnings("unchecked")
-        ArrayList<DoubleGraphicalBinding> doubleGraphicalBindingListClone = (ArrayList<DoubleGraphicalBinding>) doubleGraphicalBindingList.clone();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> doubleGraphicalBondListClone = (ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond>) doubleGraphicalBondList.clone();
 
         @SuppressWarnings("unchecked")
-        ArrayList<TripleGraphicalBinding> tripleGraphicalBindingListClone = (ArrayList<TripleGraphicalBinding>) tripleGraphicalBindingList.clone();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> tripleGraphicalBondListClone = (ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond>) tripleGraphicalBondList.clone();
         int index = 0;
 
         // Sanitizing single bonds.
-        for (SingleGraphicalBinding bond : singleGraphicalBindingListClone) {
+        for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond : singleGraphicalBondListClone) {
             if (bond.getNumberOfAtomsBinded() == 0)
-                singleGraphicalBindingList.remove(index);
+                singleGraphicalBondList.remove(index);
 
             index++;
         }
 
         // Sanitizing double bonds.
         index = 0;
-        for (DoubleGraphicalBinding bond : doubleGraphicalBindingListClone) {
+        for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : doubleGraphicalBondListClone) {
             if (bond.getNumberOfAtomsBinded() == 0)
-                doubleGraphicalBindingList.remove(index);
+                doubleGraphicalBondList.remove(index);
 
             index++;
         }
 
         // Sanitizing triple bonds.
         index = 0;
-        for (TripleGraphicalBinding bond : tripleGraphicalBindingListClone) {
+        for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond : tripleGraphicalBondListClone) {
             if (bond.getNumberOfAtomsBinded() == 0)
-                doubleGraphicalBindingList.remove(index);
+                doubleGraphicalBondList.remove(index);
 
             index++;
         }
 
         for (GenericGraphicalAtom atom : graphicalAtomsList)
-            if (atom.getDoubleBindingList() != null)
-                checkDoubleBindings(atom);
+            if (atom.getDoubleBondList() != null)
+                checkDoubleBonds(atom);
     }
 
     /**
@@ -943,61 +939,61 @@ public final class MoleculeDrawingCanvas extends GenericCanvas {
      * This method is used to move double bonds.
      * @param atom the atom to update the double bonds with.
      */
-    private void checkDoubleBindings(@NotNull GenericGraphicalAtom atom) {
+    private void checkDoubleBonds(@NotNull GenericGraphicalAtom atom) {
         GenericGraphicalAtom bondedAtom = null;
 
-        DoubleGraphicalBinding atomBinding = null;
-        DoubleGraphicalBinding bondedAtomBinding = null;
+        com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond atomBond = null;
+        com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bondedAtomBond = null;
 
         for (GenericGraphicalAtom graphicalAtom : graphicalAtomsList) {
-            for (DoubleGraphicalBinding bond : atom.getDoubleBindingList().getBindings()) {
+            for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : atom.getDoubleBondList().getBonds()) {
                 if (graphicalAtom == atom)
                     continue;
 
-                if (graphicalAtom.hasAtomBinding(bond.getID())) {
+                if (graphicalAtom.hasAtomBond(bond.getID())) {
                     bondedAtom = graphicalAtom;
-                    atomBinding = atom.getDoubleGraphicalBindingFromID(bond.getID());
-                    bondedAtomBinding = bondedAtom.getDoubleGraphicalBindingFromID(bond.getID());
+                    atomBond = atom.getDoubleGraphicalBondFromID(bond.getID());
+                    bondedAtomBond = bondedAtom.getDoubleGraphicalBondFromID(bond.getID());
                     break;
                 }
             }
         }
 
-        if (bondedAtom == null || atomBinding == null || bondedAtomBinding == null)
+        if (bondedAtom == null || atomBond == null || bondedAtomBond == null)
             return;
 
         if (atom.getCenterY() < 1) {
-            if (atom.getDoubleGraphicalBindingEdge(atomBinding.getID()) == GenericGraphicalBindingList.Edges.Start) {
-                atomBinding.setStartYL(atom.getCenterX() + 10);
-                atomBinding.setStartYR(atom.getCenterX() - 10);
-                atomBinding.setStartXL(atom.getCenterY() + 10);
-                atomBinding.setStartXR(atom.getCenterY() - 10);
+            if (atom.getDoubleGraphicalBondEdge(atomBond.getID()) == com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start) {
+                atomBond.setStartYL(atom.getCenterX() + 10);
+                atomBond.setStartYR(atom.getCenterX() - 10);
+                atomBond.setStartXL(atom.getCenterY() + 10);
+                atomBond.setStartXR(atom.getCenterY() - 10);
 
-                atomBinding.setEndYL(bondedAtom.getCenterY() + 10);
-                atomBinding.setEndYR(bondedAtom.getCenterY() - 10);
-                atomBinding.setEndXL(bondedAtom.getCenterX() + 10);
-                atomBinding.setEndXR(bondedAtom.getCenterX() - 10);
+                atomBond.setEndYL(bondedAtom.getCenterY() + 10);
+                atomBond.setEndYR(bondedAtom.getCenterY() - 10);
+                atomBond.setEndXL(bondedAtom.getCenterX() + 10);
+                atomBond.setEndXR(bondedAtom.getCenterX() - 10);
             } else {
-                atomBinding.setStartYL(bondedAtom.getCenterY() + 10);
-                atomBinding.setStartYR(bondedAtom.getCenterY() - 10);
-                atomBinding.setStartXL(bondedAtom.getCenterX() + 10);
-                atomBinding.setStartXR(bondedAtom.getCenterX() - 10);
+                atomBond.setStartYL(bondedAtom.getCenterY() + 10);
+                atomBond.setStartYR(bondedAtom.getCenterY() - 10);
+                atomBond.setStartXL(bondedAtom.getCenterX() + 10);
+                atomBond.setStartXR(bondedAtom.getCenterX() - 10);
 
-                atomBinding.setEndYL(atom.getCenterY() + 10);
-                atomBinding.setEndYR(atom.getCenterY() - 10);
-                atomBinding.setEndXL(atom.getCenterX() + 10);
-                atomBinding.setEndXR(atom.getCenterX() - 10);
+                atomBond.setEndYL(atom.getCenterY() + 10);
+                atomBond.setEndYR(atom.getCenterY() - 10);
+                atomBond.setEndXL(atom.getCenterX() + 10);
+                atomBond.setEndXR(atom.getCenterX() - 10);
             }
         } else {
-            atomBinding.setStartYL(atom.getCenterY() - 10);
-            atomBinding.setStartYR(atom.getCenterY() + 10);
-            atomBinding.setStartXL(atom.getCenterX() - 10);
-            atomBinding.setStartXR(atom.getCenterX() + 10);
+            atomBond.setStartYL(atom.getCenterY() - 10);
+            atomBond.setStartYR(atom.getCenterY() + 10);
+            atomBond.setStartXL(atom.getCenterX() - 10);
+            atomBond.setStartXR(atom.getCenterX() + 10);
 
-            atomBinding.setEndYL(bondedAtom.getCenterY() - 10);
-            atomBinding.setEndYR(bondedAtom.getCenterY() + 10);
-            atomBinding.setEndXL(bondedAtom.getCenterX() - 10);
-            atomBinding.setEndXR(bondedAtom.getCenterX() + 10);
+            atomBond.setEndYL(bondedAtom.getCenterY() - 10);
+            atomBond.setEndYR(bondedAtom.getCenterY() + 10);
+            atomBond.setEndXL(bondedAtom.getCenterX() - 10);
+            atomBond.setEndXR(bondedAtom.getCenterX() + 10);
         }
     }
 

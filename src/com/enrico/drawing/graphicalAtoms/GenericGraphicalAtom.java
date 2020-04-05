@@ -20,10 +20,6 @@
 package com.enrico.drawing.graphicalAtoms;
 
 import com.enrico.chemistry.atoms.GenericAtom;
-import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBindingList;
-import com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBinding;
-import com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBinding;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,9 +57,9 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
     // These lists represent all of the bonds that the atom has.
     // By default, every atom can only do single bonds, but double and triple bonds can be enabled by initializing them
     // in the sub-class constructor.
-    private GenericGraphicalBindingList<SingleGraphicalBinding> singleBindingList = new GenericGraphicalBindingList<>();
-    protected GenericGraphicalBindingList<DoubleGraphicalBinding> doubleBindingList = null;
-    protected GenericGraphicalBindingList<TripleGraphicalBinding> tripleBindingList = null;
+    private com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> singleBondList = new com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<>();
+    protected com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> doubleBondList = null;
+    protected com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> tripleBondList = null;
 
     private GenericGraphicalAtom ionicBindedAtom = null;
 
@@ -131,7 +127,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return startY + 23;
     }
 
-    public int getBindingsRemaining() {
+    public int getBondsRemaining() {
         return bondsRemaining;
     }
 
@@ -180,11 +176,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @param bond The single bond to add.
      * @param edge The edge to set (beginning or end).
      */
-    public void doSingleBinding(SingleGraphicalBinding bond, GenericGraphicalBindingList.Edges edge) {
+    public void doSingleBond(com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges edge) {
         if (bondsRemaining - 1 >= 0)
             bondsRemaining--;
 
-        singleBindingList.addBinding(bond, edge);
+        singleBondList.addBond(bond, edge);
     }
 
     /**
@@ -192,11 +188,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @param bond The double bond to add.
      * @param edge The edge to set (beginning or end).
      */
-    public void doDoubleBinding(DoubleGraphicalBinding bond, GenericGraphicalBindingList.Edges edge) {
+    public void doDoubleBond(com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges edge) {
         if (bondsRemaining - 2 >= 0)
             bondsRemaining -= 2;
         
-        doubleBindingList.addBinding(bond, edge);
+        doubleBondList.addBond(bond, edge);
     }
 
     /**
@@ -204,11 +200,11 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @param bond The triple bond to add.
      * @param edge The edge to set (beginning or end).
      */
-    public void doTripleBinding(TripleGraphicalBinding bond, GenericGraphicalBindingList.Edges edge) {
+    public void doTripleBond(com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond, com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges edge) {
         if (bondsRemaining - 3 >= 0)
             bondsRemaining -= 3;
 
-        tripleBindingList.addBinding(bond, edge);
+        tripleBondList.addBond(bond, edge);
     }
 
     /**
@@ -225,13 +221,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
 
         setSelectableCoordinates();
 
-        moveSingleBindings();
+        moveSingleBonds();
 
-        if (doubleBindingList != null)
-            moveDoubleBindings();
+        if (doubleBondList != null)
+            moveDoubleBonds();
 
-        if (tripleBindingList != null)
-            moveTripleBindings();
+        if (tripleBondList != null)
+            moveTripleBonds();
     }
 
     /**
@@ -246,13 +242,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method moves every single bond to the new atom position.
      * this method is usually called after moving an atom.
      */
-    private void moveSingleBindings() {
-        ArrayList<SingleGraphicalBinding> bonds = singleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edges = singleBindingList.getBindingsEdges();
+    private void moveSingleBonds() {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> bonds = singleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges> edges = singleBondList.getBondsEdges();
         int bondIndex = 0;
 
-        for (SingleGraphicalBinding bond : bonds) {
-            if (edges.get(bondIndex) == GenericGraphicalBindingList.Edges.Start) {
+        for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond : bonds) {
+            if (edges.get(bondIndex) == com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start) {
                 bond.setStartX(getCenterX());
                 bond.setStartY(getCenterY());
             } else {
@@ -268,13 +264,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method moves every double bond to the new atom position.
      * this method is usually called after moving an atom.
      */
-    private void moveDoubleBindings() {
-        ArrayList<DoubleGraphicalBinding> bonds = doubleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edges = doubleBindingList.getBindingsEdges();
+    private void moveDoubleBonds() {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> bonds = doubleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges> edges = doubleBondList.getBondsEdges();
         int bondIndex = 0;
 
-        for (DoubleGraphicalBinding bond : bonds) {
-            if (edges.get(bondIndex) == GenericGraphicalBindingList.Edges.Start) {
+        for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : bonds) {
+            if (edges.get(bondIndex) == com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start) {
                 bond.setStartXL(getCenterX() - 10);
                 bond.setStartXR(getCenterX() + 10);
                 bond.setStartYL(getCenterY());
@@ -294,13 +290,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method moves every triple bond to the new atom position.
      * this method is usually called after moving an atom.
      */
-    private void moveTripleBindings() {
-        ArrayList<TripleGraphicalBinding> bonds = tripleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edges = tripleBindingList.getBindingsEdges();
+    private void moveTripleBonds() {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> bonds = tripleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges> edges = tripleBondList.getBondsEdges();
         int bondIndex = 0;
 
-        for (TripleGraphicalBinding bond : bonds) {
-            if (edges.get(bondIndex) == GenericGraphicalBindingList.Edges.Start) {
+        for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond : bonds) {
+            if (edges.get(bondIndex) == com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges.Start) {
                 bond.setStartCentralX(getCenterX());
                 bond.setStartCentralY(getCenterY());
                 bond.setStartRightX(getCenterX() - 10);
@@ -341,29 +337,29 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @param bondID The ID of the bond to check if is on this atom.
      * @return true if the bond is present, false otherwise.
      */
-    public boolean hasAtomBinding(String bondID) {
-        ArrayList<SingleGraphicalBinding> singleBindings = singleBindingList.getBindings();
-        ArrayList<DoubleGraphicalBinding> doubleBindings = null;
-        ArrayList<TripleGraphicalBinding> tripleBindings = null;
+    public boolean hasAtomBond(String bondID) {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> singleBonds = singleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> doubleBonds = null;
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> tripleBonds = null;
 
-        if (doubleBindingList != null)
-            doubleBindings = doubleBindingList.getBindings();
+        if (doubleBondList != null)
+            doubleBonds = doubleBondList.getBonds();
 
-        if (tripleBindingList != null)
-            tripleBindings = tripleBindingList.getBindings();
+        if (tripleBondList != null)
+            tripleBonds = tripleBondList.getBonds();
 
-        for (SingleGraphicalBinding singleBinding : singleBindings)
-            if (singleBinding.getID().equals(bondID))
+        for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond singleBond : singleBonds)
+            if (singleBond.getID().equals(bondID))
                 return true;
 
-        if (doubleBindings != null)
-            for (DoubleGraphicalBinding doubleBinding : doubleBindings)
-                if (doubleBinding.getID().equals(bondID))
+        if (doubleBonds != null)
+            for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond doubleBond : doubleBonds)
+                if (doubleBond.getID().equals(bondID))
                     return true;
 
-        if (tripleBindings != null)
-            for (TripleGraphicalBinding tripleBinding : tripleBindings)
-                if (tripleBinding.getID().equals(bondID))
+        if (tripleBonds != null)
+            for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond tripleBond : tripleBonds)
+                if (tripleBond.getID().equals(bondID))
                     return true;
 
         return false;
@@ -374,21 +370,21 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @param atom The atom to check if has bonds in common with this atom.
      * @return true if the atom has common bonds with the current atom, false otherwise.
      */
-    public boolean hasAtomCommonBindings(@NotNull GenericGraphicalAtom atom) {
-        ArrayList<SingleGraphicalBinding> thisAtomSingleBindings = singleBindingList.getBindings();
-        ArrayList<SingleGraphicalBinding> otherAtomSingleBindings = atom.getSingleBindingList().getBindings();
+    public boolean hasAtomCommonBonds(@NotNull GenericGraphicalAtom atom) {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> thisAtomSingleBonds = singleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> otherAtomSingleBonds = atom.getSingleBondList().getBonds();
 
-        ArrayList<DoubleGraphicalBinding> thisAtomDoubleBindings = doubleBindingList.getBindings();
-        ArrayList<DoubleGraphicalBinding> otherAtomDoubleBindings = atom.getDoubleBindingList().getBindings();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> thisAtomDoubleBonds = doubleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> otherAtomDoubleBonds = atom.getDoubleBondList().getBonds();
 
-        for (SingleGraphicalBinding thisSingleBinding : thisAtomSingleBindings)
-            for (SingleGraphicalBinding otherSingleBinding : otherAtomSingleBindings)
-                if (thisSingleBinding.getID().equals(otherSingleBinding.getID()))
+        for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond thisSingleBond : thisAtomSingleBonds)
+            for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond otherSingleBond : otherAtomSingleBonds)
+                if (thisSingleBond.getID().equals(otherSingleBond.getID()))
                     return true;
 
-        for (DoubleGraphicalBinding thisDoubleBinding : thisAtomDoubleBindings)
-            for (DoubleGraphicalBinding otherDoubleBinding : otherAtomDoubleBindings)
-                if (thisDoubleBinding.getID().equals(otherDoubleBinding.getID()))
+        for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond thisDoubleBond : thisAtomDoubleBonds)
+            for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond otherDoubleBond : otherAtomDoubleBonds)
+                if (thisDoubleBond.getID().equals(otherDoubleBond.getID()))
                     return true;
 
         return false;
@@ -398,13 +394,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method removes a single bond from this atom.
      * @param bondID The bond ID that represents the bond to remove from the atom.
      */
-    public void removeSingleBinding(String bondID) {
-        ArrayList<SingleGraphicalBinding> bonds = singleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edgesList = singleBindingList.getBindingsEdges();
+    public void removeSingleBond(String bondID) {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> bonds = singleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges> edgesList = singleBondList.getBondsEdges();
 
         int index = 0;
 
-        for (SingleGraphicalBinding bond : bonds) {
+        for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond : bonds) {
             if (bond.getID().equals(bondID)) {
                 bonds.remove(index);
                 edgesList.remove(index);
@@ -421,13 +417,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method removes a double bond from this atom.
      * @param bondID The bond ID that represents the bond to remove from the atom.
      */
-    public void removeDoubleBinding(String bondID) {
-        ArrayList<DoubleGraphicalBinding> bonds = doubleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edgesList = doubleBindingList.getBindingsEdges();
+    public void removeDoubleBond(String bondID) {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> bonds = doubleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges> edgesList = doubleBondList.getBondsEdges();
 
         int index = 0;
 
-        for (DoubleGraphicalBinding bond : bonds) {
+        for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : bonds) {
             if (bond.getID().equals(bondID)) {
                 bonds.remove(index);
                 edgesList.remove(index);
@@ -444,13 +440,13 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method removes a triple bond from this atom.
      * @param bondID The bond ID that represents the bond to remove from the atom.
      */
-    public void removeTripleBinding(String bondID) {
-        ArrayList<TripleGraphicalBinding> bonds = tripleBindingList.getBindings();
-        ArrayList<GenericGraphicalBindingList.Edges> edgesList = tripleBindingList.getBindingsEdges();
+    public void removeTripleBond(String bondID) {
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> bonds = tripleBondList.getBonds();
+        ArrayList<com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges> edgesList = tripleBondList.getBondsEdges();
 
         int index = 0;
 
-        for (TripleGraphicalBinding bond: bonds) {
+        for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond: bonds) {
             if (bond.getID().equals(bondID)) {
                 bonds.remove(index);
                 edgesList.remove(index);
@@ -467,16 +463,16 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * This method removes all o the bonds of the atom.
      * This is usually called when the current atom is being deleted.
      */
-    public void removeAllBindings() {
-        for (SingleGraphicalBinding bond : singleBindingList.getBindings())
+    public void removeAllBonds() {
+        for (com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond bond : singleBondList.getBonds())
             bond.markDeletion();
 
-        if (doubleBindingList != null)
-            for (DoubleGraphicalBinding bond : doubleBindingList.getBindings())
+        if (doubleBondList != null)
+            for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : doubleBondList.getBonds())
                 bond.markDeletion();
 
-        if (tripleBindingList != null)
-            for (TripleGraphicalBinding bond : tripleBindingList.getBindings())
+        if (tripleBondList != null)
+            for (com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond bond : tripleBondList.getBonds())
                 bond.markDeletion();
     }
 
@@ -486,8 +482,8 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @return returns the double bond if present, or null otherwise.
      */
     @Nullable
-    public DoubleGraphicalBinding getDoubleGraphicalBindingFromID(String ID) {
-        for (DoubleGraphicalBinding bond : doubleBindingList.getBindings())
+    public com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond getDoubleGraphicalBondFromID(String ID) {
+        for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : doubleBondList.getBonds())
             if (bond.getID().equals(ID))
                 return bond;
 
@@ -500,12 +496,12 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
      * @return The Edge of the bond, or null otherwise.
      */
     @Nullable
-    public GenericGraphicalBindingList.Edges getDoubleGraphicalBindingEdge(String ID) {
+    public com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList.Edges getDoubleGraphicalBondEdge(String ID) {
         int index = 0;
 
-        for (DoubleGraphicalBinding bond : doubleBindingList.getBindings()) {
+        for (com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond bond : doubleBondList.getBonds()) {
             if (bond.getID().equals(ID))
-                return doubleBindingList.getEdgeFromIndex(index);
+                return doubleBondList.getEdgeFromIndex(index);
 
             index++;
         }
@@ -513,7 +509,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         return null;
     }
 
-    public void performIonicBinding(GenericGraphicalAtom bondedAtom) {
+    public void performIonicBond(GenericGraphicalAtom bondedAtom) {
         if (bondsRemaining < 0)
             return;
 
@@ -521,7 +517,7 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         bondsRemaining--;
     }
 
-    public void removeIonicBinding(String atomID) {
+    public void removeIonicBond(String atomID) {
         if (ionicBindedAtom != null) {
             if (ionicBindedAtom.getAtomId().equals(atomID)) {
                 ionicBindedAtom = null;
@@ -530,23 +526,23 @@ public abstract class GenericGraphicalAtom extends GenericAtom {
         }
     }
 
-    public GenericGraphicalBindingList<SingleGraphicalBinding> getSingleBindingList() {
-        return singleBindingList;
+    public com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<com.enrico.drawing.graphicalAtoms.bond.singlebond.SingleGraphicalBond> getSingleBondList() {
+        return singleBondList;
     }
 
-    public GenericGraphicalBindingList<DoubleGraphicalBinding> getDoubleBindingList() {
-        return doubleBindingList;
+    public com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<com.enrico.drawing.graphicalAtoms.bond.doublebond.DoubleGraphicalBond> getDoubleBondList() {
+        return doubleBondList;
     }
 
-    public GenericGraphicalBindingList<TripleGraphicalBinding> getTripleBindingList() {
-        return tripleBindingList;
+    public com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBondList<com.enrico.drawing.graphicalAtoms.bond.triplebond.TripleGraphicalBond> getTripleBondList() {
+        return tripleBondList;
     }
 
     public boolean isAtomUpper(@NotNull GenericGraphicalAtom atom) {
         return getCenterY() > atom.getCenterY();
     }
 
-    public boolean hasIonicBinding() {
+    public boolean hasIonicBond() {
         return ionicBindedAtom != null;
     }
 }

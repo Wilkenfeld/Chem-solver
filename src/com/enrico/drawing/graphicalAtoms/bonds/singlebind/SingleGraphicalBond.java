@@ -19,16 +19,14 @@
 
 package com.enrico.drawing.graphicalAtoms.bond.singlebond;
 
-import com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBinding;
-
-public final class SingleGraphicalBinding extends GenericGraphicalBinding {
+public final class SingleGraphicalBond extends com.enrico.drawing.graphicalAtoms.bond.GenericGraphicalBond {
     private int startX;
     private int endX;
 
     private int startY;
     private int endY;
 
-    public SingleGraphicalBinding(int startX, int endX, int startY, int endY) {
+    public SingleGraphicalBond(int startX, int endX, int startY, int endY) {
         super("SINGLE_BONDING");
 
         this.startX = startX;

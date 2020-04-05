@@ -19,32 +19,42 @@
 
 package com.enrico.drawing.graphicalAtoms.bond;
 
-import java.awt.*;
+import java.util.ArrayList;
 
-public abstract class GenericGraphicalBinding {
-    public static final Color DEFAULT_COLOR = Color.black;
-    public static final BasicStroke DEFAULT_STROKE = new BasicStroke(5);
+public final class GenericGraphicalBondList<BondType> {
+    private ArrayList<BondType> bonds = new ArrayList<>();
+    private ArrayList<Edges> edges = new ArrayList<>();
 
-    private final String ID;
-
-    private static int idCount = 0;
-
-    private int atomsBinded = 2;
-
-    public GenericGraphicalBinding(String prefix) {
-        ID = prefix + idCount;
-        idCount++;
+    public enum Edges {
+        Start,
+        End
     }
 
-    public final String getID() {
-        return ID;
+    public GenericGraphicalBondList() {
     }
 
-    public final int getNumberOfAtomsBinded() {
-        return atomsBinded;
+    public void addBond(BondType bond, Edges edge) {
+        bonds.add(bond);
+        edges.add(edge);
     }
 
-    public final void markDeletion() {
-        atomsBinded = 0;
+    public BondType getBondFromIndex(int index) {
+        return bonds.get(index);
+    }
+
+    public Edges getEdgeFromIndex(int index) {
+        return edges.get(index);
+    }
+
+    public int getNumberOfBonds() {
+        return bonds.size();
+    }
+
+    public ArrayList<BondType> getBonds() {
+        return bonds;
+    }
+
+    public ArrayList<Edges> getBondsEdges() {
+        return edges;
     }
 }

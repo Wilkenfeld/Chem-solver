@@ -17,19 +17,34 @@
  *
  */
 
-package com.enrico.drawing.graphicalAtoms.alkalinemetals;
+package com.enrico.drawing.graphicalAtoms.bond;
 
-import com.enrico.drawing.graphicalAtoms.GenericGraphicalAtom;
-import com.enrico.interfaces.atoms.alkalinemetals.RubidiumAtomInterface;
+import java.awt.*;
 
-public final class GraphicalRubidiumAtom extends GenericGraphicalAtom implements RubidiumAtomInterface {
-    public static final String IMAGE_PATH_STRING =
-            "atom_icons/alkaline_metals/atom_icon_rubidium.png";
+public abstract class GenericGraphicalBond {
+    public static final Color DEFAULT_COLOR = Color.black;
+    public static final BasicStroke DEFAULT_STROKE = new BasicStroke(5);
 
-    public static final int STD_BONDS = 1;
+    private final String ID;
 
-    public GraphicalRubidiumAtom(int startX, int startY, int endX, int endY, String atomId) {
-        super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
-                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDS, IMAGE_PATH_STRING, atomId);
+    private static int idCount = 0;
+
+    private int atomsBinded = 2;
+
+    public GenericGraphicalBond(String prefix) {
+        ID = prefix + idCount;
+        idCount++;
+    }
+
+    public final String getID() {
+        return ID;
+    }
+
+    public final int getNumberOfAtomsBinded() {
+        return atomsBinded;
+    }
+
+    public final void markDeletion() {
+        atomsBinded = 0;
     }
 }

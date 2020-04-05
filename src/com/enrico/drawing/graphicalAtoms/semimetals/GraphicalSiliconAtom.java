@@ -26,10 +26,10 @@ public final class GraphicalSiliconAtom extends GenericGraphicalAtom implements 
     public static final String IMAGE_PATH_STRING =
             "atom_icons/semimetals/atom_icon_silicon.png";
 
-    public static final int STD_BONDINGS = 4;
+    public static final int STD_BONDS = 4;
 
     public GraphicalSiliconAtom(int startX, int startY, int endX, int endY, String atomId) {
         super (ATOM_SYMBOL, ATOM_NAME, ATOMIC_NUMBER, ATOMIC_MASS, ELECTRONEGATIVITY, BONDING_ELECTRONS, DOUBLETS,
-                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDINGS, IMAGE_PATH_STRING, atomId);
+                IONIZATION_NUMBER, CLASS_TYPE, startX, startY, endX, endY, STD_BONDS, IMAGE_PATH_STRING, atomId);
     }
 }
