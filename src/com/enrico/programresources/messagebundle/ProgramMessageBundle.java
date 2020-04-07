@@ -19,14 +19,27 @@
 
 package com.enrico.programresources.messagebundle;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public final class ProgramMessageBundle {
-    public static final ResourceBundle messageBundle =
-            ResourceBundle.getBundle("languages/MessageBundle",
-                                     new Locale(Locale.getDefault().getLanguage(),
-                                     Locale.getDefault().getCountry()));
+    // English is omitted because it is the default language.
+    private static final Locale[] supportedLanguages = {Locale.ITALY};
+
+    public static ResourceBundle messageBundle = null;
+
+    // To be called ony once after the program is started.
+    public static void init() {
+        Locale currentLocale = new Locale(Locale.getDefault().getLanguage(), Locale.getDefault().getCountry());
+        if (Arrays.asList(supportedLanguages).contains(currentLocale)) {
+            messageBundle = ResourceBundle.getBundle("languages/MessageBundle",
+                    currentLocale);
+        } else {
+            messageBundle = ResourceBundle.getBundle("languages/MessageBundle",
+                    Locale.ROOT);
+        }
+    }
 
     public static final String WELCOME_TITLE = "welcome_title";
     public static final String WELCOME_SUBTITLE = "welcome_subtitle";

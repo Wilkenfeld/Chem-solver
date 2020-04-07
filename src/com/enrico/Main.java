@@ -19,6 +19,7 @@
 
 package com.enrico;
 
+import com.enrico.programresources.messagebundle.ProgramMessageBundle;
 import com.enrico.project.loader.GenericProjectLoader;
 import com.enrico.project.loader.MolecularShapeProjectLoader;
 import com.enrico.windows.main.MainWindow;
@@ -31,6 +32,9 @@ import java.util.Properties;
 
 public final class Main {
     public static void main(String[] args) {
+        // Initializing the language bundle.
+        ProgramMessageBundle.init();
+
         try {
             // Raising exception if the Aluminium look and feel is not found.
             Class.forName("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
