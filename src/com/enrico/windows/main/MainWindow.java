@@ -38,7 +38,7 @@ Chem solver. A multi-platform chemistry and physics problem solver.
 package com.enrico.windows.main;
 
 import com.enrico.programresources.FontResources;
-import com.enrico.widgets.buttons.ProgramButton;
+import com.enrico.programresources.messagebundle.ProgramMessageBundle;
 import com.enrico.widgets.menu.MainMenuBar;
 import com.enrico.windows.BasicWindow;
 import com.enrico.windows.dialogs.ProblemChooserDialog;
@@ -75,6 +75,10 @@ public final class MainWindow extends BasicWindow {
 
         welcomeLbl.setFont(FontResources.titleFont);
         subwelcomeLbl.setFont(FontResources.subtitleFont);
+
+        welcomeLbl.setText(ProgramMessageBundle.messageBundle.getString(ProgramMessageBundle.WELCOME_TITLE));
+        subwelcomeLbl.setText(ProgramMessageBundle.messageBundle.getString(ProgramMessageBundle.WELCOME_SUBTITLE));
+        solveButton.setText(ProgramMessageBundle.messageBundle.getString(ProgramMessageBundle.WELCOME_BTN));
 
         Dimension mainWinDimension = new Dimension(500, 350);
         setSize(mainWinDimension);

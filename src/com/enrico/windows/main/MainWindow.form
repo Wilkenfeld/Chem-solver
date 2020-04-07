@@ -13,7 +13,7 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="&lt;html&gt; &lt;p style=&quot;color: #003200&quot;&gt;&lt;b&gt;Welcome to Chem solver!&lt;b&gt;&lt;/p&gt;&lt;/html&gt;"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="74f40" class="com.enrico.widgets.label.ProgramLabel" binding="subwelcomeLbl">
@@ -21,7 +21,7 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="&lt;html&gt; Chem solver is a chemistry and &lt;br&gt; physics problem solver, easy to use &lt;br&gt; and multi platofm.&lt;br&gt;Press &quot;Solve problem&quot; to start.&lt;/html&gt;"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="1747b" class="javax.swing.JButton" binding="solveButton">
@@ -31,7 +31,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="Solve problem"/>
+          <text value=""/>
         </properties>
       </component>
     </children>
